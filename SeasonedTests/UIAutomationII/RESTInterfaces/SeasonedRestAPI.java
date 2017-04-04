@@ -6,13 +6,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
 
-public class SeasonedTestRestAPI {
+public class SeasonedRestAPI {
 
     Retrofit retrofit;
     SeasonedAPI seasonedAPI;
     String accessToken;
 
-    public SeasonedTestRestAPI(String accessToken) {
+    public SeasonedRestAPI(String accessToken) {
         retrofit = new Retrofit.Builder()
                                .baseUrl("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/services/rest/")
                                .addConverterFactory(GsonConverterFactory.create())

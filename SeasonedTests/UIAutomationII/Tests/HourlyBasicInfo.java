@@ -36,9 +36,9 @@ public class HourlyBasicInfo extends BaseTest {
         password = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("password");
         userGuid = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("userguid");
         token = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("token");
-        SeasonedTestRestAPI seasonedTestRestAPI = new SeasonedTestRestAPI(token);
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         System.out.println("Making a PUT request to /user/guid/eligibility to clear basic info");
-        seasonedTestRestAPI.clearEligibilityAnswersForUser(userGuid);
+        seasonedRestAPI.clearEligibilityAnswersForUser(userGuid);
     }
 
     @Test
