@@ -1,8 +1,3 @@
-/**
- * Created by alex.esparza on 2/14/17.
- */
-
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,15 +9,15 @@ import java.util.concurrent.TimeUnit;
 
 public class HourlyAvailability extends BaseTest {
 
-    WebDriverWait wait;
-    TestUtils testUtils;
-    NavPage navPage;
-    LoginPage loginPage;
-    ProfilePage profilePage;
-    AvailabilityPage availabilityPage;
+    private WebDriverWait wait;
+    private TestUtils testUtils;
+    private NavPage navPage;
+    private LoginPage loginPage;
+    private ProfilePage profilePage;
+    private AvailabilityPage availabilityPage;
 
-    String username;
-    String password;
+    private String username;
+    private String password;
 
     @BeforeClass
     public void setUp() {
@@ -35,8 +30,8 @@ public class HourlyAvailability extends BaseTest {
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
         availabilityPage = new AvailabilityPage(driver);
-        username = (String) TestDataImporter.get("Availability", "Availability").get("username");
-        password = (String) TestDataImporter.get("Availability", "Availability").get("password");
+        username = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("username");
+        password = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("password");
         System.out.println("Starting test run!");
     }
 
