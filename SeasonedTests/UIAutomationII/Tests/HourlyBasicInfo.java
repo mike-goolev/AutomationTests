@@ -9,17 +9,17 @@ import java.util.concurrent.TimeUnit;
 
 public class HourlyBasicInfo extends BaseTest {
 
-    WebDriverWait wait;
-    TestUtils testUtils;
-    NavPage navPage;
-    LoginPage loginPage;
-    ProfilePage profilePage;
-    BasicInfoPage basicInfoPage;
+    private WebDriverWait wait;
+    private TestUtils testUtils;
+    private NavPage navPage;
+    private LoginPage loginPage;
+    private ProfilePage profilePage;
+    private BasicInfoPage basicInfoPage;
 
-    String username;
-    String password;
-    String userGuid;
-    String token;
+    private String username;
+    private String password;
+    private String userGuid;
+    private String token;
 
     @BeforeClass
     public void setUp() {

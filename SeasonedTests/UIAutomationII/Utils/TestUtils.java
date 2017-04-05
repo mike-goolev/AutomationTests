@@ -1,8 +1,5 @@
 import org.openqa.selenium.WebDriver;
 
-/**
- * Created by alex.esparza on 2/17/17.
- */
 public class TestUtils {
 
     WebDriver driver;

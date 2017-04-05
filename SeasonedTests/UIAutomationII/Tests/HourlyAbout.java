@@ -1,4 +1,3 @@
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -10,16 +9,16 @@ import java.util.concurrent.TimeUnit;
 
 public class HourlyAbout extends BaseTest {
 
-    WebDriverWait wait;
-    TestUtils testUtils;
-    NavPage navPage;
-    LoginPage loginPage;
-    ProfilePage profilePage;
-    AboutPage aboutPage;
+    private WebDriverWait wait;
+    private TestUtils testUtils;
+    private NavPage navPage;
+    private LoginPage loginPage;
+    private ProfilePage profilePage;
+    private AboutPage aboutPage;
 
-    String username;
-    String password;
-    String aboutMeTxt;
+    private String username;
+    private String password;
+    private String aboutMeTxt;
 
     @BeforeClass
     public void setUp() {
