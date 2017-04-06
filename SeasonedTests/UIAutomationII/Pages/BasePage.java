@@ -24,7 +24,6 @@ public class BasePage {
             driver.findElement(identifier);
         }
         catch(NoSuchElementException e) {
-            System.out.println("Element not found, continuing test");
             return false;
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
