@@ -1,15 +1,11 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 public class HourlyAvailability extends BaseTest {
 
-    private WebDriverWait wait;
     private TestUtils testUtils;
     private NavPage navPage;
     private LoginPage loginPage;
@@ -21,10 +17,8 @@ public class HourlyAvailability extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        System.out.println("Initializing test... ");
+        System.out.println("Initializing Hourly Availability test...");
         driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 15);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -32,7 +26,7 @@ public class HourlyAvailability extends BaseTest {
         availabilityPage = new AvailabilityPage(driver);
         username = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("username");
         password = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("password");
-        System.out.println("Starting test run!");
+        System.out.println("Starting Availability Test!");
     }
 
     @Test

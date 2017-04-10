@@ -1,11 +1,8 @@
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class HourlySkills extends BaseTest {
 
@@ -22,7 +19,6 @@ public class HourlySkills extends BaseTest {
     public void setUp() {
         System.out.println("Starting Tests. HourlySkills test for hourly profile...");
         driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);

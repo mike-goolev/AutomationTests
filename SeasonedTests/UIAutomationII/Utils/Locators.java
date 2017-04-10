@@ -109,22 +109,22 @@ public class Locators {
     public static class BasicInfoPageLocators {
         public By headerTitle = By.cssSelector("h1.bf-body-side-menu-title");
         public By headerText = By.cssSelector("div.bf-body-side-menu-header>p");
-        public By ageQuestionText = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.question");
-        public By ageYesBtn = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1) * div#on");
+        public By ageQuestionText = By.id("editEligibility0Text");
+        public By ageYesBtn = By.id("editEligibility0YesBtn");
         public By ageYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.bf-toggle-button.on");
-        public By ageNoBtn = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1) * div#off");
+        public By ageNoBtn = By.id("editEligibility0NoBtn");
         public By ageNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.bf-toggle-button.off");
-        public By transportQuestionTxt = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.question");
-        public By transportYesBtn = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2) * div#on");
+        public By transportQuestionTxt = By.id("editEligibility1Text");
+        public By transportYesBtn = By.id("editEligibility1YesBtn");
         public By transportYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.bf-toggle-button.on");
-        public By transportNoBtn = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2) * div#off");
+        public By transportNoBtn = By.id("editEligibility1NoBtn");
         public By transportNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.bf-toggle-button.off");
-        public By legalQuestionTxt = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.question");
-        public By legalYesBtn = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3) * div#on");
+        public By legalQuestionTxt = By.id("editEligibility2Text");
+        public By legalYesBtn = By.id("editEligibility2YesBtn");
         public By legalYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.bf-toggle-button.on");
-        public By legalNoBtn = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3) * div#off");
+        public By legalNoBtn = By.id("editEligibility2NoBtn");
         public By legalNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.bf-toggle-button.off");
-        public By saveBtn = By.cssSelector("div.bf-flex-layout * button.bf-button");
+        public By saveBtn = By.id("editEligibilitySaveBtn");
     }
 
     public static class AboutPageLocators {

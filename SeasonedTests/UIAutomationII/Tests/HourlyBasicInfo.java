@@ -1,15 +1,11 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 public class HourlyBasicInfo extends BaseTest {
 
-    private WebDriverWait wait;
     private TestUtils testUtils;
     private NavPage navPage;
     private LoginPage loginPage;
@@ -23,10 +19,8 @@ public class HourlyBasicInfo extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        System.out.println("Initializing basic info UI test...");
+        System.out.println("Initializing Hourly Basic Info test...");
         driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 15);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
