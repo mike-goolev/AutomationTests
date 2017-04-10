@@ -10,7 +10,7 @@ public class BasePage {
 
     public BasePage(WebDriver d) {
         driver = d;
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 10);
     }
 
     /**
