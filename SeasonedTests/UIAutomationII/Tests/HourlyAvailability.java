@@ -43,17 +43,29 @@ public class HourlyAvailability extends BaseTest {
         profilePage.clickAddAvailability();
 
         /* Verify that no availability has been selected, then select all availability and save. A success toast should appear. */
-        Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "The user should have no availability selected.");
-        availabilityPage.selectAllAvailability();
-        Assert.assertTrue(availabilityPage.verifySuccessToast(), "The profile saved successfully toast is displayed.");
+        Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "The user should have no availability selected");
+        availabilityPage.clickAllAvailabilityBoxes();
+        Assert.assertTrue(availabilityPage.verifySuccessToast(), "The profile saved successfully toast is displayed");
 
-        //Verify that all checkboxes are selected then unselect all availability
+        /* Verify that the availability is persisted on the view profile screen */
+        profilePage.clickBackBtn();
+        Assert.assertTrue(profilePage.verifyAllAvailabilitySelected(), "All availability should be selected on the view profile page");
+
+        /* Go back to the profile page */
+        profilePage.clickEditAvailability();
+
+        /* Verify that all checkboxes are selected then unselect all availability */
         Assert.assertTrue(availabilityPage.allAvailabilitySelected(), "All availability has been been selected");
-        availabilityPage.removeAllAvailability();
+        availabilityPage.clickAllAvailabilityBoxes();
 
-        //Verify that a success toast appears and that all availability has been removed
-        Assert.assertTrue(availabilityPage.verifySuccessToast(), "The profile saved successfully toast is displayed.");
-        Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "No availability is selected.");
+        /* Verify that a success toast appears and that all availability has been removed */
+        Assert.assertTrue(availabilityPage.verifySuccessToast(), "The profile saved successfully toast is displayed");
+        Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "No availability is selected");
+
+        /* Verify that the availability card is in an empty state on the view profile page */
+        profilePage.clickBackBtn();
+        Assert.assertFalse(profilePage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
+
     }
 
     @AfterClass

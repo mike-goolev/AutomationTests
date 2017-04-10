@@ -1,9 +1,5 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-/**
- * Created by alex.esparza on 2/16/17.
- */
 public class Locators {
 
     public static class NavPageLocators {
@@ -70,13 +66,20 @@ public class Locators {
         public By basicInfoLegalTxt = By.cssSelector("div.bf-col>div:nth-of-type(6)>div.bf-list>div:nth-of-type(3)>div.bf-list-item>div");
         public By basicInfoLegalYesBtn = By.cssSelector("div.bf-col>div:nth-of-type(6)>div.bf-list>div:nth-of-type(3)>div.bf-circle.green");
         public By basicInfoLegalNoBtn = By.cssSelector("div.bf-col>div:nth-of-type(6)>div.bf-list>div:nth-of-type(3)>div.bf-circle.red");
-        public By addAvailabilityBtn = By.cssSelector("div.bf-card>a[href='#/profile/edit/availability?goBackTo=profile']");
-        public By editAvailabilityBtn = By.cssSelector("div.bf-card>div>a[href='#/profile/edit/availability?goBackTo=profile']");
+
+        public By addAvailabilityBtn = By.id("availabilityCardEmptyAddBtn");
+        public By editAvailabilityBtn = By.id("availabilityCardEditBtn");
+        public By availabilityMorningsSelectedImg = By.id("availabilityCardListItem0Img");
+        public By availabilityAfternoonsSelectedImg = By.id("availabilityCardListItem1Img");
+        public By availabilityEveningsSelectedImg = By.id("availabilityCardListItem2Img");
+        public By availabilityNightsSelectedImg = By.id("availabilityCardListItem3Img");
+
         public By addAboutBtn = By.cssSelector("div.bf-card>a[href='#/profile/edit/about?goBackTo=profile']");
         public By editAboutBtn = By.cssSelector("div.bf-card>div>a[href='#/profile/edit/about?goBackTo=profile']");
         public By aboutHeader = By.cssSelector("div.bf-col>div:nth-of-type(5)>div>h3");
         public By aboutTxtField = By.cssSelector("div.bf-col>div:nth-of-type(5)>p");
         public By emptyAboutTxtField = By.cssSelector("div.bf-col>div:nth-of-type(5)>div>p");
+
         public By skillsHeader = By.cssSelector ("div.bf-col>div:nth-of-type(3)>div>h3");
         public By addSkillsBtn = By.id ("skillsCardEmptyAddBtn");
         public By editSkillsBtn = By.id ("skillsCardEditBtn");
@@ -102,6 +105,7 @@ public class Locators {
         public By skill19 = By.id ("skillsCardListItem19");
         public By skill20 = By.id ("skillsCardListItem20");
         public By emptySkillsTxt = By.id ("skillsCardEmptyDescriptionText");
+
         public By successToastDiv = By.cssSelector("div.bf-toast.success>div");
         public By profileBackBtn = By.cssSelector("button.bf-button");
     }
@@ -134,15 +138,11 @@ public class Locators {
     }
 
     public static class AvailabilityPageLocators {
-        public By morningCheckbox = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(1) * div.bf-checkbox");
-        public By afternoonCheckbox = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(2) * div.bf-checkbox");
-        public By eveningCheckbox = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(3) * div.bf-checkbox");
-        public By nightsCheckbox = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(4) * div.bf-checkbox");
-        public By morningCheckboxSelected = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(1) * div.checked");
-        public By afternoonCheckboxSelected = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(2) * div.checked");
-        public By eveningCheckboxSelected = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(3) * div.checked");
-        public By nightsCheckboxSelected = By.cssSelector("div.profile-wizard-availability>div.availability-line:nth-of-type(4) * div.checked");
-        public By saveBtn = By.cssSelector("div.bf-flex-layout * button.bf-button");
+        public By morningCheckbox = By.id("editAvailability0Chk");
+        public By afternoonCheckbox = By.id("editAvailability1Chk");
+        public By eveningCheckbox = By.id("editAvailability2Chk");
+        public By nightsCheckbox = By.id("editAvailability3Chk");
+        public By saveBtn = By.id("editAvailabilitySaveBtn");
         public By successToastDiv = By.cssSelector("div.bf-toast.success>div");
     }
 

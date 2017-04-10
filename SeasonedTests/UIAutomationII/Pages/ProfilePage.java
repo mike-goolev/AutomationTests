@@ -21,6 +21,25 @@ public class ProfilePage extends BasePage {
         driver.findElement(profilePageLocators.addAvailabilityBtn).click();
     }
 
+    /**
+     * Clicks the edit availability button when a user has availability entered on their profile
+     */
+    public void clickEditAvailability() {
+        wait.until(elementToBeClickable(profilePageLocators.editAvailabilityBtn));
+        driver.findElement(profilePageLocators.editAvailabilityBtn).click();
+    }
+
+    /**
+     * Verifies that when a user has selected all availability, it shows on the view profile page
+     * @return Whether or not the user has selected all availability
+     */
+    public boolean verifyAllAvailabilitySelected() {
+        return elementExists(profilePageLocators.availabilityMorningsSelectedImg) &&
+                elementExists(profilePageLocators.availabilityAfternoonsSelectedImg) &&
+                elementExists(profilePageLocators.availabilityEveningsSelectedImg) &&
+                elementExists(profilePageLocators.availabilityNightsSelectedImg);
+    }
+
     /*---------- HourlyAbout -----------*/
 
     /**

@@ -11,9 +11,9 @@ public class AvailabilityPage extends BasePage {
     }
 
     /**
-     *  Set all availability from an empty state
+     *  Set all availability from an empty state, regardless of state
      */
-    public void selectAllAvailability() {
+    public void clickAllAvailabilityBoxes() {
         wait.until(elementToBeClickable(availabilityPageLocators.morningCheckbox));
         driver.findElement(availabilityPageLocators.morningCheckbox).click();
         driver.findElement(availabilityPageLocators.afternoonCheckbox).click();
@@ -23,26 +23,11 @@ public class AvailabilityPage extends BasePage {
     }
 
     /**
-     * Remove all availability from a state where every checkbox is selected
-     */
-    public void removeAllAvailability() {
-        wait.until(elementToBeClickable(availabilityPageLocators.morningCheckboxSelected));
-        driver.findElement(availabilityPageLocators.morningCheckboxSelected).click();
-        driver.findElement(availabilityPageLocators.afternoonCheckboxSelected).click();
-        driver.findElement(availabilityPageLocators.eveningCheckboxSelected).click();
-        driver.findElement(availabilityPageLocators.nightsCheckboxSelected).click();
-        driver.findElement(availabilityPageLocators.saveBtn).click();
-    }
-
-    /**
      * Verify that morning, afternoon, evening, and nights have been selected
      * @return Whether or not if all availability has been selected
      */
     public boolean allAvailabilitySelected() {
-        if(driver.findElement(availabilityPageLocators.morningCheckboxSelected) != null &&
-                driver.findElement(availabilityPageLocators.afternoonCheckboxSelected) != null &&
-                driver.findElement(availabilityPageLocators.eveningCheckboxSelected) != null &&
-                driver.findElement(availabilityPageLocators.nightsCheckboxSelected) != null) {
+        if(isMorningSelected() && isAfternoonSelected() && isEveningSelected() && isNightSelected()) {
             return true;
         }
         return false;
@@ -53,13 +38,42 @@ public class AvailabilityPage extends BasePage {
      * @return Whether or not if all availability has NOT been selected
      */
     public boolean noAvailabilitySelected() {
-        if(driver.findElement(availabilityPageLocators.morningCheckbox) != null &&
-                driver.findElement(availabilityPageLocators.afternoonCheckbox) != null &&
-                driver.findElement(availabilityPageLocators.eveningCheckbox) != null &&
-                driver.findElement(availabilityPageLocators.nightsCheckbox) != null) {
+        if(!isMorningSelected()&& !isAfternoonSelected() && !isEveningSelected() && !isNightSelected()) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Checks to see if the morning checkbox is selected
+     * @return Whether or not the morning checkbox is selected
+     */
+    public boolean isMorningSelected() {
+        return isCheckboxSelected(driver.findElement(availabilityPageLocators.morningCheckbox));
+    }
+
+    /**
+     * Checks to see if the afternoon checkbox is selected
+     * @return Whether or not the afternoon checkbox is selected
+     */
+    public boolean isAfternoonSelected() {
+        return isCheckboxSelected(driver.findElement(availabilityPageLocators.afternoonCheckbox));
+    }
+
+    /**
+     * Checks to see if the evening checkbox is selected
+     * @return Whether or not the evening checkbox is selected
+     */
+    public boolean isEveningSelected() {
+        return isCheckboxSelected(driver.findElement(availabilityPageLocators.eveningCheckbox));
+    }
+
+    /**
+     * Checks to see if the night checkbox is selected
+     * @return Whether or not the night checkbox is selected
+     */
+    public boolean isNightSelected() {
+        return isCheckboxSelected(driver.findElement(availabilityPageLocators.nightsCheckbox));
     }
 
     /**
