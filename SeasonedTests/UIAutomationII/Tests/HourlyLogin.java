@@ -13,8 +13,6 @@ public class HourlyLogin extends BaseTest {
     TestUtils testUtils;
     NavPage navPage;
     LoginPage loginPage;
-    ProfilePage profilePage;
-    AboutPage aboutPage;
 
     String usernameEmail;
     String passwordEmail;
