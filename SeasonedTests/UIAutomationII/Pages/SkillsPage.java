@@ -861,15 +861,4 @@ public class SkillsPage extends BasePage {
         wait.until(elementToBeClickable(skillsPageLocators.saveBtn));
         driver.findElement(skillsPageLocators.saveBtn).click();
     }
-
-    /**
-     * Verify that the success toast is displayed after saving.
-     * @return Whether or not if the success toast has been displayed
-     */
-    public boolean verifySuccessToast() {
-        if (driver.findElement(skillsPageLocators.successToastDiv) != null) {
-            return true;
-        }
-        return false;
-    }
 }

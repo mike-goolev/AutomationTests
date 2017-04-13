@@ -12,4 +12,36 @@ public class TestUtils {
     public void loadContentFeedPage() {
         driver.get("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/app#/feed");
     }
+
+
+    /*
+    * Switches webdriver focus from current window to a new open window ie Facebook Login
+    * @param parentWindow    The original window as returned in driver.getWindowHandle()
+    */
+    public void switchToNewWindow(String parentWindow) {
+        try {
+            Thread.sleep(2000);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parentWindow)) {
+                driver.switchTo().window(handle);
+            }
+        }
+    }
+
+    /*
+    * Switches webdriver focus from new window to the original window
+    * @param parentWindow    The original window as returned in driver.getWindowHandle()
+    */
+    public void switchToParentWindow(String parentWindow) {
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        driver.switchTo().window(parentWindow);
+    }
 }
