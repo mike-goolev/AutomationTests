@@ -55,7 +55,7 @@ public class HourlySkills extends BaseTest {
 
         /* Go back and verify that the skills show on the view profile page */
         profilePage.clickBackBtn();
-        profilePage.verifySelectedSkills();
+        Assert.assertTrue(profilePage.verifySelectedSkills());
 
         /* Go to edit skills and verify that selected skills persists, then remove them */
         profilePage.clickEditSkills();

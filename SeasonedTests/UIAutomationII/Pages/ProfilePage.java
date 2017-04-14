@@ -193,147 +193,147 @@ public class ProfilePage extends BasePage {
      * Checks to see if the Baker skill is selected
      */
     public boolean skillBakerSelectedYes() {
-        return elementExists(profilePageLocators.skillBakerTxt);
+        return elementExists(profilePageLocators.skillsBakerTxt);
     }
 
     /**
      * Checks to see if the Bar-back skill is selected
      */
     public boolean skillBarbackSelectedYes() {
-        return elementExists(profilePageLocators.skillBarback);
+        return elementExists(profilePageLocators.skillsBarBackTxt);
     }
 
     /**
      * Checks to see if the Barista skill is selected
      */
     public boolean skillBaristaSelectedYes() {
-        return elementExists(profilePageLocators.skillBarista);
+        return elementExists(profilePageLocators.skillsBaristaTxt);
     }
 
     /**
      * Checks to see if the bartender skill is selected
      */
     public boolean skillBartenderSelectedYes() {
-        return elementExists(profilePageLocators.skillBartender);
+        return elementExists(profilePageLocators.skillsBartenderTxt);
     }
 
     /**
      * Checks to see if the Busser skill is selected
      */
     public boolean skillBusserSelectedYes() {
-        return elementExists(profilePageLocators.skillBusser);
+        return elementExists(profilePageLocators.skillsBusserTxt);
     }
 
     /**
      * Checks to see if the Cashier skill is selected
      */
     public boolean skillCashierSelectedYes() {
-        return elementExists(profilePageLocators.skillCashier);
+        return elementExists(profilePageLocators.skillsCashierTxt);
     }
 
     /**
      * Checks to see if the Chef skill is selected
      */
     public boolean skillChefSelectedYes() {
-        return elementExists(profilePageLocators.skillChef);
+        return elementExists(profilePageLocators.skillsChefTxt);
     }
 
     /**
      * Checks to see if the Cook skill is selected
      */
     public boolean skillCookSelectedYes() {
-        return elementExists(profilePageLocators.skillCook);
+        return elementExists(profilePageLocators.skillsCookTxt);
     }
 
     /**
      * Checks to see if the Crew skill is selected
      */
     public boolean skillCrewSelectedYes() {
-        return elementExists(profilePageLocators.skillCrew);
+        return elementExists(profilePageLocators.skillsCrewTxt);
     }
 
     /**
      * Checks to see if the Dishhwasher skill is selected
      */
     public boolean skillDishwasherSelectedYes() {
-        return elementExists(profilePageLocators.skillDishwasher);
+        return elementExists(profilePageLocators.skillsDishwasherTxt);
     }
 
     /**
      * Checks to see if the Driver skill is selected
      */
     public boolean skillDriverSelectedYes() {
-        return elementExists(profilePageLocators.skillDrivethru);
+        return elementExists(profilePageLocators.skillsDriverTxt);
     }
 
     /**
      * Checks to see if the Drive-thru skill is selected
      */
     public boolean skillDrivethruSelectedYes() {
-        return elementExists(profilePageLocators.skillDriver);
+        return elementExists(profilePageLocators.skillsDriveThruTxt);
     }
 
     /**
      * Checks to see if the Host skill is selected
      */
     public boolean skillHostSelectedYes() {
-        return elementExists(profilePageLocators.skillHost);
+        return elementExists(profilePageLocators.skillsHostTxt);
     }
 
     /**
      * Checks to see if the Manager skill is selected
      */
     public boolean skillManagerSelectedYes() {
-        return elementExists(profilePageLocators.skillManager);
+        return elementExists(profilePageLocators.skillsManagerTxt);
     }
 
     /**
      * Checks to see if the Prep Cook skill is selected
      */
     public boolean skillPrepCookSelectedYes() {
-        return elementExists(profilePageLocators.skillPrepCook);
+        return elementExists(profilePageLocators.skillsPrepCookTxt);
     }
 
     /**
      * Checks to see if the Runner skill is selected
      */
     public boolean skillRunnerSelectedYes() {
-        return elementExists(profilePageLocators.skillRunner);
+        return elementExists(profilePageLocators.skillsRunnerTxt);
     }
 
     /**
      * Checks to see if the Server skill is selected
      */
     public boolean skillServerSelectedYes() {
-        return elementExists(profilePageLocators.skillServer);
+        return elementExists(profilePageLocators.skillsServerTxt);
     }
 
     /**
      * Checks to see if the Sommelier skill is selected
      */
     public boolean skillSommelierSelectedYes() {
-        return elementExists(profilePageLocators.skillSommelier);
+        return elementExists(profilePageLocators.skillsSommelierTxt);
     }
 
     /**
      * Checks to see if the Sous Chef skill is selected
      */
     public boolean skillSousChefSelectedYes() {
-        return elementExists(profilePageLocators.skillSousChef);
-    }
+        return elementExists(profilePageLocators.skillsSousChefTxt);
+	}
 
     /**
      * Checks to see if the TeamMember skill is selected
      */
     public boolean skillTeamMemberSelectedYes() {
-        return elementExists(profilePageLocators.skillTeamMember);
+        return elementExists(profilePageLocators.skillsTeamMemberTxt);
     }
 
     /**
      * Checks to see if the Trainer skill is selected
      */
     public boolean skillTrainerSelectedYes() {
-        return elementExists(profilePageLocators.skillTrainer);
+        return elementExists(profilePageLocators.skillsTrainerTxt);
     }
 
     /**
