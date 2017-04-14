@@ -320,7 +320,7 @@ public class ProfilePage extends BasePage {
      */
     public boolean skillSousChefSelectedYes() {
         return elementExists(profilePageLocators.skillsSousChefTxt);
-    }
+	}
 
     /**
      * Checks to see if the TeamMember skill is selected
@@ -394,7 +394,6 @@ public class ProfilePage extends BasePage {
         if(driver.findElement(profilePageLocators.successToastDiv) != null) {
             return true;
         }
-
         return false;
     }
 

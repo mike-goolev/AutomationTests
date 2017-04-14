@@ -50,7 +50,7 @@ public class HourlySkills extends BaseTest {
         /* Verify that no skills have been selected, then select all skills and save. A success toast should appear. */
         Assert.assertTrue(skillsPage.noSkillsSelected(), "The user should have no skills selected");
         skillsPage.selectAllSkills();
-        Assert.assertTrue(skillsPage.verifySuccessToast(), "The profile saved successfully toast is displayed");
+        Assert.assertTrue(profilePage.verifySuccessToast(), "The profile saved successfully toast is displayed");
         Assert.assertTrue(skillsPage.allSkillsSelected(), "The user should have all skills selected");
 
         /* Go back and verify that the skills show on the view profile page */
@@ -61,7 +61,7 @@ public class HourlySkills extends BaseTest {
         profilePage.clickEditSkills();
         Assert.assertTrue(skillsPage.allSkillsSelected(), "The user should have all skills selected)");
         skillsPage.removeAllSkills();
-        Assert.assertTrue(skillsPage.verifySuccessToast(), "The profile saved successfully toast is displayed");
+        Assert.assertTrue(profilePage.verifySuccessToast(), "The profile saved successfully toast is displayed");
         Assert.assertTrue(skillsPage.noSkillsSelected(), "The user should have no skills selected");
 
         /* Go back to view profile and verify that no skills are selected */

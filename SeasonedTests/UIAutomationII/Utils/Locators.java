@@ -23,8 +23,6 @@ public class Locators {
     }
 
     public static class LoginPageLocators {
-        public By facebookLoginBtn = By.id("loginFacebookBtn");
-        public By hotschedulesLoginBtn = By.id("loginHSBtn");
         /* Login With Email */
         public By loginWithEmailTxt = By.cssSelector("div.bf-divider-message");
         public By emailTxtField = By.id("loginEmailInput");
@@ -33,25 +31,82 @@ public class Locators {
         public By rememberMeCheckbox = By.id("loginRememberMeChk");
         public By rememberMeTxt = By.cssSelector("div.bf-checkbox-container>p");
         public By loginButton = By.id("loginBtn");
-        public By loginHotschedulesBtn = By.id("loginHSBtn");
+
+        /* Login With HotSchedules */
+        public By hotschedulesLoginBtn = By.id("loginHSBtn");
         public By loginHotschedulesUsernameField = By.id("loginHSUsernameInput");
         public By loginHotschedulesPasswordField = By.id("loginHSPasswordInput");
         public By loginHotSchedulesCancelBtn = By.id("loginHSCancelLink");
         public By loginHotschedulesLoginBtn = By.id("loginHSSaveBtn");
+
+        /* Login With Facebook */
         public By loginFacebookBtn = By.id("loginFacebookBtn");
+
+        /* Facebook.com Locators */
+        public By faceBookEmailField = By.id("email");
+        public By faceBookPasswordField = By.id("pass");
+        public By facebookLoginBtn = By.id("loginbutton");
     }
 
+
     public static class SignUpPageLocators {
-        public By facebookLoginBtn = By.id("loginFacebookBtn");
-        public By hotschedulesLoginBtn = By.id("loginHSBtn");
-        /* Login With Email */
-        public By loginWithEmailTxt = By.cssSelector("div.bf-divider-message");
-        public By emailTxtField = By.id("loginEmailInput");
-        public By passwordTxtField = By.id("loginPasswordInput");
-        public By forgotPasswordLink = By.id("loginForgotPasswordLink");
-        public By rememberMeCheckbox = By.id("loginRememberMeChk");
-        public By rememberMeTxt = By.cssSelector("div.bf-checkbox-container>p");
-        public By loginButton = By.id("loginBtn");
+        /* Sign Up With Email*/
+        public By nameField = By.id("signUpFullNameInput");
+        public By emailField = By.id("signUpEmailInput");
+        public By passwordField = By.id("signUpPasswordInput");
+        public By cancelBtn = By.id("signUpCancelLink");
+        public By continueBtn = By.id("signUpContinueBtn");
+
+        /* Sign Up With Facebook */
+        public By facebookSignUpBtn = By.id("signUpFacebookBtn");
+    }
+
+    public static class ContentPageLocators {
+        /* Non Auth Content Locators */
+        public By getStartedImg = By.id("marketingCardImg");
+        public By getStartedTitle = By.id("marketingCardTitleText");
+        public By getStartedTxt = By.id("marketingCardDescriptionText");
+        public By getStartedBtn = By.id("marketingCardBtn");
+
+        /* Shared Non Auth and Auth'd Content Locators */
+        public By articleImg0 = By.id("articleImg0");
+        public By artcleTitleTxt0 = By.id(""); //Still missing
+        public By articleSiteTxt0 = By.id("articleSiteNameText0");
+        public By articleDescriptionTxt0 = By.id("articleDescriptionText0");
+        public By articlePublisherImg0 = By.id("articleAuthorImg0");
+        public By articlePublisherNameTxt0 = By.id("articleAuthorNameText0");
+        public By articlePublishedDateTxt0 = By.id("articlePostedTimeAgoText0");
+        public By articleLikeBtn0 = By.id("articleLikeBtn0");
+        public By articleLikeCountTxt0 = By.id("articleLikeCountText0");
+        public By trendingTitle = By.id("trendingArticlesPreviewCardTitle");
+        public By trendingArticleImg0 = By.id("trendingArticlesPreviewItemImage0");
+        public By trendingArticleTitleTxt0 = By.id("trendingArticlesPreviewItemTitle0");
+        public By trendingArticleSiteTxt0 = By.id("trendingArticlesPreviewItemSiteName0");
+        public By findJobsImg = By.id("dedicatedJobsCardImg");
+        public By findJobsTitle = By.id("dedicatedJobsCardTitleText");
+        public By findJobsTxt = By.id("dedicatedJobsCardDescriptionText");
+        public By findJobsBtn = By.id("dedicatedJobsCardBtn");
+
+        /* Auth'd Content Locators */
+        public By viewedArticleTitle = By.id("recentlyViewedArticlesPreviewCardTitle");
+        public By viewedArticleImg0 = By.id("recentlyViewedArticlesPreviewItemImage0");
+        public By viewedArticleTitleTxt0 = By.id("recentlyViewedArticlesPreviewItemTitle0");
+        public By viewedArticleSiteTxt0 = By.id("recentlyViewedArticlesPreviewItemSiteName0");
+        public By profilePreviewImg = By.id("profilePreviewCardUserImage");
+        public By profilePreviewNameTxt = By.id("profilePreviewNameText");
+        public By profilePreviewLocationTxt = By.id("profilePreviewLocationText");
+        public By profilePreviewProfileLink = By.id("profilePreviewBuildProfileTitleText");
+        public By profilePreviewProfileTxt = By.id("profilePreviewBuildProfileBodyText");
+        public By profilePreviewScheduleLink = By.id("profilePreviewScheduleTitleText");
+        public By profilePreviewScheduleTxt = By.id("profilePreviewScheduleBodyText");
+        public By profilePreviewScheduleBtn = By.id("profilePreviewProfileBtn");
+        public By suggestedConnectionTitle = By.id("suggestedConnectionTitleText");
+        public By currentSuggestedConnectionBtn = By.id("currentSuggestedConnectionBtn");
+        public By currentSuggestedConnectionImg = By.id("currentSuggestedConnectionImg");
+        public By nextSuggestedConnectionBtn = By.id("nextSuggestedConnectionBtn");
+        public By nextSuggestedConnectionImg = By.id("nextSuggestedConnectionImg");
+        public By previousSuggestedConnectionBtn = By.id("previousSuggestedConnectionBtn");
+        public By previousSuggestedConnectionImg = By.id("previousSuggestedConnectionImg");
     }
 
     public static class ProfilePageLocators {
@@ -67,6 +122,7 @@ public class Locators {
         public By basicInfoLegalYesBtn = By.id("basicInfoCardListItemLegalYesImg");
         public By basicInfoLegalNoBtn = By.id("basicInfoCardListItemLegalNoImg");
 
+        /* Availability Section */
         public By addAvailabilityBtn = By.id("availabilityCardEmptyAddBtn");
         public By editAvailabilityBtn = By.id("availabilityCardEditBtn");
         public By availabilityMorningsSelectedImg = By.id("availabilityCardListItemMorningsImg");
@@ -80,6 +136,7 @@ public class Locators {
         public By aboutTxtField = By.id("aboutCardAboutText");
         public By emptyAboutTxtField = By.id("aboutCardEmptyDescriptionText");
 
+        /* Skills Section */
         public By skillsHeader = By.cssSelector ("div.bf-col>div:nth-of-type(3)>div>h3");
         public By addSkillsBtn = By.id ("skillsCardEmptyAddBtn");
         public By editSkillsBtn = By.id ("skillsCardEditBtn");
@@ -106,8 +163,9 @@ public class Locators {
         public By skillsTrainerTxt = By.id ("skillsCardListItemTrainer");
         public By emptySkillsTxt = By.id ("skillsCardEmptyDescriptionText");
 
-        public By successToastDiv = By.cssSelector("div.bf-toast.success>div");
-        public By profileBackBtn = By.cssSelector("button.bf-button");
+        /* Shared profile page locators */
+        public By successToastDiv = By.id("edit-skills-loader");
+        public By profileBackBtn = By.id("editProfileBackBtn");
     }
 
     public static class BasicInfoPageLocators {
@@ -212,6 +270,57 @@ public class Locators {
         public By trainerCheckbox = By.id("editSkillsTrainerChk");
         public By trainerCheckboxSelected = By.cssSelector("div#editSkillsTrainerChk.checked");
         public By saveBtn = By.id("editSkillsSaveBtn");
-        public By successToastDiv = By.id("bodySideMenuToast");
+    }
+
+    public static class HourlyConnectionLocators {
+        public By connectionBackBtn = By.id("connectionsBackBtn");
+        public By connectionsTitle = By.id("");
+        public By connectionCardImg0 = By.id("");
+        public By connectionCardNameTxt0 = By.id("");
+        public By connectionCardWorkTxt0 = By.id("");
+        public By connectionCardLocationTxt0 = By.id("");
+        public By connectionCardViewBtn = By.id("");
+        public By connectionPage1Btn = By.id("");
+        public By connectionPage2Btn = By.id("");
+        public By connectionPage3Btn = By.id("");
+        public By connectionPage4Btn = By.id("");
+        public By connectionNextPageBtn = By.id("");
+        public By connectionPreviousPageBtn = By.id("");
+    }
+
+    public static class HourlySuggestedConnectionLocators {
+        public By suggestedConnectionBackBtn = By.id("suggestedConnectionsBackBtn");
+        public By suggestedConnectionsTitle = By.id("");
+        public By suggestedConnectionCardImg0 = By.id("");
+        public By suggestedConnectionCardNameTxt0 = By.id("");
+        public By suggestedConnectionCardWorkTxt0 = By.id("");
+        public By suggestedConnectionCardLocationTxt0 = By.id("");
+        public By suggestedConnectionCardViewBtn = By.id("");
+        public By suggestedConnectionPage1Btn = By.id("suggestedConnectionsPage1Btn");
+        public By suggestedConnectionPage2Btn = By.id("suggestedConnectionsPage2Btn");
+        public By suggestedConnectionPage3Btn = By.id("suggestedConnectionsPage3Btn");
+        public By suggestedConnectionPage4Btn = By.id("suggestedConnectionsPage4Btn");
+        public By suggestedConnectionNextPageBtn = By.id("suggestedConnectionsNextBtn");
+        public By suggestedConnectionPreviousPageBtn = By.id("suggestedConnectionsPreviousBtn");
+    }
+
+    public static class HourlyMessagePageLocators {
+        public By messageListSenderNameTxt0 = By.id("messageListItemSenderNameText0");
+        public By messageListSenderImg0 = By.id("messageListItemSenderImg0");
+        public By messageListSenderPositionTxt0 = By.id("messageListItemSenderPositionText0");
+        public By messageListDateTxt0 = By.id("messageListItemSentDate0");
+        public By messageListDeleteBtn0 = By.id("messageListItemDeleteBtn0");
+        public By messageListYearDividerTxt = By.id("messageListItemYearDivider0");
+        public By messageThreadSenderImg0 = By.id("senderMessageImg0");
+        public By messageThreadSenderTxt0 = By.id("senderMessageText0");
+        public By messageThreadSenderTimeTxt0 = By.id("senderMessageSentTimeText0");
+        public By messageThreadRecipientImg0 = By.id("recipientMessageImg0");
+        public By messageThreadRecipientTxt0 = By.id("recipientMessageText0");
+        public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
+        public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
+        public By messageThreadTextField = By.id("chatMessageTextArea");
+        public By messageThreadSendBtn = By.id("chatMessageSendBtn");
+        
+		public By successToastDiv = By.id("bodySideMenuToast");
     }
 }

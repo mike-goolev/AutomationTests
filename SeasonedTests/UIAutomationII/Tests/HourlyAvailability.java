@@ -45,7 +45,7 @@ public class HourlyAvailability extends BaseTest {
         /* Verify that no availability has been selected, then select all availability and save. A success toast should appear. */
         Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "The user should have no availability selected");
         availabilityPage.clickAllAvailabilityBoxes();
-        Assert.assertTrue(availabilityPage.verifySuccessToast(), "The profile saved successfully toast is displayed");
+        Assert.assertTrue(profilePage.verifySuccessToast(), "The profile saved successfully toast is displayed");
 
         /* Verify that the availability is persisted on the view profile screen */
         profilePage.clickBackBtn();
@@ -59,7 +59,7 @@ public class HourlyAvailability extends BaseTest {
         availabilityPage.clickAllAvailabilityBoxes();
 
         /* Verify that a success toast appears and that all availability has been removed */
-        Assert.assertTrue(availabilityPage.verifySuccessToast(), "The profile saved successfully toast is displayed");
+        Assert.assertTrue(profilePage.verifySuccessToast(), "The profile saved successfully toast is displayed");
         Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "No availability is selected");
 
         /* Verify that the availability card is in an empty state on the view profile page */

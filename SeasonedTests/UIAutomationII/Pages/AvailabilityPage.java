@@ -75,16 +75,4 @@ public class AvailabilityPage extends BasePage {
     public boolean isNightSelected() {
         return isCheckboxSelected(driver.findElement(availabilityPageLocators.nightsCheckbox));
     }
-
-    /**
-     * Verify that the success toast is displayed after saving.
-     * @return Whether or not if the success toast has been displayed
-     */
-    public boolean verifySuccessToast() {
-        if(driver.findElement(availabilityPageLocators.successToastDiv) != null) {
-            return true;
-        }
-
-        return false;
-    }
 }
