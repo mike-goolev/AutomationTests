@@ -1,15 +1,12 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class HourlyLogin extends BaseTest {
 
-    WebDriverWait wait;
     TestUtils testUtils;
     NavPage navPage;
     LoginPage loginPage;
@@ -21,12 +18,10 @@ public class HourlyLogin extends BaseTest {
     String usernameFB;
     String passwordFB;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
-        System.out.println("Starting Tests. HourlyAbout test for hourly profile...");
+        System.out.println("Initializing HourlyLogin test...");
         driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 15);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -69,7 +64,7 @@ public class HourlyLogin extends BaseTest {
         loginPage.loginWithHS(usernameHS, passwordHS);
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the about test");
         navPage.logout();

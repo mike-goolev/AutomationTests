@@ -30,7 +30,7 @@ public class HourlyAvailability extends BaseTest {
     }
 
     @Test
-    public void testAvailability() {
+    public void testAvailability() throws Exception {
         /* Start on the content feed page */
         testUtils.loadContentFeedPage();
 
@@ -64,6 +64,7 @@ public class HourlyAvailability extends BaseTest {
 
         /* Verify that the availability card is in an empty state on the view profile page */
         profilePage.clickBackBtn();
+        Thread.sleep(200);
         Assert.assertFalse(profilePage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
 
     }

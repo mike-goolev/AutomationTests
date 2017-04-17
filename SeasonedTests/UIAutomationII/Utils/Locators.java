@@ -164,7 +164,7 @@ public class Locators {
         public By emptySkillsTxt = By.id ("skillsCardEmptyDescriptionText");
 
         /* Shared profile page locators */
-        public By successToastDiv = By.id("edit-skills-loader");
+        public By successToastDiv = By.id("bodySideMenuToast");
         public By profileBackBtn = By.id("editProfileBackBtn");
     }
 
