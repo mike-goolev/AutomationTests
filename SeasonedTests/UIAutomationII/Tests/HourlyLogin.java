@@ -66,7 +66,7 @@ public class HourlyLogin extends BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        System.out.println("Logging out and shutting down selenium for the about test");
+        System.out.println("Logging out and shutting down selenium for the HourlyLogin test");
         navPage.logout();
         driver.quit();
     }
