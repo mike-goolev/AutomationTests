@@ -11,6 +11,75 @@ public class ProfilePage extends BasePage {
         skillsPage = new SkillsPage(driver);
     }
 
+    /*--------- Certifications ----------*/
+
+    /**
+     * Clicks the add certifications button when a user has no certifications
+     */
+    public void clickAddCertifications() {
+        wait.until(elementToBeClickable(profilePageLocators.certsAddButton));
+        driver.findElement(profilePageLocators.certsAddButton).click();
+    }
+
+    /**
+     * Clicks the edit certifications button when a user has certifications selected
+     */
+    public void clickEditCertifications() {
+        wait.until(elementToBeClickable(profilePageLocators.certsEditButton));
+        driver.findElement(profilePageLocators.certsEditButton).click();
+    }
+
+    /**
+     * Checks to see if the Alcohol Seller Certification is on the certs card
+     * @return Whether or not the Alcohol Seller Cert is on the cert card
+     */
+    public boolean verifyAlcoholCert() {
+        return elementExists(profilePageLocators.certsAlcoholImg);
+    }
+
+    /**
+     * Checks to see if the Food Handler Certification is on the certs card
+     * @return Whether or not the Food Handler Seller Cert is on the cert card
+     */
+    public boolean verifyFoodHandlerCert() {
+        return elementExists(profilePageLocators.certsFoodHandlerImg);
+    }
+
+    /**
+     * Checks to see if the Food Protection Manager Certification is on the certs card
+     * @return Whether or not the Food Protection Manager Cert is on the cert card
+     */
+    public boolean verifyFoodProtectionMangerCert() {
+        return elementExists(profilePageLocators.certsFoodProtectionImg);
+    }
+
+    /**
+     * Checks to see if the HACCP Certification is on the certs card
+     * @return Whether or not the HACCP Cert is on the cert card
+     */
+    public boolean verifyHACCPCert() {
+        return elementExists(profilePageLocators.certsHACCPImg);
+    }
+
+    /**
+     * Checks to see if all certifications are on the certs card
+     * @return Whether or not all certifications are on the certs card
+     */
+    public boolean verifyAllCertifications() {
+        return verifyAlcoholCert() &&
+                verifyFoodHandlerCert() &&
+                verifyFoodProtectionMangerCert() &&
+                verifyHACCPCert();
+    }
+
+    /**
+     * Checks to see if the certs card is in an empty state; No certs are selected
+     * @return Whether or not the certs card is in a empty state
+     */
+    public boolean verifyNoCertifications() {
+        return elementExists(profilePageLocators.certsEmptyCardTxt);
+    }
+
     /*--------- Availability ----------*/
 
     /**

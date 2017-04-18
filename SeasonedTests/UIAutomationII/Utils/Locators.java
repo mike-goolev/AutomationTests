@@ -110,31 +110,20 @@ public class Locators {
     }
 
     public static class ProfilePageLocators {
-        public By addBasicInfoBtn = By.id("basicInfoCardEmptyAddBtn");
-        public By editBasicInfoBtn = By.id("basicInfoCardEditBtn");
-        public By basicInfoAgeTxt = By.id("basicInfoCardListItemAgeText");
-        public By basicInfoAgeYesBtn = By.id("basicInfoCardListItemAgeYesImg");
-        public By basicInfoAgeNoBtn = By.id("basicInfoCardListItemAgeNoImg");
-        public By basicInfoTransportTxt = By.id("basicInfoCardListItemTransportText");
-        public By basicInfoTransportYesBtn = By.id("basicInfoCardListItemTransportYesImg");
-        public By basicInfoTransportNoBtn =  By.id("basicInfoCardListItemTransportNoImg");
-        public By basicInfoLegalTxt = By.id("basicInfoCardListItemLegalText");
-        public By basicInfoLegalYesBtn = By.id("basicInfoCardListItemLegalYesImg");
-        public By basicInfoLegalNoBtn = By.id("basicInfoCardListItemLegalNoImg");
-
-        /* Availability Section */
-        public By addAvailabilityBtn = By.id("availabilityCardEmptyAddBtn");
-        public By editAvailabilityBtn = By.id("availabilityCardEditBtn");
-        public By availabilityMorningsSelectedImg = By.id("availabilityCardListItemMorningsImg");
-        public By availabilityAfternoonsSelectedImg = By.id("availabilityCardListItemAfternoonsImg");
-        public By availabilityEveningsSelectedImg = By.id("availabilityCardListItemEveningsImg");
-        public By availabilityNightsSelectedImg = By.id("availabilityCardListItemNightsImg");
-
-        public By addAboutBtn = By.id("aboutCardEmptyAddBtn");
-        public By editAboutBtn = By.id("aboutCardEditBtn");
-        public By aboutHeader = By.id("aboutCardTitleText");
-        public By aboutTxtField = By.id("aboutCardAboutText");
-        public By emptyAboutTxtField = By.id("aboutCardEmptyDescriptionText");
+        /* Certifications Section */
+        public By certsEmptyHeader = By.id("certificationsCardEmptyTitleText");
+        public By certsHeader = By.id("certificationsCardTitleText");
+        public By certsAddButton = By.id("certificationsCardEmptyAddBtn");
+        public By certsEditButton = By.id("certificationsCardEditBtn");
+        public By certsAlcoholImg = By.id("certificationsCardListItemAlcoholSeller/ServerImg");
+        public By certsAlcoholTxt = By.id("certificationsCardListItemAlcoholSeller/ServerText");
+        public By certsFoodHandlerImg = By.id("certificationsCardListItemFoodHandlerImg");
+        public By certsFoodHandlerTxt = By.id("certificationsCardListItemFoodHandlerText");
+        public By certsFoodProtectionImg = By.id("certificationsCardListItemFoodProtectionManagerImg");
+        public By certsFoodProtectionTxt = By.id("certificationsCardListItemFoodProtectionManagerText");
+        public By certsHACCPImg = By.id("certificationsCardListItemHACCPImg");
+        public By certsHACCPTxt = By.id("certificationsCardListItemHACCPText");
+        public By certsEmptyCardTxt = By.id("certificationsCardEmptyDescriptionText");
 
         /* Skills Section */
         public By skillsHeader = By.cssSelector ("div.bf-col>div:nth-of-type(3)>div>h3");
@@ -163,45 +152,59 @@ public class Locators {
         public By skillsTrainerTxt = By.id ("skillsCardListItemTrainer");
         public By emptySkillsTxt = By.id ("skillsCardEmptyDescriptionText");
 
+        /* About Section */
+        public By addAboutBtn = By.id("aboutCardEmptyAddBtn");
+        public By editAboutBtn = By.id("aboutCardEditBtn");
+        public By aboutHeader = By.id("aboutCardTitleText");
+        public By aboutTxtField = By.id("aboutCardAboutText");
+        public By emptyAboutTxtField = By.id("aboutCardEmptyDescriptionText");
+
+        /* Basic Info Section */
+        public By addBasicInfoBtn = By.id("basicInfoCardEmptyAddBtn");
+        public By editBasicInfoBtn = By.id("basicInfoCardEditBtn");
+        public By basicInfoAgeTxt = By.id("basicInfoCardListItemAgeText");
+        public By basicInfoAgeYesBtn = By.id("basicInfoCardListItemAgeYesImg");
+        public By basicInfoAgeNoBtn = By.id("basicInfoCardListItemAgeNoImg");
+        public By basicInfoTransportTxt = By.id("basicInfoCardListItemTransportText");
+        public By basicInfoTransportYesBtn = By.id("basicInfoCardListItemTransportYesImg");
+        public By basicInfoTransportNoBtn =  By.id("basicInfoCardListItemTransportNoImg");
+        public By basicInfoLegalTxt = By.id("basicInfoCardListItemLegalText");
+        public By basicInfoLegalYesBtn = By.id("basicInfoCardListItemLegalYesImg");
+        public By basicInfoLegalNoBtn = By.id("basicInfoCardListItemLegalNoImg");
+
+        /* Availability Section */
+        public By addAvailabilityBtn = By.id("availabilityCardEmptyAddBtn");
+        public By editAvailabilityBtn = By.id("availabilityCardEditBtn");
+        public By availabilityMorningsSelectedImg = By.id("availabilityCardListItemMorningsImg");
+        public By availabilityAfternoonsSelectedImg = By.id("availabilityCardListItemAfternoonsImg");
+        public By availabilityEveningsSelectedImg = By.id("availabilityCardListItemEveningsImg");
+        public By availabilityNightsSelectedImg = By.id("availabilityCardListItemNightsImg");
+
         /* Shared profile page locators */
         public By successToastDiv = By.id("bodySideMenuToast");
         public By profileBackBtn = By.id("editProfileBackBtn");
     }
 
-    public static class BasicInfoPageLocators {
-        public By headerTitle = By.id("editProfileBasicInfoTitleText");
-        public By headerText = By.id("editProfileBasicInfoSubTitleText");
-        public By ageQuestionText = By.id("editEligibilityAgeText");
-        public By ageYesBtn = By.id("editEligibilityAgeYesBtn");
-        public By ageYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.bf-toggle-button.on");
-        public By ageNoBtn = By.id("editEligibilityAgeNoBtn");
-        public By ageNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.bf-toggle-button.off");
-        public By transportQuestionTxt = By.id("editEligibilityTransportText");
-        public By transportYesBtn = By.id("editEligibilityTransportYesBtn");
-        public By transportYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.bf-toggle-button.on");
-        public By transportNoBtn = By.id("editEligibilityTransportNoBtn");
-        public By transportNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.bf-toggle-button.off");
-        public By legalQuestionTxt = By.id("editEligibilityLegalText");
-        public By legalYesBtn = By.id("editEligibilityLegalYesBtn");
-        public By legalYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.bf-toggle-button.on");
-        public By legalNoBtn = By.id("editEligibilityLegalNoBtn");
-        public By legalNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.bf-toggle-button.off");
-        public By saveBtn = By.id("editEligibilitySaveBtn");
-    }
-
-    public static class AboutPageLocators {
-        public By aboutHeader =  By.id("editProfileAboutTitleText");
-        public By aboutTextField =  By.id("editAboutTextArea");
-        public By aboutSaveBtn =  By.id("editAboutSaveBtn");
-    }
-
-    public static class AvailabilityPageLocators {
-        public By morningCheckbox = By.id("editAvailabilityMorningsChk");
-        public By afternoonCheckbox = By.id("editAvailabilityAfternoonsChk");
-        public By eveningCheckbox = By.id("editAvailabilityEveningsChk");
-        public By nightsCheckbox = By.id("editAvailabilityNightsChk");
-        public By saveBtn = By.id("editAvailabilitySaveBtn");
-        public By successToastDiv = By.id("bodySideMenuToast");
+    public static class CertificationsPageLocators {
+        public By editCertsHeader = By.id("editProfileCertificationsTitleText");
+        public By editCertsHeaderMsg = By.id("editProfileCertificationsSubTitleText");
+        public By alcoholSellerImg = By.id("editCertificationsListItemAlcoholSeller/ServerImg");
+        public By alcoholSellerTxt = By.id("editCertificationsListItemAlcoholSeller/ServerLabelText");
+        public By alcoholSellerChk = By.id("editCertificationsListItemAlcoholSeller/ServerChk");
+        public By alcoholSellerUploadBtn = By.id("editCertificationsListItemAlcoholSeller/ServerUploadBtn0");
+        public By foodHandlerImg = By.id("editCertificationsListItemFoodHandlerImg");
+        public By foodHandlerTxt = By.id("editCertificationsListItemFoodHandlerLabelText");
+        public By foodHandlerChk = By.id("editCertificationsListItemFoodHandlerChk");
+        public By foodHandlerUploadBtn = By.id("editCertificationsListItemFoodHandlerUploadBtn1");
+        public By foodProtectionImg = By.id("editCertificationsListItemFoodProtectionManagerImg");
+        public By foodProtectionTxt = By.id("editCertificationsListItemFoodProtectionManagerLabelText");
+        public By foodProtectionChk = By.id("editCertificationsListItemFoodProtectionManagerChk");
+        public By foodProtectionUploadBtn = By.id("editCertificationsListItemFoodProtectionManagerUploadBtn2");
+        public By haccpImg = By.id("editCertificationsListItemHACCPImg");
+        public By haccpTxt = By.id("editCertificationsListItemHACCPLabelText");
+        public By haccpChk = By.id("editCertificationsListItemHACCPChk");
+        public By haccpUploadBtn = By.id("editCertificationsListItemHACCPUploadBtn3");
+        public By saveBtn = By.id("saveCertificationsBtn");
     }
 
     public static class SkillsPageLocators {
@@ -270,6 +273,42 @@ public class Locators {
         public By trainerCheckbox = By.id("editSkillsTrainerChk");
         public By trainerCheckboxSelected = By.cssSelector("div#editSkillsTrainerChk.checked");
         public By saveBtn = By.id("editSkillsSaveBtn");
+    }
+
+    public static class AboutPageLocators {
+        public By aboutHeader =  By.id("editProfileAboutTitleText");
+        public By aboutTextField =  By.id("editAboutTextArea");
+        public By aboutSaveBtn =  By.id("editAboutSaveBtn");
+    }
+
+    public static class BasicInfoPageLocators {
+        public By headerTitle = By.id("editProfileBasicInfoTitleText");
+        public By headerText = By.id("editProfileBasicInfoSubTitleText");
+        public By ageQuestionText = By.id("editEligibilityAgeText");
+        public By ageYesBtn = By.id("editEligibilityAgeYesBtn");
+        public By ageYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.bf-toggle-button.on");
+        public By ageNoBtn = By.id("editEligibilityAgeNoBtn");
+        public By ageNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(1)>div.bf-toggle-button.off");
+        public By transportQuestionTxt = By.id("editEligibilityTransportText");
+        public By transportYesBtn = By.id("editEligibilityTransportYesBtn");
+        public By transportYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.bf-toggle-button.on");
+        public By transportNoBtn = By.id("editEligibilityTransportNoBtn");
+        public By transportNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(2)>div.bf-toggle-button.off");
+        public By legalQuestionTxt = By.id("editEligibilityLegalText");
+        public By legalYesBtn = By.id("editEligibilityLegalYesBtn");
+        public By legalYesBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.bf-toggle-button.on");
+        public By legalNoBtn = By.id("editEligibilityLegalNoBtn");
+        public By legalNoBtnSelected = By.cssSelector("ul.bf-eligibility-questions>li.question-wrapper:nth-of-type(3)>div.bf-toggle-button.off");
+        public By saveBtn = By.id("editEligibilitySaveBtn");
+    }
+
+    public static class AvailabilityPageLocators {
+        public By morningCheckbox = By.id("editAvailabilityMorningsChk");
+        public By afternoonCheckbox = By.id("editAvailabilityAfternoonsChk");
+        public By eveningCheckbox = By.id("editAvailabilityEveningsChk");
+        public By nightsCheckbox = By.id("editAvailabilityNightsChk");
+        public By saveBtn = By.id("editAvailabilitySaveBtn");
+        public By successToastDiv = By.id("bodySideMenuToast");
     }
 
     public static class HourlyConnectionLocators {
