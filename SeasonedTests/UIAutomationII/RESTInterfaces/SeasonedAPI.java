@@ -8,6 +8,9 @@ public interface SeasonedAPI {
     @PUT("user/{guid}/eligibility")
     Call<User> updateEligibility(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body List<EligibilityAnswers> eligibility);
 
+    @PUT("user/{guid}/availability")
+    Call<Availability> updateAvailability(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body AvailabilityUpdate availabilityUpdate);
+
     @GET("user/{guid}")
     Call<User> getUser(@Path("guid") String guid, @Header("Authorization") String accessToken);
 

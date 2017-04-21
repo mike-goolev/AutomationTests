@@ -81,6 +81,80 @@ public class SeasonedRestAPI {
         }
     }
 
+    public void clearAvailabilityForUser(String guid) {
+        try {
+            /* Construct availability request body */
+            AvailabilityUpdate availabilityUpdate = new AvailabilityUpdate();
+            Monday monday = new Monday();
+            Tuesday tuesday = new Tuesday();
+            Wednesday wednesday = new Wednesday();
+            Thursday thursday = new Thursday();
+            Friday friday = new Friday();
+            Saturday saturday = new Saturday();
+            Sunday sunday = new Sunday();
+
+            monday.setMornings(false);
+            monday.setAfternoons(false);
+            monday.setEvenings(false);
+            monday.setNights(false);
+            availabilityUpdate.setMonday(monday);
+
+            tuesday.setMornings(false);
+            tuesday.setAfternoons(false);
+            tuesday.setEvenings(false);
+            tuesday.setNights(false);
+            availabilityUpdate.setTuesday(tuesday);
+
+            wednesday.setMornings(false);
+            wednesday.setAfternoons(false);
+            wednesday.setEvenings(false);
+            wednesday.setNights(false);
+            availabilityUpdate.setWednesday(wednesday);
+
+            thursday.setMornings(false);
+            thursday.setAfternoons(false);
+            thursday.setEvenings(false);
+            thursday.setNights(false);
+            availabilityUpdate.setThursday(thursday);
+
+            friday.setMornings(false);
+            friday.setAfternoons(false);
+            friday.setEvenings(false);
+            friday.setNights(false);
+            availabilityUpdate.setFriday(friday);
+
+            saturday.setMornings(false);
+            saturday.setAfternoons(false);
+            saturday.setEvenings(false);
+            saturday.setNights(false);
+            availabilityUpdate.setSaturday(saturday);
+
+            sunday.setMornings(false);
+            sunday.setAfternoons(false);
+            sunday.setEvenings(false);
+            sunday.setNights(false);
+            availabilityUpdate.setSunday(sunday);
+
+            /* Make a PUT request to user/guid/availability */
+            Call<Availability> call = seasonedAPI.updateAvailability(guid, accessToken, availabilityUpdate);
+            call.enqueue(new Callback<Availability>() {
+                @Override
+                public void onResponse(Call<Availability> call, Response<Availability> response) {
+                    System.out.println("PUT request to user/guid/Availability returned with code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Availability> call, Throwable t) {
+                    System.out.println("PUT request to user/guid/Availability failed with error: " + t.getLocalizedMessage());
+                }
+            });
+
+        }
+        catch(Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
     /*public static void main(String[] args) throws Exception {
 
         try {

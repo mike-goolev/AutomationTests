@@ -14,6 +14,8 @@ public class HourlyAvailability extends BaseTest {
 
     private String username;
     private String password;
+    private String userGuid;
+    private String token;
 
     @BeforeClass
     public void setUp() {
@@ -26,6 +28,10 @@ public class HourlyAvailability extends BaseTest {
         availabilityPage = new AvailabilityPage(driver);
         username = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("username");
         password = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("password");
+        userGuid = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("userguid");
+        token = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("token");
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        seasonedRestAPI.clearAvailabilityForUser(userGuid);
         System.out.println("Starting Availability Test!");
     }
 
@@ -64,9 +70,8 @@ public class HourlyAvailability extends BaseTest {
 
         /* Verify that the availability card is in an empty state on the view profile page */
         profilePage.clickBackBtn();
-        Thread.sleep(200);
+        Thread.sleep(300);
         Assert.assertFalse(profilePage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
-
     }
 
     @AfterClass

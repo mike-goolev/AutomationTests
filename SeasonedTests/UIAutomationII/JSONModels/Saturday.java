@@ -5,47 +5,47 @@ public class Saturday {
 
     @SerializedName("AFTERNOONS")
     @Expose
-    private Boolean aFTERNOONS;
+    private Boolean afternoons;
     @SerializedName("EVENINGS")
     @Expose
-    private Boolean eVENINGS;
+    private Boolean evenings;
     @SerializedName("LATE_NIGHT")
     @Expose
-    private Boolean lATENIGHT;
+    private Boolean nights;
     @SerializedName("MORNINGS")
     @Expose
-    private Boolean mORNINGS;
+    private Boolean mornings;
 
-    public Boolean getAFTERNOONS() {
-        return aFTERNOONS;
+    public Boolean getAfternoons() {
+        return afternoons;
     }
 
-    public void setAFTERNOONS(Boolean aFTERNOONS) {
-        this.aFTERNOONS = aFTERNOONS;
+    public void setAfternoons(Boolean afternoons) {
+        this.afternoons = afternoons;
     }
 
-    public Boolean getEVENINGS() {
-        return eVENINGS;
+    public Boolean getEvenings() {
+        return evenings;
     }
 
-    public void setEVENINGS(Boolean eVENINGS) {
-        this.eVENINGS = eVENINGS;
+    public void setEvenings(Boolean evenings) {
+        this.evenings = evenings;
     }
 
-    public Boolean getLATENIGHT() {
-        return lATENIGHT;
+    public Boolean getNights() {
+        return nights;
     }
 
-    public void setLATENIGHT(Boolean lATENIGHT) {
-        this.lATENIGHT = lATENIGHT;
+    public void setNights(Boolean nights) {
+        this.nights = nights;
     }
 
-    public Boolean getMORNINGS() {
-        return mORNINGS;
+    public Boolean getMornings() {
+        return mornings;
     }
 
-    public void setMORNINGS(Boolean mORNINGS) {
-        this.mORNINGS = mORNINGS;
+    public void setMornings(Boolean mornings) {
+        this.mornings = mornings;
     }
 
 }
