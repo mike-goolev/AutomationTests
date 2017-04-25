@@ -14,8 +14,8 @@ dependencies {
     testCompile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     testCompile 'com.squareup.retrofit2:retrofit:2.2.0'
     testCompile 'com.squareup.retrofit2:converter-gson:2.2.0'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.3.1'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.3.1'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.4.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.4.0'
 }
 
 
