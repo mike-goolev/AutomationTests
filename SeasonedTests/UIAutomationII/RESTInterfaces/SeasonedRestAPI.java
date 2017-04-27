@@ -81,6 +81,10 @@ public class SeasonedRestAPI {
         }
     }
 
+    /**
+     * Clears out a user's availability for every day of the week
+     * @param guid The guid of the user you want to clear availability for
+     */
     public void clearAvailabilityForUser(String guid) {
         try {
             /* Construct availability request body */
@@ -152,6 +156,43 @@ public class SeasonedRestAPI {
         }
         catch(Exception e) {
             System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Posts a job to a given employer
+     */
+    public void postJob() {
+        /* Construct Job Request Body */
+        try {
+            Job job = new Job();
+            Employer employer = new Employer();
+            UpdatedBy updatedBy = new UpdatedBy();
+            CreatedBy createdBy = new CreatedBy();
+            JobType jobType = new JobType();
+
+            updatedBy.setGuid("003393da-80ec-4b99-be33-9092ee8642cc");
+            createdBy.setGuid("003393da-80ec-4b99-be33-9092ee8642cc");
+            employer.setGuid("69b7a98f-3bc8-4fde-84f3-445c931f6502");
+            jobType.setGuid("6389f55d-40e6-4dd5-9714-3d129c17e711");
+
+            job.setEmployer(employer);
+            job.setUpdatedBy(updatedBy);
+            job.setCreatedBy(createdBy);
+            job.setJobType(jobType);
+            job.setJobName("Baker");
+            job.setWage("10.00");
+            job.setWageType("HOURLY");
+            job.setDescription("$1.99 are you outta yo mind?");
+            job.setStatus("POSTED");
+
+        /* Make a POST request to job */
+            Call<Job> call = seasonedAPI.postJob(accessToken, job);
+            Response<Job> response = call.execute();
+            System.out.println("POST request to /job returned a " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 

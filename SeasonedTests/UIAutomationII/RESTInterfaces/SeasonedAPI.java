@@ -11,6 +11,9 @@ public interface SeasonedAPI {
     @PUT("user/{guid}/availability")
     Call<Availability> updateAvailability(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body AvailabilityUpdate availabilityUpdate);
 
+    @POST("job")
+    Call<Job> postJob(@Header("Authorization") String accessToken, @Body Job job);
+
     @GET("user/{guid}")
     Call<User> getUser(@Path("guid") String guid, @Header("Authorization") String accessToken);
 
