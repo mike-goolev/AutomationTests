@@ -1,0 +1,22 @@
+{
+  "testHourlyJobSearchCommitSearchAndViewJobDetails": {
+    "username":"rf.bf@mailinator.com",
+    "password":"password",
+    "searchTerm":"Bar",
+    "searchLocation":"19145",
+    "jobPosition":"Bartender",
+    "employerName":"Cacia's Bakery",
+    "employerDistance":"1.47 mi 19145",
+    "employerZip":"19145",
+    "jobDetailsPosition":"Bartender",
+    "jobDetailsWage":"@ $1.99 per hour",
+    "jobDetailsJobDescription":"$1.99 are you outta yo mind?",
+    "jobDetailsEmployerDescription":"Cacia's has been a South Philadelphia tradition for over 60 years. Cacia's is still family owned and operated, (we are into the 4th generation), and we have one of the last brick oven bakeries left in Philadelphia. You will always find a member of the Cacia family at each location, just ask for a Cacia.",
+    "jobDetailsEmployerName":"Cacia's Bakery",
+    "jobDetailsEmployerAddress":"1526 W Ritner St Philadelphia, PA 19145",
+    "jobDetailsEmployerPPA":"$",
+    "jobDetailsEmployerType":"Quick Service Restaurant",
+    "jobDetailsEmployerDistance":"1.47 miles away",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+  }
+}

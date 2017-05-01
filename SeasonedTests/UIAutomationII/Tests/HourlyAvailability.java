@@ -28,8 +28,8 @@ public class HourlyAvailability extends BaseTest {
         availabilityPage = new AvailabilityPage(driver);
         username = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("username");
         password = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("password");
-        userGuid = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("userguid");
-        token = (String) TestDataImporter.get("HourlyBasicInfo", "Hourly Basic Info").get("token");
+        userGuid = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("userguid");
+        token = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("token");
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.clearAvailabilityForUser(userGuid);
         System.out.println("Starting Availability Test!");

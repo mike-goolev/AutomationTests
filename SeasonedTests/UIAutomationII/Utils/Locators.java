@@ -20,6 +20,8 @@ public class Locators {
         public By menuProfileLink = By.id("headerMenuProfileLink");
         public By menuSettingsLink = By.id("headerMenuSettingsLink");
         public By menuLogoutLink = By.id("headerMenuLogOutLink");
+
+        public By loader = By.cssSelector("div.bf-loader");
     }
 
     public static class LoginPageLocators {
@@ -107,6 +109,58 @@ public class Locators {
         public By nextSuggestedConnectionImg = By.id("nextSuggestedConnectionImg");
         public By previousSuggestedConnectionBtn = By.id("previousSuggestedConnectionBtn");
         public By previousSuggestedConnectionImg = By.id("previousSuggestedConnectionImg");
+    }
+
+    public static class JobSearchPageLocators {
+        /*Search Fields*/
+        public By searchJobEmployerField = By.id("searchTermTextField");
+        public By searchLocationField = By.id("searchLocationTextField");
+        public By searchBtn = By.id("searchButton");
+
+        /* Search Results */
+        public By searchResultPaginationTxt = By.id("searchShowResults");
+        public By searchResultEmployerImg0 = By.id("searchResultEmployerPhoto0");
+        public By searchResultPositionTxt0 = By.id("searchResultJobNameText0");
+        public By searchResultEmployerNameTxt0 = By.id("searchResultEmployerNameText0");
+        public By searchResultEmployerDistanceTxt0 = By.id("searchResultEmployerDistanceText0");
+        public By searchResultEmployerZipTxt0 = By.id("searchResultEmployerZipText0");
+        public By searchResultViewBtn0 = By.id("searchResultViewBtn0");
+        public By searchResultApplyBtn0 = By.id("searchResultLoggedInApplyBtn0");
+        public By searchResultApplyLoadingBtn0 = By.cssSelector("button#searchResultLoggedInApplyBtn0.loading");
+        public By searchResultAppliedBtn0 = By.id("searchResultAppliedBtn0");
+        public By searchResultsPage1Btn = By.id("searchPage1");
+        public By searchResultsPage2Btn = By.id("searchPage2");
+        public By searchResultsNextPageBtn = By.id("searchPaginationArrowNext");
+        public By searchResultsPreviousPageBtn = By.id("searchPaginationArrowPrev");
+
+        /* Empty Search Results */
+        public By searchResultsEmptyTitleTxt = By.cssSelector("div.bf-search-empty-result-content>h2");
+        public By searchResultsEmptyMessageTxt = By.cssSelector("div.bf-search-empty-result-content>p");
+        public By searchResultsEmptySuggestionsTitleTxt = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>p");
+        public By searchResultsEmptySuggestionBartenderBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(1)>a");
+        public By searchResultsEmptySuggestionCashierBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(2)>a");
+        public By searchResultsEmptySuggestionCookBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(3)>a");
+        public By searchResultsEmptySuggestionServerBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(4)>a");
+        public By searchResultsEmptySuggestionTeamMemberBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(5)>a");
+
+
+        /* Job Details - Auth'd */
+        public By jobDetailsBackBtn = By.id("job-details-back-button");
+        public By jobDetailsPosition = By.id("jobDetailsHeaderNameText");
+        public By jobDetailsWage = By.id("jobDetailsHeaderWageText");
+        public By jobDetailsApplyBtn = By.id("jobDetailsLoggedInHeaderApplyBtn");
+        public By jobDetailsAppliedBtn = By.id("jobDetailsAppliedBtn");
+        public By jobDetailsJobDescriptionTitleTxt = By.cssSelector("div.bf-bf-job-details-content>h3:nth-of-type(1)");
+        public By jobDetailsJobDescriptionTxt = By.id("jobDetailsDescriptionText");
+        public By jobDetailsEmployerDescriptionTtitleTxt = By.cssSelector("div.bf-job-details-content>h3:nth-of-type(2)");
+        public By jobDetailsEmployerDescriptionTxt = By.id("jobDetailsEmployerAboutText");
+        public By jobDetailsEmployerLogoImg = By.id("employerCardPhoto");
+        public By jobDetailsEmployerNameTxt = By.id("employerCardNameText");
+        public By jobDetailsEmployerAddressTxt = By.id("employerCardAddressText");
+        public By jobDetailsEmployerPPATxt = By.cssSelector("ul.bf-employer-info-list>li:nth-of-type(1)");
+        public By jobDetailsEmployerTypeTxt = By.cssSelector("ul.bf-employer-info-list>li:nth-of-type(2)");
+        public By jobDetailsEmployerDistanceTxt = By.id("employerCardDistanceText");
+        public By jobDetailsEmployerFollowBtn = By.id("employerCardFollowBtn");
     }
 
     public static class ProfilePageLocators {
@@ -313,28 +367,28 @@ public class Locators {
 
     public static class HourlyConnectionLocators {
         public By connectionBackBtn = By.id("connectionsBackBtn");
-        public By connectionsTitle = By.id("");
-        public By connectionCardImg0 = By.id("");
-        public By connectionCardNameTxt0 = By.id("");
-        public By connectionCardWorkTxt0 = By.id("");
-        public By connectionCardLocationTxt0 = By.id("");
-        public By connectionCardViewBtn = By.id("");
-        public By connectionPage1Btn = By.id("");
-        public By connectionPage2Btn = By.id("");
-        public By connectionPage3Btn = By.id("");
-        public By connectionPage4Btn = By.id("");
-        public By connectionNextPageBtn = By.id("");
-        public By connectionPreviousPageBtn = By.id("");
+        public By connectionsTitle = By.id("connectionsTitleText");
+        public By connectionCardImg0 = By.id("connectionImg0");
+        public By connectionCardNameTxt0 = By.id("connectionNameText0");
+        public By connectionCardWorkTxt0 = By.id("connectionPrimaryWorkText0");
+        public By connectionCardLocationTxt0 = By.id("connectionLocationText0");
+        public By connectionCardViewBtn = By.id("connectionViewBtn0");
+        public By connectionPage1Btn = By.id("connectionsPage1Btn");
+        public By connectionPage2Btn = By.id("connectionsPage2Btn");
+        public By connectionPage3Btn = By.id("connectionsPage3Btn");
+        public By connectionPage4Btn = By.id("connectionsPage4Btn");
+        public By connectionNextPageBtn = By.id("connectionsNextBtn");
+        public By connectionPreviousPageBtn = By.id("connectionsPreviousBtn");
     }
 
     public static class HourlySuggestedConnectionLocators {
         public By suggestedConnectionBackBtn = By.id("suggestedConnectionsBackBtn");
-        public By suggestedConnectionsTitle = By.id("");
-        public By suggestedConnectionCardImg0 = By.id("");
-        public By suggestedConnectionCardNameTxt0 = By.id("");
-        public By suggestedConnectionCardWorkTxt0 = By.id("");
-        public By suggestedConnectionCardLocationTxt0 = By.id("");
-        public By suggestedConnectionCardViewBtn = By.id("");
+        public By suggestedConnectionsTitle = By.id("suggestedConnectionsTitleText");
+        public By suggestedConnectionCardImg0 = By.id("suggestedConnectionImg0");
+        public By suggestedConnectionCardNameTxt0 = By.id("suggestedConnectionNameText0");
+        public By suggestedConnectionCardReasonTxt0 = By.id("suggestedConnectionConnectionReasonText0");
+        public By suggestedConnectionCardViewBtn0 = By.id("suggestedConnectionViewBtn0");
+        public By suggestedConnectionCardConnectBtn0 = By.id("suggestedConnectionConnectBtn0");
         public By suggestedConnectionPage1Btn = By.id("suggestedConnectionsPage1Btn");
         public By suggestedConnectionPage2Btn = By.id("suggestedConnectionsPage2Btn");
         public By suggestedConnectionPage3Btn = By.id("suggestedConnectionsPage3Btn");

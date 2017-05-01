@@ -162,8 +162,9 @@ public class SeasonedRestAPI {
     /**
      * Posts a job to a given employer
      */
-    public void postJob() {
+    public String postJob() {
         /* Construct Job Request Body */
+        String jobGuid = "";
         try {
             Job job = new Job();
             Employer employer = new Employer();
@@ -171,17 +172,16 @@ public class SeasonedRestAPI {
             CreatedBy createdBy = new CreatedBy();
             JobType jobType = new JobType();
 
-            updatedBy.setGuid("003393da-80ec-4b99-be33-9092ee8642cc");
-            createdBy.setGuid("003393da-80ec-4b99-be33-9092ee8642cc");
-            employer.setGuid("69b7a98f-3bc8-4fde-84f3-445c931f6502");
-            jobType.setGuid("6389f55d-40e6-4dd5-9714-3d129c17e711");
-
+            updatedBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
+            createdBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
+            employer.setGuid("75ced677-4368-4026-9f57-34ba6246c3cb");
+            jobType.setGuid("fd1ad822-f2e6-4faf-9d04-d04ac7c3fdcb");
             job.setEmployer(employer);
             job.setUpdatedBy(updatedBy);
             job.setCreatedBy(createdBy);
             job.setJobType(jobType);
-            job.setJobName("Baker");
-            job.setWage("10.00");
+            job.setJobName("Bartender");
+            job.setWage("1.99");
             job.setWageType("HOURLY");
             job.setDescription("$1.99 are you outta yo mind?");
             job.setStatus("POSTED");
@@ -190,6 +190,22 @@ public class SeasonedRestAPI {
             Call<Job> call = seasonedAPI.postJob(accessToken, job);
             Response<Job> response = call.execute();
             System.out.println("POST request to /job returned a " + response.code());
+            jobGuid = response.body().getGuid();
+        } catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+        return jobGuid;
+    }
+
+    /**
+     * Deletes a job for a given employer
+     */
+    public void deleteJob(String guid) {
+        try {
+        /* Make a DELETE request to job */
+            Call<Job> call = seasonedAPI.deleteJob(guid, accessToken);
+            Response<Job> response = call.execute();
+            System.out.println("DELETE request to /job/{guid} returned a " + response.code());
         }
         catch(Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());

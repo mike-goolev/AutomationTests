@@ -56,4 +56,12 @@ public class NavPage extends BasePage {
         driver.findElement(navPageLocators.userPhotoBtn).click();
         driver.findElement(navPageLocators.menuLogoutLink).click();
     }
+
+    /**
+     * Waits for activity indicator
+     */
+    public void waitForActivtyIndicator() {
+        wait.until(presenceOfElementLocated(navPageLocators.loader));
+        wait.until(invisibilityOfElementLocated(navPageLocators.loader));
+    }
 }

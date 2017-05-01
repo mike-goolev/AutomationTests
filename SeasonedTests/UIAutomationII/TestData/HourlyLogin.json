@@ -1,13 +1,19 @@
 {
   "testHourlyLoginEmail": {
+    "searchTerm":"",
+    "searchLocation":"78745",
     "username":"aprofile@mailinator.com",
     "password":"12348765"
   },
   "testHourlyLoginHS": {
+    "searchTerm":"",
+    "searchLocation":"78745",
     "username":"ehpaulie",
     "password":"password"
   },
   "testHourlyLoginFB": {
+    "searchTerm":"",
+    "searchLocation":"78745",
     "username":"oprsdlcfna_1478635495@tfbnw.net",
     "password":"automation"
   }

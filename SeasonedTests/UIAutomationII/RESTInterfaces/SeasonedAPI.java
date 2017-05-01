@@ -14,6 +14,9 @@ public interface SeasonedAPI {
     @POST("job")
     Call<Job> postJob(@Header("Authorization") String accessToken, @Body Job job);
 
+    @DELETE("job/{guid}")
+    Call<Job> deleteJob(@Path("guid") String guid, @Header("Authorization") String accessToken);
+
     @GET("user/{guid}")
     Call<User> getUser(@Path("guid") String guid, @Header("Authorization") String accessToken);
 
