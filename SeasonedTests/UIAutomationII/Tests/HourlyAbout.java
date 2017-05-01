@@ -53,7 +53,7 @@ public class HourlyAbout extends BaseTest {
 
         /* Go back and verify that the text shows on the view profile page */
         profilePage.clickBackBtn();
-        profilePage.verifyAboutTxt(aboutMeTxt);
+        Assert.assertTrue(profilePage.verifyAboutTxt(aboutMeTxt), "About me text should match aboutMeTxt variable");
 
         /* Go to edit about and verify that there is text, then remove it */
         profilePage.clickEditAbout();
