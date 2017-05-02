@@ -1,3 +1,4 @@
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -5,6 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SeasonedRestAPI {
 
@@ -13,9 +15,11 @@ public class SeasonedRestAPI {
     String accessToken;
 
     public SeasonedRestAPI(String accessToken) {
+        OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
                                .baseUrl("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/services/rest/")
                                .addConverterFactory(GsonConverterFactory.create())
+                               .client(httpClient)
                                .build();
         seasonedAPI = retrofit.create(SeasonedAPI.class);
         this.accessToken = accessToken;
