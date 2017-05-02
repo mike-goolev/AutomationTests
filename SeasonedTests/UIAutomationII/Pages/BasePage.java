@@ -29,7 +29,6 @@ public class BasePage {
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-
         return true;
     }
 
@@ -47,7 +46,6 @@ public class BasePage {
             return false;
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
 
         return true;
     }
