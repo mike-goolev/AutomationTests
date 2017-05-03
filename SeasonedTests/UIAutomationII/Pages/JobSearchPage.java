@@ -1,6 +1,5 @@
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -79,7 +78,7 @@ public class JobSearchPage extends BasePage {
    public void waitForSearchResults() {
        for (int i = 0; i < 5; i++) {
            try {
-               if (!elementExists(jobSearchPageLocators.searchResultEmployerNameTxt0))
+               if (!elementExistsLongTimeout(jobSearchPageLocators.searchResultEmployerNameTxt0))
                    clickJobSearchBtn();
            } catch (NoSuchElementException ex) {
                break;
