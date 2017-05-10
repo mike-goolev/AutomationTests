@@ -164,6 +164,69 @@ public class Locators {
     }
 
     public static class ProfilePageLocators {
+        /* Work History Section */
+        public By workHistoryEmptyCardHeader = By.id("workHistoryCardEmptyTitleText");
+        public By workHistoryCardHeader = By.id("workHistoryCardTitleText");
+        public By workHistoryAddBtn = By.id("workHistoryCardEmptyAddBtn");
+        public By workHistoryEditBtn = By.id("workHistoryCardEditBtn");
+        public By workHistoryEmployerImg0 = By.id("workHistoryCardListItemImg0");
+        public By workHistoryJobPosition0 = By.id("workHistoryCardListItem0JobNameText0");
+        public By workHistoryEmployerName0 = By.id("workHistoryCardListItemTitleText0");
+        public By workHistoryEmployerLocation0 = By.id("workHistoryCardListItemEmployerLocationText0");
+        public By workHistoryEmployerTimePeriod0 = By.id("workHistoryCardListItemWorkPeriodText0");
+        public By workHistoryEmployerImg1 = By.id("workHistoryCardListItemImg1");
+        public By workHistoryJobPosition1 = By.id("workHistoryCardListItem1JobNameText0");
+        public By workHistoryEmployerName1 = By.id("workHistoryCardListItemTitleText1");
+        public By workHistoryEmployerLocation1 = By.id("workHistoryCardListItemEmployerLocationText1");
+        public By workHistoryEmployerTimePeriod1 = By.id("workHistoryCardListItemWorkPeriodText1");
+        public By workHistoryEmptyCardTxt = By.id("workHistoryCardEmptyDescriptionText");
+
+        /**
+         * Locates an employer logo on the profile page by index
+         * @param index The index (Starting at 0) of the employer you wish to locate
+         * @return A locator for the employer logo at the given index
+         */
+        public By findWorkHistoryEmployerLogoByIndex(String index) {
+            return By.id("workHistoryCardListItemImg" + index);
+        }
+
+        /**
+         * Locates a job position on the profile page by index for the employer and job name
+         * @param employerIndex The index (Starting at 0) of the employer you wish to locate
+         * @param jobIndex The index (Starting at 0) of the job name you wish to locate
+         * @return A locator for the job position at the given indexes
+         */
+        public By findWorkHistoryJobPositionByIndex(String employerIndex, String jobIndex) {
+            return By.id("workHistoryCardListItem" + employerIndex + "JobNameText" + jobIndex);
+        }
+
+        /**
+         * Locates an employer name on the profile page by index
+         * @param index The index (Starting at 0) of the employer you wish to locate
+         * @return A locator for the employer name at the given index
+         */
+        public By findWorkHistoryEmployerNameByIndex(String index) {
+            return By.id("workHistoryCardListItemTitleText" + index);
+        }
+
+        /**
+         * Locates an employer's location on the profile page by index
+         * @param index The index (Starting at 0) of the employer you wish to locate
+         * @return A locator for the employer's location at the given index
+         */
+        public By findWorkHistoryEmployerLocationByIndex(String index) {
+            return By.id("workHistoryCardListItemEmployerLocationText" + index);
+        }
+
+        /**
+         * Locates the time period the user worked at the employer by index
+         * @param index The index (Starting at 0) of the employer you wish to locate
+         * @return A locator for the time period the user work at the employer by index
+         */
+        public By findWorkHistoryEmployerTimePeriodByIndex(String index) {
+            return By.id("workHistoryCardListItemWorkPeriodText" + index);
+        }
+
         /* Certifications Section */
         public By certsEmptyHeader = By.id("certificationsCardEmptyTitleText");
         public By certsHeader = By.id("certificationsCardTitleText");
@@ -237,6 +300,36 @@ public class Locators {
         /* Shared profile page locators */
         public By successToastDiv = By.id("bodySideMenuToast");
         public By profileBackBtn = By.id("editProfileBackBtn");
+    }
+
+    public static class WorkHistoryPageLocators {
+        public By employerLocationTxtField = By.id("addWorkHistoryLocationInput");
+        public By iDontSeeMyStoreLink = By.id("addWorkHistoryToggleSearchBtn");
+        public By jobPositionSelect = By.id("addWorkHistoryJobTypesSelectBox");
+        public By fromMonthDateSelect = By.id("addWorkHistoryStartMonthSelectBox");
+        public By fromYearDateSelect = By.id("addWorkHistoryStartYearSelectBox");
+        public By toMonthDateSelect = By.id("editWorkHistoryEndMonthSelectBox");
+        public By toYearDateSelect = By.id("editWorkHistoryEndYearSelectBox");
+        public By customEmployerNameTxtField = By.id("addWorkHistoryCustomNameInput");
+        public By customEmployerLocationTxtField = By.id("addWorkHistoryCustomLocationInput");
+        public By searchForStoreLink = By.id("addWorkHistoryToggleSearchBtn");
+        public By firstJobChk = By.id("addWorkHistoryFirstJobChk");
+        public By yesDeleteBtn = By.cssSelector(".bf-button.filled.bold");
+        public By cancelDeleteBtn = By.cssSelector(".bf-button.bold.bf-mrg-r");
+        public By addWorkHistorySaveBtn = By.id("addWorkHistorySaveBtn");
+        public By editWorkHistorySaveBtn = By.id("editWorkHistorySaveBtn");
+        public By editWorkHistoryCancelBtn = By.id("editWorkHistoryCancelBtn");
+        public By editWorkHistoryDeleteBtn = By.id("editWorkHistoryDeleteBtn");
+        public By googlePlacesMyStoreBtns = By.cssSelector(".bf-button.primary");
+
+        /**
+         * Locates a edit work history button for a given index
+         * @param index index The index (Starting at 0) of the employer you wish to locate
+         * @return Returns a locator for the edit work history button by index
+         */
+        public By findEditWorkHistoryItemByIndex(String index) {
+            return By.id("editWorkHistoryListItemEditBtn" + index);
+        }
     }
 
     public static class CertificationsPageLocators {

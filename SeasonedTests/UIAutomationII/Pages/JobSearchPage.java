@@ -4,10 +4,11 @@ import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class JobSearchPage extends BasePage {
-    Locators.JobSearchPageLocators jobSearchPageLocators = new Locators.JobSearchPageLocators();
+    Locators.JobSearchPageLocators jobSearchPageLocators;
 
     public JobSearchPage(WebDriver driver) {
         super(driver);
+        jobSearchPageLocators = new Locators.JobSearchPageLocators();
     }
 
     /*--------- Search Field ----------*/
@@ -342,6 +343,9 @@ public class JobSearchPage extends BasePage {
         return jobDetailsEmployerDistance.equals(driver.findElement(jobSearchPageLocators.jobDetailsEmployerDistanceTxt).getText());
     }
 
+    /**
+     * Clicks on the back button on the job details to go back to search results
+     */
     public void clickJobDetailsBackButton () {
         if (elementExists(jobSearchPageLocators.jobDetailsBackBtn)) {
             wait.until(elementToBeClickable(jobSearchPageLocators.jobDetailsBackBtn));

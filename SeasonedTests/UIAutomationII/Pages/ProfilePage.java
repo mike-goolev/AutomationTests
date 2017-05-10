@@ -3,12 +3,92 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class ProfilePage extends BasePage {
 
-    Locators.ProfilePageLocators profilePageLocators = new Locators.ProfilePageLocators();
+    Locators.ProfilePageLocators profilePageLocators;
     SkillsPage skillsPage;
 
     public ProfilePage(WebDriver driver) {
         super(driver);
+        profilePageLocators = new Locators.ProfilePageLocators();
         skillsPage = new SkillsPage(driver);
+    }
+
+    /*--------- Work History ----------*/
+
+    /**
+     * Clicks on the add work history button when a user has no work history
+     */
+    public void clickAddWorkHistory() {
+        wait.until(elementToBeClickable(profilePageLocators.workHistoryAddBtn));
+        driver.findElement(profilePageLocators.workHistoryAddBtn).click();
+    }
+
+    /**
+     * Clicks on the edit work history button when a user has work history on their profile
+     */
+    public void clickEditWorkHistory() {
+        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
+        driver.findElement(profilePageLocators.workHistoryEditBtn).click();
+    }
+
+    /**
+     * Verifies that the empty state text is present on the work history card
+     * @return Whether or not the empty state text is present on the work history card
+     */
+    public boolean isWorkHistoryEmptyCardTextPresent() {
+        return elementExists(profilePageLocators.workHistoryEmptyCardTxt);
+    }
+
+    /**
+     * Verifies that the employer logo is present at the given index
+     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @return Whether or not the logo is present at the given index
+     */
+    public boolean isEmployerLogoPresent(String index) {
+        return elementExists(profilePageLocators.findWorkHistoryEmployerLogoByIndex(index));
+    }
+
+    /**
+     * Verifies that the job position name is present at the given index
+     * @param employerIndex The index (Starting at 0) of the employer you wish to locate
+     * @param jobIndex The index (Starting at 0) of the job name you wish to locate
+     * @return Whether or not the job name is present at the given index
+     */
+    public boolean isJobPositionPresent(String employerIndex, String jobIndex) {
+        return elementExists(profilePageLocators.findWorkHistoryJobPositionByIndex(employerIndex, jobIndex));
+    }
+
+    /**
+     * Verifies that the employer name is present at the given index
+     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @return Whether or not the employer name is present at the given index
+     */
+    public boolean isEmployerNamePresent(String index) {
+        return elementExists(profilePageLocators.findWorkHistoryEmployerNameByIndex(index));
+    }
+
+    /**
+     * Verifies that the employer location is present at the given index
+     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @return Whether or not the employer location is present at the given index
+     */
+    public boolean isEmployerLocationPresent(String index) {
+        return elementExists(profilePageLocators.findWorkHistoryEmployerLocationByIndex(index));
+    }
+
+    /**
+     * Verifies that the time period is present at the given index
+     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @return Whether or not the time period is present at the given index
+     */
+    public boolean isTimePeriodPresent(String index) {
+        return elementExists(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index));
+    }
+
+    /**
+     * Waits for the edit work history button to be clickable
+     */
+    public void waitForEditWorkHistoryBtn() {
+        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
     }
 
     /*--------- Certifications ----------*/

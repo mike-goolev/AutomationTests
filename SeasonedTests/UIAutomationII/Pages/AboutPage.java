@@ -2,10 +2,11 @@ import org.openqa.selenium.WebDriver;
 
 public class AboutPage extends BasePage {
 
-    Locators.AboutPageLocators aboutPageLocators = new Locators.AboutPageLocators();
+    Locators.AboutPageLocators aboutPageLocators;
 
     public AboutPage(WebDriver driver) {
         super(driver);
+        aboutPageLocators = new Locators.AboutPageLocators();
     }
 
     /**
