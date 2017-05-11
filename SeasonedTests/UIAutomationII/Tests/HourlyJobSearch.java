@@ -1,4 +1,5 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -35,7 +36,8 @@ public class HourlyJobSearch extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing Hourly Job Search test...");
-        driver = new FirefoxDriver();
+        /*driver = new FirefoxDriver();*/
+        driver = new ChromeDriver();
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);

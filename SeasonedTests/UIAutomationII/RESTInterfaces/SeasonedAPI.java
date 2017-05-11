@@ -20,7 +20,12 @@ public interface SeasonedAPI {
     @GET("user/{guid}")
     Call<User> getUser(@Path("guid") String guid, @Header("Authorization") String accessToken);
 
+    @PUT("user")
+    Call<User> updateUserNameEmailPhone(@Header("Authorization") String accessToken, @Body User user);
+
     @GET("employer/{guid}/employees/count")
     Call<EmployeeCount> getEmployeeCount(@Path("guid") String guid, @Header("Authorization") String accessToken);
 
+    @POST("user/{guid}/primaryLocation")
+    Call<Location_> postUserLocation(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body Location_ location);
 }

@@ -12,6 +12,70 @@ public class ProfilePage extends BasePage {
         skillsPage = new SkillsPage(driver);
     }
 
+    /*--------- Personal Info ----------*/
+
+    /**
+     * Clicks the edit personal info button *
+     */
+    public void clickEditPersonalInfo(){
+        wait.until(elementToBeClickable(profilePageLocators.personalInfoEditBtn));
+        driver.findElement(profilePageLocators.personalInfoEditBtn).click();
+    }
+
+    /**
+     * Checks to see if the user's profile photo is on the profile page
+     * @return Whether or not the user's profile photo is on the profile page
+     */
+    public boolean isUserProfilePhotoPresent() {
+        return elementExists(profilePageLocators.personInfoUserPhotoImg);
+    }
+
+    /**
+     * Checks to see if the user's name is on the profile page
+     *
+     * @param name The user's name on the profile page
+     * @return Whether or not the text for the user's name matches the text param
+     */
+    public boolean verifyUserFirstAndLastName(String name) {
+        return name.equals(driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText());
+    }
+
+    /**
+     * Get user's first and last name from the text field
+     * @return User's first and last name
+     */
+    public String getFirstAndLastNameTxt() {
+        return driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText();
+    }
+
+    /**
+     * Checks to see if the user's primary job is on the profile page
+     *
+     * @param job The user's primary job on the profile page
+     * @return Whether or not the text of the user's primary job matches the text param
+     */
+    public boolean verifyUserPrimaryJob(String job) {
+        return job.equals(driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText());
+    }
+
+    /**
+     * Checks to see if the user's location is on the profile page
+     *
+     * @param location The user's location on the profile page
+     * @return Whether or not the text of the user's location matches the text param
+     */
+    public boolean verifyUserLocation(String location) {
+        return location.equals(driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText());
+    }
+
+    /**
+     * Get user's location from the text field
+     * @return User's location
+     */
+    public String getLocationTxt() {
+        return driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText();
+    }
+
     /*--------- Work History ----------*/
 
     /**

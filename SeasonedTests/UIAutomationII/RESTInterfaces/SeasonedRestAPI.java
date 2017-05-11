@@ -203,6 +203,7 @@ public class SeasonedRestAPI {
 
     /**
      * Deletes a job for a given employer
+     * @param guid The job's guid
      */
     public void deleteJob(String guid) {
         try {
@@ -212,6 +213,84 @@ public class SeasonedRestAPI {
             System.out.println("DELETE request to /job/{guid} returned a " + response.code());
         }
         catch(Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Update user name, email and phone
+     * @param id The user's id
+     * @param userGuid The user's guid
+     * @param firstName The user's first name
+     * @param lastName The user's last name
+     * @param email The user's email address
+     * @param phone The user's phone #
+     * @param accountState The user's account state
+     * @param roleGuid  The guid of the user's role
+     * @param roleName The name of the user's role
+     */
+    public void updateUserNameEmailPhone(String id, String userGuid, String firstName, String lastName, String email, String phone, String accountState, String roleGuid, String roleName) {
+        /* Construct Job Request Body */
+        try {
+            ArrayList<Role> roles = new ArrayList<Role>();
+
+            User user = new User();
+            Role role = new Role();
+
+            role.setGuid(roleGuid);
+            role.setUserGuid(userGuid);
+            role.setRole(roleName);
+            roles.add(role);
+
+            user.setId(id);
+            user.setGuid(userGuid);
+            user.setFirstname(firstName);
+            user.setLastname(lastName);
+            user.setEmail(email);
+            user.setPhone(phone);
+            user.setAccountState(accountState);
+            user.setRoles(roles);
+
+        /* Make a PUT request to user */
+            Call<User> call = seasonedAPI.updateUserNameEmailPhone(accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Posts a location to a given user
+     *
+     * @param guid The user's guid
+     * @param city The location's city
+     * @param state The location's state
+     * @param zip The location's zip
+     * @param country The location's country
+     * @param latitude The location's lat
+     * @param longitude The location's long
+     */
+    public void updateUserLocation(String guid, String city, String state, String zip, String country, Double latitude, Double longitude) {
+        /* Construct Job Request Body */
+        try {
+            Location_ location = new Location_();
+            Geo geo = new Geo();
+
+            geo.setLatitude(latitude);
+            geo.setLongitude(longitude);
+
+            location.setCity(city);
+            location.setState(state);
+            location.setZip(zip);
+            location.setCountry(country);
+            location.setGeo(geo);
+
+        /* Make a POST request to primaryLocation */
+            Call<Location_> call = seasonedAPI.postUserLocation(guid, accessToken, location);
+            Response<Location_> response = call.execute();
+            System.out.println("POST request to /primaryLocation returned a " + response.code());
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
