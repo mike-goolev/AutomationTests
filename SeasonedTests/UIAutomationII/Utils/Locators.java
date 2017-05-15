@@ -332,8 +332,8 @@ public class Locators {
         public By customEmployerLocationTxtField = By.id("addWorkHistoryCustomLocationInput");
         public By searchForStoreLink = By.id("addWorkHistoryToggleSearchBtn");
         public By firstJobChk = By.id("addWorkHistoryFirstJobChk");
-        public By yesDeleteBtn = By.cssSelector(".bf-button.filled.bold");
-        public By cancelDeleteBtn = By.cssSelector(".bf-button.bold.bf-mrg-r");
+        public By yesDeleteBtn = By.id("workHistoryDeleteBtn");
+        public By cancelDeleteBtn = By.id("workHistoryCancelBtn");
         public By addWorkHistorySaveBtn = By.id("addWorkHistorySaveBtn");
         public By editWorkHistorySaveBtn = By.id("editWorkHistorySaveBtn");
         public By editWorkHistoryCancelBtn = By.id("editWorkHistoryCancelBtn");

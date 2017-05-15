@@ -1,3 +1,4 @@
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -22,6 +23,8 @@ public class WorkHistoryPage extends BasePage {
     public void enterWhereHaveYouWorkedText(String s) throws Exception {
         wait.until(elementToBeClickable(workHistoryPageLocators.employerLocationTxtField));
         driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(s);
+        Thread.sleep(500);
+        driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(Keys.ARROW_DOWN);
         Thread.sleep(500);
     }
 

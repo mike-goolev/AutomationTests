@@ -84,10 +84,11 @@ public class HourlyWorkHistory extends BaseTest {
         /* Accept modal confirmation and verify success banner */
         workHistoryPage.clickYesDeleteBtn();
         Assert.assertTrue(profilePage.verifySuccessToast(),"The success toast should be displayed");
-        Thread.sleep(300);
+        Thread.sleep(500);
 
         /* Go back to the view profile page and verify the empty card state */
         profilePage.clickBackBtn();
+        Thread.sleep(500);
         Assert.assertTrue(profilePage.isWorkHistoryEmptyCardTextPresent(), "Work history card should be in an empty state");
     }
 
