@@ -1,4 +1,36 @@
 # UIAutomationII
 Java based UI automation using the selenium webdriver framework
 
-Note: You'll have to place the provided chrome and firefox drivers on your path before running any tests.
+MacOS/Linux Setup
+
+1. Check out the project to the directory of your choice.
+2. Take the chromedriver and geckodriver (these "drive" the actions in the browser) binaries from the SeasonedTests directory and put them on your path.
+3. On mac, i just copied them to /usr/local/bin.
+4. On linux, you can modify your .bash_profile to point to the location of the drivers.
+5. On windows, go buy a mac or install linux.
+
+Running via gradle
+
+1. cd to the project directory
+2. run gradle build
+3. run gradle build test
+
+Running via Idea IDE
+
+1. Open the project in idea and run the gradle script
+2. Go to the project structure menu
+3. Under the modules menu -> sources tab mark the seasonedtests and all its subdirectories as tests (green)
+4. Under the modules menu -> dependencies add the selenium-server-standalone jar as well as the following libraries downloaded from gradle:
+  a. testng:6.11
+  b. gson 2.8.0
+  c. guava:21.0
+  d. json-simple:1.1.1
+  e. okhttp:3.6.0
+  f. okio:1.11.0
+  g. converter-gson:2.2.0
+  h. retrofit:2.2.0
+5. Click ok.
+
+Modify the TestSuiteData file path in TestDataImporter.java
+
+1. Change the directory for the JSONObject testSuiteData variable to point to your directory.
