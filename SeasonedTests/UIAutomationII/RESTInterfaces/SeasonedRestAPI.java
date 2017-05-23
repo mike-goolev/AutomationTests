@@ -17,7 +17,7 @@ public class SeasonedRestAPI {
     public SeasonedRestAPI(String accessToken) {
         OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
-                               .baseUrl("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/services/rest/")
+                               .baseUrl(TestUtils.baseUrl + "/services/rest/")
                                .addConverterFactory(GsonConverterFactory.create())
                                .client(httpClient)
                                .build();
@@ -308,7 +308,7 @@ public class SeasonedRestAPI {
             age.setPreferenceValue(null);
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/services/rest/")
+                    .baseUrl(TestUtils.baseUrl + "/services/rest/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             SeasonedAPI seasonedAPI = retrofit.create(SeasonedAPI.class);

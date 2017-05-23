@@ -8,11 +8,14 @@ public class TestUtils {
         driver = d;
     }
 
+    public static String baseUrl = "http://qa-master.seasoned.co/services";
+    public static String webAppUrl = "http://qa-webapp-master.seasoned.co/services/webapp";
+
     /**
      * Navigate to the content feed as a starting point for tests
      */
     public void loadContentFeedPage() {
-        driver.get("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/app#/feed");
+        driver.get(webAppUrl + "/feed");
     }
 
     /**
@@ -21,7 +24,7 @@ public class TestUtils {
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/search?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+        driver.get(webAppUrl + "/search?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
     }
 
     /**

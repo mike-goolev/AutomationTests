@@ -74,30 +74,30 @@ public class HourlyLogin extends BaseTest {
         loginPage.loginWithFacebook(usernameFB, passwordFB);
     }
 
-    @Test
-    public void testHourlyLoginFromContentPageByHS() throws Exception {
-        /* Start test on the content feed page */
-        testUtils.loadContentFeedPage();
+//    @Test
+//    public void testHourlyLoginFromContentPageByHS() throws Exception {
+//        /* Start test on the content feed page */
+//        testUtils.loadContentFeedPage();
+//
+//        /* Log in */
+//        navPage.clickLoginBtn();
+//        loginPage.loginWithHS(usernameHS, passwordHS);
+//    }
 
-        /* Log in */
-        navPage.clickLoginBtn();
-        loginPage.loginWithHS(usernameHS, passwordHS);
-    }
-
-    @Test
-    public void testHourlyLoginFromJobSearchPageByHS() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPage(searchTerm, searchLocation);
-
-        /* Log in */
-        navPage.clickLoginBtn();
-        loginPage.loginWithHS(usernameHS, passwordHS);
-    }
+//    @Test
+//    public void testHourlyLoginFromJobSearchPageByHS() throws Exception {
+//        /* Start test on the job search page */
+//        testUtils.loadJobSearchPage(searchTerm, searchLocation);
+//
+//        /* Log in */
+//        navPage.clickLoginBtn();
+//        loginPage.loginWithHS(usernameHS, passwordHS);
+//    }
 
     @AfterMethod
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the HourlyLogin test");
-        navPage.logout();
+        //navPage.logout();
         driver.quit();
     }
 }
