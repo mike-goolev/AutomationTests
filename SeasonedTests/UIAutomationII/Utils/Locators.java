@@ -32,7 +32,7 @@ public class Locators {
         public By forgotPasswordLink = By.id("loginForgotPasswordLink");
         public By rememberMeCheckbox = By.id("loginRememberMeChk");
         public By rememberMeTxt = By.cssSelector("div.bf-checkbox-container>p");
-        public By loginButton = By.id("loginSubmitBtn");
+        public By loginButton = By.id("loginBtn");
 
         /* Login With HotSchedules */
         public By hotschedulesLoginBtn = By.id("loginHSBtn");

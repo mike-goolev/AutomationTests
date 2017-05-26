@@ -8,8 +8,8 @@ public class TestUtils {
         driver = d;
     }
 
-    public static String baseUrl = "http://qa-master.seasoned.co/services";
-    public static String webAppUrl = "http://qa-webapp-master.seasoned.co/services/webapp";
+    public static String baseUrl = "http://qa-www.seasoned.co/services";
+    public static String webAppUrl = "http://qa-www.seasoned.co/services/webapp";
 
     /**
      * Navigate to the content feed as a starting point for tests
