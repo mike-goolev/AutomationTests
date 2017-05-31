@@ -2,26 +2,38 @@ import org.openqa.selenium.WebDriver;
 
 public class TestUtils {
 
+    TestConfig testConfig;
     WebDriver driver;
 
     public TestUtils(WebDriver d) {
         driver = d;
+        testConfig = new TestConfig();
     }
 
     /**
      * Navigate to the content feed as a starting point for tests
      */
     public void loadContentFeedPage() {
-        driver.get("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/app#/feed");
+        driver.get(testConfig.getBaseURL() + testConfig.getContentRelativeURL());
+    }
+
+    /**
+     * Navigate to the content feed as a starting point for tests with a filter applied
+     *
+     * @param labelFilter The label (job type) to filter the content page results
+     */
+    public void loadContentFeedPageWithFilter(String labelFilter) {
+        driver.get(testConfig.getBaseURL() + testConfig.getContentRelativeURL() + "?f_label=" + labelFilter);
     }
 
     /**
      * Navigate to the job search page as a starting point for tests
+     *
      * @param searchTerm The search term to enter in the search term field
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/search?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+        driver.get(testConfig.getBaseURL() + testConfig.getJobSearchPageURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
     }
 
     /**

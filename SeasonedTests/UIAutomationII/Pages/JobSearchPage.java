@@ -248,6 +248,12 @@ public class JobSearchPage extends BasePage {
     public boolean verifyJobDetailsFollowButton() { return elementExists(jobSearchPageLocators.jobDetailsEmployerFollowBtn); }
 
     /**
+     * Checks to see if the following button is on the job details page
+     * @return Whether or not the following button is on the job details page
+     */
+    public boolean verifyJobDetailsFollowingButton() { return elementExists(jobSearchPageLocators.jobDetailsEmployerUnfollowBtn); }
+
+    /**
      * Checks to see if the Job Details Position matches what is on the job details page
      *
      * @param jobDetailsPosition The job posting's position
@@ -346,10 +352,32 @@ public class JobSearchPage extends BasePage {
     /**
      * Clicks on the back button on the job details to go back to search results
      */
-    public void clickJobDetailsBackButton () {
+    public void clickJobDetailsBackButton() {
         if (elementExists(jobSearchPageLocators.jobDetailsBackBtn)) {
             wait.until(elementToBeClickable(jobSearchPageLocators.jobDetailsBackBtn));
             driver.findElement(jobSearchPageLocators.jobDetailsBackBtn).click();
+        }
+    }
+
+    /**
+     * Clicks on the follow button on the job details to follow the selected employer
+     */
+    public void clickJobDetailsFollowButton() {
+        if (elementExists(jobSearchPageLocators.jobDetailsEmployerFollowBtn)) {
+            wait.until(elementToBeClickable(jobSearchPageLocators.jobDetailsEmployerFollowBtn));
+            driver.findElement(jobSearchPageLocators.jobDetailsEmployerFollowBtn).click();
+        }
+    }
+
+    /**
+     * Clicks on the following button on the job details to unfollow the selected employer
+     */
+    public void clickJobDetailsFollowingButton() {
+        if (elementExists(jobSearchPageLocators.jobDetailsEmployerUnfollowBtn)) {
+            wait.until(elementToBeClickable(jobSearchPageLocators.jobDetailsEmployerUnfollowBtn));
+            driver.findElement(jobSearchPageLocators.jobDetailsEmployerUnfollowBtn).click();
+            wait.until(elementToBeClickable(jobSearchPageLocators.jobDetailsEmployerUnfollowConfirm));
+            driver.findElement(jobSearchPageLocators.jobDetailsEmployerUnfollowConfirm).click();
         }
     }
 }

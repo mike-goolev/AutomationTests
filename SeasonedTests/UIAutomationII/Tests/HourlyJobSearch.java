@@ -30,6 +30,8 @@ public class HourlyJobSearch extends BaseTest {
     String jobDetailsEmployerType;
     String jobDetailsEmployerDistance;
     String jobGuid;
+    String employerGuid;
+    String userGuid;
     String token;
 
 
@@ -59,9 +61,13 @@ public class HourlyJobSearch extends BaseTest {
         jobDetailsEmployerPPA = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerPPA");
         jobDetailsEmployerType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerType");
         jobDetailsEmployerDistance = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerDistance");
+        employerGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerGuid");
+        userGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("userGuid");
         token = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("token");
+
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         jobGuid = seasonedRestAPI.postJob();
+        seasonedRestAPI.unfollowEmployer(employerGuid, userGuid);
         System.out.println("Starting test run!");
     }
 
@@ -147,6 +153,71 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param");
         Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
         Assert.assertTrue(jobSearchPage.verifyJobPostingAppliedButton(), "Applied button is present");
+    }
+
+    @Test
+    public void testHourlyJobSearchFollowStore() throws Exception {
+        /* Start test on the job search page */
+        testUtils.loadJobSearchPage(searchTerm, searchLocation);
+
+        /* Log in */
+        navPage.clickLoginBtn();
+        loginPage.loginWithEmail(usernameEmail, passwordEmail);
+        navPage.waitForActivtyIndicator();
+
+        /* Commit a search on the job search page */
+        Assert.assertTrue(jobSearchPage.verifySearchTermField(), "Search term field is present");
+        Assert.assertTrue(jobSearchPage.verifySearchLocationField(), "Search location field is present");
+        jobSearchPage.searchForJobs(searchTerm, searchLocation);
+
+        /* Verify search result elements on job card at index 0 */
+        jobSearchPage.waitForSearchResults();
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param"); //Bug: Locator returns distance + zip
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton(), "Apply button is present");
+
+        /* Click job search result at index 0 */
+        jobSearchPage.clickJobPostingViewBtn();
+
+        /* Verify job details of selected job */
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsApplyButton(), "Apply button is present");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsPosition(jobDetailsPosition), "Job details position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsWage(jobDetailsWage), "Job details wage matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsJobDescription(jobDetailsJobDescription), "Job details description matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerDescription(jobDetailsEmployerDescription), "Job details employer description matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerName(jobDetailsEmployerName), "Job details employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerAddress(jobDetailsEmployerAddress), "Job details employer address matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerPPA(jobDetailsEmployerPPA), "Job details employer ppa matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerType(jobDetailsEmployerType), "Job details employer type matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerDistance(jobDetailsEmployerDistance), "Job details employer distance matches text param");
+
+        /* Click the follow button for a given employer*/
+        jobSearchPage.clickJobDetailsFollowButton();
+        navPage.waitForActivtyIndicator();
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowingButton());
+
+        /* Click 'Back' to return to search results */
+        jobSearchPage.clickJobDetailsBackButton();
+        navPage.waitForActivtyIndicator();
+
+        /* Verify search results match original search query on job card at index 0 */
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton(), "Apply button is present");
+
+         /* Click job search result at index 0 */
+        jobSearchPage.clickJobPostingViewBtn();
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowingButton());
+        jobSearchPage.clickJobDetailsFollowingButton();
+        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton());
     }
 
     @AfterClass

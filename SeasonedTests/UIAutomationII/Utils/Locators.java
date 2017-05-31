@@ -160,6 +160,9 @@ public class Locators {
         public By jobDetailsEmployerTypeTxt = By.cssSelector("ul.bf-employer-info-list>li:nth-of-type(2)");
         public By jobDetailsEmployerDistanceTxt = By.id("employerCardDistanceText");
         public By jobDetailsEmployerFollowBtn = By.id("employerCardFollowBtn");
+        public By jobDetailsEmployerUnfollowBtn = By.id("employerCardUnfollowBtn");
+        public By jobDetailsEmployerUnfollowConfirm = By.cssSelector("div.bf-employer-details>div:nth-of-type(5)>button");
+        /*public By jobDetailsEmployerUnfollowCancel = By.cssSelector("");*/
     }
 
     public static class ProfilePageLocators {
@@ -169,6 +172,8 @@ public class Locators {
         public By personalInfoUserPrimaryJobTxt = By.id("personalInfoCardPrimaryWorkHistoryText");
         public By personalInfoUserLocationTxt = By.id("personalInfoCardLocationText");
         public By personalInfoEditBtn = By.id("personalInfoCardEditBtn");
+        public By personalInfoActionsMenuBtn = By.cssSelector("div.actions-menu-toggle");
+        public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
         /* Work History Section */
         public By workHistoryEmptyCardHeader = By.id("workHistoryCardEmptyTitleText");
@@ -303,10 +308,75 @@ public class Locators {
         public By availabilityEveningsSelectedImg = By.id("availabilityCardListItemEveningsImg");
         public By availabilityNightsSelectedImg = By.id("availabilityCardListItemNightsImg");
 
+        /* Connections Section */
+        public By connectionsTitleTxt = By.id("connectionsCardTitleText");
+        public By connectionsCountTxt = By.id("connectionsCardConnectionsCount");
+        public By emptyConnectionsBtn = By.id("connectionsCardSuggestedConnectionsBtn");
+        public By viewAllConnectionsBtn = By.id("connectionsCardMoreConnectionsBtn");
+
+        /**
+         * Locates a connection's photo for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the connection's image by index
+         */
+        public By findConnectionImgByIndex(String index) {
+            return By.id("connectionsCardConnectionProfilePhotoImg" + index);
+        }
+
+        /**
+         * Locates a connection's view profile link for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the connection's view profile link by index
+         */
+        public By findConnectionLinkByIndex(String index) {
+            return By.id("connectionsCardConnectionLink" + index);
+        }
+
+        /* Suggested Connections Section */
+        public By suggestedConnectionsTitleTxt = By.id("suggestedConnectionsCardTitleText");
+        public By viewAllSuggestedConnectionsBtn = By.id("suggestedConnectionsCardSuggestedConnectionsBtn");
+
+        /**
+         * Locates a suggested connection's photo for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the suggested connection's image by index
+         */
+        public By findSuggestedConnectionImgByIndex(String index) {
+            return By.id("suggestedConnectionsCardConnectionProfilePhotoImg" + index);
+        }
+
+        /**
+         * Locates a suggested connection's name for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the suggested connection's name by index
+         */
+        public By findSuggestedConnectionNameTxtByIndex(String index) {
+            return By.id("suggestedConnectionsCardConnectionUsernameText" + index);
+        }
+
+        /**
+         * Locates a suggested connection's reason for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the suggested connection's reason by index
+         */
+        public By findSuggestedConnectionReasonTxtByIndex(String index) {
+            return By.id("suggestedConnectionsCardConnectionReasonText" + index);
+        }
+
+        /**
+         * Locates a suggested connection's connect button for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the suggested connection's reason by index
+         */
+        public By findSuggestedConnectionConnectBtnByIndex(String index) {
+            return By.id("suggestedConnectionsCardConnectBtn" + index);
+        }
+
         /* Shared profile page locators */
         public By successToastDiv = By.cssSelector("div#bodySideMenuToast.success");
         public By failToastDiv = By.cssSelector("div#bodySideMenuToast.error");
         public By profileBackBtn = By.id("editProfileBackBtn");
+        public By publicProfileViewBackBtn = By.cssSelector("button.bf-button");
     }
 
     public static class PersonalInfoPageLocators {
@@ -342,7 +412,7 @@ public class Locators {
 
         /**
          * Locates a edit work history button for a given index
-         * @param index index The index (Starting at 0) of the employer you wish to locate
+         * @param index The index (Starting at 0) of the employer you wish to locate
          * @return Returns a locator for the edit work history button by index
          */
         public By findEditWorkHistoryItemByIndex(String index) {
@@ -476,14 +546,55 @@ public class Locators {
         public By successToastDiv = By.id("bodySideMenuToast");
     }
 
-    public static class HourlyConnectionLocators {
+    public static class HourlyConnectionPageLocators {
         public By connectionBackBtn = By.id("connectionsBackBtn");
         public By connectionsTitle = By.id("connectionsTitleText");
-        public By connectionCardImg0 = By.id("connectionImg0");
-        public By connectionCardNameTxt0 = By.id("connectionNameText0");
-        public By connectionCardWorkTxt0 = By.id("connectionPrimaryWorkText0");
-        public By connectionCardLocationTxt0 = By.id("connectionLocationText0");
-        public By connectionCardViewBtn = By.id("connectionViewBtn0");
+
+        /**
+         * Locates a connection's photo for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's image by index
+         */
+        public By findConnectionCardImgByIndex(String index) {
+            return By.id("connectionImg" + index);
+        }
+
+        /**
+         * Locates a connection's name for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's name by index
+         */
+        public By findConnectionCardNameTxtByIndex(String index) {
+            return By.id("connectionNameText" + index);
+        }
+
+        /**
+         * Locates a connection's work history for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's work history by index
+         */
+        public By findConnectionCardWorkTxtByIndex(String index) {
+            return By.id("connectionPrimaryWorkText" + index);
+        }
+
+        /**
+         * Locates a connection's location for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's location by index
+         */
+        public By findConnectionCardLocationTxtByIndex(String index) {
+            return By.id("connectionLocationText" + index);
+        }
+
+        /**
+         * Locates a connection's view button for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's view button by index
+         */
+        public By findConnectionCardViewBtnByIndex(String index) {
+            return By.id("connectionViewBtn" + index);
+        }
+
         public By connectionPage1Btn = By.id("connectionsPage1Btn");
         public By connectionPage2Btn = By.id("connectionsPage2Btn");
         public By connectionPage3Btn = By.id("connectionsPage3Btn");
@@ -492,38 +603,79 @@ public class Locators {
         public By connectionPreviousPageBtn = By.id("connectionsPreviousBtn");
     }
 
-        public static class HourlySuggestedConnectionLocators {
-            public By suggestedConnectionBackBtn = By.id("suggestedConnectionsBackBtn");
-            public By suggestedConnectionsTitle = By.id("suggestedConnectionsTitleText");
-            public By suggestedConnectionCardImg0 = By.id("suggestedConnectionImg0");
-            public By suggestedConnectionCardNameTxt0 = By.id("suggestedConnectionNameText0");
-            public By suggestedConnectionCardReasonTxt0 = By.id("suggestedConnectionConnectionReasonText0");
-            public By suggestedConnectionCardViewBtn0 = By.id("suggestedConnectionViewBtn0");
-            public By suggestedConnectionCardConnectBtn0 = By.id("suggestedConnectionConnectBtn0");
-            public By suggestedConnectionPage1Btn = By.id("suggestedConnectionsPage1Btn");
-            public By suggestedConnectionPage2Btn = By.id("suggestedConnectionsPage2Btn");
-            public By suggestedConnectionPage3Btn = By.id("suggestedConnectionsPage3Btn");
-            public By suggestedConnectionPage4Btn = By.id("suggestedConnectionsPage4Btn");
-            public By suggestedConnectionNextPageBtn = By.id("suggestedConnectionsNextBtn");
-            public By suggestedConnectionPreviousPageBtn = By.id("suggestedConnectionsPreviousBtn");
+    public static class HourlySuggestedConnectionPageLocators {
+        public By suggestedConnectionBackBtn = By.id("suggestedConnectionsBackBtn");
+        public By suggestedConnectionsTitle = By.id("suggestedConnectionsTitleText");
+
+        /**
+         * Locates a suggested connection's photo for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's image by index
+         */
+        public By findSuggestedConnectionCardImgByIndex(String index) {
+            return By.id("suggestedConnectionImg" + index);
         }
 
-        public static class HourlyMessagePageLocators {
-            public By messageListSenderNameTxt0 = By.id("messageListItemSenderNameText0");
-            public By messageListSenderImg0 = By.id("messageListItemSenderImg0");
-            public By messageListSenderPositionTxt0 = By.id("messageListItemSenderPositionText0");
-            public By messageListDateTxt0 = By.id("messageListItemSentDate0");
-            public By messageListDeleteBtn0 = By.id("messageListItemDeleteBtn0");
-            public By messageListYearDividerTxt = By.id("messageListItemYearDivider0");
-            public By messageThreadSenderImg0 = By.id("senderMessageImg0");
-            public By messageThreadSenderTxt0 = By.id("senderMessageText0");
-            public By messageThreadSenderTimeTxt0 = By.id("senderMessageSentTimeText0");
-            public By messageThreadRecipientImg0 = By.id("recipientMessageImg0");
-            public By messageThreadRecipientTxt0 = By.id("recipientMessageText0");
-            public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
-            public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
-            public By messageThreadTextField = By.id("chatMessageTextArea");
-            public By messageThreadSendBtn = By.id("chatMessageSendBtn");
-            public By successToastDiv = By.id("bodySideMenuToast");
+        /**
+         * Locates a suggested connection's name for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's name by index
+         */
+        public By findSuggestedConnectionCardNameTxtByIndex(String index) {
+            return By.id("suggestedConnectionNameText" + index);
+        }
+
+        /**
+         * Locates a suggested connection's reason for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's reason by index
+         */
+        public By findSuggestedConnectionCardReasonTxtByIndex(String index) {
+            return By.id("suggestedConnectionConnectionReasonText" + index);
+        }
+
+        /**
+         * Locates a suggested connection's view button for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's view button by index
+         */
+        public By findSuggestedConnectionCardViewBtnByIndex(String index) {
+            return By.id("suggestedConnectionViewBtn" + index);
+        }
+
+        /**
+         * Locates a suggested connection's connect button for a given index
+         * @param index The index (Starting at 0) of the user you wish to locate
+         * @return Returns a locator for the user card's connect button by index
+         */
+        public By findSuggestedConnectionCardConnectBtnByIndex(String index) {
+            return By.id("suggestedConnectionConnectBtn" + index);
+        }
+
+        public By suggestedConnectionPage1Btn = By.id("suggestedConnectionsPage1Btn");
+        public By suggestedConnectionPage2Btn = By.id("suggestedConnectionsPage2Btn");
+        public By suggestedConnectionPage3Btn = By.id("suggestedConnectionsPage3Btn");
+        public By suggestedConnectionPage4Btn = By.id("suggestedConnectionsPage4Btn");
+        public By suggestedConnectionNextPageBtn = By.id("suggestedConnectionsNextBtn");
+        public By suggestedConnectionPreviousPageBtn = By.id("suggestedConnectionsPreviousBtn");
+        }
+
+    public static class HourlyMessagePageLocators {
+        public By messageListSenderNameTxt0 = By.id("messageListItemSenderNameText0");
+        public By messageListSenderImg0 = By.id("messageListItemSenderImg0");
+        public By messageListSenderPositionTxt0 = By.id("messageListItemSenderPositionText0");
+        public By messageListDateTxt0 = By.id("messageListItemSentDate0");
+        public By messageListDeleteBtn0 = By.id("messageListItemDeleteBtn0");
+        public By messageListYearDividerTxt = By.id("messageListItemYearDivider0");
+        public By messageThreadSenderImg0 = By.id("senderMessageImg0");
+        public By messageThreadSenderTxt0 = By.id("senderMessageText0");
+        public By messageThreadSenderTimeTxt0 = By.id("senderMessageSentTimeText0");
+        public By messageThreadRecipientImg0 = By.id("recipientMessageImg0");
+        public By messageThreadRecipientTxt0 = By.id("recipientMessageText0");
+        public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
+        public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
+        public By messageThreadTextField = By.id("chatMessageTextArea");
+        public By messageThreadSendBtn = By.id("chatMessageSendBtn");
+        public By successToastDiv = By.id("bodySideMenuToast");
         }
     }
