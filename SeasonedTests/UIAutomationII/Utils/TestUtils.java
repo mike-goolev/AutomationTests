@@ -24,7 +24,7 @@ public class TestUtils {
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get(webAppUrl + "/search?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+        driver.get(webAppUrl + "/jobs?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
     }
 
     /**
