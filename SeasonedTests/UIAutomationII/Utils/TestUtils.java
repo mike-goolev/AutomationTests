@@ -2,19 +2,17 @@ import org.openqa.selenium.WebDriver;
 
 public class TestUtils {
 
-    TestConfig testConfig;
     WebDriver driver;
 
     public TestUtils(WebDriver d) {
         driver = d;
-        testConfig = new TestConfig();
     }
 
     /**
      * Navigate to the content feed as a starting point for tests
      */
     public void loadContentFeedPage() {
-        driver.get(testConfig.getBaseURL() + testConfig.getContentRelativeURL());
+        driver.get(TestConfig.getBaseURL() + TestConfig.getContentRelativeURL());
     }
 
     /**
@@ -23,7 +21,14 @@ public class TestUtils {
      * @param labelFilter The label (job type) to filter the content page results
      */
     public void loadContentFeedPageWithFilter(String labelFilter) {
-        driver.get(testConfig.getBaseURL() + testConfig.getContentRelativeURL() + "?f_label=" + labelFilter);
+        driver.get(TestConfig.getBaseURL() + TestConfig.getContentRelativeURL() + "?f_label=" + labelFilter);
+    }
+
+    /**
+     * Navigate to the search page with no terms
+     */
+    public void loadJobSearchPageNoTerms() {
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchPageURL());
     }
 
     /**
@@ -33,7 +38,7 @@ public class TestUtils {
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get(testConfig.getBaseURL() + testConfig.getJobSearchPageURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchPageURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
     }
 
     /**
