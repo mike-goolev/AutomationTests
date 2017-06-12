@@ -1,5 +1,5 @@
 import org.openqa.selenium.WebDriver;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class LoginPage extends BasePage {
 

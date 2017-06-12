@@ -1,4 +1,5 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
 public class HourlyLogin extends BaseTest {
@@ -20,9 +21,11 @@ public class HourlyLogin extends BaseTest {
     public void setUp() {
         System.out.println("Initializing HourlyLogin test...");
         driver = new FirefoxDriver();
+        /*driver = new ChromeDriver();*/
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
+
         searchTerm = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("searchTerm");
         searchLocation = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("searchLocation");
         usernameEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("username");
@@ -96,8 +99,14 @@ public class HourlyLogin extends BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        System.out.println("Logging out and shutting down selenium for the HourlyLogin test");
-        navPage.logout();
+        try {
+            System.out.println("Logging out and shutting down selenium for the HourlyLogin test");
+            navPage.logout();
+        }
+        catch(Exception e) {
+            System.out.println("Selenium couldn't log out of app.");
+            System.out.println(e.getLocalizedMessage());
+        }
         driver.quit();
     }
 }

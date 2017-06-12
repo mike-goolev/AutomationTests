@@ -17,7 +17,7 @@ public class ProfilePage extends BasePage {
     /**
      * Clicks the edit personal info button *
      */
-    public void clickEditPersonalInfo(){
+    public void clickEditPersonalInfo() {
         wait.until(elementToBeClickable(profilePageLocators.personalInfoEditBtn));
         driver.findElement(profilePageLocators.personalInfoEditBtn).click();
     }
@@ -50,12 +50,20 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the user's primary job is on the profile page
-     *
      * @param job The user's primary job on the profile page
+     *
      * @return Whether or not the text of the user's primary job matches the text param
      */
     public boolean verifyUserPrimaryJob(String job) {
         return job.equals(driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText());
+    }
+
+    /**
+     * Get user's primary job from the text field
+     * @return User's primary job
+     */
+    public String getPrimaryJobTxt() {
+        return driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText();
     }
 
     /**
@@ -73,7 +81,18 @@ public class ProfilePage extends BasePage {
      * @return User's location
      */
     public String getLocationTxt() {
-        return driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText();
+        return driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText();
+    }
+
+    public boolean isDisconnectButtonPresent(){
+        return elementExists(profilePageLocators.personalInfoActionsMenuBtn);
+    }
+
+    public void clickDisconnectFromUser() {
+        wait.until(elementToBeClickable(profilePageLocators.personalInfoActionsMenuBtn));
+        driver.findElement(profilePageLocators.personalInfoActionsMenuBtn).click();
+        wait.until(elementToBeClickable(profilePageLocators.personalInfoDisconnectBtn));
+        driver.findElement(profilePageLocators.personalInfoDisconnectBtn).click();
     }
 
     /*--------- Work History ----------*/
@@ -496,9 +515,7 @@ public class ProfilePage extends BasePage {
     /**
      * Checks to see if the Manager skill is selected
      */
-    public boolean skillManagerSelectedYes() {
-        return elementExists(profilePageLocators.skillsManagerTxt);
-    }
+    public boolean skillManagerSelectedYes() {return elementExists(profilePageLocators.skillsManagerTxt); }
 
     /**
      * Checks to see if the Prep Cook skill is selected
@@ -533,7 +550,7 @@ public class ProfilePage extends BasePage {
      */
     public boolean skillSousChefSelectedYes() {
         return elementExists(profilePageLocators.skillsSousChefTxt);
-	}
+    }
 
     /**
      * Checks to see if the TeamMember skill is selected
@@ -551,9 +568,10 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the selected skills match what is on the view profile screen
+     *
      * @return Whether or not the selected skills are on the page
      */
-    public boolean verifySelectedSkills( ) {
+    public boolean verifySelectedSkills() {
         return skillBakerSelectedYes() &&
                 skillBarbackSelectedYes() &&
                 skillBaristaSelectedYes() &&
@@ -597,6 +615,113 @@ public class ProfilePage extends BasePage {
         }
     }
 
+    /*---------- HourlyConnections -----------*/
+
+    /**
+     * Clicks the view all connections button when auth'd user has > 0 connections
+     */
+    public void clickViewAllConnections() {
+        wait.until(elementToBeClickable(profilePageLocators.viewAllConnectionsBtn));
+        driver.findElement(profilePageLocators.viewAllConnectionsBtn).click();
+    }
+
+    /**
+     * Verifies that the connections title text is displayed on the view profile page
+     *
+     * @return Whether or not the connections title text is displayed
+     */
+    public boolean isConnectionsTitleTxtPresent() {
+        return elementExists(profilePageLocators.connectionsTitleTxt);
+    }
+
+    /**
+     * Get user's connections count
+     *
+     * @return User's connections count
+     */
+    public String getConnectionsCount() {
+        return driver.findElement(profilePageLocators.connectionsCountTxt).getText();
+    }
+
+    /**
+     * Verifies that a connection's photo is at the given index
+     *
+     * @param index The index (Starting at 0) of the connection you wish to locate
+     * @return Whether or not a connection's photo is present at the given index
+     */
+    public boolean isConnectionsPhotoPresent(String index) {
+        return elementExists(profilePageLocators.findConnectionImgByIndex(index));
+    }
+
+    /**
+     * Clicks a connection's view link at the given index
+     *
+     * @param index The index (Starting at 0) of the connection you wish to locate
+     */
+    public void clickViewConnection(String index) {
+        wait.until(elementToBeClickable(profilePageLocators.findConnectionLinkByIndex(index)));
+        driver.findElement(profilePageLocators.findConnectionLinkByIndex(index)).click();
+    }
+
+    /*---------- HourlySuggestedConnections -----------*/
+
+    /**
+     * Clicks the view all suggested connections button when a user has > 0 suggested connections
+     */
+    public void clickViewAllSuggestedConnections() {
+        wait.until(elementToBeClickable(profilePageLocators.viewAllSuggestedConnectionsBtn));
+        driver.findElement(profilePageLocators.viewAllSuggestedConnectionsBtn).click();
+    }
+
+    /**
+     * Verifies that the suggested connections title text is displayed on the view profile page
+     *
+     * @return Whether or not the suggested connections title text is displayed
+     */
+    public boolean isSuggestedConnectionsTitleTxtPresent() {
+        return elementExists(profilePageLocators.suggestedConnectionsTitleTxt);
+    }
+
+    /**
+     * Verifies that the suggested connection's photo is at the given index
+     *
+     * @param index The index (Starting at 0) of the suggested connection you wish to locate
+     * @return Whether or not the suggested connection's photo is present at the given index
+     */
+    public boolean isSuggestedConnectionsPhotoPresent(String index) {
+        return elementExists(profilePageLocators.findSuggestedConnectionImgByIndex(index));
+    }
+
+    /**
+     * Get a suggested connection's name
+     *
+     * @param index The index (Starting at 0) of the suggested connection you wish to locate
+     * @return Suggested connection's name
+     */
+    public String getSuggestedConnectionsName(String index) {
+        return driver.findElement(profilePageLocators.findSuggestedConnectionNameTxtByIndex(index)).getText();
+    }
+
+    /**
+     * Get a suggested connection's reason
+     *
+     * @param index The index (Starting at 0) of the suggested connection you wish to locate
+     * @return Suggested connection's reason
+     */
+    public String getSuggestedConnectionsReason(String index) {
+        return driver.findElement(profilePageLocators.findSuggestedConnectionReasonTxtByIndex(index)).getText();
+    }
+
+    /**
+     * Clicks a suggested connection's connect button
+     *
+     * @param index The index (Starting at 0) of the suggested connection you wish to locate
+     */
+    public void clickSuggestedConnectionsConnectBtn(String index) {
+        wait.until(elementToBeClickable(profilePageLocators.findSuggestedConnectionConnectBtnByIndex(index)));
+        driver.findElement(profilePageLocators.findSuggestedConnectionConnectBtnByIndex(index));
+    }
+
     /*---------- Utility Methods ----------*/
 
     /**
@@ -617,4 +742,10 @@ public class ProfilePage extends BasePage {
         driver.findElement(profilePageLocators.profileBackBtn).click();
     }
 
+    /**
+     * Click the back button when viewing another user's profile to go to the view profile page
+     */
+    public void clickPublicProfileViewBackBtn() {
+        driver.findElement(profilePageLocators.publicProfileViewBackBtn).click();
+    }
 }

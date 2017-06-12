@@ -74,7 +74,7 @@ public class HourlyPersonalInfo extends BaseTest {
         accountState = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("accountState");
         roleGuid = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("roleGuid");
         roleName = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("roleName");
-        token = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("token");
+        token = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("token");
 
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.updateUserLocation(userGuid, originalCity, originalState, originalZip, country, originalLatitude, originalLongitude);
@@ -91,7 +91,7 @@ public class HourlyPersonalInfo extends BaseTest {
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(username, password);
 
-        /* Navigate to profile -> Navigate to the HourlyAbout page */
+        /* Navigate to profile -> Navigate to the hourly personal info page */
         navPage.navigateToProfilePage();
         profilePage.clickEditPersonalInfo();
 

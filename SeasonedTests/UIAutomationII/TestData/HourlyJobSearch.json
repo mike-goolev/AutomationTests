@@ -17,6 +17,8 @@
     "jobDetailsEmployerPPA":"$",
     "jobDetailsEmployerType":"Quick Service Restaurant",
     "jobDetailsEmployerDistance":"1.47 miles away",
+    "employerGuid":"75ced677-4368-4026-9f57-34ba6246c3cb",
+    "userGuid":"e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
     "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
   }
 }

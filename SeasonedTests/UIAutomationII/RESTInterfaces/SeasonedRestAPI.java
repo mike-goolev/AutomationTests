@@ -295,6 +295,97 @@ public class SeasonedRestAPI {
         }
     }
 
+    /**
+     * Posts a connection request from user a to user b
+     *
+     * @param fromUserGuid The guid of the user sending the connection request
+     * @param toUserGuid The guid of the user receiving the connection request
+     */
+    public void postConnectionRequest(String fromUserGuid, String toUserGuid) {
+        /* Construct Job Request Body */
+        try {
+            Network network = new Network();
+
+            network.setFromUserGuid(fromUserGuid);
+            network.setToUserGuid(toUserGuid);
+
+        /* Make a POST request to network */
+            Call<Network> call = seasonedAPI.postNetworkConnection(accessToken, network);
+            Response<Network> response = call.execute();
+            System.out.println("POST request to /network returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Accept a connection request
+     *
+     * @param fromUserGuid The guid of the user sending the connection request
+     * @param toUserGuid The guid of the user receiving the connection request
+     */
+    public void updateConnectionRequest(String fromUserGuid, String toUserGuid) {
+        /* Construct Job Request Body */
+        try {
+            Network network = new Network();
+
+            network.setFromUserGuid(fromUserGuid);
+            network.setToUserGuid(toUserGuid);
+
+        /* Make a PUT request to network */
+            Call<Network> call = seasonedAPI.updateNetworkConnection(accessToken, network);
+            Response<Network> response = call.execute();
+            System.out.println("PUT request to /network/accept returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Delete a connection request
+     *
+     * @param fromUserGuid The guid of the user sending the connection request
+     * @param toUserGuid The guid of the user receiving the connection request
+     */
+    public void deleteConnection(String fromUserGuid, String toUserGuid) {
+        /* Construct Job Request Body */
+        try {
+            Network network = new Network();
+
+            network.setFromUserGuid(fromUserGuid);
+            network.setToUserGuid(toUserGuid);
+
+        /* Make a DELETE request to network */
+            Call<Network> call = seasonedAPI.deleteNetworkConnection(accessToken, fromUserGuid, toUserGuid);
+            Response<Network> response = call.execute();
+            System.out.println("Delete request to /network/between/{guid}/{guid} returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Delete request to /network/between/{guid}/{guid} failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Unfollows an employer
+     *
+     * @param employerGuid The guid of the employer to unfollow
+     * @param userGuid The guid of the user that is unfollowing
+     */
+    public void unfollowEmployer(String employerGuid, String userGuid) {
+        /* Construct Job Request Body */
+        try {
+            User user = new User();
+
+            user.setGuid(userGuid);
+
+        /* Make a POST request to unfollow an employer */
+            Call<User> call = seasonedAPI.unFollowEmployer(employerGuid, accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("POST request to /employer/{guid/unfollow returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
     /*public static void main(String[] args) throws Exception {
 
         try {
