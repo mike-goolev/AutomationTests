@@ -20,8 +20,8 @@ public class HourlyLogin extends BaseTest {
     @BeforeMethod
     public void setUp() {
         System.out.println("Initializing HourlyLogin test...");
-        /*driver = new FirefoxDriver();*/
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
+        /*driver = new ChromeDriver();*/
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -99,8 +99,14 @@ public class HourlyLogin extends BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        System.out.println("Logging out and shutting down selenium for the HourlyLogin test");
-        navPage.logout();
+        try {
+            System.out.println("Logging out and shutting down selenium for the HourlyLogin test");
+            navPage.logout();
+        }
+        catch(Exception e) {
+            System.out.println("Selenium couldn't log out of app.");
+            System.out.println(e.getLocalizedMessage());
+        }
         driver.quit();
     }
 }
