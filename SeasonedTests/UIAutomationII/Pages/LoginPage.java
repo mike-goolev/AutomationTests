@@ -27,6 +27,7 @@ public class LoginPage extends BasePage {
 
     /**
      * Logs the user in with HotSchedules username/password credentials
+     *
      * @param username    User's HotSchedules username
      * @param password User's HotSchedules password
      */
@@ -40,6 +41,7 @@ public class LoginPage extends BasePage {
 
     /**
      * Logs the user in with Facebook email/password credentials
+     * 
      * @param email    User's Facebook email
      * @param password User's Facebook password
      */

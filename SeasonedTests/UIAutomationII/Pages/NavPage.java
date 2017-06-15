@@ -64,4 +64,18 @@ public class NavPage extends BasePage {
         wait.until(presenceOfElementLocated(navPageLocators.loader));
         wait.until(invisibilityOfElementLocated(navPageLocators.loader));
     }
+
+    /**
+     * Attempts to log the user out of the web app. Handles errors so that tear down can finish shutting down selenium.
+     * This method is intended to be used in the tearDown() method.
+     */
+    public void attemptLogout() {
+        try {
+            logout();
+        }
+        catch(Exception e) {
+            System.out.println("An error occured while attempting to log the user out of the app.");
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
 }

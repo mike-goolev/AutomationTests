@@ -13,7 +13,7 @@ public class Locators {
         /* Auth'd Nav Header Locators */
         public By contentFeedBtn = By.id("headerFeedLink");
         public By messagesBtn = By.id("headerMessagesLink");
-        public By userNameBtn = By.cssSelector("a.username");
+        public By userNameBtn = By.id("usernameText");
         public By userPhotoBtn = By.id("headerMenuToggleBtn");
         public By userFullNameTxt = By.id("headerMenuFullNameTxt");
         public By userEmailTxt = By.id("headerMenuEmailTxt");

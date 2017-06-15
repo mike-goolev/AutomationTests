@@ -165,7 +165,7 @@ public class HourlyPersonalInfo extends BaseTest {
     @AfterClass
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the personal info test");
-        navPage.logout();
+        navPage.attemptLogout();
         driver.quit();
     }
 }

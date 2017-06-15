@@ -72,7 +72,7 @@ public class HourlyAbout extends BaseTest {
     @AfterClass
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the about test");
-        navPage.logout();
+        navPage.attemptLogout();
         driver.quit();
     }
 }

@@ -223,7 +223,7 @@ public class HourlyJobSearch extends BaseTest {
     @AfterClass
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the Hourly Job Search test");
-        navPage.logout();
+        navPage.attemptLogout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteJob(jobGuid);
         driver.quit();

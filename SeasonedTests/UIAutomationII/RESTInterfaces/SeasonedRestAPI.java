@@ -17,7 +17,7 @@ public class SeasonedRestAPI {
     public SeasonedRestAPI(String accessToken) {
         OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
-                               .baseUrl(TestConfig.getBaseURL() + "/services/rest/")
+                               .baseUrl(TestConfig.getBaseAPIURL() + "services/rest/")
                                .addConverterFactory(GsonConverterFactory.create())
                                .client(httpClient)
                                .build();
