@@ -15,6 +15,7 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Search Term field is on the job search page
+     *
      * @return Whether or not the Search Term field is on the job search page
      */
     public boolean verifySearchTermField() {
@@ -23,6 +24,7 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the search location field is on the job search page
+     *
      * @return Whether or not the location field is on the job search page
      */
     public boolean verifySearchLocationField() { return elementExists(jobSearchPageLocators.searchLocationField); }
@@ -129,6 +131,7 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the empty search result elements are on the job search page
+     *
      * @return Whether or not the empty search result elements are on the job search page
      */
     public boolean verifyJobSearchEmptyResultElements() {
@@ -167,18 +170,21 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the job is marked as 'Apply' on the job's card
+     *
      * @return Whether or not the job is marked as 'Apply' on the job's card
      */
     public boolean verifyJobPostingApplyButton() { return elementExists(jobSearchPageLocators.searchResultApplyBtn0); }
 
     /**
      * Checks to see if the job is marked as 'Applied' on the job's card
+     *
      * @return Whether or not the job is marked as 'Applied' on the job's card
      */
     public boolean verifyJobPostingAppliedButton() { return elementExists(jobSearchPageLocators.searchResultAppliedBtn0); }
 
     /**
      * Checks to see if the Employer Logo is on the job's card
+     *
      * @return Whether or not the Employer Logo is on the job's card
      */
     public boolean verifyEmployerLogo() {
@@ -229,6 +235,7 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the apply button is on the job details page
+     *
      * @return Whether or not the apply button is on the job details page
      */
     public boolean verifyJobDetailsApplyButton() {
@@ -237,18 +244,21 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the job is marked as 'Applied' on the job details page
+     *
      * @return Whether or not the job is marked as 'Applied' on the job details page
      */
     public boolean verifyJobDetailsAppliedButton() { return elementExists(jobSearchPageLocators.jobDetailsAppliedBtn); }
 
     /**
      * Checks to see if the follow button is on the job details page
+     *
      * @return Whether or not the follow button is on the job details page
      */
     public boolean verifyJobDetailsFollowButton() { return elementExists(jobSearchPageLocators.jobDetailsEmployerFollowBtn); }
 
     /**
      * Checks to see if the following button is on the job details page
+     *
      * @return Whether or not the following button is on the job details page
      */
     public boolean verifyJobDetailsFollowingButton() { return elementExists(jobSearchPageLocators.jobDetailsEmployerUnfollowBtn); }

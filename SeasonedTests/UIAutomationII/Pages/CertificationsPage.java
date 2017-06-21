@@ -64,6 +64,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the alcohol seller certification is selected
+     *
      * @return Whether or not the alcohol seller certification is selected
      */
     public boolean isAlcoholSelected() {
@@ -72,6 +73,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the food handler certification is selected
+     *
      * @return Whether or not the food handler certification is selected
      */
     public boolean isFoodHandlerSelected() {
@@ -80,6 +82,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the food protection manager certification is selected
+     *
      * @return Whether or not the food protection manager certification is selected
      */
     public boolean isFoodProtectionManagerSelected() {
@@ -88,6 +91,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the HACCP certification is selected
+     *
      * @return Whether or not the HACCP certification is selected
      */
     public boolean isHACCPSelected() {
@@ -96,6 +100,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if all certifications are selected
+     *
      * @return Whether or not all certifications are selected
      */
     public boolean areAllCertsSelected() {
@@ -107,6 +112,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if no certifications are selected
+     *
      * @return Whether or not no certifications are selected
      */
     public boolean areNoCertsSelected() {
@@ -118,6 +124,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the upload button is displayed after the alcohol seller cert is selected
+     *
      * @return Whether or not the alcohol seller upload button is displayed
      */
     public boolean isAlcoholUploadBtnDisplayed() {
@@ -126,6 +133,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the upload button is displayed after the food handler cert is selected
+     *
      * @return Whether or not the food handler upload button is displayed
      */
     public boolean isFoodHandlerUploadBtnDisplayed() {
@@ -134,6 +142,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the upload button is displayed after the food protection manager cert is selected
+     *
      * @return Whether or not the food protection manager upload button is displayed
      */
     public boolean isFoodProtectionUploadBtnDisplayed() {
@@ -142,6 +151,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the upload button is displayed after the HACCP cert is selected
+     *
      * @return Whether or not the HACCP upload button is displayed
      */
     public boolean isHACCPUploadBtnDisplayed() {
@@ -150,6 +160,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if all upload cert buttons are displayed when all certs are selected
+     *
      * @return Whether or not all upload cert buttons are displayed
      */
     public boolean areAllCertUploadBtnsDisplayed() {
@@ -161,6 +172,7 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if no upload cert buttons are present when no certs are selected
+     *
      * @return Whether or not cert upload buttons are selected
      */
     public boolean areNoCertUploadBtnsDisplayed() {

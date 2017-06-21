@@ -16,6 +16,7 @@ public class SuggestedConnectionsPage extends BasePage {
 
     /**
      * Verifies that the suggested connection's photo is displayed
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return Whether or not the suggested connection's photo is displayed
      */
@@ -25,6 +26,7 @@ public class SuggestedConnectionsPage extends BasePage {
 
     /**
      * Get suggested connection's name
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return The suggested connection's name
      */
@@ -34,6 +36,7 @@ public class SuggestedConnectionsPage extends BasePage {
 
     /**
      * Get suggested connection's reason
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return The suggested connection's reason
      */
@@ -43,6 +46,7 @@ public class SuggestedConnectionsPage extends BasePage {
 
     /**
      * Clicks a suggested connection's view button
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickSuggestedConnectionsViewButton(String index) {
@@ -52,6 +56,7 @@ public class SuggestedConnectionsPage extends BasePage {
 
     /**
      * Clicks a suggested connection's connect button
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickSuggestedConnectionsConnectButton(String index) {

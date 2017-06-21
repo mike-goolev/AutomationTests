@@ -79,6 +79,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the age question has been answered by checking to see if the yes and no buttons are in the selected state
+     *
      * @return Whether or not the age question has been answered
      */
     public boolean isAgeQuestionAnswered() {
@@ -87,6 +88,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the reliable transportation question has been answered by checking to see if the yes and no buttons are in the selected state
+     *
      * @return Whether or not the reliable transportation question has been answered
      */
     public boolean isTransportQuestionAnswered() {
@@ -95,6 +97,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the legal to work in the us question has been answered by checking to see if the yes and no buttons are in the selected state
+     *
      * @return Whether or not the legal to work in the us question has been answered
      */
     public boolean isLegalQuestionAnswered() {
@@ -103,6 +106,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the age question has been answered with a yes
+     *
      * @return Whether or not the age question has been answered yes
      */
     public boolean isAgeQuestionAnsweredYes() {
@@ -111,6 +115,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the transport question has been answered with a yes
+     *
      * @return Whether or not the transport question has been answered yes
      */
     public boolean isTransportQuestionAnsweredYes() {
@@ -119,6 +124,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the legal question has been answered with a yes
+     *
      * @return Whether or not the legal question has been answered yes
      */
     public boolean isLegalQuestionAnsweredYes() {
@@ -127,6 +133,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the age question has been answered with a no
+     *
      * @return Whether or not the age question has been answered no
      */
     public boolean isAgeQuestionAnsweredNo() {
@@ -135,6 +142,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the transport question has been answered with a no
+     *
      * @return Whether or not the transport question has been answered no
      */
     public boolean isTransportQuestionAnsweredNo() {
@@ -143,6 +151,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if the legal question has been answered with a no
+     *
      * @return Whether or not the legal question has been answered no
      */
     public boolean isLegalQuestionAnsweredNo() {
@@ -151,6 +160,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if all questions haven't been answered by checking to see if the yes and no buttons are in a selected state
+     *
      * @return Whether or not all questions are unanswered
      */
     public boolean areAllQuestionsNotAnswered() {
@@ -163,6 +173,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if all questions have been answered by checking to see if the yes and no buttons are in a selected state
+     *
      * @return Whether or not all questions are answered
      */
     public boolean areAllQuestionsAnswered() {
@@ -175,6 +186,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if all questions have been answered with yes by checked to see if the buttons are in a selected yes state
+     *
      * @return Whether or not all questions have been answered with yes
      */
     public boolean areAllQuestionsAnsweredYes() {
@@ -187,6 +199,7 @@ public class BasicInfoPage extends BasePage {
 
     /**
      * Checks to see if all questions have been answered with no by checked to see if the buttons are in a selected no state
+     *
      * @return Whether or not all questions have been answered with no
      */
     public boolean areAllQuestionsAnsweredNo() {

@@ -14,6 +14,7 @@ public class ConnectionsPage extends BasePage {
 
     /**
      * Verifies that the connection's photo is displayed
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return Whether or not the connection's photo is displayed
      */
@@ -23,6 +24,7 @@ public class ConnectionsPage extends BasePage {
 
     /**
      * Get connection's name
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return The connection's name
      */
@@ -32,6 +34,7 @@ public class ConnectionsPage extends BasePage {
 
     /**
      * Get connection's work history (job @ employer)
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return The connection's primary job
      */
@@ -41,6 +44,7 @@ public class ConnectionsPage extends BasePage {
 
     /**
      * Get connection's location
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return The connection's location
      */
@@ -50,6 +54,7 @@ public class ConnectionsPage extends BasePage {
 
     /**
      * Clicks a connection's view button
+     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickConnectionViewButton(String index) {

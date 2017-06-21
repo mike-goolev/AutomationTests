@@ -33,6 +33,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Baker skill is selected
+     *
      * @return Whether or not the Baker skill is selected
      */
     public boolean isBakerSkillCheckboxSelectedYes() {
@@ -41,6 +42,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Baker skill is deselected
+     *
      * @return Whether or not the Baker skill is deselected
      */
     public boolean isBakerSkillCheckboxSelectedNo() {
@@ -67,6 +69,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Bar-back skill is selected
+     *
      * @return Whether or not the Bar-back skill is selected
      */
     public boolean isBarbackSkillCheckboxSelectedYes() {
@@ -75,6 +78,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Bar-back skill is deselected
+     *
      * @return Whether or not the Bar-back skill is deselected
      */
     public boolean isBarbackSkillCheckboxSelectedNo() {
@@ -101,6 +105,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Barista skill is selected
+     *
      * @return Whether or not the Barista skill is selected
      */
     public boolean isBaristaSkillCheckboxSelectedYes() {
@@ -109,6 +114,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Barista skill is deselected
+     *
      * @return Whether or not the Barista skill is deselected
      */
     public boolean isBaristaSkillCheckboxSelectedNo() {
@@ -135,6 +141,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Bartender skill is selected
+     *
      * @return Whether or not the Bartender skill is selected
      */
     public boolean isBartenderSkillCheckboxSelectedYes() {
@@ -143,6 +150,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Bartender skill is deselected
+     *
      * @return Whether or not the Bartender skill is deselected
      */
     public boolean isBartenderSkillCheckboxSelectedNo() {
@@ -169,6 +177,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Busser skill is selected
+     *
      * @return Whether or not the Busser skill is selected
      */
     public boolean isBusserSkillCheckboxSelectedYes() {
@@ -177,6 +186,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Busser skill is deselected
+     *
      * @return Whether or not the Busser skill is deselected
      */
     public boolean isBusserSkillCheckboxSelectedNo() {
@@ -204,6 +214,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Cashier skill is selected
+     *
      * @return Whether or not the Cashier skill is selected
      */
     public boolean isCashierSkillCheckboxSelectedYes() {
@@ -212,6 +223,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Cashier skill is deselected
+     *
      * @return Whether or not the Cashier skill is deselected
      */
     public boolean isCashierSkillCheckboxSelectedNo() {
@@ -238,6 +250,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Chef skill is selected
+     *
      * @return Whether or not the Chef skill is selected
      */
     public boolean isChefSkillCheckboxSelectedYes() {
@@ -246,6 +259,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Chef skill is deselected
+     *
      * @return Whether or not the Chef skill is deselected
      */
     public boolean isChefSkillCheckboxSelectedNo() {
@@ -272,6 +286,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Cook skill is selected
+     *
      * @return Whether or not the Cook skill is selected
      */
     public boolean isCookSkillCheckboxSelectedYes() {
@@ -280,6 +295,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Cook skill is deselected
+     *
      * @return Whether or not the Cook skill is deselected
      */
     public boolean isCookSkillCheckboxSelectedNo() {
@@ -306,6 +322,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Crew skill is selected
+     *
      * @return Whether or not the Crew skill is selected
      */
     public boolean isCrewSkillCheckboxSelectedYes() {
@@ -314,6 +331,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Crew skill is deselected
+     *
      * @return Whether or not the Crew skill is deselected
      */
     public boolean isCrewSkillCheckboxSelectedNo() {
@@ -340,6 +358,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Dishwasher skill is selected
+     *
      * @return Whether or not the Dishwasher skill is selected
      */
     public boolean isDishwasherSkillCheckboxSelectedYes() {
@@ -375,6 +394,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Driver skill is selected
+     *
      * @return Whether or not the Driver skill is selected
      */
     public boolean isDriverSkillCheckboxSelectedYes() {
@@ -383,6 +403,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Driver skill is deselected
+     *
      * @return Whether or not the Driver skill is deselected
      */
     public boolean isDriverSkillCheckboxSelectedNo() {
@@ -409,6 +430,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Drive-thru skill is selected
+     *
      * @return Whether or not the Drivethru skill is selected
      */
     public boolean isDrivethruSkillCheckboxSelectedYes() {
@@ -417,6 +439,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Drive-thru skill is deselected
+     *
      * @return Whether or not the Drivethru skill is deselected
      */
     public boolean isDrivethruSkillCheckboxSelectedNo() {
@@ -443,6 +466,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Host skill is selected
+     *
      * @return Whether or not the Host skill is selected
      */
     public boolean isHostSkillCheckboxSelectedYes() {
@@ -451,6 +475,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Host skill is deselected
+     *
      * @return Whether or not the Host skill is deselected
      */
     public boolean isHostSkillCheckboxSelectedNo() {
@@ -477,6 +502,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Manager skill is selected
+     *
      * @return Whether or not the Manager skill is selected
      */
     public boolean isManagerSkillCheckboxSelectedYes() {
@@ -485,6 +511,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Manager skill is deselected
+     *
      * @return Whether or not the Manager skill is deselected
      */
     public boolean isManagerSkillCheckboxSelectedNo() {
@@ -511,6 +538,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Prep Cook skill is selected
+     *
      * @return Whether or not the Prep Cook skill is selected
      */
     public boolean isPrepCookSkillCheckboxSelectedYes() {
@@ -546,6 +574,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Runner skill is selected
+     *
      * @return Whether or not the Runner skill is selected
      */
     public boolean isRunnerSkillCheckboxSelectedYes() {
@@ -581,6 +610,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Server skill is selected
+     *
      * @return Whether or not the Server skill is selected
      */
     public boolean isServerSkillCheckboxSelectedYes() {
@@ -589,6 +619,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Server skill is deselected
+     *
      * @return Whether or not the Server skill is deselected
      */
     public boolean isServerSkillCheckboxSelectedNo() {
@@ -624,6 +655,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Sommelier skill is deselected
+     *
      * @return Whether or not the Sommelier skill is deselected
      */
     public boolean isSommelierSkillCheckboxSelectedNo() {
@@ -650,6 +682,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Sous Chef skill is selected
+     *
      * @return Whether or not the Sous Chef skill is selected
      */
     public boolean isSousChefSkillCheckboxSelectedYes() {
@@ -658,6 +691,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Sous Chef skill is deselected
+     *
      * @return Whether or not the Sous Chef skill is deselected
      */
     public boolean isSousChefSkillCheckboxSelectedNo() {
@@ -685,6 +719,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Team Member skill is selected
+     *
      * @return Whether or not the Team Member skill is selected
      */
     public boolean isTeamMemberSkillCheckboxSelectedYes() {
@@ -720,6 +755,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Trainer skill is selected
+     *
      * @return Whether or not the Trainer skill is selected
      */
     public boolean isTrainerSkillCheckboxSelectedYes() {
@@ -728,6 +764,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Trainer skill is deselected
+     *
      * @return Whether or not the Trainer skill is deselected
      */
     public boolean isTrainerSkillCheckboxSelectedNo() {
@@ -792,6 +829,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Verify that all skills have been selected
+     *
      * @return Whether or not all skills have been selected
      */
     public boolean allSkillsSelected() {
@@ -824,6 +862,7 @@ public class SkillsPage extends BasePage {
 
     /**
      * Verify that all skills have been deselected
+     *
      * @return Whether or not all skills have been deselected
      */
     public boolean noSkillsSelected() {

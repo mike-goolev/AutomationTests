@@ -43,6 +43,7 @@ public class TestUtils {
 
     /**
      * Switches webdriver focus from current window to a new open window ie Facebook Login
+     *
      * @param parentWindow The original window as returned in driver.getWindowHandle()
      */
     public void switchToNewWindow(String parentWindow) {
@@ -61,6 +62,7 @@ public class TestUtils {
 
     /**
      * Switches webdriver focus from new window to the original window
+     * 
      * @param parentWindow The original window as returned in driver.getWindowHandle()
      */
     public void switchToParentWindow(String parentWindow) {
