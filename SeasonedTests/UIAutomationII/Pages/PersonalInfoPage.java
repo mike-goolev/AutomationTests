@@ -16,7 +16,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Update the user's first + last name field
-     *
      * @param name The text to enter into the field
      */
     public void updateUserFirstAndLastNameTxt(String name) {
@@ -26,7 +25,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see the if the name text field equals the text parameter
-     *
      * @param name The text to compare against
      * @return Whether or not the text in the name field is the same as the text parameter
      */
@@ -36,7 +34,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's location from the text field
-     *
      * @return User's name
      */
     public String getUserFirstAndLastNameTxt() {
@@ -45,7 +42,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the name text field
-     *
      * @param firstLastName The first and last name of the user
      */
     public void enterUserFirstAndLastName(String firstLastName) {
@@ -54,7 +50,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Update the user's location field
-     *
      * @param location The text to enter into the field
      */
     public void updateUserLocationTxt(String location) throws Exception {
@@ -65,7 +60,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see the if the location text field equals the text parameter
-     *
      * @param location The text to compare against
      * @return Whether or not the text in the location field is the same as the text parameter
      */
@@ -83,7 +77,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the location text field
-     *
      * @param location The home location of the user
      */
     public void enterUserLocation(String location) {
@@ -102,7 +95,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see the if the phone text field equals the text parameter
-     *
      * @param phone The text to compare against
      * @return Whether or not the text in the phone field is the same as the text parameter
      */
@@ -112,7 +104,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's phone from the text field
-     *
      * @return User's phone
      */
     public String getUserPhone() {
@@ -121,7 +112,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the phone text field
-     *
      * @param phone The user's phone #
      */
     public void enterUserPhone(String phone) {
@@ -132,7 +122,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see if the phone text field is empty
-     *
      * @return Whether or not the phone text field is empty or not
      */
     public boolean isUserPhoneTxtFieldEmpty() {

@@ -11,7 +11,6 @@ public class AboutPage extends BasePage {
 
     /**
      * Enter in some text in to the field and save
-     *
      * @param s The text to enter in to the field
      */
     public void addAboutTxt(String s) {
@@ -29,7 +28,6 @@ public class AboutPage extends BasePage {
 
     /**
      * Check to see if the about text field is empty
-     *
      * @return Whether or not the about text field is empty or not
      */
     public boolean aboutTxtFieldIsEmpty() {
@@ -38,7 +36,6 @@ public class AboutPage extends BasePage {
 
     /**
      * Check to see the if the about text field equals the text parameter
-     *
      * @param text The text to compare against
      * @return Whether or not the text in the about field is the same as the text parameter
      */
@@ -48,7 +45,6 @@ public class AboutPage extends BasePage {
 
     /**
      * Enter text in to the about text field
-     *
      * @param text
      */
     public void enterAboutTxt(String text) {

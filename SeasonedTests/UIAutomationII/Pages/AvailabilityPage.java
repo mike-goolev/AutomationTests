@@ -24,7 +24,6 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Verify that morning, afternoon, evening, and nights have been selected
-     *
      * @return Whether or not if all availability has been selected
      */
     public boolean allAvailabilitySelected() {
@@ -36,7 +35,6 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Verify that morning, afternoon, evening, and nights have NOT been selected
-     *
      * @return Whether or not if all availability has NOT been selected
      */
     public boolean noAvailabilitySelected() {
@@ -48,7 +46,6 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the morning checkbox is selected
-     *
      * @return Whether or not the morning checkbox is selected
      */
     public boolean isMorningSelected() {
@@ -57,7 +54,6 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the afternoon checkbox is selected
-     *
      * @return Whether or not the afternoon checkbox is selected
      */
     public boolean isAfternoonSelected() {
@@ -66,7 +62,6 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the evening checkbox is selected
-     *
      * @return Whether or not the evening checkbox is selected
      */
     public boolean isEveningSelected() {
@@ -75,7 +70,6 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the night checkbox is selected
-     *
      * @return Whether or not the night checkbox is selected
      */
     public boolean isNightSelected() {

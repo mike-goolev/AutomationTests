@@ -16,7 +16,6 @@ public class BasePage {
 
     /**
      * Checks to see if a given element exists on the page
-     *
      * @param identifier In this case, the by object e.g. basicInfoPageLocators.transportYesBtnSelected
      * @return Whether or not the element exists
      */
@@ -35,7 +34,6 @@ public class BasePage {
 
     /**
      * Checks to see if a given element exists on the page using a 5 second implicit wait
-     *
      * @param identifier In this case, the by object e.g. basicInfoPageLocators.transportYesBtnSelected
      * @return Whether or not the element exists
      */
@@ -54,7 +52,6 @@ public class BasePage {
 
     /**
      * Checks to see if a checkbox is in a selected state by looking at the class attribute for checked
-     *
      * @param box the web element for the checkbox
      * @return whether or not a checkbox has been selected
      */

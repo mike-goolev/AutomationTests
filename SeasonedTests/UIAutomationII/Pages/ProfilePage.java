@@ -32,7 +32,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the user's name is on the profile page
-     *
      * @param name The user's name on the profile page
      * @return Whether or not the text for the user's name matches the text param
      */
@@ -51,7 +50,6 @@ public class ProfilePage extends BasePage {
     /**
      * Checks to see if the user's primary job is on the profile page
      * @param job The user's primary job on the profile page
-     *
      * @return Whether or not the text of the user's primary job matches the text param
      */
     public boolean verifyUserPrimaryJob(String job) {
@@ -68,7 +66,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the user's location is on the profile page
-     *
      * @param location The user's location on the profile page
      * @return Whether or not the text of the user's location matches the text param
      */
@@ -84,10 +81,17 @@ public class ProfilePage extends BasePage {
         return driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText();
     }
 
+    /**
+     * Verifies if the disconnect button is present on the personal info section
+     * @return Whether or not the disconnect button is present on the personal info section
+     */
     public boolean isDisconnectButtonPresent(){
         return elementExists(profilePageLocators.personalInfoActionsMenuBtn);
     }
 
+    /**
+     * Clicks on the disconnect button on the personal info section
+     */
     public void clickDisconnectFromUser() {
         wait.until(elementToBeClickable(profilePageLocators.personalInfoActionsMenuBtn));
         driver.findElement(profilePageLocators.personalInfoActionsMenuBtn).click();
@@ -292,7 +296,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the about text matches what is on the view profile screen
-     *
      * @param aboutTxt The text you're expecting to be on the page
      * @return Whether or not the text is on the page
      */
@@ -302,7 +305,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks for about text on the user's profile
-     *
      * @return Whether or not a user has about text on their profile
      */
     public boolean isAboutTxtEmptyStatePresent() {
@@ -329,7 +331,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the age question is answered yes on the view profile page
-     *
      * @return Whether or not the age question is answered yes
      */
     public boolean basicInfoAgeQuestionAnsweredYes() {
@@ -338,7 +339,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the transport question is answered yes on the view profile page
-     *
      * @return Whether or not the transport question is answered yes
      */
     public boolean basicInfoTransportQuestionAnsweredYes() {
@@ -347,7 +347,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the legal question is answered yes on the view profile page
-     *
      * @return Whether or not the legal question is answered yes
      */
     public boolean basicInfoLegalQuestionAnsweredYes() {
@@ -356,7 +355,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if all basic info questions are answered yes on the view profile page
-     *
      * @return Whether or not all basic info questions are answered yes
      */
     public boolean basicInfoQuestionsAnsweredYes() {
@@ -367,7 +365,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the age question is answered yes no the view profile page
-     *
      * @return Whether or not the age question is answered no
      */
     public boolean basicInfoAgeQuestionAnsweredNo() {
@@ -376,7 +373,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the transport question is answered no on the view profile page
-     *
      * @return Whether or not the transport question is answered no
      */
     public boolean basicInfoTransportQuestionAnsweredNo() {
@@ -385,7 +381,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the legal question is answered no on the view profile page
-     *
      * @return Whether or not the legal question is answered no
      */
     public boolean basicInfoLegalQuestionAnsweredNo() {
@@ -394,7 +389,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if all basic info questions are answered yes on the view profile page
-     *
      * @return Whether or not all basic info questions are answered yes
      */
     public boolean basicInfoQuestionsAnsweredNo() {
@@ -627,7 +621,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Verifies that the connections title text is displayed on the view profile page
-     *
      * @return Whether or not the connections title text is displayed
      */
     public boolean isConnectionsTitleTxtPresent() {
@@ -636,7 +629,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Get user's connections count
-     *
      * @return User's connections count
      */
     public String getConnectionsCount() {
@@ -645,7 +637,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Verifies that a connection's photo is at the given index
-     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return Whether or not a connection's photo is present at the given index
      */
@@ -655,7 +646,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Clicks a connection's view link at the given index
-     *
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickViewConnection(String index) {
@@ -675,7 +665,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Verifies that the suggested connections title text is displayed on the view profile page
-     *
      * @return Whether or not the suggested connections title text is displayed
      */
     public boolean isSuggestedConnectionsTitleTxtPresent() {
@@ -684,7 +673,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Verifies that the suggested connection's photo is at the given index
-     *
      * @param index The index (Starting at 0) of the suggested connection you wish to locate
      * @return Whether or not the suggested connection's photo is present at the given index
      */
@@ -694,7 +682,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Get a suggested connection's name
-     *
      * @param index The index (Starting at 0) of the suggested connection you wish to locate
      * @return Suggested connection's name
      */
@@ -704,7 +691,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Get a suggested connection's reason
-     *
      * @param index The index (Starting at 0) of the suggested connection you wish to locate
      * @return Suggested connection's reason
      */
@@ -714,7 +700,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Clicks a suggested connection's connect button
-     *
      * @param index The index (Starting at 0) of the suggested connection you wish to locate
      */
     public void clickSuggestedConnectionsConnectBtn(String index) {

@@ -28,7 +28,6 @@ public class SeasonedRestAPI {
 
     /**
      * Clears out a user's eligibility questions by setting it to null
-     *
      * @param guid the user guid you want to clear
      */
     public void clearEligibilityAnswersForUser(String guid) {
@@ -88,7 +87,6 @@ public class SeasonedRestAPI {
 
     /**
      * Clears out a user's availability for every day of the week
-     *
      * @param guid The guid of the user you want to clear availability for
      */
     public void clearAvailabilityForUser(String guid) {
@@ -205,7 +203,6 @@ public class SeasonedRestAPI {
 
     /**
      * Deletes a job for a given employer
-     *
      * @param guid The job's guid
      */
     public void deleteJob(String guid) {
@@ -221,8 +218,7 @@ public class SeasonedRestAPI {
     }
 
     /**
-     * Update user name, email and phone
-     *
+     * Updates a user's name, email, and phone number
      * @param id The user's id
      * @param userGuid The user's guid
      * @param firstName The user's first name
@@ -266,8 +262,7 @@ public class SeasonedRestAPI {
     }
 
     /**
-     * Posts a location to a given user
-     *
+     * Updates a user's location
      * @param guid The user's guid
      * @param city The location's city
      * @param state The location's state
@@ -303,7 +298,6 @@ public class SeasonedRestAPI {
 
     /**
      * Posts a connection request from user a to user b
-     *
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
      */
@@ -327,7 +321,6 @@ public class SeasonedRestAPI {
 
     /**
      * Accept a connection request
-     *
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
      */
@@ -351,7 +344,6 @@ public class SeasonedRestAPI {
 
     /**
      * Delete a connection request
-     *
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
      */
@@ -375,7 +367,6 @@ public class SeasonedRestAPI {
 
     /**
      * Unfollows an employer
-     *
      * @param employerGuid The guid of the employer to unfollow
      * @param userGuid The guid of the user that is unfollowing
      */

@@ -110,9 +110,4 @@ public class ContentFeedPage extends BasePage {
     public boolean isTrendingArticleImageDisplayed(String index) {
         return elementExists(contentPageLocators.articlePublisherImgByIndex(index));
     }
-
-
-
-
-
 }
