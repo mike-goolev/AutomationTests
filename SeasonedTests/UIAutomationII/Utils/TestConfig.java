@@ -26,7 +26,7 @@ public class TestConfig {
      *
      * @return The job search page URL
      */
-    public static String getJobSearchPageURL() { return searchRelativeURL;}
+    public static String getJobSearchRelativeURL() { return searchRelativeURL;}
 
     /**
      * Gets path to content page URL

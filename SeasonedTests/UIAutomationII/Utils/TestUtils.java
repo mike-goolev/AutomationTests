@@ -28,7 +28,7 @@ public class TestUtils {
      * Navigate to the search page with no terms
      */
     public void loadJobSearchPageNoTerms() {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchPageURL());
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL());
     }
 
     /**
@@ -38,7 +38,7 @@ public class TestUtils {
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchPageURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
     }
 
     /**

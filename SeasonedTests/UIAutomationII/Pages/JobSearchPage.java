@@ -77,11 +77,13 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Waits for search results to be retrieved from CloudSearch
+     *
+     * @param index The index (Starting at 0) of the search result you wish to locate
      */
-   public void waitForSearchResults() {
+   public void waitForSearchResults(String index) {
        for (int i = 0; i < 5; i++) {
            try {
-               if (!elementExistsLongTimeout(jobSearchPageLocators.searchResultEmployerNameTxt0))
+               if (!elementExistsLongTimeout(jobSearchPageLocators.searchResultEmployerNameTxtByIndex(index)))
                    clickJobSearchBtn();
            } catch (NoSuchElementException ex) {
                break;
@@ -150,85 +152,99 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Clicks the view button for a posted job
+     *
+     * @param index The index (Starting at 0) of the search result view button you wish to locate
      */
-    public void clickJobPostingViewBtn() {
-        if (elementExists(jobSearchPageLocators.searchResultViewBtn0)) {
-            wait.until(elementToBeClickable(jobSearchPageLocators.searchResultViewBtn0));
-            driver.findElement(jobSearchPageLocators.searchResultViewBtn0).click();
+    public void clickJobPostingViewBtn(String index) {
+        if (elementExists(jobSearchPageLocators.searchResultViewBtnByIndex(index))) {
+            wait.until(elementToBeClickable(jobSearchPageLocators.searchResultViewBtnByIndex(index)));
+            driver.findElement(jobSearchPageLocators.searchResultViewBtnByIndex(index)).click();
         }
     }
 
     /**
      * Clicks the apply button for a posted job
+     *
+     * @param index The index (Starting at 0) of the search result apply button you wish to locate
      */
-    public void clickJobPostingApplyBtn() {
-        wait.until(elementToBeClickable(jobSearchPageLocators.searchResultApplyBtn0));
-        driver.findElement(jobSearchPageLocators.searchResultApplyBtn0).click();
-        wait.until(presenceOfElementLocated(jobSearchPageLocators.searchResultApplyLoadingBtn0));
-        wait.until(invisibilityOfElementLocated(jobSearchPageLocators.searchResultApplyLoadingBtn0));
+    public void clickJobPostingApplyBtn(String index) {
+        wait.until(elementToBeClickable(jobSearchPageLocators.searchResultApplyBtnByIndex(index)));
+        driver.findElement(jobSearchPageLocators.searchResultApplyBtnByIndex(index)).click();
+        wait.until(presenceOfElementLocated(jobSearchPageLocators.searchResultApplyLoadingBtnByIndex(index)));
+        wait.until(invisibilityOfElementLocated(jobSearchPageLocators.searchResultApplyLoadingBtnByIndex(index)));
     }
 
     /**
      * Checks to see if the job is marked as 'Apply' on the job's card
      *
      * @return Whether or not the job is marked as 'Apply' on the job's card
+     *
+     * @param index The index (Starting at 0) of the search result apply button you wish to locate
      */
-    public boolean verifyJobPostingApplyButton() { return elementExists(jobSearchPageLocators.searchResultApplyBtn0); }
+    public boolean verifyJobPostingApplyButton(String index) { return elementExists(jobSearchPageLocators.searchResultApplyBtnByIndex(index)); }
 
     /**
      * Checks to see if the job is marked as 'Applied' on the job's card
      *
      * @return Whether or not the job is marked as 'Applied' on the job's card
+     *
+     * @param index The index (Starting at 0) of the search result applied button you wish to locate
      */
-    public boolean verifyJobPostingAppliedButton() { return elementExists(jobSearchPageLocators.searchResultAppliedBtn0); }
+    public boolean verifyJobPostingAppliedButton(String index) { return elementExists(jobSearchPageLocators.searchResultAppliedBtnByIndex(index)); }
 
     /**
      * Checks to see if the Employer Logo is on the job's card
      *
      * @return Whether or not the Employer Logo is on the job's card
+     *
+     * @param index The index (Starting at 0) of the search result image you wish to locate
      */
-    public boolean verifyEmployerLogo() {
-        return elementExists(jobSearchPageLocators.searchResultEmployerImg0);
+    public boolean verifyEmployerLogo(String index) {
+        return elementExists(jobSearchPageLocators.searchResultEmployerImgByIndex(index));
     }
 
     /**
      * Checks to see if the job's position matches what is on the job's card
      *
      * @param position The job's position on the job's card
+     * @param index The index (Starting at 0) of the search result position you wish to locate
      * @return Whether or not the text for the job's position is the same as the text parameter
      */
-    public boolean verifyJobPosition(String position) {
-        return position.equals(driver.findElement(jobSearchPageLocators.searchResultPositionTxt0).getText());
+    public boolean verifyJobPosition(String position, String index) {
+        return position.equals(driver.findElement(jobSearchPageLocators.searchResultPositionTxtByIndex(index)).getText());
     }
 
     /**
      * Checks to see if the Employer Name matches what is on the job's card
      *
      * @param employerName The employer's name on the job's card
+     * @param index The index (Starting at 0) of the search result employer name you wish to locate
      * @return Whether or not the text for employer name field is the same as the text parameter
      */
-    public boolean verifyEmployerName(String employerName) {
-        return employerName.equals(driver.findElement(jobSearchPageLocators.searchResultEmployerNameTxt0).getText());
+    public boolean verifyEmployerName(String employerName, String index) {
+        return employerName.equals(driver.findElement(jobSearchPageLocators.searchResultEmployerNameTxtByIndex(index)).getText());
     }
 
     /**
      * Checks to see if the Employer Distance matches what is on the job's card
      *
      * @param employerDistance The employer's distance from the logged in user on the job's card
+     * @param index The index (Starting at 0) of the search result employer distance you wish to locate
      * @return Whether or not the text for employer distance field is the same as the text parameter
      */
-    public boolean verifyEmployerDistance(String employerDistance) {
-        return employerDistance.equals(driver.findElement(jobSearchPageLocators.searchResultEmployerDistanceTxt0).getText());
+    public boolean verifyEmployerDistance(String employerDistance, String index) {
+        return employerDistance.equals(driver.findElement(jobSearchPageLocators.searchResultEmployerDistanceTxtByIndex(index)).getText());
     }
 
     /**
      * Checks to see if the Employer Zip matches what is on the job's card
      *
      * @param employerZip The employer's zip on the job's card
+     * @param index The index (Starting at 0) of the search result employer zip you wish to locate
      * @return Whether or not the text for employer zip field is the same as the text parameter
      */
-    public boolean verifyEmployerZip(String employerZip) {
-        return employerZip.equals(driver.findElement(jobSearchPageLocators.searchResultEmployerZipTxt0).getText());
+    public boolean verifyEmployerZip(String employerZip, String index) {
+        return employerZip.equals(driver.findElement(jobSearchPageLocators.searchResultEmployerZipTxtByIndex(index)).getText());
     }
 
     /*--------- Job Details ----------*/
