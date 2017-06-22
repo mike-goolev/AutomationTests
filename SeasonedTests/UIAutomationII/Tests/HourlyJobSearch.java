@@ -87,16 +87,16 @@ public class HourlyJobSearch extends BaseTest {
         jobSearchPage.searchForJobs(searchTerm, searchLocation);
 
         /* Verify search result elements on job card at index 0 */
-        jobSearchPage.waitForSearchResults();
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
-        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param"); //Bug: Locator returns distance + zip
-        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
-        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton(), "Apply button is present");
+        jobSearchPage.waitForSearchResults("0");
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition, "0"), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName, "0"), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance, "0"), "Employer distance matches text param"); //Bug: Locator returns distance + zip
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip, "0"), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton("0"), "Apply button is present");
 
         /* View job search result at index 0 */
-        jobSearchPage.clickJobPostingViewBtn();
+        jobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
         Assert.assertTrue(jobSearchPage.verifyJobDetailsApplyButton(), "Apply button is present");
@@ -117,15 +117,15 @@ public class HourlyJobSearch extends BaseTest {
         navPage.waitForActivtyIndicator();
 
         /* Verify search results match original search query on job card at index 0 */
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
-        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
-        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton(), "Apply button is present");
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition, "0"), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName, "0"), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance, "0"), "Employer distance matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip, "0"), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton("0"), "Apply button is present");
 
         /* View job search result at index 0 */
-        jobSearchPage.clickJobPostingApplyBtn();
+        jobSearchPage.clickJobPostingApplyBtn("0");
 
         /* Verify job details of selected job */
         Assert.assertTrue(jobSearchPage.verifyJobDetailsAppliedButton(), "Applied button is present");
@@ -146,13 +146,13 @@ public class HourlyJobSearch extends BaseTest {
         navPage.waitForActivtyIndicator();
 
         /* Verify search results match original search query on job card at index 0 and job is marked as 'Applied' */
-        Assert.assertTrue(jobSearchPage.verifyJobPostingAppliedButton(), "Applied button is present");
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
-        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
-        Assert.assertTrue(jobSearchPage.verifyJobPostingAppliedButton(), "Applied button is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingAppliedButton("0"), "Applied button is present");
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition, "0"), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName, "0"), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance, "0"), "Employer distance matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip, "0"), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingAppliedButton("0"), "Applied button is present");
     }
 
     @Test
@@ -171,16 +171,16 @@ public class HourlyJobSearch extends BaseTest {
         jobSearchPage.searchForJobs(searchTerm, searchLocation);
 
         /* Verify search result elements on job card at index 0 */
-        jobSearchPage.waitForSearchResults();
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
-        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param"); //Bug: Locator returns distance + zip
-        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
-        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton(), "Apply button is present");
+        jobSearchPage.waitForSearchResults("0");
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition, "0"), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName, "0"), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance, "0"), "Employer distance matches text param"); //Bug: Locator returns distance + zip
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip, "0"), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton("0"), "Apply button is present");
 
         /* Click job search result at index 0 */
-        jobSearchPage.clickJobPostingViewBtn();
+        jobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
         Assert.assertTrue(jobSearchPage.verifyJobDetailsApplyButton(), "Apply button is present");
@@ -206,15 +206,15 @@ public class HourlyJobSearch extends BaseTest {
         navPage.waitForActivtyIndicator();
 
         /* Verify search results match original search query on job card at index 0 */
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo(), "Employer logo is present");
-        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition), "Job position matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName), "Employer name matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance), "Employer distance matches text param");
-        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip), "Employer zip matches text param");
-        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton(), "Apply button is present");
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertTrue(jobSearchPage.verifyJobPosition(jobPosition, "0"), "Job position matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerName(employerName, "0"), "Employer name matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerDistance(employerDistance, "0"), "Employer distance matches text param");
+        Assert.assertTrue(jobSearchPage.verifyEmployerZip(employerZip, "0"), "Employer zip matches text param");
+        Assert.assertTrue(jobSearchPage.verifyJobPostingApplyButton("0"), "Apply button is present");
 
          /* Click job search result at index 0 */
-        jobSearchPage.clickJobPostingViewBtn();
+        jobSearchPage.clickJobPostingViewBtn("0");
         Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowingButton());
         jobSearchPage.clickJobDetailsFollowingButton();
         Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton());
@@ -222,7 +222,7 @@ public class HourlyJobSearch extends BaseTest {
 
     @AfterClass
     public void tearDown() {
-        System.out.println("Logging out and shutting down selenium for the Hourly Job Search test");
+        System.out.println("Logging out and shutting down selenium for the hourly follow store test");
         navPage.logout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteJob(jobGuid);

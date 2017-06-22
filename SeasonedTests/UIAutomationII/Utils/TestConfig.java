@@ -13,7 +13,7 @@ public class TestConfig {
      * Gets path to job search page URL
      * @return The job search page URL
      */
-    public String getJobSearchPageURL() { return searchRelativeURL;}
+    public String getJobSearchRelativeURL() { return searchRelativeURL;}
 
     /**
      * Gets path to content page URL

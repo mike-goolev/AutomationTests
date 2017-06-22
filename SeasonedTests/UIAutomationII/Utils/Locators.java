@@ -50,7 +50,6 @@ public class Locators {
         public By facebookLoginBtn = By.id("loginbutton");
     }
 
-
     public static class SignUpPageLocators {
         /* Sign Up With Email*/
         public By nameField = By.id("signUpFullNameInput");
@@ -71,19 +70,116 @@ public class Locators {
         public By getStartedBtn = By.id("marketingCardBtn");
 
         /* Shared Non Auth and Auth'd Content Locators */
-        public By articleImg0 = By.id("articleImg0");
-        public By artcleTitleTxt0 = By.id(""); //Still missing
-        public By articleSiteTxt0 = By.id("articleSiteNameText0");
-        public By articleDescriptionTxt0 = By.id("articleDescriptionText0");
-        public By articlePublisherImg0 = By.id("articleAuthorImg0");
-        public By articlePublisherNameTxt0 = By.id("articleAuthorNameText0");
-        public By articlePublishedDateTxt0 = By.id("articlePostedTimeAgoText0");
-        public By articleLikeBtn0 = By.id("articleLikeBtn0");
-        public By articleLikeCountTxt0 = By.id("articleLikeCountText0");
+        /**
+         * Locates an article image for a given index
+         * @param index The index (Starting at 0) of the article image you wish to locate
+         * @return Returns a locator for an article's image by index
+         */
+        public By articleImgByIndex(String index) {
+            return By.id("articleImg" + index);
+        }
+
+        /**
+         * Locates an article title for a given index
+         * @param index The index (Starting at 0) of the article title you wish to locate
+         * @return Returns a locator for an article's title by index
+         */
+        public By artcleTitleTxtByIndex(String index) {
+            return By.cssSelector("h2#articleTitleText" + index + ">div>div");
+        }
+
+        /**
+         * Locates an article site name for a given index
+         * @param index The index (Starting at 0) of the article site name you wish to locate
+         * @return Returns a locator for an article's site name by index
+         */
+        public By articleSiteTxtByIndex(String index) {
+            return By.id("articleSiteNameText" + index);
+        }
+
+        /**
+         * Locates an article description for a given index
+         * @param index The index (Starting at 0) of the article description you wish to locate
+         * @return Returns a locator for an article's description by index
+         */
+        public By articleDescriptionTxtByIndex(String index) {
+            return By.id("articleDescriptionText" + index);
+        }
+
+        /**
+         * Locates an article publisher image for a given index
+         * @param index The index (Starting at 0) of the article publisher image you wish to locate
+         * @return Returns a locator for an article's publisher image by index
+         */
+        public By articlePublisherImgByIndex(String index) {
+            return By.id("articleAuthorImg" + index);
+        }
+
+        /**
+         * Locates an article publisher name for a given index
+         * @param index The index (Starting at 0) of the article publisher name you wish to locate
+         * @return Returns a locator for an article's publisher name by index
+         */
+        public By articlePublisherNameTxtByIndex(String index) {
+            return By.id("articleAuthorNameText" + index);
+        }
+
+        /**
+         * Locates an article publisher date for a given index
+         * @param index The index (Starting at 0) of the article publisher date you wish to locate
+         * @return Returns a locator for an article's publisher date by index
+         */
+        public By articlePublishedDateTxtByIndex(String index) {
+            return By.id("articlePostedTimeAgoText" + index);
+        }
+
+        /**
+         * Locates an article like button for a given index
+         * @param index The index (Starting at 0) of the article like button you wish to locate
+         * @return Returns a locator for an article's like button by index
+         */
+        public By articleLikeBtnByIndex(String index) {
+            return By.id("articleLikeBtn" + index);
+        }
+
+        /**
+         * Locates an article like count for a given index
+         * @param index The index (Starting at 0) of the article like count you wish to locate
+         * @return Returns a locator for an article's like count by index
+         */
+        public By articleLikeCountTxtByIndex(String index) {
+            return By.id("articleLikeCountText" + index);
+        }
+
         public By trendingTitle = By.id("trendingArticlesPreviewCardTitle");
-        public By trendingArticleImg0 = By.id("trendingArticlesPreviewItemImage0");
-        public By trendingArticleTitleTxt0 = By.id("trendingArticlesPreviewItemTitle0");
-        public By trendingArticleSiteTxt0 = By.id("trendingArticlesPreviewItemSiteName0");
+
+        /**
+         * Locates a trending article image for a given index
+         * @param index The index (Starting at 0) of the trending article image you wish to locate
+         * @return Returns a locator for a trending article's image by index
+         */
+        public By trendingArticleImgByIndex(String index) {
+            return By.id("trendingArticlesPreviewItemImage" + index);
+        }
+
+        /**
+         * Locates a trending article title for a given index
+         * @param index The index (Starting at 0) of the trending article title you wish to locate
+         * @return Returns a locator for a trending article's title by index
+         */
+        public By trendingArticleTitleTxtByIndex(String index) {
+            return By.id("trendingArticlesPreviewItemTitle" + index);
+        }
+
+        /**
+         * Locates a trending article site name for a given index
+         * @param index The index (Starting at 0) of the trending article site name you wish to locate
+         * @return Returns a locator for a trending article's site name by index
+         */
+        public By trendingArticleSiteTxtByIndex(String index) {
+            return By.id("trendingArticlesPreviewItemSiteName" + index);
+        }
+
         public By findJobsImg = By.id("dedicatedJobsCardImg");
         public By findJobsTitle = By.id("dedicatedJobsCardTitleText");
         public By findJobsTxt = By.id("dedicatedJobsCardDescriptionText");
@@ -91,9 +187,34 @@ public class Locators {
 
         /* Auth'd Content Locators */
         public By viewedArticleTitle = By.id("recentlyViewedArticlesPreviewCardTitle");
-        public By viewedArticleImg0 = By.id("recentlyViewedArticlesPreviewItemImage0");
-        public By viewedArticleTitleTxt0 = By.id("recentlyViewedArticlesPreviewItemTitle0");
-        public By viewedArticleSiteTxt0 = By.id("recentlyViewedArticlesPreviewItemSiteName0");
+
+        /**
+         * Locates a viewed article image for a given index
+         * @param index The index (Starting at 0) of the viewed article image you wish to locate
+         * @return Returns a locator for a viewed article's image by index
+         */
+        public By viewedArticleImgByIndex(String index) {
+            return By.id("recentlyViewedArticlesPreviewItemImage" + index);
+        }
+
+        /**
+         * Locates a viewed article title for a given index
+         * @param index The index (Starting at 0) of the viewed article title you wish to locate
+         * @return Returns a locator for a viewed article's title by index
+         */
+        public By viewedArticleTitleTxtByIndex(String index) {
+            return By.id("recentlyViewedArticlesPreviewItemTitle" + index);
+        }
+
+        /**
+         * Locates a viewed article site name for a given index
+         * @param index The index (Starting at 0) of the viewed article site name you wish to locate
+         * @return Returns a locator for a viewed article's site name by index
+         */
+        public By viewedArticleSiteTxtByIndex(String index) {
+            return By.id("recentlyViewedArticlesPreviewItemSiteName" + index);
+        }
+
         public By profilePreviewImg = By.id("profilePreviewCardUserImage");
         public By profilePreviewNameTxt = By.id("profilePreviewNameText");
         public By profilePreviewLocationTxt = By.id("profilePreviewLocationText");
@@ -119,15 +240,88 @@ public class Locators {
 
         /* Search Results */
         public By searchResultPaginationTxt = By.id("searchShowResults");
-        public By searchResultEmployerImg0 = By.id("searchResultEmployerPhoto0");
-        public By searchResultPositionTxt0 = By.id("searchResultJobNameText0");
-        public By searchResultEmployerNameTxt0 = By.id("searchResultEmployerNameText0");
-        public By searchResultEmployerDistanceTxt0 = By.id("searchResultEmployerDistanceText0");
-        public By searchResultEmployerZipTxt0 = By.id("searchResultEmployerZipText0");
-        public By searchResultViewBtn0 = By.id("searchResultViewBtn0");
-        public By searchResultApplyBtn0 = By.id("searchResultLoggedInApplyBtn0");
-        public By searchResultApplyLoadingBtn0 = By.cssSelector("button#searchResultLoggedInApplyBtn0.loading");
-        public By searchResultAppliedBtn0 = By.id("searchResultAppliedBtn0");
+
+        /**
+         * Locates a job search result image for a given index
+         * @param index The index (Starting at 0) of the job search result image you wish to locate
+         * @return Returns a locator for a job search result image by index
+         */
+        public By searchResultEmployerImgByIndex(String index) {
+            return By.id("searchResultEmployerPhoto" + index);
+        }
+
+        /**
+         * Locates a job search result position for a given index
+         * @param index The index (Starting at 0) of the job search result position you wish to locate
+         * @return Returns a locator for a job search result position by index
+         */
+        public By searchResultPositionTxtByIndex(String index) {
+            return  By.id("searchResultJobNameText" + index);
+        }
+
+        /**
+         * Locates a job search result employer name for a given index
+         * @param index The index (Starting at 0) of the job search result employer name you wish to locate
+         * @return Returns a locator for a job search result employer name by index
+         */
+        public By searchResultEmployerNameTxtByIndex(String index) {
+            return By.id("searchResultEmployerNameText" + index);
+        }
+
+        /**
+         * Locates a job search result distance for a given index
+         * @param index The index (Starting at 0) of the job search result distance you wish to locate
+         * @return Returns a locator for a job search result distance by index
+         */
+        public By searchResultEmployerDistanceTxtByIndex(String index) {
+            return By.id("searchResultEmployerDistanceText" + index);
+        }
+
+        /**
+         * Locates a job search result zip for a given index
+         * @param index The index (Starting at 0) of the job search result zip you wish to locate
+         * @return Returns a locator for a job search result image by index
+         */
+        public By searchResultEmployerZipTxtByIndex(String index) {
+            return By.id("searchResultEmployerZipText" + index);
+        }
+
+        /**
+         * Locates a job search result view button for a given index
+         * @param index The index (Starting at 0) of the job search result view button you wish to locate
+         * @return Returns a locator for a job search result view button by index
+         */
+        public By searchResultViewBtnByIndex(String index) {
+            return By.id("searchResultViewBtn" + index);
+        }
+
+        /**
+         * Locates a job search result apply button for a given index
+         * @param index The index (Starting at 0) of the job search result apply button you wish to locate
+         * @return Returns a locator for a job search result apply button by index
+         */
+        public By searchResultApplyBtnByIndex(String index) {
+            return By.id("searchResultLoggedInApplyBtn" + index);
+        }
+
+        /**
+         * Locates a job search result apply loading button for a given index
+         * @param index The index (Starting at 0) of the job search result apply loading button you wish to locate
+         * @return Returns a locator for a job search result apply loading button by index
+         */
+        public By searchResultApplyLoadingBtnByIndex(String index) {
+            return By.cssSelector("button#searchResultLoggedInApplyBtn" + index + ".loading");
+        }
+
+        /**
+         * Locates a job search result applied button for a given index
+         * @param index The index (Starting at 0) of the job search result applied button you wish to locate
+         * @return Returns a locator for a job search result applied button by index
+         */
+        public By searchResultAppliedBtnByIndex(String index) {
+            return By.id("searchResultAppliedBtn" + index);
+        }
+
         public By searchResultsPage1Btn = By.id("searchPage1");
         public By searchResultsPage2Btn = By.id("searchPage2");
         public By searchResultsNextPageBtn = By.id("searchPaginationArrowNext");
