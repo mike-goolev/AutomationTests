@@ -360,6 +360,8 @@ public class Locators {
     }
 
     public static class ProfilePageLocators {
+        public By editProfileBtn = By.id("editProfileBtn");
+
         /* Personal Info Section */
         public By personInfoUserPhotoImg = By.id("personalInfoCardProfileImg");
         public By personalInfoUserFirstAndLastNameTxt = By.id("personalInfoCardUsernameText");
@@ -478,8 +480,9 @@ public class Locators {
         public By addAboutBtn = By.id("aboutCardEmptyAddBtn");
         public By editAboutBtn = By.id("aboutCardEditBtn");
         public By aboutHeader = By.id("aboutCardTitleText");
-        public By aboutTxtField = By.id("aboutCardAboutText");
+        public By aboutTxtField = By.id("profileAboutText");
         public By emptyAboutTxtField = By.id("aboutCardEmptyDescriptionText");
+        public By sideMenuAboutMeLink = By.id("editProfileAboutLink");
 
         /* Basic Info Section */
         public By addBasicInfoBtn = By.id("basicInfoCardEmptyAddBtn");
@@ -706,8 +709,11 @@ public class Locators {
 
     public static class AboutPageLocators {
         public By aboutHeader =  By.id("editProfileAboutTitleText");
-        public By aboutTextField =  By.id("editAboutTextArea");
-        public By aboutSaveBtn =  By.id("editAboutSaveBtn");
+        public By aboutTextField =  By.id("editProfileAboutTextArea");
+        public By aboutSaveBtn =  By.id("saveProfileAboutBtn");
+        public By aboutBannerDiv = By.id("editProfileAboutToast");
+        public By aboutSuccessToastDiv = By.cssSelector("div#editProfileAboutToast.success");
+        public By aboutBannerCloseBtn = By.id("editProfileAboutToastCloseBtn");
     }
 
     public static class BasicInfoPageLocators {

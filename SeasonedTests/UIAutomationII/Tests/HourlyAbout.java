@@ -40,33 +40,37 @@ public class HourlyAbout extends BaseTest {
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(username, password);
 
-        /* Navigate to profile -> Navigate to the HourlyAbout page */
+        /* Navigate to profile -> Click edit profile -> Navigate to the HourlyAbout page */
         navPage.navigateToProfilePage();
-        profilePage.clickAddAbout();
+        profilePage.clickEditProfileBtn();
+        profilePage.clickSideMenuAboutMeLink();
 
         /* Verify that there is no text in the about text field */
         Assert.assertTrue(aboutPage.aboutTxtFieldIsEmpty(), "HourlyAbout text field should be empty");
         aboutPage.addAboutTxt(aboutMeTxt);
 
         /* Verify that the green banner displays after saving */
-        Assert.assertTrue(profilePage.verifySuccessToast(), "Success toast should be displayed");
+        Assert.assertTrue(aboutPage.verifyAboutSuccessBanner(), "Success toast should be displayed");
+        aboutPage.clickCloseAboutBannerBtn();
 
         /* Go back and verify that the text shows on the view profile page */
-        profilePage.clickBackBtn();
+        navPage.navigateToProfilePage();
         Assert.assertTrue(profilePage.verifyAboutTxt(aboutMeTxt), "About me text should match aboutMeTxt variable");
 
         /* Go to edit about and verify that there is text, then remove it */
-        profilePage.clickEditAbout();
+        profilePage.clickEditProfileBtn();
+        profilePage.clickSideMenuAboutMeLink();
         Assert.assertTrue(aboutPage.aboutTxtEquals(aboutMeTxt), "HourlyAbout text field should be )" + aboutMeTxt);
         aboutPage.removeAboutTxt();
 
         /* Verify success banner */
-        Assert.assertTrue(profilePage.verifySuccessToast(), "Success toast should be displayed");
+        Assert.assertTrue(aboutPage.verifyAboutSuccessBanner(), "Success toast should be displayed");
+        aboutPage.clickCloseAboutBannerBtn();
         Thread.sleep(500);
 
         /* Go back to view profile and verify that there is no about text */
-        profilePage.clickBackBtn();
-        Assert.assertTrue(profilePage.isAboutTxtEmptyStatePresent(), "The user should NOT have about text");
+        navPage.navigateToProfilePage();
+        Assert.assertFalse(profilePage.isAboutSectionPresent(), "The user should NOT have about text");
     }
 
     @AfterClass

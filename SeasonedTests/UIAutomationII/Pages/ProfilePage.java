@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -279,6 +281,14 @@ public class ProfilePage extends BasePage {
     /*---------- HourlyAbout -----------*/
 
     /**
+     * Verifies that the about section on the view profile page is present
+     * @return Whether or not the about section is present on the view profile page
+     */
+    public boolean isAboutSectionPresent() {
+        return elementExists(profilePageLocators.aboutTxtField);
+    }
+
+    /**
      * Clicks the add about button when a user DOESN'T have about text on their profile
      */
     public void clickAddAbout() {
@@ -309,6 +319,14 @@ public class ProfilePage extends BasePage {
      */
     public boolean isAboutTxtEmptyStatePresent() {
         return driver.findElement(profilePageLocators.emptyAboutTxtField).isDisplayed();
+    }
+
+    /**
+     * Clicks the About Me link from the side menu on the edit profile page
+     */
+    public void clickSideMenuAboutMeLink() {
+        wait.until(elementToBeClickable(profilePageLocators.sideMenuAboutMeLink));
+        driver.findElement(profilePageLocators.sideMenuAboutMeLink).click();
     }
 
     /*---------- Basic Info ---------*/
@@ -708,6 +726,13 @@ public class ProfilePage extends BasePage {
     }
 
     /*---------- Utility Methods ----------*/
+
+    /**
+     * Clicks the edit profile button on the view profile page
+     */
+    public void clickEditProfileBtn() {
+        driver.findElement(profilePageLocators.editProfileBtn).click();
+    }
 
     /**
      * Verify that the success toast is displayed after saving.
