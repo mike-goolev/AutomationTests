@@ -22,6 +22,15 @@ public class JobSearchPage extends BasePage {
     }
 
     /**
+     * Checks to see if the job type dropdown is on the job search page
+     * @return Whether or not the job type dropdown is on the job search page
+     */
+    public boolean verifyPositionDropdown() {
+        wait.until(visibilityOfElementLocated(jobSearchPageLocators.searchPositionDropdown));
+        return elementExists(jobSearchPageLocators.searchPositionDropdown);
+    }
+
+    /**
      * Checks to see if the search location field is on the job search page
      * @return Whether or not the location field is on the job search page
      */

@@ -1,4 +1,5 @@
 import org.openqa.selenium.WebDriver;
+import java.util.UUID;
 
 public class TestUtils {
 
@@ -72,5 +73,13 @@ public class TestUtils {
             e.printStackTrace();
         }
         driver.switchTo().window(parentWindow);
+    }
+
+    /**
+     * Returns a randomly generated UUID of 9 alphanumeric characters
+     */
+    public String generateRandomUUID() {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "").substring(0,9);
+        return uuid;
     }
 }

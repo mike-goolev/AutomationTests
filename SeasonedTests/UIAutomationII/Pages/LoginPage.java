@@ -21,20 +21,7 @@ public class LoginPage extends BasePage {
         wait.until(elementToBeClickable(loginPageLocators.emailTxtField));
         driver.findElement(loginPageLocators.emailTxtField).sendKeys(email);
         driver.findElement(loginPageLocators.passwordTxtField).sendKeys(password);
-        driver.findElement(loginPageLocators.loginButton).click();
-    }
-
-    /**
-     * Logs the user in with HotSchedules username/password credentials
-     * @param username User's HotSchedules username
-     * @param password User's HotSchedules password
-     */
-    public void loginWithHS(String username, String password) {
-        wait.until(elementToBeClickable(loginPageLocators.hotschedulesLoginBtn));
-        driver.findElement(loginPageLocators.hotschedulesLoginBtn).click();
-        driver.findElement(loginPageLocators.loginHotschedulesUsernameField).sendKeys(username);
-        driver.findElement(loginPageLocators.loginHotschedulesPasswordField).sendKeys(password);
-        driver.findElement(loginPageLocators.loginHotschedulesLoginBtn).click();
+        driver.findElement(loginPageLocators.loginBtn).click();
     }
 
     /**

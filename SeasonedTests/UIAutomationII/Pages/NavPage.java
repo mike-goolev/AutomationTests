@@ -21,11 +21,11 @@ public class NavPage extends BasePage {
     }
 
     /**
-     * Clicks the managers link in the nav header
+     * Clicks the join link in the nav header
      */
-    public void clickManagersBtn() {
-        wait.until(elementToBeClickable(navPageLocators.managerBtn));
-        driver.findElement(navPageLocators.managerBtn).click();
+    public void clickJoinBtn() {
+        wait.until(elementToBeClickable(navPageLocators.signUpBtn));
+        driver.findElement(navPageLocators.signUpBtn).click();
     }
 
     /*---------- Auth'd methods ---------*/
@@ -36,7 +36,7 @@ public class NavPage extends BasePage {
     public void navigateToProfilePage() {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
-        driver.findElement(navPageLocators.menuProfileLink).click();
+        driver.findElement(navPageLocators.menuProfileBtn).click();
     }
 
     /**
@@ -45,7 +45,7 @@ public class NavPage extends BasePage {
     public void navigateToSettingsPage() {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
-        driver.findElement(navPageLocators.menuSettingsLink).click();
+        driver.findElement(navPageLocators.menuSettingsBtn).click();
     }
 
     /**
@@ -54,15 +54,7 @@ public class NavPage extends BasePage {
     public void logout() {
         wait.until(elementToBeClickable(navPageLocators.userPhotoBtn));
         driver.findElement(navPageLocators.userPhotoBtn).click();
-        driver.findElement(navPageLocators.menuLogoutLink).click();
-    }
-
-    /**
-     * Waits for activity indicator
-     */
-    public void waitForActivtyIndicator() {
-        wait.until(presenceOfElementLocated(navPageLocators.loader));
-        wait.until(invisibilityOfElementLocated(navPageLocators.loader));
+        driver.findElement(navPageLocators.menuLogoutBtn).click();
     }
 
     /**
@@ -78,4 +70,13 @@ public class NavPage extends BasePage {
             System.out.println(e.getLocalizedMessage());
         }
     }
+
+    /**
+     * Waits for activity indicator
+
+    public void waitForActivtyIndicator() {
+        wait.until(presenceOfElementLocated(navPageLocators.loader));
+        wait.until(invisibilityOfElementLocated(navPageLocators.loader));
+    }
+     */
 }

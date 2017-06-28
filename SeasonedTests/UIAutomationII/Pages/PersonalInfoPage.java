@@ -133,7 +133,7 @@ public class PersonalInfoPage extends BasePage {
      */
     public void clickSaveBtn() {
         driver.findElement(personalInfoPageLocators.personalInfoSaveBtn).click();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
     }
 
     /**

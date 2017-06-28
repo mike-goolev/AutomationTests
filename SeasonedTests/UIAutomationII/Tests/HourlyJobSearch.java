@@ -77,7 +77,7 @@ public class HourlyJobSearch extends BaseTest {
         /* Log in */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(usernameEmail, passwordEmail);
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Commit a search on the job search page */
         Assert.assertTrue(jobSearchPage.verifySearchTermField(), "Search term field is present");
@@ -112,7 +112,7 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Click 'Back' to return to search results */
         jobSearchPage.clickJobDetailsBackButton();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify search results match original search query on job card at index 0 */
         Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
@@ -141,7 +141,7 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Click 'Back' to return to search results */
         jobSearchPage.clickJobDetailsBackButton();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify search results match original search query on job card at index 0 and job is marked as 'Applied' */
         Assert.assertTrue(jobSearchPage.verifyJobPostingAppliedButton("0"), "Applied button is present");
@@ -161,7 +161,7 @@ public class HourlyJobSearch extends BaseTest {
         /* Log in */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(usernameEmail, passwordEmail);
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Commit a search on the job search page */
         Assert.assertTrue(jobSearchPage.verifySearchTermField(), "Search term field is present");
@@ -196,12 +196,12 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Click the follow button for a given employer*/
         jobSearchPage.clickJobDetailsFollowButton();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
         Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowingButton());
 
         /* Click 'Back' to return to search results */
         jobSearchPage.clickJobDetailsBackButton();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify search results match original search query on job card at index 0 */
         Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
