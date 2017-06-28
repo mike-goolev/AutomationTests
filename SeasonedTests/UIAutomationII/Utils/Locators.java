@@ -360,8 +360,6 @@ public class Locators {
     }
 
     public static class ProfilePageLocators {
-        public By editProfileBtn = By.id("editProfileBtn");
-
         /* Personal Info Section */
         public By personInfoUserPhotoImg = By.id("personalInfoCardProfileImg");
         public By personalInfoUserFirstAndLastNameTxt = By.id("personalInfoCardUsernameText");
@@ -574,6 +572,7 @@ public class Locators {
         public By failToastDiv = By.cssSelector("div#bodySideMenuToast.error");
         public By profileBackBtn = By.id("editProfileBackBtn");
         public By publicProfileViewBackBtn = By.cssSelector("button.bf-button");
+        public By editProfileBtn = By.id("editProfileBtn");
     }
 
     public static class PersonalInfoPageLocators {
