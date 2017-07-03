@@ -1,20 +1,19 @@
 import org.openqa.selenium.WebDriver;
+import java.util.UUID;
 
 public class TestUtils {
 
-    TestConfig testConfig;
     WebDriver driver;
 
     public TestUtils(WebDriver d) {
         driver = d;
-        testConfig = new TestConfig();
     }
 
     /**
      * Navigate to the content feed as a starting point for tests
      */
     public void loadContentFeedPage() {
-        driver.get(testConfig.getBaseURL() + testConfig.getContentRelativeURL());
+        driver.get(TestConfig.getBaseURL() + TestConfig.getContentRelativeURL());
     }
 
     /**
@@ -23,7 +22,14 @@ public class TestUtils {
      * @param labelFilter The label (job type) to filter the content page results
      */
     public void loadContentFeedPageWithFilter(String labelFilter) {
-        driver.get(testConfig.getBaseURL() + testConfig.getContentRelativeURL() + "?f_label=" + labelFilter);
+        driver.get(TestConfig.getBaseURL() + TestConfig.getContentRelativeURL() + "?f_label=" + labelFilter);
+    }
+
+    /**
+     * Navigate to the search page with no terms
+     */
+    public void loadJobSearchPageNoTerms() {
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL());
     }
 
     /**
@@ -33,11 +39,12 @@ public class TestUtils {
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get(testConfig.getBaseURL() + testConfig.getJobSearchRelativeURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
     }
 
     /**
      * Switches webdriver focus from current window to a new open window ie Facebook Login
+     *
      * @param parentWindow The original window as returned in driver.getWindowHandle()
      */
     public void switchToNewWindow(String parentWindow) {
@@ -56,6 +63,7 @@ public class TestUtils {
 
     /**
      * Switches webdriver focus from new window to the original window
+     * 
      * @param parentWindow The original window as returned in driver.getWindowHandle()
      */
     public void switchToParentWindow(String parentWindow) {
@@ -65,5 +73,13 @@ public class TestUtils {
             e.printStackTrace();
         }
         driver.switchTo().window(parentWindow);
+    }
+
+    /**
+     * Returns a randomly generated UUID of 9 alphanumeric characters
+     */
+    public String generateRandomUUID() {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "").substring(0,9);
+        return uuid;
     }
 }

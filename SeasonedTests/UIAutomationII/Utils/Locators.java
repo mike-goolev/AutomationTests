@@ -3,43 +3,39 @@ import org.openqa.selenium.By;
 public class Locators {
 
     public static class NavPageLocators {
-        /* Non Auth Nav Header Locators */
-        public By BrushfireLogo = By.id("headerLogoImg");
+        /* Common Nav Header Locators */
+        public By largeBrushfireLogo = By.id("headerBigLogoImg");
+        public By findJobsBtn = By.id("headerFindJobsLink");
+        public By careerBtn = By.id("headerCareerPathLink");
+        public By networkBtn = By.id("headerCommunityLink");
+        public By searchBtn = By.id("headerSearchButton");
         public By jobSearchTxtField = By.id("headerSearchInput");
+
+        /* Non Auth Nav Header Locators */
         public By loginBtn = By.id("headerLoginLink");
-        public By signUpBtn = By.id("headerJoinLink");
-        public By managerBtn = By.id("headerManagersLink");
+        public By signUpBtn = By.id("headerJoinBtn");
 
         /* Auth'd Nav Header Locators */
         public By contentFeedBtn = By.id("headerFeedLink");
         public By messagesBtn = By.id("headerMessagesLink");
-        public By userNameBtn = By.cssSelector("a.username");
-        public By userPhotoBtn = By.id("headerMenuToggleBtn");
-        public By userFullNameTxt = By.id("headerMenuFullNameTxt");
-        public By userEmailTxt = By.id("headerMenuEmailTxt");
-        public By menuProfileLink = By.id("headerMenuProfileLink");
-        public By menuSettingsLink = By.id("headerMenuSettingsLink");
-        public By menuLogoutLink = By.id("headerMenuLogOutLink");
+        public By userNameBtn = By.id("usernameText");
+        public By userPhotoBtn = By.id("profilePictureImg");
+        public By menuToggleBtn = By.id("headerMenuToggleBtn");
 
-        public By loader = By.cssSelector("div.bf-loader");
+        public By menuProfileBtn = By.id("headerMenuProfileLink");
+        public By menuSettingsBtn = By.id("headerMenuSettingsLink");
+        public By menuManagerBtn = By.id("headerMenuManagersLink");
+        public By menuLogoutBtn = By.id("headerMenuLogOutLink");
     }
 
     public static class LoginPageLocators {
         /* Login With Email */
-        public By loginWithEmailTxt = By.cssSelector("div.bf-divider-message");
+        public By loginHeaderTxt = By.id("loginTitle");
         public By emailTxtField = By.id("loginEmailInput");
         public By passwordTxtField = By.id("loginPasswordInput");
         public By forgotPasswordLink = By.id("loginForgotPasswordLink");
-        public By rememberMeCheckbox = By.id("loginRememberMeChk");
-        public By rememberMeTxt = By.cssSelector("div.bf-checkbox-container>p");
-        public By loginButton = By.id("loginBtn");
-
-        /* Login With HotSchedules */
-        public By hotschedulesLoginBtn = By.id("loginHSBtn");
-        public By loginHotschedulesUsernameField = By.id("loginHSUsernameInput");
-        public By loginHotschedulesPasswordField = By.id("loginHSPasswordInput");
-        public By loginHotSchedulesCancelBtn = By.id("loginHSCancelLink");
-        public By loginHotschedulesLoginBtn = By.id("loginHSSaveBtn");
+        public By loginBtn = By.id("loginBtn");
+        public By joinBtn = By.id("loginJoinNowLink");
 
         /* Login With Facebook */
         public By loginFacebookBtn = By.id("loginFacebookBtn");
@@ -51,15 +47,96 @@ public class Locators {
     }
 
     public static class SignUpPageLocators {
-        /* Sign Up With Email*/
-        public By nameField = By.id("signUpFullNameInput");
-        public By emailField = By.id("signUpEmailInput");
-        public By passwordField = By.id("signUpPasswordInput");
-        public By cancelBtn = By.id("signUpCancelLink");
-        public By continueBtn = By.id("signUpContinueBtn");
+        /* Shared onboarding elements */
+        public By dismissBtn = By.id("overlayPageCloseBtn");
 
-        /* Sign Up With Facebook */
+        /* Customize Experience */
+        public By logoImg = By.id("customizeExperienceLogoImg");
+        public By jobsBtn = By.id("lookingForJobButton");
+        public By careerBtn = By.id("growCareerButton");
+        public By networkBtn = By.id("buildNetworkButton");
+        public By managerBtn = By.id("hireTalentButton");
+
+        /* Location */
+        public By locationField = By.id("locationSelectInput");
+        public By locationSuggestionsTitle = By.id("locationSelectDropdownLabel");
+
+        /**
+         * Locates a location suggestion by index
+         *
+         * @param index The index (Starting at 0) of the location you wish to locate
+         * @return A locator for the location suggestion at the given index
+         */
+        public By locationSuggestionBtn(String index) {
+            return By.id("locationSelectOption" + index);
+        }
+
+        public By locationBackBtn = By.id("locationBackBtn");
+        public By locationNextBtn = By.id("locationNextBtn");
+
+        /* Jobs */
+        public By jobsField = By.id("jobsSelectInput");
+        public By allJobsBtn = By.id("jobsSelectConnection0");
+        public By popularJobsBtn = By.id("jobsSelectConnection1");
+        public By selectedJobsBtn = By.id("jobsSelectConnection2");
+
+        /**
+         * Locates a job type selection by index
+         *
+         * @param index The index (Starting at 0) of the job type you wish to locate
+         * @return A locator for a job type selection at the given index
+         */
+        public By jobsPositionSelection(String index) {
+            return By.id("jobsSelectValue" + index);
+        }
+
+
+        public By jobsBackBtn = By.id("jobsBackBtn");
+        public By jobsNextBtn = By.id("jobsNextBtn");
+
+        /**
+         * Locates a job type checkbox by index
+         *
+         * @param index The index (Starting at 0) of the job type you wish to locate
+         * @return A locator for a job type checkbox at the given index
+         */
+        public By jobsPositionCheckbox(String index) {
+            return By.id("jobTypeChk" + index);
+        }
+
+        /* Topics */
+        /**
+         * Locates a preferred topic checkbox by index
+         *
+         * @param index The index (Starting at 0) of the job type you wish to locate
+         * @return A locator for a job type checkbox at the given index
+         */
+        public By topicsCheckbox(String index) {
+            return By.id("preferredTopicsChk" + index);
+        }
+
+        public By topicsBackBtn = By.id("topicsBackBtn");
+        public By topicsNextBtn = By.id("topicsNextBtn");
+
+        /* Sign Up */
+        public By emailSignUpBtn = By.id("chooseSignUpEmailSignUpBtn");
         public By facebookSignUpBtn = By.id("signUpFacebookBtn");
+        public By termsText = By.id("chooseSignUpTermsOfServiceText");
+        public By termsBtn = By.id("chooseSignUpTermsOfServiceLink");
+        public By signupBackBtn = By.id("chooseSignUpBackBtn");
+
+        /* Sign Up With Email*/
+        public By firstNameField = By.id("undefinedUserFirstname");
+        public By lastNameField = By.id("undefinedUserLastname");
+        public By emailField = By.id("undefinedEmailInput");
+        public By passwordField = By.id("undefinedPasswordInput");
+        public By emailSignupBackBtn = By.id("EmailSignUpBackBtn");
+        public By emailSignupNextBtn = By.id("EmailSignUpNextBtn");
+
+        /* Facebook.com Locators */
+        public By faceBookEmailField = By.id("email");
+        public By faceBookPasswordField = By.id("pass");
+        public By facebookLoginBtn = By.id("loginbutton");
     }
 
     public static class ContentPageLocators {
@@ -234,6 +311,8 @@ public class Locators {
 
     public static class JobSearchPageLocators {
         /*Search Fields*/
+        public By searchPositionDropdown = By.id("searchJobTypeDropDown");
+
         public By searchJobEmployerField = By.id("searchTermTextField");
         public By searchLocationField = By.id("searchLocationTextField");
         public By searchBtn = By.id("searchButton");
@@ -478,8 +557,9 @@ public class Locators {
         public By addAboutBtn = By.id("aboutCardEmptyAddBtn");
         public By editAboutBtn = By.id("aboutCardEditBtn");
         public By aboutHeader = By.id("aboutCardTitleText");
-        public By aboutTxtField = By.id("aboutCardAboutText");
+        public By aboutTxtField = By.id("profileAboutText");
         public By emptyAboutTxtField = By.id("aboutCardEmptyDescriptionText");
+        public By sideMenuAboutMeLink = By.id("editProfileAboutLink");
 
         /* Basic Info Section */
         public By addBasicInfoBtn = By.id("basicInfoCardEmptyAddBtn");
@@ -571,6 +651,7 @@ public class Locators {
         public By failToastDiv = By.cssSelector("div#bodySideMenuToast.error");
         public By profileBackBtn = By.id("editProfileBackBtn");
         public By publicProfileViewBackBtn = By.cssSelector("button.bf-button");
+        public By editProfileBtn = By.id("editProfileBtn");
     }
 
     public static class PersonalInfoPageLocators {
@@ -706,8 +787,11 @@ public class Locators {
 
     public static class AboutPageLocators {
         public By aboutHeader =  By.id("editProfileAboutTitleText");
-        public By aboutTextField =  By.id("editAboutTextArea");
-        public By aboutSaveBtn =  By.id("editAboutSaveBtn");
+        public By aboutTextField =  By.id("editProfileAboutTextArea");
+        public By aboutSaveBtn =  By.id("saveProfileAboutBtn");
+        public By aboutBannerDiv = By.id("editProfileAboutToast");
+        public By aboutSuccessToastDiv = By.cssSelector("div#editProfileAboutToast.success");
+        public By aboutBannerCloseBtn = By.id("editProfileAboutToastCloseBtn");
     }
 
     public static class BasicInfoPageLocators {

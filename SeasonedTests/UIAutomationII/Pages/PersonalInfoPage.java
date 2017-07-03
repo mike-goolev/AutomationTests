@@ -60,7 +60,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see the if the location text field equals the text parameter
-     *
      * @param location The text to compare against
      * @return Whether or not the text in the location field is the same as the text parameter
      */
@@ -78,7 +77,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the location text field
-     *
      * @param location The home location of the user
      */
     public void enterUserLocation(String location) {
@@ -114,7 +112,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the phone text field
-     *
      * @param phone The user's phone #
      */
     public void enterUserPhone(String phone) {
@@ -136,7 +133,7 @@ public class PersonalInfoPage extends BasePage {
      */
     public void clickSaveBtn() {
         driver.findElement(personalInfoPageLocators.personalInfoSaveBtn).click();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
     }
 
     /**

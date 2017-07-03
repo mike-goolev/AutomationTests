@@ -1,5 +1,7 @@
 import org.openqa.selenium.WebDriver;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+
 public class AboutPage extends BasePage {
 
     Locators.AboutPageLocators aboutPageLocators;
@@ -67,5 +69,21 @@ public class AboutPage extends BasePage {
         for(int i = 0; i < textLength; i++) {
             driver.findElement(aboutPageLocators.aboutTextField).sendKeys("\u0008");
         }
+    }
+
+    /**
+     * Verifies that the success banner is displayed after saving changes
+     * @return Whether or not the success banner is displayed
+     */
+    public boolean verifyAboutSuccessBanner() {
+        return elementExistsLongTimeout(aboutPageLocators.aboutSuccessToastDiv);
+    }
+
+    /**
+     * Clicks the 'X' button on the success/fail banner on the edit about page
+     */
+    public void clickCloseAboutBannerBtn() {
+        wait.until(elementToBeClickable(aboutPageLocators.aboutBannerCloseBtn));
+        driver.findElement(aboutPageLocators.aboutBannerCloseBtn).click();
     }
 }

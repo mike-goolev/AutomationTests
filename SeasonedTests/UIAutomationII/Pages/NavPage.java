@@ -21,11 +21,11 @@ public class NavPage extends BasePage {
     }
 
     /**
-     * Clicks the managers link in the nav header
+     * Clicks the join link in the nav header
      */
-    public void clickManagersBtn() {
-        wait.until(elementToBeClickable(navPageLocators.managerBtn));
-        driver.findElement(navPageLocators.managerBtn).click();
+    public void clickJoinBtn() {
+        wait.until(elementToBeClickable(navPageLocators.signUpBtn));
+        driver.findElement(navPageLocators.signUpBtn).click();
     }
 
     /*---------- Auth'd methods ---------*/
@@ -36,7 +36,7 @@ public class NavPage extends BasePage {
     public void navigateToProfilePage() {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
-        driver.findElement(navPageLocators.menuProfileLink).click();
+        driver.findElement(navPageLocators.menuProfileBtn).click();
     }
 
     /**
@@ -45,7 +45,7 @@ public class NavPage extends BasePage {
     public void navigateToSettingsPage() {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
-        driver.findElement(navPageLocators.menuSettingsLink).click();
+        driver.findElement(navPageLocators.menuSettingsBtn).click();
     }
 
     /**
@@ -54,14 +54,29 @@ public class NavPage extends BasePage {
     public void logout() {
         wait.until(elementToBeClickable(navPageLocators.userPhotoBtn));
         driver.findElement(navPageLocators.userPhotoBtn).click();
-        driver.findElement(navPageLocators.menuLogoutLink).click();
+        driver.findElement(navPageLocators.menuLogoutBtn).click();
+    }
+
+    /**
+     * Attempts to log the user out of the web app. Handles errors so that tear down can finish shutting down selenium.
+     * This method is intended to be used in the tearDown() method.
+     */
+    public void attemptLogout() {
+        try {
+            logout();
+        }
+        catch(Exception e) {
+            System.out.println("An error occured while attempting to log the user out of the app.");
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 
     /**
      * Waits for activity indicator
-     */
+
     public void waitForActivtyIndicator() {
         wait.until(presenceOfElementLocated(navPageLocators.loader));
         wait.until(invisibilityOfElementLocated(navPageLocators.loader));
     }
+     */
 }

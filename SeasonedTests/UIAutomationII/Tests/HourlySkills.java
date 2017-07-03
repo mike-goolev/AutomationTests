@@ -72,7 +72,7 @@ public class HourlySkills extends BaseTest {
     @AfterClass
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the skills test");
-        navPage.logout();
+        navPage.attemptLogout();
         driver.quit();
     }
 }

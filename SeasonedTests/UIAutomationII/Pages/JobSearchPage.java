@@ -22,6 +22,15 @@ public class JobSearchPage extends BasePage {
     }
 
     /**
+     * Checks to see if the job type dropdown is on the job search page
+     * @return Whether or not the job type dropdown is on the job search page
+     */
+    public boolean verifyPositionDropdown() {
+        wait.until(visibilityOfElementLocated(jobSearchPageLocators.searchPositionDropdown));
+        return elementExists(jobSearchPageLocators.searchPositionDropdown);
+    }
+
+    /**
      * Checks to see if the search location field is on the job search page
      * @return Whether or not the location field is on the job search page
      */
@@ -29,7 +38,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Enters search term text into search term field
-     *
      * @param searchTerm The search term text to enter in the field
      */
     public void enterSearchTermText(String searchTerm) {
@@ -41,7 +49,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Enter search location text into search location field
-     *
      * @param searchLocation The search location text to enter in the field
      */
     public void enterSearchLocationText(String searchLocation) {
@@ -61,7 +68,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Searches for a job
-     *
      * @param term The search term text to enter in the field
      * @param location The location text to enter in the field
      */
@@ -75,7 +81,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Waits for search results to be retrieved from CloudSearch
-     *
      * @param index The index (Starting at 0) of the search result you wish to locate
      */
    public void waitForSearchResults(String index) {
@@ -149,7 +154,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Clicks the view button for a posted job
-     *
      * @param index The index (Starting at 0) of the search result view button you wish to locate
      */
     public void clickJobPostingViewBtn(String index) {
@@ -161,7 +165,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Clicks the apply button for a posted job
-     *
      * @param index The index (Starting at 0) of the search result apply button you wish to locate
      */
     public void clickJobPostingApplyBtn(String index) {
@@ -174,7 +177,6 @@ public class JobSearchPage extends BasePage {
     /**
      * Checks to see if the job is marked as 'Apply' on the job's card
      * @return Whether or not the job is marked as 'Apply' on the job's card
-     *
      * @param index The index (Starting at 0) of the search result apply button you wish to locate
      */
     public boolean verifyJobPostingApplyButton(String index) { return elementExists(jobSearchPageLocators.searchResultApplyBtnByIndex(index)); }
@@ -182,7 +184,6 @@ public class JobSearchPage extends BasePage {
     /**
      * Checks to see if the job is marked as 'Applied' on the job's card
      * @return Whether or not the job is marked as 'Applied' on the job's card
-     *
      * @param index The index (Starting at 0) of the search result applied button you wish to locate
      */
     public boolean verifyJobPostingAppliedButton(String index) { return elementExists(jobSearchPageLocators.searchResultAppliedBtnByIndex(index)); }
@@ -190,7 +191,6 @@ public class JobSearchPage extends BasePage {
     /**
      * Checks to see if the Employer Logo is on the job's card
      * @return Whether or not the Employer Logo is on the job's card
-     *
      * @param index The index (Starting at 0) of the search result image you wish to locate
      */
     public boolean verifyEmployerLogo(String index) {
@@ -199,7 +199,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the job's position matches what is on the job's card
-     *
      * @param position The job's position on the job's card
      * @param index The index (Starting at 0) of the search result position you wish to locate
      * @return Whether or not the text for the job's position is the same as the text parameter
@@ -210,7 +209,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Employer Name matches what is on the job's card
-     *
      * @param employerName The employer's name on the job's card
      * @param index The index (Starting at 0) of the search result employer name you wish to locate
      * @return Whether or not the text for employer name field is the same as the text parameter
@@ -221,7 +219,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Employer Distance matches what is on the job's card
-     *
      * @param employerDistance The employer's distance from the logged in user on the job's card
      * @param index The index (Starting at 0) of the search result employer distance you wish to locate
      * @return Whether or not the text for employer distance field is the same as the text parameter
@@ -232,7 +229,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Employer Zip matches what is on the job's card
-     *
      * @param employerZip The employer's zip on the job's card
      * @param index The index (Starting at 0) of the search result employer zip you wish to locate
      * @return Whether or not the text for employer zip field is the same as the text parameter
@@ -271,7 +267,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details Position matches what is on the job details page
-     *
      * @param jobDetailsPosition The job posting's position
      * @return Whether or not the text for the job details position is the same as the text parameter
      */
@@ -281,7 +276,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details Wage matches what is on the job details page
-     *
      * @param jobDetailsWage The job posting's wage
      * @return Whether or not the text for the job details wage is the same as the text parameter
      */
@@ -291,7 +285,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details job description matches what is on the job details page
-     *
      * @param jobDetailsJobDescription The job's description
      * @return Whether or not the text for the job's description is the same as the text parameter
      */
@@ -301,7 +294,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details employer description matches what is on the job details page
-     *
      * @param jobDetailsEmployerDescription The employer's description
      * @return Whether or not the text for the employer's description is the same as the text parameter
      */
@@ -317,7 +309,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details employer name matches what is on the job details page
-     *
      * @param jobDetailsEmployerName The employer's name
      * @return Whether or not the text for the employer's description is the same as the text parameter
      */
@@ -327,7 +318,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details employer address matches what is on the job details page
-     *
      * @param jobDetailsEmployerAddress The employer's address
      * @return Whether or not the text for the employer's address is the same as the text parameter
      */
@@ -337,7 +327,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details employer ppa matches what is on the job details page
-     *
      * @param jobDetailsEmployerPPA The employer's ppa
      * @return Whether or not the text for the employer's ppa is the same as the text parameter
      */
@@ -347,7 +336,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details employer type matches what is on the job details page
-     *
      * @param jobDetailsEmployerType The employer's type
      * @return Whether or not the text for the employer's type is the same as the text parameter
      */
@@ -357,7 +345,6 @@ public class JobSearchPage extends BasePage {
 
     /**
      * Checks to see if the Job Details employer distance matches what is on the job details page
-     *
      * @param jobDetailsEmployerDistance The employer's distance
      * @return Whether or not the text for the employer's distance is the same as the text parameter
      */

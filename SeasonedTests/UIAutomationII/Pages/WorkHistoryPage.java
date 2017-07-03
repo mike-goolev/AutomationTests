@@ -135,7 +135,7 @@ public class WorkHistoryPage extends BasePage {
     }
 
     /**
-     * returns a list of elements returned by the location drop down when typing in a location/store
+     * Returns a list of elements returned by the location drop down when typing in a location/store
      * @return a list of elements that represents the stores returned by google places
      */
     public List<WebElement> getGooglePlacesElements() {

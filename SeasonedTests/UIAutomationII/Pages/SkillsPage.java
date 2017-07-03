@@ -348,7 +348,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Dishwasher skill is deselected
-     *
      * @return Whether or not the Dishwasher skill is deselected
      */
     public boolean isDishwasherSkillCheckboxSelectedNo() {
@@ -519,7 +518,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Prep Cook skill is deselected
-     *
      * @return Whether or not the Prep Cook skill is deselected
      */
     public boolean isPrepCookSkillCheckboxSelectedNo() {
@@ -554,7 +552,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Runner skill is deselected
-     *
      * @return Whether or not the Runner skill is deselected
      */
     public boolean isRunnerSkillCheckboxSelectedNo() {
@@ -615,7 +612,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Sommelier skill is selected
-     *
      * @return Whether or not the Sommelier skill is selected
      */
     public boolean isSommelierSkillCheckboxSelectedYes() {
@@ -693,7 +689,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the Team Member skill is deselected
-     *
      * @return Whether or not the Team Member skill is deselected
      */
     public boolean isTeamMemberSkillCheckboxSelectedNo() {

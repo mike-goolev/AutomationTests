@@ -1,4 +1,5 @@
 import okhttp3.OkHttpClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,7 +18,7 @@ public class SeasonedRestAPI {
     public SeasonedRestAPI(String accessToken) {
         OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
-                               .baseUrl("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/services/rest/")
+                               .baseUrl(TestConfig.getBaseAPIURL() + "services/rest/")
                                .addConverterFactory(GsonConverterFactory.create())
                                .client(httpClient)
                                .build();
@@ -60,7 +61,6 @@ public class SeasonedRestAPI {
             legal.setNegationText("No, I'm not legally eligible to work in the USA.");
             legal.setAnswer(null);
             legal.setPreferenceValue(null);
-
 
             eligibilityAnswers.add(age);
             eligibilityAnswers.add(transport);
@@ -156,7 +156,6 @@ public class SeasonedRestAPI {
                     System.out.println("PUT request to user/guid/Availability failed with error: " + t.getLocalizedMessage());
                 }
             });
-
         }
         catch(Exception e) {
             System.out.println(e.getLocalizedMessage());
@@ -190,12 +189,13 @@ public class SeasonedRestAPI {
             job.setDescription("$1.99 are you outta yo mind?");
             job.setStatus("POSTED");
 
-        /* Make a POST request to job */
+            /* Make a POST request to job */
             Call<Job> call = seasonedAPI.postJob(accessToken, job);
             Response<Job> response = call.execute();
             System.out.println("POST request to /job returned a " + response.code());
             jobGuid = response.body().getGuid();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
         return jobGuid;
@@ -207,7 +207,7 @@ public class SeasonedRestAPI {
      */
     public void deleteJob(String guid) {
         try {
-        /* Make a DELETE request to job */
+            /* Make a DELETE request to job */
             Call<Job> call = seasonedAPI.deleteJob(guid, accessToken);
             Response<Job> response = call.execute();
             System.out.println("DELETE request to /job/{guid} returned a " + response.code());
@@ -218,7 +218,7 @@ public class SeasonedRestAPI {
     }
 
     /**
-     * Update user name, email and phone
+     * Updates a user's name, email, and phone number
      * @param id The user's id
      * @param userGuid The user's guid
      * @param firstName The user's first name
@@ -251,18 +251,18 @@ public class SeasonedRestAPI {
             user.setAccountState(accountState);
             user.setRoles(roles);
 
-        /* Make a PUT request to user */
+            /* Make a PUT request to user */
             Call<User> call = seasonedAPI.updateUserNameEmailPhone(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a " + response.code());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
-     * Posts a location to a given user
-     *
+     * Updates a user's location
      * @param guid The user's guid
      * @param city The location's city
      * @param state The location's state
@@ -286,18 +286,18 @@ public class SeasonedRestAPI {
             location.setCountry(country);
             location.setGeo(geo);
 
-        /* Make a POST request to primaryLocation */
+            /* Make a POST request to primaryLocation */
             Call<Location_> call = seasonedAPI.postUserLocation(guid, accessToken, location);
             Response<Location_> response = call.execute();
             System.out.println("POST request to /primaryLocation returned a " + response.code());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Posts a connection request from user a to user b
-     *
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
      */
@@ -309,18 +309,18 @@ public class SeasonedRestAPI {
             network.setFromUserGuid(fromUserGuid);
             network.setToUserGuid(toUserGuid);
 
-        /* Make a POST request to network */
+            /* Make a POST request to network */
             Call<Network> call = seasonedAPI.postNetworkConnection(accessToken, network);
             Response<Network> response = call.execute();
             System.out.println("POST request to /network returned a " + response.code());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Accept a connection request
-     *
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
      */
@@ -332,18 +332,18 @@ public class SeasonedRestAPI {
             network.setFromUserGuid(fromUserGuid);
             network.setToUserGuid(toUserGuid);
 
-        /* Make a PUT request to network */
+            /* Make a PUT request to network */
             Call<Network> call = seasonedAPI.updateNetworkConnection(accessToken, network);
             Response<Network> response = call.execute();
             System.out.println("PUT request to /network/accept returned a " + response.code());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Delete a connection request
-     *
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
      */
@@ -355,18 +355,18 @@ public class SeasonedRestAPI {
             network.setFromUserGuid(fromUserGuid);
             network.setToUserGuid(toUserGuid);
 
-        /* Make a DELETE request to network */
+            /* Make a DELETE request to network */
             Call<Network> call = seasonedAPI.deleteNetworkConnection(accessToken, fromUserGuid, toUserGuid);
             Response<Network> response = call.execute();
             System.out.println("Delete request to /network/between/{guid}/{guid} returned a " + response.code());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Delete request to /network/between/{guid}/{guid} failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Unfollows an employer
-     *
      * @param employerGuid The guid of the employer to unfollow
      * @param userGuid The guid of the user that is unfollowing
      */
@@ -377,48 +377,13 @@ public class SeasonedRestAPI {
 
             user.setGuid(userGuid);
 
-        /* Make a POST request to unfollow an employer */
+            /* Make a POST request to unfollow an employer */
             Call<User> call = seasonedAPI.unFollowEmployer(employerGuid, accessToken, user);
             Response<User> response = call.execute();
             System.out.println("POST request to /employer/{guid/unfollow returned a " + response.code());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
-
-    /*public static void main(String[] args) throws Exception {
-
-        try {
-            EligibilityAnswers age = new EligibilityAnswers();
-            age.setQuestionGuid("a7c54279-16de-4fb3-b3cc-53501c5ac071");
-            age.setQuestionText("At least 18 years of age.");
-            age.setPreferenceText(null);
-            age.setAffirmationText("I'm at least 18 years old.");
-            age.setNegationText("No, I'm not at least 18 years old.");
-            age.setAnswer(null);
-            age.setPreferenceValue(null);
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/services/rest/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            SeasonedAPI seasonedAPI = retrofit.create(SeasonedAPI.class);
-
-            Call<User> call = seasonedAPI.getUser("791e969f-3c04-4739-a459-09bf5e88c800", "Bearer 821127bb-5e37-4376-afe5-e29a601e9001");
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    System.out.println(response.code());
-                    System.out.println(response.body());
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable throwable) {
-                    System.out.println("SAD! " + throwable.getMessage());
-                }
-            });
-        } catch (Exception e) {
-            System.out.println("You wiretapped my tower.");
-        }
-    }*/
 }

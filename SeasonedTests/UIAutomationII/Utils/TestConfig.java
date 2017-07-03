@@ -1,23 +1,37 @@
 public class TestConfig {
-    String baseURL = "http://hsp-load-balancer-851875221.us-west-2.elb.amazonaws.com/services/";
-    String searchRelativeURL = "search";
-    String contentRelativeURL = "app#feed";
+
+    private static String baseURL = "http://qa-www.seasoned.co/services/webapp/";
+    private static String baseAPIUrl = "http://qa-brushfire.seasoned.co/services/";
+    private static String searchRelativeURL = "search";
+    private static String contentRelativeURL = "app#/feed/";
 
     /**
      * Gets path to base URL
+     *
      * @return The base URL
      */
-    public String getBaseURL() { return baseURL;}
+    public static String getBaseURL() { return baseURL;}
+
+    /**
+     * Gets the path to the base API URL
+     *
+     * @return The base API URL
+     */
+    public static String getBaseAPIURL() {
+        return baseAPIUrl;
+    }
 
     /**
      * Gets path to job search page URL
+     *
      * @return The job search page URL
      */
-    public String getJobSearchRelativeURL() { return searchRelativeURL;}
+    public static String getJobSearchRelativeURL() { return searchRelativeURL;}
 
     /**
      * Gets path to content page URL
+     *
      * @return The content page URL
      */
-    public String getContentRelativeURL() {return contentRelativeURL;}
+    public static String getContentRelativeURL() {return contentRelativeURL;}
 }

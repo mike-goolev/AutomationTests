@@ -70,7 +70,7 @@ public class HourlyConnections extends BaseTest {
 
         /* Navigate to the hourly connections page */
         profilePage.clickViewAllConnections();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify connection card in connections list */
         Assert.assertTrue(connectionsPage.isConnectionPhotoPresent(connectionIndex));
@@ -79,7 +79,7 @@ public class HourlyConnections extends BaseTest {
 
         /* View connection's profile */
         connectionsPage.clickConnectionViewButton(connectionIndex);
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify connection's profile displays */
         Assert.assertTrue(profilePage.isDisconnectButtonPresent());
@@ -89,13 +89,13 @@ public class HourlyConnections extends BaseTest {
 
         /* Click 'Back' to return to logged in user's profile */
         profilePage.clickPublicProfileViewBackBtn();
-        navPage.waitForActivtyIndicator();
+        /*navPage.waitForActivtyIndicator();*/
     }
 
     @AfterClass
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the hourly connections test");
-        navPage.logout();
+        navPage.attemptLogout();
         driver.quit();
     }
 }
