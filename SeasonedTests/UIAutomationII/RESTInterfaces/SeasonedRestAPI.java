@@ -225,11 +225,12 @@ public class SeasonedRestAPI {
      * @param lastName The user's last name
      * @param email The user's email address
      * @param phone The user's phone #
+     * @param dob The user's date of birth
      * @param accountState The user's account state
      * @param roleGuid  The guid of the user's role
      * @param roleName The name of the user's role
      */
-    public void updateUserNameEmailPhone(String id, String userGuid, String firstName, String lastName, String email, String phone, String accountState, String roleGuid, String roleName) {
+    public void updateUserNameEmailPhoneBday(String id, String userGuid, String firstName, String lastName, String email, String phone, String dob, String accountState, String roleGuid, String roleName) {
         /* Construct Job Request Body */
         try {
             ArrayList<Role> roles = new ArrayList<Role>();
@@ -248,11 +249,12 @@ public class SeasonedRestAPI {
             user.setLastname(lastName);
             user.setEmail(email);
             user.setPhone(phone);
+            user.setDob(dob);
             user.setAccountState(accountState);
             user.setRoles(roles);
 
             /* Make a PUT request to user */
-            Call<User> call = seasonedAPI.updateUserNameEmailPhone(accessToken, user);
+            Call<User> call = seasonedAPI.updateUserNameEmailPhoneBday(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a " + response.code());
         }

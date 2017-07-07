@@ -79,6 +79,15 @@ public class SignupPage extends BasePage {
     }
 
     /**
+     * Get location title text
+
+     * @return The location page's title text
+     */
+    public String getLocationTitleTxt(){
+        return driver.findElement(signUpPageLocators.locationField).getText();
+    }
+
+    /**
      * Get suggested location text
 
      * @return The suggested location

@@ -34,6 +34,9 @@ public class User {
     @SerializedName("phone")
     @Expose
     private Object phone;
+    @SerializedName("dobMillis")
+    @Expose
+    private Object dob;
     @SerializedName("verified")
     @Expose
     private Boolean verified;
@@ -236,6 +239,14 @@ public class User {
 
     public void setPhone(Object phone) {
         this.phone = phone;
+    }
+
+    public Object getDob() {
+        return dob;
+    }
+
+    public void setDob(Object dob) {
+        this.dob = dob;
     }
 
     public Boolean getVerified() {

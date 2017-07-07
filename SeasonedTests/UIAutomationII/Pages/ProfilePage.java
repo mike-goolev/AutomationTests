@@ -13,16 +13,17 @@ public class ProfilePage extends BasePage {
         profilePageLocators = new Locators.ProfilePageLocators();
         skillsPage = new SkillsPage(driver);
     }
-
-    /*--------- Personal Info ----------*/
+    /*--------- Profile (View) Page - Globals ----------*/
 
     /**
-     * Clicks the edit personal info button *
+     * Clicks on the edit profile button
      */
-    public void clickEditPersonalInfo() {
-        wait.until(elementToBeClickable(profilePageLocators.personalInfoEditBtn));
-        driver.findElement(profilePageLocators.personalInfoEditBtn).click();
+    public void clickEditProfile() {
+        wait.until(elementToBeClickable(profilePageLocators.profileEditBtn));
+        driver.findElement(profilePageLocators.profileEditBtn).click();
     }
+
+    /*--------- Personal Info ----------*/
 
     /**
      * Checks to see if the user's profile photo is on the profile page
@@ -33,16 +34,8 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Checks to see if the user's name is on the profile page
-     * @param name The user's name on the profile page
-     * @return Whether or not the text for the user's name matches the text param
-     */
-    public boolean verifyUserFirstAndLastName(String name) {
-        return name.equals(driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText());
-    }
-
-    /**
      * Get user's first and last name from the text field
+
      * @return User's first and last name
      */
     public String getFirstAndLastNameTxt() {
@@ -51,6 +44,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the user's primary job is on the profile page
+
      * @param job The user's primary job on the profile page
      * @return Whether or not the text of the user's primary job matches the text param
      */

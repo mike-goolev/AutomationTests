@@ -18,9 +18,11 @@ public class Locators {
         /* Auth'd Nav Header Locators */
         public By contentFeedBtn = By.id("headerFeedLink");
         public By messagesBtn = By.id("headerMessagesLink");
-        public By userNameBtn = By.id("usernameText");
-        public By userPhotoBtn = By.id("profilePictureImg");
-        public By menuToggleBtn = By.id("headerMenuToggleBtn");
+        public By userNameBtn = By.id("headerMenuToggleBtn");
+        public By userNameTxt = By.id("usernameText");
+        public By userPhotoImg = By.id("profilePictureImg");
+        public By userAvatarImg = By.id("profilePictureImgIcon");
+
 
         public By menuProfileBtn = By.id("headerMenuProfileLink");
         public By menuSettingsBtn = By.id("headerMenuSettingsLink");
@@ -58,6 +60,7 @@ public class Locators {
         public By managerBtn = By.id("hireTalentButton");
 
         /* Location */
+        public By locationTitleTxt = By.id("locationTitle");
         public By locationField = By.id("locationSelectInput");
         public By locationSuggestionsTitle = By.id("locationSelectDropdownLabel");
 
@@ -126,10 +129,10 @@ public class Locators {
         public By signupBackBtn = By.id("chooseSignUpBackBtn");
 
         /* Sign Up With Email*/
-        public By firstNameField = By.id("undefinedUserFirstname");
-        public By lastNameField = By.id("undefinedUserLastname");
-        public By emailField = By.id("undefinedEmailInput");
-        public By passwordField = By.id("undefinedPasswordInput");
+        public By firstNameField = By.id("EmailSignUpUserFirstname");
+        public By lastNameField = By.id("EmailSignUpUserLastname");
+        public By emailField = By.id("EmailSignUpEmailInput");
+        public By passwordField = By.id("EmailSignUpPasswordInput");
         public By emailSignupBackBtn = By.id("EmailSignUpBackBtn");
         public By emailSignupNextBtn = By.id("EmailSignUpNextBtn");
 
@@ -439,12 +442,20 @@ public class Locators {
     }
 
     public static class ProfilePageLocators {
+        /* Global profile page locators */
+        public By profileEditBtn = By.id("editProfileBtn");
+
         /* Personal Info Section */
-        public By personInfoUserPhotoImg = By.id("personalInfoCardProfileImg");
-        public By personalInfoUserFirstAndLastNameTxt = By.id("personalInfoCardUsernameText");
-        public By personalInfoUserPrimaryJobTxt = By.id("personalInfoCardPrimaryWorkHistoryText");
-        public By personalInfoUserLocationTxt = By.id("personalInfoCardLocationText");
-        public By personalInfoEditBtn = By.id("personalInfoCardEditBtn");
+        public By personInfoUserPhotoImg = By.id("profilePhotoImg");
+        /*public By personalInfoUserFirstAndLastNameTxt = By.id("personalInfoCardUsernameText");*/
+        public By personalInfoUserFirstAndLastNameTxt = By.cssSelector("h3.block-title");
+
+        /*public By personalInfoUserPrimaryJobTxt = By.id("personalInfoCardPrimaryWorkHistoryText");*/
+        public By personalInfoUserPrimaryJobTxt = By.cssSelector("div.d-inline>div");
+
+        /*public By personalInfoUserLocationTxt = By.id("personalInfoCardLocationText");*/
+        public By personalInfoUserLocationTxt = By.cssSelector("div.d-inline>span");
+
         public By personalInfoActionsMenuBtn = By.cssSelector("div.actions-menu-toggle");
         public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
@@ -655,14 +666,23 @@ public class Locators {
     }
 
     public static class PersonalInfoPageLocators {
-        public By personalInfoTitleTxt = By.id("editProfilePersonalInfoTitleText");
-        public By personalInfoUserPhotoImg = By.id("personalInfoProfilePhoto");
-        public By personalInfoUploadUserPhotoBtn = By.id("personalInfoUploadPhotoBtn");
-        public By personalInfoUploadUserPhotoFromFacebookBtn = By.id("uploadFacebookPhotoBtn");
-        public By personalInfoFirstLastNameTxtField = By.id("personalInfoUsernameInput");
+        public By personalInfoPhotoTxt = By.id("profileInfoPhotoTxt");
+        public By personalInfoUserPhotoAvatarImg = By.id("personalInfoCardProfileImgIcon");
+        public By personalInfoUserPhotoImg = By.id("personalInfoCardProfileImg");
+        public By personalInfoUploadUserPhotoToggleBtn = By.id("personalInfoAddPhotoBtn");
+        public By personalInfoUploadUserPhotoBtn = By.id("profileInfoUploadPhotoBtn");
+        public By personalInfoUploadUserPhotoFromFacebookBtn = By.id("profileInfoImportFromFacebookBtn");
+        public By personalInfoFirstNameTxtField = By.id("personalInfoFirstNameInput");
+        public By personalInfoLastNameTxtField = By.id("personalInfoLastNameInput");
         public By personalInfoLocationTxtField = By.id("personalInfoLocationInput");
-        public By personalInfoPhoneTxtField = By.id("personalInfoPhoneNumberInput");
-        public By personalInfoSaveBtn = By.cssSelector("div.bf-flex-layout:nth-of-type(5) * button.bf-button");
+        public By personalInfoPhoneTxtField = By.id("personalInfoPhoneInput");
+        public By personalInfoBirthdayMonthSelect = By.id("personalInfoMonthSelect");
+        public By personalInfoBirthdayDaySelect = By.id("personalInfoDaySelect");
+        public By personalInfoBirthdayYearSelect = By.id("personalInfoYearSelect");
+        public By personalInfoEligibilityChk = By.cssSelector("div#eligibleToWorkChk>div.checkbox");
+        public By personalInfoSaveBtn = By.id("savePersonalInfoBtn");
+        public By personalInfoSuccessToastTxt = By.id("personalInfoToastTypeTxt");
+        public By personalInfoSuccessToastCloseBtn = By.id("personalInfoToastCloseBtn");
     }
 
     public static class WorkHistoryPageLocators {
