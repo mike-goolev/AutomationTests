@@ -65,7 +65,6 @@ public class BasePage {
 
     /**
      * Checks to see if a checkbox is in a selected state by looking at the aria-checked attribute for true
-
      * @param box The web element for the checkbox
      * @return whether or not a checkbox has been selected
      */
@@ -73,6 +72,7 @@ public class BasePage {
         if(box.getAttribute("aria-checked").contains("true")) {
             return true;
         }
+
         return false;
     }
 }

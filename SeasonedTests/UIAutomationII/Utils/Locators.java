@@ -524,18 +524,19 @@ public class Locators {
 
         /* Certifications Section */
         public By certsEmptyHeader = By.id("certificationsCardEmptyTitleText");
-        public By certsHeader = By.id("certificationsCardTitleText");
+        public By certsHeader = By.id("profileCertificationsTitleText");
         public By certsAddButton = By.id("certificationsCardEmptyAddBtn");
         public By certsEditButton = By.id("certificationsCardEditBtn");
-        public By certsAlcoholImg = By.id("certificationsCardListItemAlcoholSeller/ServerImg");
+        public By certsAlcoholImg = By.id("profileCertificationAlcoholSeller/ServerCardListItemImg3");
         public By certsAlcoholTxt = By.id("certificationsCardListItemAlcoholSeller/ServerText");
-        public By certsFoodHandlerImg = By.id("certificationsCardListItemFoodHandlerImg");
+        public By certsFoodHandlerImg = By.id("profileCertificationFoodHandlerCardListItemImg1");
         public By certsFoodHandlerTxt = By.id("certificationsCardListItemFoodHandlerText");
-        public By certsFoodProtectionImg = By.id("certificationsCardListItemFoodProtectionManagerImg");
+        public By certsFoodProtectionImg = By.id("profileCertificationFoodProtectionManagerCardListItemImg2");
         public By certsFoodProtectionTxt = By.id("certificationsCardListItemFoodProtectionManagerText");
-        public By certsHACCPImg = By.id("certificationsCardListItemHACCPImg");
+        public By certsHACCPImg = By.id("profileCertificationHACCPCardListItemImg0");
         public By certsHACCPTxt = By.id("certificationsCardListItemHACCPText");
         public By certsEmptyCardTxt = By.id("certificationsCardEmptyDescriptionText");
+        public By sideMenuCertificationsLink = By.id("editProfileCertificationsLink");
 
         /* Skills Section */
         public By skillsHeader = By.cssSelector("div.bf-col>div:nth-of-type(3)>div>h3");
@@ -679,7 +680,7 @@ public class Locators {
         public By personalInfoBirthdayMonthSelect = By.id("personalInfoMonthSelect");
         public By personalInfoBirthdayDaySelect = By.id("personalInfoDaySelect");
         public By personalInfoBirthdayYearSelect = By.id("personalInfoYearSelect");
-        public By personalInfoEligibilityChk = By.cssSelector("div#eligibleToWorkChk>div.checkbox");
+        public By personalInfoEligibilityChk = By.id("eligibleToWorkChkBox");
         public By personalInfoSaveBtn = By.id("savePersonalInfoBtn");
         public By personalInfoSuccessToastTxt = By.id("personalInfoToastTypeTxt");
         public By personalInfoSuccessToastCloseBtn = By.id("personalInfoToastCloseBtn");
@@ -721,20 +722,26 @@ public class Locators {
         public By alcoholSellerImg = By.id("editCertificationsListItemAlcoholSeller/ServerImg");
         public By alcoholSellerTxt = By.id("editCertificationsListItemAlcoholSeller/ServerLabelText");
         public By alcoholSellerChk = By.id("editCertificationsListItemAlcoholSeller/ServerChk");
+        public By alcoholSellerChkBox = By.id("editCertificationsListItemAlcoholSeller/ServerChkBox");
         public By alcoholSellerUploadBtn = By.id("editCertificationsListItemAlcoholSeller/ServerUploadBtn0");
         public By foodHandlerImg = By.id("editCertificationsListItemFoodHandlerImg");
         public By foodHandlerTxt = By.id("editCertificationsListItemFoodHandlerLabelText");
         public By foodHandlerChk = By.id("editCertificationsListItemFoodHandlerChk");
+        public By foodHandlerChkBox = By.id("editCertificationsListItemFoodHandlerChkBox");
         public By foodHandlerUploadBtn = By.id("editCertificationsListItemFoodHandlerUploadBtn1");
         public By foodProtectionImg = By.id("editCertificationsListItemFoodProtectionManagerImg");
         public By foodProtectionTxt = By.id("editCertificationsListItemFoodProtectionManagerLabelText");
         public By foodProtectionChk = By.id("editCertificationsListItemFoodProtectionManagerChk");
+        public By foodProtectionChkBox = By.id("editCertificationsListItemFoodProtectionManagerChkBox");
         public By foodProtectionUploadBtn = By.id("editCertificationsListItemFoodProtectionManagerUploadBtn2");
         public By haccpImg = By.id("editCertificationsListItemHACCPImg");
         public By haccpTxt = By.id("editCertificationsListItemHACCPLabelText");
         public By haccpChk = By.id("editCertificationsListItemHACCPChk");
+        public By haccpChkBox = By.id("editCertificationsListItemHACCPChkBox");
         public By haccpUploadBtn = By.id("editCertificationsListItemHACCPUploadBtn3");
-        public By saveBtn = By.id("saveCertificationsBtn");
+        public By saveBtn = By.id("saveProfileCertificationsBtn");
+        public By certsSuccessToastDiv = By.cssSelector("div#editProfileCertificationsToast.success");
+        public By certsBannerCloseBtn = By.id("editProfileCertificationsToastCloseBtn");
     }
 
     public static class SkillsPageLocators {

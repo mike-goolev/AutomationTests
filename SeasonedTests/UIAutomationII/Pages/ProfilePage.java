@@ -240,7 +240,19 @@ public class ProfilePage extends BasePage {
      * @return Whether or not the certs card is in a empty state
      */
     public boolean verifyNoCertifications() {
-        return elementExists(profilePageLocators.certsEmptyCardTxt);
+        return !elementExists(profilePageLocators.certsHeader) &&
+                !verifyAlcoholCert() &&
+                !verifyFoodHandlerCert() &&
+                !verifyFoodProtectionMangerCert() &&
+                !verifyHACCPCert();
+    }
+
+    /**
+     * Clicks the Certifications link from the side menu on the edit profile page
+     */
+    public void clickSideMenuCertificationsLink() {
+        wait.until(elementToBeClickable(profilePageLocators.sideMenuCertificationsLink));
+        driver.findElement(profilePageLocators.sideMenuCertificationsLink).click();
     }
 
     /*--------- Availability ----------*/

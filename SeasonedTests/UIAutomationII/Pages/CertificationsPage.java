@@ -67,7 +67,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the alcohol seller certification is selected
      */
     public boolean isAlcoholSelected() {
-        return isCheckboxSelected(driver.findElement(certificationsPageLocators.alcoholSellerChk));
+        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.alcoholSellerChkBox));
     }
 
     /**
@@ -75,7 +75,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the food handler certification is selected
      */
     public boolean isFoodHandlerSelected() {
-        return isCheckboxSelected(driver.findElement(certificationsPageLocators.foodHandlerChk));
+        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.foodHandlerChkBox));
     }
 
     /**
@@ -83,7 +83,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the food protection manager certification is selected
      */
     public boolean isFoodProtectionManagerSelected() {
-        return isCheckboxSelected(driver.findElement(certificationsPageLocators.foodProtectionChk));
+        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.foodProtectionChkBox));
     }
 
     /**
@@ -91,7 +91,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the HACCP certification is selected
      */
     public boolean isHACCPSelected() {
-        return isCheckboxSelected(driver.findElement(certificationsPageLocators.haccpChk));
+        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.haccpChkBox));
     }
 
     /**
@@ -168,5 +168,21 @@ public class CertificationsPage extends BasePage {
                 !isFoodHandlerUploadBtnDisplayed() &&
                 !isFoodProtectionUploadBtnDisplayed() &&
                 !isHACCPUploadBtnDisplayed();
+    }
+
+    /**
+     * Verifies that the success banner is displayed after saving changes
+     * @return Whether or not the success banner is displayed
+     */
+    public boolean verifyCertificationSuccessBanner() {
+        return elementExistsLongTimeout(certificationsPageLocators.certsSuccessToastDiv);
+    }
+
+    /**
+     * Clicks the 'X' button on the success/fail banner on the edit certification page
+     */
+    public void clickCloseCertificationBannerBtn() {
+        wait.until(elementToBeClickable(certificationsPageLocators.certsBannerCloseBtn));
+        driver.findElement(certificationsPageLocators.certsBannerCloseBtn).click();
     }
 }

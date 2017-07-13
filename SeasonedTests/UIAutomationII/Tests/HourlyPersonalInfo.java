@@ -127,7 +127,7 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertTrue(personalInfoPage.isUserPhoneTxtFieldEmpty(), "Phone field should be empty");
         Assert.assertTrue(personalInfoPage.isBirthdayEmpty(), "Birthday dropdowns should have default selections");
         Assert.assertFalse(personalInfoPage.isEligibilitySelected(), "Eligibility should not be checked");
-        Assert.assertTrue(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
+        Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Update the user's name, location, phone, birthday and eligibility and then save */
         personalInfoPage.updateUserFirstAndLastName(newFirstName, newLastName);
