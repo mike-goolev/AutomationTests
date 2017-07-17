@@ -41,7 +41,7 @@ public class HourlyCertifications extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Click edit profile and navigate to the Certs Page and verify that there are no certs present */
-        profilePage.clickEditProfileBtn();
+        profilePage.clickEditProfile();
         profilePage.clickSideMenuCertificationsLink();
         Assert.assertTrue(certificationsPage.areNoCertsSelected(), "No certs should be selected");
 
@@ -57,7 +57,7 @@ public class HourlyCertifications extends BaseTest {
         Assert.assertTrue(profilePage.verifyAllCertifications(), "All certifications have been selected");
 
         /* Go back and remove all certifications */
-        profilePage.clickEditProfileBtn();
+        profilePage.clickEditProfile();
         profilePage.clickSideMenuCertificationsLink();
         certificationsPage.selectAllCertifications();
         Assert.assertTrue(certificationsPage.verifyCertificationSuccessBanner(), "Success toast should appear");

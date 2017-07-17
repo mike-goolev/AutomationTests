@@ -1,7 +1,6 @@
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class PersonalInfoPage extends BasePage {
@@ -314,7 +313,7 @@ public class PersonalInfoPage extends BasePage {
      * @return Whether or not the eligibility checkbox is selected
      */
     public boolean isEligibilitySelected() {
-        return isCheckboxSelectedNew(driver.findElement(personalInfoPageLocators.personalInfoEligibilityChk));
+        return isCheckboxSelected(driver.findElement(personalInfoPageLocators.personalInfoEligibilityChk));
     }
 
     /**
@@ -332,15 +331,13 @@ public class PersonalInfoPage extends BasePage {
     }
 
     /**
-     * Checks to see if the personal info save button is disabled
+     * Checks to see if the personal info save button is enabled
 
-     * @return Whether or not the personal info save button is disabled
+     * @return Whether or not the personal info save button is enabled
      */
     public boolean isSaveButtonEnabled(){
         return (driver.findElement(personalInfoPageLocators.personalInfoSaveBtn).isEnabled());
     }
-
-
 
     /**
      * Checks to see if the personal info success toast is visible

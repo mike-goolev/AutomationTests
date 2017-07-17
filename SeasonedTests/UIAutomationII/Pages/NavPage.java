@@ -63,6 +63,7 @@ public class NavPage extends BasePage {
     public void navigateToProfilePage() {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
+        wait.until(elementToBeClickable(navPageLocators.menuProfileBtn));
         driver.findElement(navPageLocators.menuProfileBtn).click();
     }
 

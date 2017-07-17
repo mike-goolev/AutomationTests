@@ -42,7 +42,7 @@ public class HourlyAbout extends BaseTest {
 
         /* Navigate to profile -> Click edit profile -> Navigate to the HourlyAbout page */
         navPage.navigateToProfilePage();
-        profilePage.clickEditProfileBtn();
+        profilePage.clickEditProfile();
         profilePage.clickSideMenuAboutMeLink();
 
         /* Verify that there is no text in the about text field */
@@ -58,7 +58,7 @@ public class HourlyAbout extends BaseTest {
         Assert.assertTrue(profilePage.verifyAboutTxt(aboutMeTxt), "About me text should match aboutMeTxt variable");
 
         /* Go to edit about and verify that there is text, then remove it */
-        profilePage.clickEditProfileBtn();
+        profilePage.clickEditProfile();
         profilePage.clickSideMenuAboutMeLink();
         Assert.assertTrue(aboutPage.aboutTxtEquals(aboutMeTxt), "HourlyAbout text field should be )" + aboutMeTxt);
         aboutPage.removeAboutTxt();

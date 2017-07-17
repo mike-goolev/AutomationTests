@@ -13,15 +13,6 @@ public class ProfilePage extends BasePage {
         profilePageLocators = new Locators.ProfilePageLocators();
         skillsPage = new SkillsPage(driver);
     }
-    /*--------- Profile (View) Page - Globals ----------*/
-
-    /**
-     * Clicks on the edit profile button
-     */
-    public void clickEditProfile() {
-        wait.until(elementToBeClickable(profilePageLocators.profileEditBtn));
-        driver.findElement(profilePageLocators.profileEditBtn).click();
-    }
 
     /*--------- Personal Info ----------*/
 
@@ -335,302 +326,20 @@ public class ProfilePage extends BasePage {
         driver.findElement(profilePageLocators.sideMenuAboutMeLink).click();
     }
 
-    /*---------- Basic Info ---------*/
-
-    /**
-     * Clicks on the add basic info button when a user does NOT have basic info
-     */
-    public void clickAddBasicInfo() {
-        wait.until(elementToBeClickable(profilePageLocators.addBasicInfoBtn));
-        driver.findElement(profilePageLocators.addBasicInfoBtn).click();
-    }
-
-    /**
-     * Clicks on the edit basic info button when a user has basic info filled out
-     */
-    public void clickEditBasicInfo() {
-        wait.until(elementToBeClickable(profilePageLocators.editBasicInfoBtn));
-        driver.findElement(profilePageLocators.editBasicInfoBtn).click();
-    }
-
-    /**
-     * Checks to see if the age question is answered yes on the view profile page
-     * @return Whether or not the age question is answered yes
-     */
-    public boolean basicInfoAgeQuestionAnsweredYes() {
-        return elementExists(profilePageLocators.basicInfoAgeYesBtn);
-    }
-
-    /**
-     * Checks to see if the transport question is answered yes on the view profile page
-     * @return Whether or not the transport question is answered yes
-     */
-    public boolean basicInfoTransportQuestionAnsweredYes() {
-        return elementExists(profilePageLocators.basicInfoTransportYesBtn);
-    }
-
-    /**
-     * Checks to see if the legal question is answered yes on the view profile page
-     * @return Whether or not the legal question is answered yes
-     */
-    public boolean basicInfoLegalQuestionAnsweredYes() {
-        return elementExists(profilePageLocators.basicInfoLegalYesBtn);
-    }
-
-    /**
-     * Checks to see if all basic info questions are answered yes on the view profile page
-     * @return Whether or not all basic info questions are answered yes
-     */
-    public boolean basicInfoQuestionsAnsweredYes() {
-        return basicInfoAgeQuestionAnsweredYes() &&
-                basicInfoTransportQuestionAnsweredYes() &&
-                basicInfoLegalQuestionAnsweredYes();
-    }
-
-    /**
-     * Checks to see if the age question is answered yes no the view profile page
-     * @return Whether or not the age question is answered no
-     */
-    public boolean basicInfoAgeQuestionAnsweredNo() {
-        return elementExists(profilePageLocators.basicInfoAgeNoBtn);
-    }
-
-    /**
-     * Checks to see if the transport question is answered no on the view profile page
-     * @return Whether or not the transport question is answered no
-     */
-    public boolean basicInfoTransportQuestionAnsweredNo() {
-        return elementExists(profilePageLocators.basicInfoTransportNoBtn);
-    }
-
-    /**
-     * Checks to see if the legal question is answered no on the view profile page
-     * @return Whether or not the legal question is answered no
-     */
-    public boolean basicInfoLegalQuestionAnsweredNo() {
-        return elementExists(profilePageLocators.basicInfoLegalNoBtn);
-    }
-
-    /**
-     * Checks to see if all basic info questions are answered yes on the view profile page
-     * @return Whether or not all basic info questions are answered yes
-     */
-    public boolean basicInfoQuestionsAnsweredNo() {
-        return basicInfoAgeQuestionAnsweredNo() &&
-                basicInfoTransportQuestionAnsweredNo() &&
-                basicInfoLegalQuestionAnsweredNo();
-    }
-
-        /*---------- HourlySkills -----------*/
-
-    /**
-     * Clicks the add skills button when a user DOESN'T have skills on their profile
-     */
-    public void clickAddSkills() {
-        wait.until(elementToBeClickable(profilePageLocators.addSkillsBtn));
-        driver.findElement(profilePageLocators.addSkillsBtn).click();
-    }
-
-    /**
-     * Clicks the edit skills button when a user has >= 1 skill selected on their profile
-     */
-    public void clickEditSkills() {
-        wait.until(elementToBeClickable(profilePageLocators.editSkillsBtn));
-        driver.findElement(profilePageLocators.editSkillsBtn).click();
-    }
-
-    /**
-     * Checks to see if the Baker skill is selected
-     */
-    public boolean skillBakerSelectedYes() {
-        return elementExists(profilePageLocators.skillsBakerTxt);
-    }
-
-    /**
-     * Checks to see if the Bar-back skill is selected
-     */
-    public boolean skillBarbackSelectedYes() {
-        return elementExists(profilePageLocators.skillsBarBackTxt);
-    }
-
-    /**
-     * Checks to see if the Barista skill is selected
-     */
-    public boolean skillBaristaSelectedYes() {
-        return elementExists(profilePageLocators.skillsBaristaTxt);
-    }
-
-    /**
-     * Checks to see if the bartender skill is selected
-     */
-    public boolean skillBartenderSelectedYes() {
-        return elementExists(profilePageLocators.skillsBartenderTxt);
-    }
-
-    /**
-     * Checks to see if the Busser skill is selected
-     */
-    public boolean skillBusserSelectedYes() {
-        return elementExists(profilePageLocators.skillsBusserTxt);
-    }
-
-    /**
-     * Checks to see if the Cashier skill is selected
-     */
-    public boolean skillCashierSelectedYes() {
-        return elementExists(profilePageLocators.skillsCashierTxt);
-    }
-
-    /**
-     * Checks to see if the Chef skill is selected
-     */
-    public boolean skillChefSelectedYes() {
-        return elementExists(profilePageLocators.skillsChefTxt);
-    }
-
-    /**
-     * Checks to see if the Cook skill is selected
-     */
-    public boolean skillCookSelectedYes() {
-        return elementExists(profilePageLocators.skillsCookTxt);
-    }
-
-    /**
-     * Checks to see if the Crew skill is selected
-     */
-    public boolean skillCrewSelectedYes() {
-        return elementExists(profilePageLocators.skillsCrewTxt);
-    }
-
-    /**
-     * Checks to see if the Dishhwasher skill is selected
-     */
-    public boolean skillDishwasherSelectedYes() {
-        return elementExists(profilePageLocators.skillsDishwasherTxt);
-    }
-
-    /**
-     * Checks to see if the Driver skill is selected
-     */
-    public boolean skillDriverSelectedYes() {
-        return elementExists(profilePageLocators.skillsDriverTxt);
-    }
-
-    /**
-     * Checks to see if the Drive-thru skill is selected
-     */
-    public boolean skillDrivethruSelectedYes() {
-        return elementExists(profilePageLocators.skillsDriveThruTxt);
-    }
-
-    /**
-     * Checks to see if the Host skill is selected
-     */
-    public boolean skillHostSelectedYes() {
-        return elementExists(profilePageLocators.skillsHostTxt);
-    }
-
-    /**
-     * Checks to see if the Manager skill is selected
-     */
-    public boolean skillManagerSelectedYes() {return elementExists(profilePageLocators.skillsManagerTxt); }
-
-    /**
-     * Checks to see if the Prep Cook skill is selected
-     */
-    public boolean skillPrepCookSelectedYes() {
-        return elementExists(profilePageLocators.skillsPrepCookTxt);
-    }
-
-    /**
-     * Checks to see if the Runner skill is selected
-     */
-    public boolean skillRunnerSelectedYes() {
-        return elementExists(profilePageLocators.skillsRunnerTxt);
-    }
-
-    /**
-     * Checks to see if the Server skill is selected
-     */
-    public boolean skillServerSelectedYes() {
-        return elementExists(profilePageLocators.skillsServerTxt);
-    }
-
-    /**
-     * Checks to see if the Sommelier skill is selected
-     */
-    public boolean skillSommelierSelectedYes() {
-        return elementExists(profilePageLocators.skillsSommelierTxt);
-    }
-
-    /**
-     * Checks to see if the Sous Chef skill is selected
-     */
-    public boolean skillSousChefSelectedYes() {
-        return elementExists(profilePageLocators.skillsSousChefTxt);
-    }
-
-    /**
-     * Checks to see if the TeamMember skill is selected
-     */
-    public boolean skillTeamMemberSelectedYes() {
-        return elementExists(profilePageLocators.skillsTeamMemberTxt);
-    }
-
-    /**
-     * Checks to see if the Trainer skill is selected
-     */
-    public boolean skillTrainerSelectedYes() {
-        return elementExists(profilePageLocators.skillsTrainerTxt);
-    }
+    /*---------- HourlySkills -----------*/
 
     /**
      * Checks to see if the selected skills match what is on the view profile screen
-     *
-     * @return Whether or not the selected skills are on the page
+
+     * @param index The index (Starting at 0) of the skill you wish to locate
+     * @return Whether or not the selected skill is on the page
      */
-    public boolean verifySelectedSkills() {
-        return skillBakerSelectedYes() &&
-                skillBarbackSelectedYes() &&
-                skillBaristaSelectedYes() &&
-                skillBartenderSelectedYes() &&
-                skillBusserSelectedYes() &&
-                skillCashierSelectedYes() &&
-                skillChefSelectedYes() &&
-                skillCookSelectedYes() &&
-                skillCrewSelectedYes() &&
-                skillDishwasherSelectedYes() &&
-                skillDriverSelectedYes() &&
-                skillDrivethruSelectedYes() &&
-                skillHostSelectedYes() &&
-                skillManagerSelectedYes() &&
-                skillPrepCookSelectedYes() &&
-                skillRunnerSelectedYes() &&
-                skillServerSelectedYes() &&
-                skillSommelierSelectedYes() &&
-                skillSousChefSelectedYes() &&
-                skillTeamMemberSelectedYes() &&
-                skillTrainerSelectedYes();
+    public String getSelectedSkill(String index) {
+        return driver.findElement(profilePageLocators.findSkillLabelByIndex(index)).getText();
     }
 
-    /**
-     * Checks for empty skills text on the user's profile
-     * @return Whether or not a user has empty skills text on their profile
-     */
-    public boolean isEmptySkillsTxtStatePresent() {
-        driver.findElement(profilePageLocators.emptySkillsTxt);
-        return driver.findElement(profilePageLocators.emptySkillsTxt).isDisplayed();
-    }
-
-    /**
-     * Resets skills to a known (blank) state
-     */
-    public void resetSkills() {
-        if (elementExists(profilePageLocators.editSkillsBtn)) {
-            clickEditSkills();
-            skillsPage.removeAllSkills();
-            clickBackBtn();
-        }
+    public Boolean isSkillsHeaderDisplayed(){
+        return elementExists(profilePageLocators.skillsHeader);
     }
 
     /*---------- HourlyConnections -----------*/
@@ -734,10 +443,11 @@ public class ProfilePage extends BasePage {
     /*---------- Utility Methods ----------*/
 
     /**
-     * Clicks the edit profile button on the view profile page
+     * Clicks on the edit profile button on the view profile page
      */
-    public void clickEditProfileBtn() {
-        driver.findElement(profilePageLocators.editProfileBtn).click();
+    public void clickEditProfile() {
+        wait.until(elementToBeClickable(profilePageLocators.profileEditBtn));
+        driver.findElement(profilePageLocators.profileEditBtn).click();
     }
 
     /**

@@ -67,7 +67,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the alcohol seller certification is selected
      */
     public boolean isAlcoholSelected() {
-        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.alcoholSellerChkBox));
+        return isCheckboxSelected(driver.findElement(certificationsPageLocators.alcoholSellerChkBox));
     }
 
     /**
@@ -75,7 +75,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the food handler certification is selected
      */
     public boolean isFoodHandlerSelected() {
-        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.foodHandlerChkBox));
+        return isCheckboxSelected(driver.findElement(certificationsPageLocators.foodHandlerChkBox));
     }
 
     /**
@@ -83,7 +83,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the food protection manager certification is selected
      */
     public boolean isFoodProtectionManagerSelected() {
-        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.foodProtectionChkBox));
+        return isCheckboxSelected(driver.findElement(certificationsPageLocators.foodProtectionChkBox));
     }
 
     /**
@@ -91,7 +91,7 @@ public class CertificationsPage extends BasePage {
      * @return Whether or not the HACCP certification is selected
      */
     public boolean isHACCPSelected() {
-        return isCheckboxSelectedNew(driver.findElement(certificationsPageLocators.haccpChkBox));
+        return isCheckboxSelected(driver.findElement(certificationsPageLocators.haccpChkBox));
     }
 
     /**

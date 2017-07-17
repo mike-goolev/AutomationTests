@@ -156,8 +156,7 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertEquals(personalInfoPage.getSelectedDay(), dobDay);
         Assert.assertEquals(personalInfoPage.getSelectedYear(), dobYear);
         Assert.assertTrue(personalInfoPage.isEligibilitySelected(), "Eligibility should be checked");
-        /* Commenting out for now b/c the presence of a phone # or b-day causes the save button to always display in an enabled state */
-        /*Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");*/
+        Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Go back and verify that the new name shows on the view profile page */
         navPage.navigateToProfilePage();
@@ -185,8 +184,7 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertEquals(personalInfoPage.getUserLocation(), originalLocation);
         Assert.assertTrue(personalInfoPage.isUserPhoneTxtFieldEmpty(), "Phone field should be empty");
         Assert.assertFalse(personalInfoPage.isEligibilitySelected(), "Eligibility should not be checked");
-        /* Commenting out for now b/c the presence of a phone # or b-day causes the save button to always display in an enabled state */
-        /*Assert.assertTrue(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");*/
+        Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Go back to view profile and verify that the original name and location are displayed */
         navPage.navigateToProfilePage();
