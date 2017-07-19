@@ -14,6 +14,11 @@ public class HourlyAbout extends BaseTest {
 
     private String username;
     private String password;
+    private String firstname;
+    private String lastname;
+    private String id;
+    private String guid;
+    private String token;
     private String aboutMeTxt;
 
     @BeforeClass
@@ -28,6 +33,13 @@ public class HourlyAbout extends BaseTest {
         aboutMeTxt = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("aboutMe");
         username = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("username");
         password = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("password");
+        firstname = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("firstname");
+        lastname = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("lastname");
+        id = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("userid");
+        guid = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("userguid");
+        token = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("token");
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        seasonedRestAPI.updateUserAbout(id, guid, firstname, lastname, username, "");
         System.out.println("Starting hourly profile test!");
     }
 

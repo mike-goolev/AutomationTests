@@ -314,36 +314,12 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Clicks the add about button when a user DOESN'T have about text on their profile
-     */
-    public void clickAddAbout() {
-        wait.until(elementToBeClickable(profilePageLocators.addAboutBtn));
-        driver.findElement(profilePageLocators.addAboutBtn).click();
-    }
-
-    /**
-     * Clicks the edit about button when a user has about txt on their profile
-     */
-    public void clickEditAbout() {
-        wait.until(elementToBeClickable(profilePageLocators.editAboutBtn));
-        driver.findElement(profilePageLocators.editAboutBtn).click();
-    }
-
-    /**
      * Checks to see if the about text matches what is on the view profile screen
      * @param aboutTxt The text you're expecting to be on the page
      * @return Whether or not the text is on the page
      */
     public boolean verifyAboutTxt(String aboutTxt) {
         return aboutTxt.equals(driver.findElement(profilePageLocators.aboutTxtField).getText());
-    }
-
-    /**
-     * Checks for about text on the user's profile
-     * @return Whether or not a user has about text on their profile
-     */
-    public boolean isAboutTxtEmptyStatePresent() {
-        return driver.findElement(profilePageLocators.emptyAboutTxtField).isDisplayed();
     }
 
     /**

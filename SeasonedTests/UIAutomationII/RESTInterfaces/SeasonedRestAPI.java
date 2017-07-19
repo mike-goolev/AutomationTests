@@ -333,6 +333,36 @@ public class SeasonedRestAPI {
         }
     }
 
+    /** Updates a user's about section by calling the /user endpoint
+     * @param id the db id for the user
+     * @param guid the guid for the user to update
+     * @param firstname user's firstname
+     * @param lastname user's lastname
+     * @param email user's email
+     * @param about The about string to set for the user
+     */
+    public void updateUserAbout(String id, String guid, String firstname, String lastname, String email, String about) {
+        try {
+            User user = new User();
+
+            user.setId(id);
+            user.setGuid(guid);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmail(email);
+
+            user.setAbout(about);
+
+            /* Make a PUT request to /user */
+            Call<User> call = seasonedAPI.updateUserAbout(accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user returned a: " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
     /**
      * Posts a connection request from user a to user b
      * @param fromUserGuid The guid of the user sending the connection request

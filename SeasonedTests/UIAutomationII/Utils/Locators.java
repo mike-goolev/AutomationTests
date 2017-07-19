@@ -527,13 +527,13 @@ public class Locators {
         public By certsHeader = By.id("profileCertificationsTitleText");
         public By certsAddButton = By.id("certificationsCardEmptyAddBtn");
         public By certsEditButton = By.id("certificationsCardEditBtn");
-        public By certsAlcoholImg = By.id("profileCertificationAlcoholSeller/ServerCardListItemImg3");
+        public By certsAlcoholImg = By.id("profileCertificationAlcoholSeller/ServerCardListItemImg");
         public By certsAlcoholTxt = By.id("certificationsCardListItemAlcoholSeller/ServerText");
-        public By certsFoodHandlerImg = By.id("profileCertificationFoodHandlerCardListItemImg1");
+        public By certsFoodHandlerImg = By.id("profileCertificationFoodHandlerCardListItemImg");
         public By certsFoodHandlerTxt = By.id("certificationsCardListItemFoodHandlerText");
-        public By certsFoodProtectionImg = By.id("profileCertificationFoodProtectionManagerCardListItemImg2");
+        public By certsFoodProtectionImg = By.id("profileCertificationFoodProtectionManagerCardListItemImg");
         public By certsFoodProtectionTxt = By.id("certificationsCardListItemFoodProtectionManagerText");
-        public By certsHACCPImg = By.id("profileCertificationHACCPCardListItemImg0");
+        public By certsHACCPImg = By.id("profileCertificationHACCPCardListItemImg");
         public By certsHACCPTxt = By.id("certificationsCardListItemHACCPText");
         public By certsEmptyCardTxt = By.id("certificationsCardEmptyDescriptionText");
         public By sideMenuCertificationsLink = By.id("editProfileCertificationsLink");
