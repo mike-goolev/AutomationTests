@@ -161,6 +161,15 @@ public class User {
     @Expose
     private Integer networkCount;
 
+    @Expose
+    private String employmentInterestStatus;
+
+    @Expose
+    private String employmentInterestType;
+
+    @Expose
+    private String gigInterestStatus;
+
     public Integer getErrorCode() {
         return errorCode;
     }
@@ -577,4 +586,27 @@ public class User {
         this.networkCount = networkCount;
     }
 
+    public String getEmploymentInterestStatus() {
+        return getEmploymentInterestStatus();
+    }
+
+    public void setEmploymentInterestStatus(String interestStatus) {
+        this.employmentInterestStatus = interestStatus;
+    }
+
+    public String getEmploymentInterestType() {
+        return employmentInterestType;
+    }
+
+    public void setEmploymentInterestType(String interestType) {
+        this.employmentInterestType = interestType;
+    }
+
+    public String getGigInterestStatus() {
+        return gigInterestStatus;
+    }
+
+    public void setGigInterestStatus(String gigInterest) {
+        this.gigInterestStatus = gigInterest;
+    }
 }

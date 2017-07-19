@@ -25,7 +25,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Selects a skill at the specified index
-     *
      * @param index The index of the skill to select
      */
     public void toggleSkill(String index) {
@@ -35,7 +34,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the skill at the specified index is selected
-     *
      * @param index The index of the skill to select
      * @return Whether or not the skill at the specified is selected
      */
@@ -45,7 +43,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the skill at the specified index is selected
-     *
      * @param index The index of the skill to select
      * @return Whether or not the skill at the specified is selected
      */
@@ -63,7 +60,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the skills success toast is visible
-
      * @return Whether or not the skills success toast is visible
      */
     public boolean verifySkillsSuccessToast(){
@@ -82,7 +78,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Checks to see if the skills save button is enabled
-
      * @return Whether or not the personal info save button is enabled
      */
     public boolean isSaveButtonEnabled(){

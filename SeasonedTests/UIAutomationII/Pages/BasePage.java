@@ -62,4 +62,17 @@ public class BasePage {
 
         return false;
     }
+
+    /**
+     * Checks to see if a card is in a selected state by looking at the class attribute for selected
+     * @param card the web element for the card
+     * @return whether or not a card has been selected
+     */
+    public boolean isCardSelected(WebElement card) {
+        if(card.getAttribute("class").contains("selected")) {
+            return true;
+        }
+
+        return false;
+    }
 }

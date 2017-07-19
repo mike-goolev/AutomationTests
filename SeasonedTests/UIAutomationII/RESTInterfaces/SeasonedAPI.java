@@ -23,6 +23,9 @@ public interface SeasonedAPI {
     @PUT("user")
     Call<User> updateUserNameEmailPhoneBday(@Header("Authorization") String accessToken, @Body User user);
 
+    @PUT("user")
+    Call<User> setAvailabilityStatus(@Header("Authorization") String accessToken, @Body User user);
+
     @GET("employer/{guid}/employees/count")
     Call<EmployeeCount> getEmployeeCount(@Path("guid") String guid, @Header("Authorization") String accessToken);
 

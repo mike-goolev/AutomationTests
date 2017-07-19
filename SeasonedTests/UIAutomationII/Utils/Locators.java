@@ -561,10 +561,13 @@ public class Locators {
         /* Availability Section */
         public By addAvailabilityBtn = By.id("availabilityCardEmptyAddBtn");
         public By editAvailabilityBtn = By.id("availabilityCardEditBtn");
-        public By availabilityMorningsSelectedImg = By.id("availabilityCardListItemMorningsImg");
-        public By availabilityAfternoonsSelectedImg = By.id("availabilityCardListItemAfternoonsImg");
-        public By availabilityEveningsSelectedImg = By.id("availabilityCardListItemEveningsImg");
-        public By availabilityNightsSelectedImg = By.id("availabilityCardListItemNightsImg");
+        public By availabilityMorningsCard = By.id("profileAvailabilityCardMornings");
+        public By availabilityAfternoonsCard = By.id("profileAvailabilityCardAfternoons");
+        public By availabilityEveningsCard = By.id("profileAvailabilityCardEvenings");
+        public By availabilityNightsCard = By.id("profileAvailabilityCardNights");
+        public By availabilityInterestStatusTxt = By.id("profileAvailabilityEmploymentInterestStatus");
+        public By availabilityInterestTypeTxt = By.id("profileAvailabilityEmploymentInterestType");
+        public By sideMenuAvailabilityLink = By.id("editProfileAvailabilityLink");
 
         /* Connections Section */
         public By connectionsTitleTxt = By.id("connectionsCardTitleText");
@@ -755,12 +758,19 @@ public class Locators {
     }
 
     public static class AvailabilityPageLocators {
-        public By morningCheckbox = By.id("editAvailabilityMorningsChk");
-        public By afternoonCheckbox = By.id("editAvailabilityAfternoonsChk");
-        public By eveningCheckbox = By.id("editAvailabilityEveningsChk");
-        public By nightsCheckbox = By.id("editAvailabilityNightsChk");
+        public By availabilityStatusDropDown = By.id("editAvailabilityEmploymentStatus");
+        public By availabilityGigsChkBox = By.id("editAvailabilityGigsCheckboxBox");
+        public By availabilityFullTimeCard = By.id("editAvailabilityCardFull-Time");
+        public By availabilityPartTimeCard = By.id("editAvailabilityCardPart-Time");
+        public By availabilitySeasonalCard = By.id("editAvailabilityCardSeasonal");
+        public By availabilityAnythingCard = By.id("editAvailabilityCardAnything");
+        public By morningCard = By.id("editAvailabilityCardMornings");
+        public By afternoonCard = By.id("editAvailabilityCardAfternoons");
+        public By eveningCard = By.id("editAvailabilityCardEvenings");
+        public By nightsCard = By.id("editAvailabilityCardNights");
         public By saveBtn = By.id("editAvailabilitySaveBtn");
-        public By successToastDiv = By.id("bodySideMenuToast");
+        public By availabilitySuccessToastDiv = By.cssSelector("div#editProfileAvailabilityToast.success");
+        public By availabilityBannerCloseBtn = By.id("editProfileAvailabilityToastCloseBtn");
     }
 
     public static class HourlyConnectionPageLocators {

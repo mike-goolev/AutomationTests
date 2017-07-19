@@ -269,13 +269,41 @@ public class ProfilePage extends BasePage {
      * @return Whether or not the user has selected all availability
      */
     public boolean verifyAllAvailabilitySelected() {
-        return elementExists(profilePageLocators.availabilityMorningsSelectedImg) &&
-                elementExists(profilePageLocators.availabilityAfternoonsSelectedImg) &&
-                elementExists(profilePageLocators.availabilityEveningsSelectedImg) &&
-                elementExists(profilePageLocators.availabilityNightsSelectedImg);
+        return elementExists(profilePageLocators.availabilityMorningsCard) &&
+                elementExists(profilePageLocators.availabilityAfternoonsCard) &&
+                elementExists(profilePageLocators.availabilityEveningsCard) &&
+                elementExists(profilePageLocators.availabilityNightsCard);
     }
 
-    /*---------- HourlyAbout -----------*/
+    /**
+     * Verifies that the status text displayed on the profile matches a given string
+     * @param status The string to match the interest status text with on the view profile page
+     * @return Whether or not the interest text matches the given status string
+     */
+    public boolean verifyAvailabilityInterestStatusTxt(String status) {
+        String statusTxt = driver.findElement(profilePageLocators.availabilityInterestStatusTxt).getText();
+        return statusTxt.equals(status);
+    }
+
+    /**
+     * Verifies that the type text displayed on the profile matches a given string
+     * @param type The string to match the interest type text with on the view profile page
+     * @return
+     */
+    public boolean verifyAvailabilityInterestTypeTxt(String type) {
+        String typeTxt = driver.findElement(profilePageLocators.availabilityInterestTypeTxt).getText();
+        return typeTxt.equals(type);
+    }
+
+    /**
+     * Clicks the availability link from the side menu on the edit profile page
+     */
+    public void clickSideMenuAvailabilityLink() {
+        wait.until(elementToBeClickable(profilePageLocators.sideMenuAvailabilityLink));
+        driver.findElement(profilePageLocators.sideMenuAvailabilityLink).click();
+    }
+
+    /*---------- About -----------*/
 
     /**
      * Verifies that the about section on the view profile page is present

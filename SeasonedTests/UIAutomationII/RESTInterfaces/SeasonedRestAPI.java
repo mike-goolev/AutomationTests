@@ -299,6 +299,41 @@ public class SeasonedRestAPI {
     }
 
     /**
+     * Sets a user availability status by calling the /user endpoint
+     * @param id the db id for the user
+     * @param guid the guid of the user you want to set the status of
+     * @param firstname user's first name
+     * @param lastname user's last name
+     * @param email user's email
+     * @param empInterestStatus set the user's status to OPEN, LOOKING, or EMPLOYED
+     * @param empInterestType set the user's type to ANYTHING, FULL_TIME, PART_TIME, or SEASONAL
+     * @param gigInterestStatus set the user's gig status to UNSPECIFIED, NO, YES
+     */
+    public void setAvailabilityStatus(String id, String guid, String firstname, String lastname, String email, String empInterestStatus, String empInterestType, String gigInterestStatus) {
+        try {
+            User user = new User();
+
+            user.setId(id);
+            user.setGuid(guid);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmail(email);
+            user.setAccountState("normal");
+            user.setEmploymentInterestStatus(empInterestStatus);
+            user.setEmploymentInterestType(empInterestType);
+            user.setGigInterestStatus(gigInterestStatus);
+
+            /* Make a PUT request to user */
+            Call<User> call = seasonedAPI.setAvailabilityStatus(accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user returned a " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
      * Posts a connection request from user a to user b
      * @param fromUserGuid The guid of the user sending the connection request
      * @param toUserGuid The guid of the user receiving the connection request
