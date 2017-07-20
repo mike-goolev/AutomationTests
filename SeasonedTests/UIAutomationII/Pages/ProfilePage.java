@@ -34,21 +34,13 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Checks to see if the user's primary job is on the profile page
-
-     * @param job The user's primary job on the profile page
-     * @return Whether or not the text of the user's primary job matches the text param
-     */
-    public boolean verifyUserPrimaryJob(String job) {
-        return job.equals(driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText());
-    }
-
-    /**
      * Get user's primary job from the text field
+     *
+     * @param index The index (Starting at 0) of the user primary job you wish to locate
      * @return User's primary job
      */
-    public String getPrimaryJobTxt() {
-        return driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText();
+    public String getPrimaryJobTxt(String index) {
+        return driver.findElement(profilePageLocators.findPrimaryJobTxtByIndex(index)).getText();
     }
 
     /**
@@ -89,27 +81,11 @@ public class ProfilePage extends BasePage {
     /*--------- Work History ----------*/
 
     /**
-     * Clicks on the add work history button when a user has no work history
-     */
-    public void clickAddWorkHistory() {
-        wait.until(elementToBeClickable(profilePageLocators.workHistoryAddBtn));
-        driver.findElement(profilePageLocators.workHistoryAddBtn).click();
-    }
-
-    /**
-     * Clicks on the edit work history button when a user has work history on their profile
-     */
-    public void clickEditWorkHistory() {
-        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
-        driver.findElement(profilePageLocators.workHistoryEditBtn).click();
-    }
-
-    /**
      * Verifies that the empty state text is present on the work history card
      * @return Whether or not the empty state text is present on the work history card
      */
-    public boolean isWorkHistoryEmptyCardTextPresent() {
-        return elementExists(profilePageLocators.workHistoryEmptyCardTxt);
+    public boolean isExperienceHeaderDisplayed() {
+        return elementExists(profilePageLocators.workHistoryCardHeader);
     }
 
     /**
@@ -122,47 +98,41 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Verifies that the job position name is present at the given index
+     * Gets the job position name at the given index
+     *
      * @param employerIndex The index (Starting at 0) of the employer you wish to locate
-     * @param jobIndex The index (Starting at 0) of the job name you wish to locate
-     * @return Whether or not the job name is present at the given index
+     * @param positionIndex The index (Starting at 0) of the position name you wish to locate
+     * @return The job position text at the given index
      */
-    public boolean isJobPositionPresent(String employerIndex, String jobIndex) {
-        return elementExists(profilePageLocators.findWorkHistoryJobPositionByIndex(employerIndex, jobIndex));
+    public String getJobPosition(String employerIndex, String positionIndex) {
+        return driver.findElement(profilePageLocators.findWorkHistoryJobPositionByIndex(employerIndex, positionIndex)).getText();
     }
 
     /**
-     * Verifies that the employer name is present at the given index
+     * Gets the employer name from the given index
      * @param index The index (Starting at 0) of the employer you wish to locate
-     * @return Whether or not the employer name is present at the given index
+     * @return The employer name text at the given index
      */
-    public boolean isEmployerNamePresent(String index) {
-        return elementExists(profilePageLocators.findWorkHistoryEmployerNameByIndex(index));
+    public String getEmployerName(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerNameByIndex(index)).getText();
     }
 
     /**
-     * Verifies that the employer location is present at the given index
+     * Gets the time period at the given index
      * @param index The index (Starting at 0) of the employer you wish to locate
-     * @return Whether or not the employer location is present at the given index
+     * @return The time period text at the given index
      */
-    public boolean isEmployerLocationPresent(String index) {
-        return elementExists(profilePageLocators.findWorkHistoryEmployerLocationByIndex(index));
+    public String getTimePeriod(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index)).getText();
     }
 
     /**
-     * Verifies that the time period is present at the given index
-     * @param index The index (Starting at 0) of the employer you wish to locate
-     * @return Whether or not the time period is present at the given index
+     * Gets the work history duration at the given index
+     * @param index The index (Starting at 0) of the work history duration you wish to locate
+     * @return The duration text at the given index
      */
-    public boolean isTimePeriodPresent(String index) {
-        return elementExists(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index));
-    }
-
-    /**
-     * Waits for the edit work history button to be clickable
-     */
-    public void waitForEditWorkHistoryBtn() {
-        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
+    public String getDuration(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index)).getText();
     }
 
     /*--------- Certifications ----------*/

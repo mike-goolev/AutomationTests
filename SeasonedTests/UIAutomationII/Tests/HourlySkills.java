@@ -77,7 +77,7 @@ public class HourlySkills extends BaseTest {
         skillsPage.clickSaveBtn();
 
         /* Verify and dismiss success toast */
-        skillsPage.verifySkillsSuccessToast();
+        Assert.assertTrue(skillsPage.verifySkillsSuccessToast());
         skillsPage.dismissSkillsSuccessToast();
 
         /* Verify save button is disabled after saving */
@@ -134,7 +134,7 @@ public class HourlySkills extends BaseTest {
         skillsPage.clickSaveBtn();
 
         /* Verify and dismiss success toast */
-        skillsPage.verifySkillsSuccessToast();
+        Assert.assertTrue(skillsPage.verifySkillsSuccessToast());
         skillsPage.dismissSkillsSuccessToast();
 
         /* Verify save button is disabled after saving */

@@ -447,37 +447,28 @@ public class Locators {
 
         /* Personal Info Section */
         public By personInfoUserPhotoImg = By.id("profilePhotoImg");
-        /*public By personalInfoUserFirstAndLastNameTxt = By.id("personalInfoCardUsernameText");*/
-        public By personalInfoUserFirstAndLastNameTxt = By.cssSelector("h3.block-title");
+        public By personalInfoUserFirstAndLastNameTxt = By.id("profileNameTxt");
 
-        /*public By personalInfoUserPrimaryJobTxt = By.id("personalInfoCardPrimaryWorkHistoryText");*/
-        public By personalInfoUserPrimaryJobTxt = By.cssSelector("div.d-inline>div");
+        /**
+         * Locates a user's primary job on the profile page by index
+         *
+         * @param index The index (Starting at 0) of the user's primary job you wish to locate
+         * @return A locator for the user's primary job at the given index
+         */
+        public By findPrimaryJobTxtByIndex(String index){
+            return By.id("profilePrimaryJobJobName" + index);
+        }
 
-        /*public By personalInfoUserLocationTxt = By.id("personalInfoCardLocationText");*/
-        public By personalInfoUserLocationTxt = By.cssSelector("div.d-inline>span");
-
+        public By personalInfoUserLocationTxt = By.id("profileLocationTxt");
         public By personalInfoActionsMenuBtn = By.cssSelector("div.actions-menu-toggle");
         public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
         /* Work History Section */
-        public By workHistoryEmptyCardHeader = By.id("workHistoryCardEmptyTitleText");
-        public By workHistoryCardHeader = By.id("workHistoryCardTitleText");
-        public By workHistoryAddBtn = By.id("workHistoryCardEmptyAddBtn");
-        public By workHistoryEditBtn = By.id("workHistoryCardEditBtn");
-        public By workHistoryEmployerImg0 = By.id("workHistoryCardListItemImg0");
-        public By workHistoryJobPosition0 = By.id("workHistoryCardListItem0JobNameText0");
-        public By workHistoryEmployerName0 = By.id("workHistoryCardListItemTitleText0");
-        public By workHistoryEmployerLocation0 = By.id("workHistoryCardListItemEmployerLocationText0");
-        public By workHistoryEmployerTimePeriod0 = By.id("workHistoryCardListItemWorkPeriodText0");
-        public By workHistoryEmployerImg1 = By.id("workHistoryCardListItemImg1");
-        public By workHistoryJobPosition1 = By.id("workHistoryCardListItem1JobNameText0");
-        public By workHistoryEmployerName1 = By.id("workHistoryCardListItemTitleText1");
-        public By workHistoryEmployerLocation1 = By.id("workHistoryCardListItemEmployerLocationText1");
-        public By workHistoryEmployerTimePeriod1 = By.id("workHistoryCardListItemWorkPeriodText1");
-        public By workHistoryEmptyCardTxt = By.id("workHistoryCardEmptyDescriptionText");
+        public By workHistoryCardHeader = By.id("profileExperienceTitle");
 
         /**
          * Locates an employer logo on the profile page by index
+         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the employer logo at the given index
          */
@@ -487,12 +478,12 @@ public class Locators {
 
         /**
          * Locates a job position on the profile page by index for the employer and job name
-         * @param employerIndex The index (Starting at 0) of the employer you wish to locate
-         * @param jobIndex The index (Starting at 0) of the job name you wish to locate
+         * @param listIndex The index (Starting at 0) of the employer you wish to locate
+         * @param positionIndex The index (Starting at 0) of the job name you wish to locate
          * @return A locator for the job position at the given indexes
          */
-        public By findWorkHistoryJobPositionByIndex(String employerIndex, String jobIndex) {
-            return By.id("workHistoryCardListItem" + employerIndex + "JobNameText" + jobIndex);
+        public By findWorkHistoryJobPositionByIndex(String listIndex, String positionIndex) {
+            return By.id("workHistoryCardListItem" + listIndex + "Position" + positionIndex);
         }
 
         /**
@@ -505,20 +496,20 @@ public class Locators {
         }
 
         /**
-         * Locates an employer's location on the profile page by index
-         * @param index The index (Starting at 0) of the employer you wish to locate
-         * @return A locator for the employer's location at the given index
-         */
-        public By findWorkHistoryEmployerLocationByIndex(String index) {
-            return By.id("workHistoryCardListItemEmployerLocationText" + index);
-        }
-
-        /**
          * Locates the time period the user worked at the employer by index
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the time period the user work at the employer by index
          */
         public By findWorkHistoryEmployerTimePeriodByIndex(String index) {
+            return By.id("workHistoryCardListItemWorkPeriodText" + index);
+        }
+
+        /**
+         * Locates the duration the user worked at the employer by index
+         * @param index The index (Starting at 0) of the employer you wish to locate
+         * @return A locator for the duration the user worked at the employer by index
+         */
+        public By findWorkHistoryEmployerDurationByIndex(String index) {
             return By.id("workHistoryCardListItemWorkPeriodText" + index);
         }
 
@@ -662,32 +653,144 @@ public class Locators {
     }
 
     public static class WorkHistoryPageLocators {
+        public By navMenuExperience = By.id("editProfileExperienceLink");
+        public By editExperienceSuccessToast = By.id("editWorkHistorySuccessToast");
+        public By editExperienceSuccessToastCloseBtn = By.id("editWorkHistorySuccessToastCloseBtn");
+        public By addExperienceSuccessToast = By.cssSelector("div.toast");
+        public By addExperienceSuccessToastCloseBtn = By.id("CloseBtn");
+
+        public By addWorkHistoryBtn = By.id("addExperienceBtn");
+        public By emptyWorkHistoryTitle = By.id("");
+        public By emptyWorkHistoryTxt = By.id("");
+        public By firstJobChk = By.id("addExperienceFirstJobCheckboxBox");
+        public By firstJobChkLbl = By.id("addExperienceFirstJobCheckboxLabel");
+
+        /**
+         * Locates a work history entry's employer logo by index
+         *
+         * @param index The index (Starting at 0) of the work history employer logo you wish to locate
+         * @return A locator for a work history employer logo at the given index
+         */
+        public By findWorkHistoryEmployerLogoByIndex(String index) {
+            return By.id("workHistoryCardListItemImg" + index);
+        }
+
+        /**
+         * Locates a work history entry's position by index
+         *
+         * @param listIndex The index (Starting at 0) of the work history list item position you wish to locate
+         * @param positionIndex The index (Starting at 0) of the work history position
+         * @return A locator for a work history position at the given index
+         */
+        public By findWorkHistoryPositionByIndex(String listIndex, String positionIndex) {
+            return By.id("workHistoryCardListItem" + listIndex + "Position" + positionIndex);
+        }
+
+        /**
+         * Locates a work history entry's employer by index
+         *
+         * @param index The index (Starting at 0) of the work history employer you wish to locate
+         * @return A locator for a work history employer at the given index
+         */
+        public By findWorkHistoryEmployerByIndex(String index) {
+            return By.id("workHistoryCardListItemTitleText" + index);
+        }
+
+        /**
+         * Locates a work history entry's time period by index
+         *
+         * @param index The index (Starting at 0) of the work history time period you wish to locate
+         * @return A locator for a work history time period at the given index
+         */
+        public By findWorkHistoryTimePeriodByIndex(String index) {
+            return By.id("workHistoryCardListItemWorkPeriodText" + index);
+        }
+
+        /**
+         * Locates a work history entry's duration by index
+         *
+         * @param index The index (Starting at 0) of the work history duration you wish to locate
+         * @return A locator for a work history duration at the given index
+         */
+        public By findWorkHistoryDurationByIndex(String index) {
+            return By.id("workHistoryCardListItemDurationText" + index);
+        }
+
+        /**
+         * Locates a work history entry's edit button by index
+         *
+         * @param index The index (Starting at 0) of the work history edit button you wish to locate
+         * @return A locator for a work history edit button at the given index
+         */
+        public By findWorkHistoryEditBtnByIndex(String index) {
+            return By.id("workHistoryCardListItemEditBtn" + index);
+        }
+
+        /**
+         * Locates a selected position by index
+         *
+         * @param index The index (Starting at 0) of the selected position you wish to locate
+         * @return A locator for a selected position at the given index
+         */
+        public By findSelectedPositionLblByIndex(String index) {
+            return By.id("addWorkHistoryJobsSelectBoxSelectedOptionLabel" + index);
+        }
+
+        /**
+         * Locates a selected position remove button by index
+         *
+         * @param index The index (Starting at 0) of the selected position remove button you wish to locate
+         * @return A locator for a selected position remove button at the given index
+         */
+        public By findSelectedPositionRemoveBtnByIndex(String index) {
+            return By.id("addWorkHistoryJobsSelectBoxSelectedOptionCloseBtn" + index);
+        }
+
+        public By jobPositionDropdown = By.id("addWorkHistoryJobsSelectBoxDropdownArrow");
+
+        /**
+         * Locates a position to add by index
+         *
+         * @param index The index (Starting at 0) of the position you wish to locate
+         * @return A locator for a position to add at the given index
+         */
+        public By findPositionByIndex(String index) {
+            return By.id("addWorkHistoryJobsSelectBoxOption" + index);
+        }
+
         public By employerLocationTxtField = By.id("addWorkHistoryLocationInput");
         public By iDontSeeMyStoreLink = By.id("addWorkHistoryToggleSearchBtn");
-        public By jobPositionSelect = By.id("addWorkHistoryJobTypesSelectBox");
         public By fromMonthDateSelect = By.id("addWorkHistoryStartMonthSelectBox");
         public By fromYearDateSelect = By.id("addWorkHistoryStartYearSelectBox");
-        public By toMonthDateSelect = By.id("editWorkHistoryEndMonthSelectBox");
-        public By toYearDateSelect = By.id("editWorkHistoryEndYearSelectBox");
+        public By toMonthDateSelect = By.id("addWorkHistoryEndMonthSelectBox");
+        public By toYearDateSelect = By.id("addWorkHistoryEndYearSelectBox");
+        public By currentWorkHistoryDisableBtn = By.id("addWorkHistoryToggleEndDateBtnOff");
+        public By currentWorkHistoryEnableBtn = By.id("addWorkHistoryToggleEndDateBtnOn");
+
+        public By customPositionTxtField = By.id("addWorkHistoryCustomJobName");
         public By customEmployerNameTxtField = By.id("addWorkHistoryCustomNameInput");
-        public By customEmployerLocationTxtField = By.id("addWorkHistoryCustomLocationInput");
+        public By customEmployerLocationTxtField = By.id("addWorkHistorycustomLocationInput");
         public By searchForStoreLink = By.id("addWorkHistoryToggleSearchBtn");
-        public By firstJobChk = By.id("addWorkHistoryFirstJobChk");
-        public By yesDeleteBtn = By.id("workHistoryDeleteBtn");
-        public By cancelDeleteBtn = By.id("workHistoryCancelBtn");
+
         public By addWorkHistorySaveBtn = By.id("addWorkHistorySaveBtn");
+        public By addWorkHistoryCancelBtn = By.id("addWorkHistoryCancelBtn");
         public By editWorkHistorySaveBtn = By.id("editWorkHistorySaveBtn");
         public By editWorkHistoryCancelBtn = By.id("editWorkHistoryCancelBtn");
         public By editWorkHistoryDeleteBtn = By.id("editWorkHistoryDeleteBtn");
-        public By googlePlacesMyStoreBtns = By.cssSelector(".bf-button.primary");
 
+        public By deleteWorkHistoryTitle = By.id("");
+        public By deleteWorkHistoryTxt = By.id("");
+        public By deleteWorkHistoryDeleteBtn = By.id("editWorkHistoryDeleteConfirmationBtn");
+        public By deleteWorkHistoryCancelBtn = By.id("editWorkHistoryCancelDeleteBtn");
+        public By googlePlacesMyStoreBtns = By.cssSelector("div.pac-container>div");
         /**
          * Locates a edit work history button for a given index
+
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return Returns a locator for the edit work history button by index
          */
         public By findEditWorkHistoryItemByIndex(String index) {
-            return By.id("editWorkHistoryListItemEditBtn" + index);
+            return By.id("workHistoryCardListItemEditBtn" + index);
         }
     }
 

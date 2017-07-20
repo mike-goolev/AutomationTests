@@ -68,7 +68,7 @@ public class SkillsPage extends BasePage {
     }
 
     /**
-     * Clicks the 'X' to dismiss the personal info success toast
+     * Clicks the 'X' to dismiss the skills success toast
      */
     public void dismissSkillsSuccessToast(){
         wait.until(elementToBeClickable(skillsPageLocators.skillSuccessToastCloseBtn));
