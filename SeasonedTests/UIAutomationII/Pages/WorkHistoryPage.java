@@ -250,6 +250,18 @@ public class WorkHistoryPage extends BasePage {
 
      * @return Whether or not the edit experience success toast is visible
      */
+    public boolean verifyExperienceEmptyState(){
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.emptyWorkHistoryTitle));
+        return elementExists(workHistoryPageLocators.emptyWorkHistoryTitle) &&
+                elementExists(workHistoryPageLocators.emptyWorkHistoryTxt);
+    }
+
+
+    /**
+     * Checks to see if the edit experience success toast is visible
+
+     * @return Whether or not the edit experience success toast is visible
+     */
     public boolean verifyEditExperienceSuccessToast(){
         wait.until(visibilityOfElementLocated(workHistoryPageLocators.editExperienceSuccessToast));
         return elementExists(workHistoryPageLocators.editExperienceSuccessToast);
@@ -281,5 +293,24 @@ public class WorkHistoryPage extends BasePage {
         wait.until(elementToBeClickable(workHistoryPageLocators.addExperienceSuccessToastCloseBtn));
         driver.findElement(workHistoryPageLocators.addExperienceSuccessToastCloseBtn).click();
         wait.until(invisibilityOfElementLocated(workHistoryPageLocators.addExperienceSuccessToast));
+    }
+
+    /**
+     * Checks to see if the delete experience success toast is visible
+
+     * @return Whether or not the delete experience success toast is visible
+     */
+    public boolean verifyDeleteExperienceSuccessToast(){
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.deleteWorkHistorySuccessToast));
+        return elementExists(workHistoryPageLocators.deleteWorkHistorySuccessToast);
+    }
+
+    /**
+     * Clicks the 'X' to dismiss the delete experience success toast
+     */
+    public void dismissDeleteExperienceSuccessToast(){
+        wait.until(elementToBeClickable(workHistoryPageLocators.deleteWorkHistorySuccessToastCloseBtn));
+        driver.findElement(workHistoryPageLocators.deleteWorkHistorySuccessToastCloseBtn).click();
+        wait.until(invisibilityOfElementLocated(workHistoryPageLocators.deleteWorkHistorySuccessToast));
     }
 }

@@ -21,7 +21,7 @@ public class Locators {
         public By userNameBtn = By.id("headerMenuToggleBtn");
         public By userNameTxt = By.id("usernameText");
         public By userPhotoImg = By.id("profilePictureImg");
-        public By userAvatarImg = By.id("profilePictureImgIcon");
+        public By userAvatarImg = By.id("profilePictureImg");
 
 
         public By menuProfileBtn = By.id("headerMenuProfileLink");
@@ -93,7 +93,6 @@ public class Locators {
             return By.id("jobsSelectValue" + index);
         }
 
-
         public By jobsBackBtn = By.id("jobsBackBtn");
         public By jobsNextBtn = By.id("jobsNextBtn");
 
@@ -135,6 +134,7 @@ public class Locators {
         public By passwordField = By.id("EmailSignUpPasswordInput");
         public By emailSignupBackBtn = By.id("EmailSignUpBackBtn");
         public By emailSignupNextBtn = By.id("EmailSignUpNextBtn");
+        public By emailSignUpNextLoadingBtn = By.cssSelector("button#EmailSignUpNextBtn.loading");
 
         /* Facebook.com Locators */
         public By faceBookEmailField = By.id("email");
@@ -313,22 +313,31 @@ public class Locators {
     }
 
     public static class JobSearchPageLocators {
-        /*Search Fields*/
-        public By searchPositionDropdown = By.id("searchJobTypeDropDown");
 
-        public By searchJobEmployerField = By.id("searchTermTextField");
+        public By searchPositionDropdown = By.id("searchJobTypeDropDown");
+        public By searchPositionDropdownLbl = By.id("searchJobTypeDropDownLabel");
+
+        /**
+         * Locates a job search position in the dropdown for a given index
+
+         * @param index The index (Starting at 0) of the job search position in the dropdown you wish to locate
+         * @return Returns a locator for a job search position in the dropdown by index
+         */
+        public By findJobSearchPositionByIndex(String index) {
+            return By.id("searchJobTypeDropDownOption" + index);
+        }
+
         public By searchLocationField = By.id("searchLocationTextField");
-        public By searchBtn = By.id("searchButton");
 
         /* Search Results */
         public By searchResultPaginationTxt = By.id("searchShowResults");
 
         /**
-         * Locates a job search result image for a given index
-         * @param index The index (Starting at 0) of the job search result image you wish to locate
-         * @return Returns a locator for a job search result image by index
+         * Locates a job search result employer logo for a given index
+         * @param index The index (Starting at 0) of the job search result employer logo you wish to locate
+         * @return Returns a locator for a job search result employer logo by index
          */
-        public By searchResultEmployerImgByIndex(String index) {
+        public By findSearchResultEmployerImgByIndex(String index) {
             return By.id("searchResultEmployerPhoto" + index);
         }
 
@@ -337,35 +346,38 @@ public class Locators {
          * @param index The index (Starting at 0) of the job search result position you wish to locate
          * @return Returns a locator for a job search result position by index
          */
-        public By searchResultPositionTxtByIndex(String index) {
+        public By findSearchResultPositionTxtByIndex(String index) {
             return  By.id("searchResultJobNameText" + index);
         }
 
         /**
+         * Locates a job search result wage for a given index
+
+         * @param index The index (Starting at 0) of the job search result wage you wish to locate
+         * @return Returns a locator for a job search result wage by index
+         */
+        public By findSearchResultWageTxtByIndex(String index) {
+            return  By.id("searchResultWageText" + index);
+        }
+
+        /**
          * Locates a job search result employer name for a given index
+
          * @param index The index (Starting at 0) of the job search result employer name you wish to locate
          * @return Returns a locator for a job search result employer name by index
          */
-        public By searchResultEmployerNameTxtByIndex(String index) {
+        public By findSearchResultEmployerNameTxtByIndex(String index) {
             return By.id("searchResultEmployerNameText" + index);
         }
 
         /**
-         * Locates a job search result distance for a given index
-         * @param index The index (Starting at 0) of the job search result distance you wish to locate
-         * @return Returns a locator for a job search result distance by index
-         */
-        public By searchResultEmployerDistanceTxtByIndex(String index) {
-            return By.id("searchResultEmployerDistanceText" + index);
-        }
+         * Locates a job search result location for a given index
 
-        /**
-         * Locates a job search result zip for a given index
-         * @param index The index (Starting at 0) of the job search result zip you wish to locate
-         * @return Returns a locator for a job search result image by index
+         * @param index The index (Starting at 0) of the job search result location you wish to locate
+         * @return Returns a locator for a job search result location by index
          */
-        public By searchResultEmployerZipTxtByIndex(String index) {
-            return By.id("searchResultEmployerZipText" + index);
+        public By findSearchResultEmployerLocationTxtByIndex(String index) {
+            return By.id("searchResultAddressText" + index);
         }
 
         /**
@@ -373,7 +385,7 @@ public class Locators {
          * @param index The index (Starting at 0) of the job search result view button you wish to locate
          * @return Returns a locator for a job search result view button by index
          */
-        public By searchResultViewBtnByIndex(String index) {
+        public By findSearchResultViewBtnByIndex(String index) {
             return By.id("searchResultViewBtn" + index);
         }
 
@@ -382,63 +394,34 @@ public class Locators {
          * @param index The index (Starting at 0) of the job search result apply button you wish to locate
          * @return Returns a locator for a job search result apply button by index
          */
-        public By searchResultApplyBtnByIndex(String index) {
-            return By.id("searchResultLoggedInApplyBtn" + index);
+        public By findSearchResultApplyBtnByIndex(String index) {
+            return By.id("searchResultApplyBtn" + index);
         }
 
-        /**
-         * Locates a job search result apply loading button for a given index
-         * @param index The index (Starting at 0) of the job search result apply loading button you wish to locate
-         * @return Returns a locator for a job search result apply loading button by index
-         */
-        public By searchResultApplyLoadingBtnByIndex(String index) {
-            return By.cssSelector("button#searchResultLoggedInApplyBtn" + index + ".loading");
-        }
-
-        /**
-         * Locates a job search result applied button for a given index
-         * @param index The index (Starting at 0) of the job search result applied button you wish to locate
-         * @return Returns a locator for a job search result applied button by index
-         */
-        public By searchResultAppliedBtnByIndex(String index) {
-            return By.id("searchResultAppliedBtn" + index);
-        }
-
+        public By searchResultsCountTxt = By.id("jobSearchJobCount");
         public By searchResultsPage1Btn = By.id("searchPage1");
         public By searchResultsPage2Btn = By.id("searchPage2");
         public By searchResultsNextPageBtn = By.id("searchPaginationArrowNext");
         public By searchResultsPreviousPageBtn = By.id("searchPaginationArrowPrev");
-
-        /* Empty Search Results */
-        public By searchResultsEmptyTitleTxt = By.cssSelector("div.bf-search-empty-result-content>h2");
-        public By searchResultsEmptyMessageTxt = By.cssSelector("div.bf-search-empty-result-content>p");
-        public By searchResultsEmptySuggestionsTitleTxt = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>p");
-        public By searchResultsEmptySuggestionBartenderBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(1)>a");
-        public By searchResultsEmptySuggestionCashierBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(2)>a");
-        public By searchResultsEmptySuggestionCookBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(3)>a");
-        public By searchResultsEmptySuggestionServerBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(4)>a");
-        public By searchResultsEmptySuggestionTeamMemberBtn = By.cssSelector("div.bf-search-empty-result-content:nth-of-type(3)>div.buttons-wrapper>div:nth-of-type(5)>a");
+        public By emptySearchTextTitle = By.cssSelector("emptySearchTextTitle");
+        public By searchResultsEmptyMessageTxt = By.cssSelector("emptySearchTextContent");
+        public By applySuccessToastTxt = By.id("applyForJobToast");
+        public By applySuccessToastDismissBtn = By.id("applyForJobToastCloseBtn");
 
         /* Job Details - Auth'd */
-        public By jobDetailsBackBtn = By.id("job-details-back-button");
-        public By jobDetailsPosition = By.id("jobDetailsHeaderNameText");
-        public By jobDetailsWage = By.id("jobDetailsHeaderWageText");
-        public By jobDetailsApplyBtn = By.id("jobDetailsLoggedInHeaderApplyBtn");
-        public By jobDetailsAppliedBtn = By.id("jobDetailsAppliedBtn");
-        public By jobDetailsJobDescriptionTitleTxt = By.cssSelector("div.bf-bf-job-details-content>h3:nth-of-type(1)");
-        public By jobDetailsJobDescriptionTxt = By.id("jobDetailsDescriptionText");
-        public By jobDetailsEmployerDescriptionTtitleTxt = By.cssSelector("div.bf-job-details-content>h3:nth-of-type(2)");
-        public By jobDetailsEmployerDescriptionTxt = By.id("jobDetailsEmployerAboutText");
-        public By jobDetailsEmployerLogoImg = By.id("employerCardPhoto");
-        public By jobDetailsEmployerNameTxt = By.id("employerCardNameText");
-        public By jobDetailsEmployerAddressTxt = By.id("employerCardAddressText");
-        public By jobDetailsEmployerPPATxt = By.cssSelector("ul.bf-employer-info-list>li:nth-of-type(1)");
-        public By jobDetailsEmployerTypeTxt = By.cssSelector("ul.bf-employer-info-list>li:nth-of-type(2)");
-        public By jobDetailsEmployerDistanceTxt = By.id("employerCardDistanceText");
-        public By jobDetailsEmployerFollowBtn = By.id("employerCardFollowBtn");
-        public By jobDetailsEmployerUnfollowBtn = By.id("employerCardUnfollowBtn");
-        public By jobDetailsEmployerUnfollowConfirm = By.cssSelector("div.bf-employer-details>div:nth-of-type(5)>button");
-        /*public By jobDetailsEmployerUnfollowCancel = By.cssSelector("");*/
+        public By jobDetailsPosition = By.id("jobNameTxt");
+        public By jobDetailsWage = By.id("jobWageTxt");
+        public By jobDetailsApplyBtn = By.id("jobApplyBtn");
+        public By jobDetailsJobDescriptionTitleTxt = By.id("jobDescriptionTitleTxt");
+        public By jobDetailsJobDescriptionTxt = By.id("jobDescriptionTxt");
+        public By jobDetailsEmployerLogoImg = By.id("jobEmployerPhotoImg");
+        public By jobDetailsEmployerNameTxt = By.id("employerNameTxt");
+        public By jobDetailsEmployerAddressTxt = By.id("employerAddressTxt");
+        public By jobDetailsEmployerPPATxt = By.id("employerPPATypeTxt");
+        public By jobDetailsEmployerTypeTxt = By.id("employerTypeTxt");
+        public By jobDetailsEmployerDistanceTxt = By.id("employerDistanceTxt");
+        public By jobDetailsEmployerFollowBtn = By.xpath("//button[@id='employerFollowBtn']/div/span[contains(text(), 'Follow')]");
+        public By jobDetailsEmployerFollowingBtn = By.xpath("//button[@id='employerFollowBtn']/div/span[contains(text(), 'Following')]");
     }
 
     public static class ProfilePageLocators {
@@ -459,7 +442,8 @@ public class Locators {
             return By.id("profilePrimaryJobJobName" + index);
         }
 
-        public By personalInfoUserLocationTxt = By.id("profileLocationTxt");
+        public By personalInfoLocationTxt = By.id("profileLocationTxt");
+        public By personalInfoSkillsTxt = By.id("profileTopSkillsTxt");
         public By personalInfoActionsMenuBtn = By.cssSelector("div.actions-menu-toggle");
         public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
@@ -510,7 +494,7 @@ public class Locators {
          * @return A locator for the duration the user worked at the employer by index
          */
         public By findWorkHistoryEmployerDurationByIndex(String index) {
-            return By.id("workHistoryCardListItemWorkPeriodText" + index);
+            return By.id("workHistoryCardListItemDurationText" + index);
         }
 
         /* Certifications Section */
@@ -550,8 +534,7 @@ public class Locators {
         public By sideMenuAboutMeLink = By.id("editProfileAboutLink");
 
         /* Availability Section */
-        public By addAvailabilityBtn = By.id("availabilityCardEmptyAddBtn");
-        public By editAvailabilityBtn = By.id("availabilityCardEditBtn");
+        public By availabilityTitleTxt = By.id("profileAvailabilityTitle");
         public By availabilityMorningsCard = By.id("profileAvailabilityCardMornings");
         public By availabilityAfternoonsCard = By.id("profileAvailabilityCardAfternoons");
         public By availabilityEveningsCard = By.id("profileAvailabilityCardEvenings");
@@ -634,7 +617,7 @@ public class Locators {
 
     public static class PersonalInfoPageLocators {
         public By personalInfoPhotoTxt = By.id("profileInfoPhotoTxt");
-        public By personalInfoUserPhotoAvatarImg = By.id("personalInfoCardProfileImgIcon");
+        public By personalInfoUserPhotoAvatarImg = By.id("personalInfoCardProfileImg");
         public By personalInfoUserPhotoImg = By.id("personalInfoCardProfileImg");
         public By personalInfoUploadUserPhotoToggleBtn = By.id("personalInfoAddPhotoBtn");
         public By personalInfoUploadUserPhotoBtn = By.id("profileInfoUploadPhotoBtn");
@@ -656,12 +639,11 @@ public class Locators {
         public By navMenuExperience = By.id("editProfileExperienceLink");
         public By editExperienceSuccessToast = By.id("editWorkHistorySuccessToast");
         public By editExperienceSuccessToastCloseBtn = By.id("editWorkHistorySuccessToastCloseBtn");
-        public By addExperienceSuccessToast = By.cssSelector("div.toast");
-        public By addExperienceSuccessToastCloseBtn = By.id("CloseBtn");
-
+        public By addExperienceSuccessToast = By.id("addWorkHistorySuccessToast");
+        public By addExperienceSuccessToastCloseBtn = By.id("addWorkHistorySuccessToastCloseBtn");
         public By addWorkHistoryBtn = By.id("addExperienceBtn");
-        public By emptyWorkHistoryTitle = By.id("");
-        public By emptyWorkHistoryTxt = By.id("");
+        public By emptyWorkHistoryTitle = By.id("experienceMessageTitleText");
+        public By emptyWorkHistoryTxt = By.id("experienceMessageText");
         public By firstJobChk = By.id("addExperienceFirstJobCheckboxBox");
         public By firstJobChkLbl = By.id("addExperienceFirstJobCheckboxLabel");
 
@@ -782,6 +764,8 @@ public class Locators {
         public By deleteWorkHistoryTxt = By.id("");
         public By deleteWorkHistoryDeleteBtn = By.id("editWorkHistoryDeleteConfirmationBtn");
         public By deleteWorkHistoryCancelBtn = By.id("editWorkHistoryCancelDeleteBtn");
+        public By deleteWorkHistorySuccessToast = By.id("deleteWorkHistorySuccessToast");
+        public By deleteWorkHistorySuccessToastCloseBtn = By.id("deleteWorkHistorySuccessToast");
         public By googlePlacesMyStoreBtns = By.cssSelector("div.pac-container>div");
         /**
          * Locates a edit work history button for a given index

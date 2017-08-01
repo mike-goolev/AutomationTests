@@ -14,6 +14,7 @@ public class HourlyWorkHistory extends BaseTest {
     TestUtils testUtils;
     NavPage navPage;
     LoginPage loginPage;
+    JobSearchPage jobSearchPage;
     ProfilePage profilePage;
     WorkHistoryPage workHistoryPage;
 
@@ -21,10 +22,13 @@ public class HourlyWorkHistory extends BaseTest {
     String password;
     String employer;
     String jobPosition;
+    String userLocation;
     String month;
     String strYear;
     String timePeriodPresent;
     String timePeriodPast;
+    String durationPresent;
+    String durationPast;
 
     @BeforeClass
     public void setUp() {
@@ -33,6 +37,7 @@ public class HourlyWorkHistory extends BaseTest {
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
+        jobSearchPage = new JobSearchPage(driver);
         profilePage = new ProfilePage(driver);
         workHistoryPage = new WorkHistoryPage(driver);
 
@@ -40,23 +45,29 @@ public class HourlyWorkHistory extends BaseTest {
         password = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("password");
         employer = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("employer");
         jobPosition = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("job");
+        userLocation = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("userLocation");
         Calendar now = Calendar.getInstance();
         month = now.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
         int year = now.get(Calendar.YEAR);
         strYear = String.valueOf(year);
         timePeriodPresent = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("timePeriodPresent");
         timePeriodPast = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("timePeriodPast");
+        durationPresent = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("durationPresent");
+        durationPast = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("durationPast");
         System.out.println("Finished initialization, starting work history tests");
     }
 
     @Test
     public void testAddWorkHistory() throws Exception {
         /* Start test on the content feed page */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
 
         /* Log in */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(username, password);
+
+        /* Verify job search page displayed */
+        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"));
 
         /* Navigate to the profile page */
         navPage.navigateToProfilePage();
@@ -68,11 +79,14 @@ public class HourlyWorkHistory extends BaseTest {
         profilePage.clickEditProfile();
         workHistoryPage.navigateToEditExperience();
 
+        /* Verify empty edit profile state */
+        Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState());
+
         /* Click to add a new position */
         workHistoryPage.clickAddWorkHistoryBtn();
 
         /* Select a job position */
-        workHistoryPage.clickJobPosition("15");
+        workHistoryPage.clickJobPosition("16");
         workHistoryPage.removeJobPosition("0");
 
         /* Enter an employer*/
@@ -97,21 +111,25 @@ public class HourlyWorkHistory extends BaseTest {
         workHistoryPage.dismissAddExperienceSuccessToast();
 
         /* Verify the edit work history list displays the new entry*/
-        /* Below line is commented out because we don't have indexes on the employer logos yet
-        /*Assert.assertTrue(workHistoryPage.isEmployerLogoPresent("0"), "Employer logo should be present");*/
+        Assert.assertTrue(workHistoryPage.isEmployerLogoPresent("0"), "Employer logo should be present");
         Assert.assertEquals(workHistoryPage.getJobPosition("0", "0"), jobPosition);
         Assert.assertEquals(workHistoryPage.getEmployerName("0"), employer);
         Assert.assertEquals(workHistoryPage.getTimePeriod("0"), timePeriodPresent);
+        Assert.assertEquals(workHistoryPage.getDuration("0"), durationPresent);
 
         /* Navigate to profile view */
         navPage.navigateToProfilePage();
 
+        /* Verify the user's primary job and job location displayed in profile summary section */
+        Assert.assertEquals(profilePage.getSummaryPrimaryJob("0"), jobPosition);
+        Assert.assertEquals(profilePage.getSummaryLocation(), "in " + userLocation);
+
         /* Verify that the work history card on profile view is now showing the new entry */
-        /* Below line is commented out because we don't have indexes on the employer logos yet
-        /*Assert.assertTrue(profilePage.isEmployerLogoPresent("0"), "Employer logo should be present");*/
+        Assert.assertTrue(profilePage.isEmployerLogoPresent("0"), "Employer logo should be present");
         Assert.assertEquals(profilePage.getEmployerName("0"), employer);
         Assert.assertEquals(profilePage.getJobPosition("0", "0"), jobPosition);
         Assert.assertEquals(profilePage.getTimePeriod("0"), timePeriodPresent);
+        Assert.assertEquals(profilePage.getDuration("0"), durationPresent);
 
         /* Go back to edit work history and delete the entry */
         profilePage.clickEditProfile();
@@ -122,7 +140,12 @@ public class HourlyWorkHistory extends BaseTest {
         /* Accept modal confirmation */
         workHistoryPage.clickConfirmDeleteBtn();
 
-        /* To do -- Assert empty edit profile state once all elements have IDs */
+        /* Verify success toast */
+        Assert.assertTrue(workHistoryPage.verifyDeleteExperienceSuccessToast());
+        workHistoryPage.dismissDeleteExperienceSuccessToast();
+
+        /* Verify empty edit profile state */
+        Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState());
 
         /* Navigate to the profile page */
         navPage.navigateToProfilePage();

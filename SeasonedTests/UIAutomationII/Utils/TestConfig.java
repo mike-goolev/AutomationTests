@@ -2,7 +2,7 @@ public class TestConfig {
 
     private static String baseURL = "http://qa-www.seasoned.co/services/webapp/";
     private static String baseAPIUrl = "http://qa-brushfire.seasoned.co/services/";
-    private static String searchRelativeURL = "search";
+    private static String searchRelativeURL = "jobs";
     private static String contentRelativeURL = "app#/feed/";
 
     /**

@@ -111,7 +111,7 @@ public class HourlyPersonalInfo extends BaseTest {
         driver.navigate().to(driver.getCurrentUrl());
 
         /* Verify user's name and location*/
-        Assert.assertEquals(profilePage.getFirstAndLastNameTxt(), originalFirstName + ' ' + originalLastName);
+        Assert.assertEquals(profilePage.getFirstAndLastName(), originalFirstName + ' ' + originalLastName);
 
         /* Navigate to the edit profile page */
         profilePage.clickEditProfile();
@@ -160,7 +160,7 @@ public class HourlyPersonalInfo extends BaseTest {
 
         /* Go back and verify that the new name shows on the view profile page */
         navPage.navigateToProfilePage();
-        Assert.assertEquals(profilePage.getFirstAndLastNameTxt(), newFirstName + ' ' + newLastName);
+        Assert.assertEquals(profilePage.getFirstAndLastName(), newFirstName + ' ' + newLastName);
 
         /* Go to edit personal info and change name, location, phone and eligibility back to the original state */
         profilePage.clickEditProfile();
@@ -188,7 +188,7 @@ public class HourlyPersonalInfo extends BaseTest {
 
         /* Go back to view profile and verify that the original name and location are displayed */
         navPage.navigateToProfilePage();
-        Assert.assertEquals(profilePage.getFirstAndLastNameTxt(), originalFirstName + ' ' + originalLastName);
+        Assert.assertEquals(profilePage.getFirstAndLastName(), originalFirstName + ' ' + originalLastName);
     }
 
     @AfterClass

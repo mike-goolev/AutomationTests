@@ -2,6 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class AvailabilityPage extends BasePage {
 
@@ -144,7 +145,7 @@ public class AvailabilityPage extends BasePage {
     /**
      * Clicks the 'X' button on the success/fail banner on the edit availability page
      */
-    public void clickCloseCertificationBannerBtn() {
+    public void clickCloseAvailabilityBannerBtn() {
         wait.until(elementToBeClickable(availabilityPageLocators.availabilityBannerCloseBtn));
         driver.findElement(availabilityPageLocators.availabilityBannerCloseBtn).click();
     }
@@ -163,5 +164,16 @@ public class AvailabilityPage extends BasePage {
             System.out.println("Could not select the given value: " + status);
             System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    /**
+     * Gets the user's selected availability status
+     * @return The user's selected availability status
+     */
+    public String getSelectedAvailabilityStatus() {
+        wait.until(visibilityOfElementLocated(availabilityPageLocators.availabilityStatusDropDown));
+        Select availabilityStatusSelect = new Select(driver.findElement(availabilityPageLocators.availabilityStatusDropDown));
+        String availabilityValue = availabilityStatusSelect.getFirstSelectedOption().getAttribute("value");
+        return availabilityValue;
     }
 }

@@ -11,6 +11,7 @@ public class HourlyRegistration extends BaseTest {
     SignupPage signupPage;
     JobSearchPage jobSearchPage;
     ContentFeedPage contentFeedPage;
+    ProfilePage profilePage;
 
     String ipLocation;
     String userLocation;
@@ -18,6 +19,9 @@ public class HourlyRegistration extends BaseTest {
     String lastName;
     String email;
     String password;
+    String availabilityStatusOpen;
+    String availabilityStatusLooking;
+    String availabilityStatusEmployed;
 
     @BeforeMethod
     public void setUp() {
@@ -27,6 +31,7 @@ public class HourlyRegistration extends BaseTest {
         navPage = new NavPage(driver);
         signupPage = new SignupPage(driver);
         jobSearchPage = new JobSearchPage(driver);
+        profilePage = new ProfilePage(driver);
         contentFeedPage = new ContentFeedPage(driver);
 
         ipLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("ipLocation");
@@ -35,6 +40,9 @@ public class HourlyRegistration extends BaseTest {
         lastName = ("ssHourlyLast" + testUtils.generateRandomUUID());
         email = (testUtils.generateRandomUUID() + "@mailinator.com");
         password = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("password");
+        availabilityStatusOpen = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusOpen");
+        availabilityStatusLooking = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusLooking");
+        availabilityStatusEmployed = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusEmployed");
         System.out.println("Starting test run!");
     }
 
@@ -67,6 +75,14 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Jobs page */
         jobSearchPage.verifyPositionDropdown();
+
+        /* Navigate to profile page */
+        navPage.navigateToProfilePage();
+
+        /* Verify user's availability status */
+        profilePage.isUserProfilePhotoPresent();
+        profilePage.verifyAvailabilityTitle();
+        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusLooking));
     }
 
     @Test
@@ -99,6 +115,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Jobs page */
         jobSearchPage.verifyPositionDropdown();
+
+        /* Navigate to profile page */
+        navPage.navigateToProfilePage();
+
+        /* Verify user's availability status */
+        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusLooking));
     }
 
     @Test
@@ -132,6 +154,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Jobs page */
         jobSearchPage.verifyPositionDropdown();
+
+        /* Navigate to profile page */
+        navPage.navigateToProfilePage();
+
+        /* Verify user's availability status */
+        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusOpen));
     }
 
     @Test
@@ -164,6 +192,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Content page */
         /*contentFeedPage.();*/
+
+        /* Navigate to profile page */
+        navPage.navigateToProfilePage();
+
+        /* Verify user's availability status */
+        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusOpen));
     }
 
     @Test
@@ -200,6 +234,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Content page */
         /*contentFeedPage.();*/
+
+        /* Navigate to profile page */
+        navPage.navigateToProfilePage();
+
+        /* Verify user's availability status */
+        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusOpen));
     }
 
     @Test
@@ -213,8 +253,7 @@ public class HourlyRegistration extends BaseTest {
         /* Select registration type */
         signupPage.clickHireExperience();
 
-        /* Verify user directed to manager login page */
-        /*contentFeedPage.();*/
+        /* TO DO -- Verify user directed to manager login page */
     }
 
     @AfterMethod

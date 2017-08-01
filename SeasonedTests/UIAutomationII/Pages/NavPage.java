@@ -58,6 +58,14 @@ public class NavPage extends BasePage {
     }
 
     /**
+     * Takes the user to the jobs page via nav header and clicking profile
+     */
+    public void navigateToJobsPage() {
+        wait.until(elementToBeClickable(navPageLocators.findJobsBtn));
+        driver.findElement(navPageLocators.findJobsBtn).click();
+    }
+
+    /**
      * Takes the user to the profile page via nav header and clicking profile
      */
     public void navigateToProfilePage() {

@@ -1,5 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -26,38 +24,35 @@ public class ProfilePage extends BasePage {
 
     /**
      * Get user's first and last name from the text field
-
      * @return User's first and last name
      */
-    public String getFirstAndLastNameTxt() {
+    public String getFirstAndLastName() {
         return driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText();
     }
 
     /**
      * Get user's primary job from the text field
-     *
      * @param index The index (Starting at 0) of the user primary job you wish to locate
      * @return User's primary job
      */
-    public String getPrimaryJobTxt(String index) {
+    public String getSummaryPrimaryJob(String index) {
         return driver.findElement(profilePageLocators.findPrimaryJobTxtByIndex(index)).getText();
-    }
-
-    /**
-     * Checks to see if the user's location is on the profile page
-     * @param location The user's location on the profile page
-     * @return Whether or not the text of the user's location matches the text param
-     */
-    public boolean verifyUserLocation(String location) {
-        return location.equals(driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText());
     }
 
     /**
      * Get user's location from the text field
      * @return User's location
      */
-    public String getLocationTxt() {
-        return driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText();
+    public String getSummaryLocation() {
+        return driver.findElement(profilePageLocators.personalInfoLocationTxt).getText();
+    }
+
+    /**
+     * Get user's skills from the text field
+     * @return User's skills
+     */
+    public String getSummarySkills() {
+        return driver.findElement(profilePageLocators.personalInfoSkillsTxt).getText();
     }
 
     /**
@@ -99,7 +94,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Gets the job position name at the given index
-     *
      * @param employerIndex The index (Starting at 0) of the employer you wish to locate
      * @param positionIndex The index (Starting at 0) of the position name you wish to locate
      * @return The job position text at the given index
@@ -119,7 +113,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * Gets the time period at the given index
-     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @param index The index (Starting at 0) of the time period you wish to locate
      * @return The time period text at the given index
      */
     public String getTimePeriod(String index) {
@@ -132,7 +126,7 @@ public class ProfilePage extends BasePage {
      * @return The duration text at the given index
      */
     public String getDuration(String index) {
-        return driver.findElement(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index)).getText();
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerDurationByIndex(index)).getText();
     }
 
     /*--------- Certifications ----------*/
@@ -219,19 +213,11 @@ public class ProfilePage extends BasePage {
     /*--------- Availability ----------*/
 
     /**
-     * Clicks the add availability button when a user does NOT have availability
+     * Verifies that the availability title is displayed
+     * @return Whether or not the availability title is displayed
      */
-    public void clickAddAvailability() {
-        wait.until(elementToBeClickable(profilePageLocators.addAvailabilityBtn));
-        driver.findElement(profilePageLocators.addAvailabilityBtn).click();
-    }
-
-    /**
-     * Clicks the edit availability button when a user has availability entered on their profile
-     */
-    public void clickEditAvailability() {
-        wait.until(elementToBeClickable(profilePageLocators.editAvailabilityBtn));
-        driver.findElement(profilePageLocators.editAvailabilityBtn).click();
+    public boolean verifyAvailabilityTitle() {
+        return elementExists(profilePageLocators.availabilityTitleTxt);
     }
 
     /**
@@ -304,7 +290,6 @@ public class ProfilePage extends BasePage {
 
     /**
      * Checks to see if the selected skills match what is on the view profile screen
-
      * @param index The index (Starting at 0) of the skill you wish to locate
      * @return Whether or not the selected skill is on the page
      */

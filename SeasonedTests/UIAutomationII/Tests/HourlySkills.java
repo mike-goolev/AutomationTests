@@ -97,6 +97,9 @@ public class HourlySkills extends BaseTest {
         /* Navigate to profile (view) */
         navPage.navigateToProfilePage();
 
+        /* Verify selected skills in the summary section */
+        Assert.assertEquals(profilePage.getSummarySkills(), "My top skills are " + skill4 + ", " + skill3 + ", " + skill2 + ", " + skill1 + " and " + skill5 + ".");
+
         /* Verify selected skills displayed in Skills section */
         Assert.assertEquals(profilePage.getSelectedSkill("0"), skill1);
         Assert.assertEquals(profilePage.getSelectedSkill("1"), skill2);

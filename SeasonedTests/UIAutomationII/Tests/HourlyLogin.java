@@ -27,15 +27,15 @@ public class HourlyLogin extends BaseTest {
         System.out.println("Starting test run!");
     }
 
-//    @Test
-//    public void testHourlyLoginFromContentPageByEmail() throws Exception {
-//        /* Start test on the content feed page */
-//        testUtils.loadContentFeedPage();
-//
-//        /* Log in */
-//        navPage.clickLoginBtn();
-//        loginPage.loginWithEmail(usernameEmail, passwordEmail);
-//    }
+    @Test(enabled = false)
+    public void testHourlyLoginFromContentPageByEmail() throws Exception {
+        /* Start test on the content feed page */
+        testUtils.loadContentFeedPage();
+
+        /* Log in */
+        navPage.clickLoginBtn();
+        loginPage.loginWithEmail(usernameEmail, passwordEmail);
+    }
 
     @Test
     public void testHourlyLoginFromJobSearchPageByEmail() throws Exception {
@@ -47,15 +47,15 @@ public class HourlyLogin extends BaseTest {
         loginPage.loginWithEmail(usernameEmail, passwordEmail);
     }
 
-//    @Test
-//    public void testHourlyLoginFromContentPageByFacebook() throws Exception {
-//        /* Start test on the content feed page */
-//        testUtils.loadContentFeedPage();
-//
-//        /* Log in */
-//        navPage.clickLoginBtn();
-//        loginPage.loginWithFacebook(usernameFB, passwordFB);
-//    }
+      @Test(enabled = false)
+      public void testHourlyLoginFromContentPageByFacebook() throws Exception {
+        /* Start test on the content feed page */
+        testUtils.loadContentFeedPage();
+
+        /* Log in */
+        navPage.clickLoginBtn();
+        loginPage.loginWithFacebook(usernameFB, passwordFB);
+    }
 
     @Test
     public void testHourlyLoginFromJobSearchPageByFacebook() throws Exception {

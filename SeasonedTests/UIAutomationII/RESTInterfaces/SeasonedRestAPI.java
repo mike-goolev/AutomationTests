@@ -178,12 +178,12 @@ public class SeasonedRestAPI {
             updatedBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
             createdBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
             employer.setGuid("75ced677-4368-4026-9f57-34ba6246c3cb");
-            jobType.setGuid("fd1ad822-f2e6-4faf-9d04-d04ac7c3fdcb");
+            jobType.setGuid("1ad36e51-57a1-47bb-a7c4-0100540d20eb");
             job.setEmployer(employer);
             job.setUpdatedBy(updatedBy);
             job.setCreatedBy(createdBy);
             job.setJobType(jobType);
-            job.setJobName("Bartender");
+            job.setJobName("Payaso");
             job.setWage("1.99");
             job.setWageType("HOURLY");
             job.setDescription("$1.99 are you outta yo mind?");

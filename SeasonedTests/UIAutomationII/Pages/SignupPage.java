@@ -246,6 +246,7 @@ public class SignupPage extends BasePage {
         driver.findElement(signUpPageLocators.emailField).sendKeys(email);
         driver.findElement(signUpPageLocators.passwordField).sendKeys(password);
         driver.findElement(signUpPageLocators.emailSignupNextBtn).click();
+        wait.until(invisibilityOfElementLocated(signUpPageLocators.emailSignUpNextLoadingBtn));
     }
 
     /**

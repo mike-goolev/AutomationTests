@@ -71,7 +71,7 @@ public class HourlyAvailability extends BaseTest {
         availabilityPage.clickAvailabilityTypeFullTime();
         availabilityPage.clickSaveButton();
         Assert.assertTrue(availabilityPage.verifyAvailabilitySuccessBanner(), "The profile saved successfully toast is displayed");
-        availabilityPage.clickCloseCertificationBannerBtn();
+        availabilityPage.clickCloseAvailabilityBannerBtn();
 
         /* Verify that the availability is persisted on the view profile screen */
         navPage.navigateToProfilePage();
@@ -93,7 +93,7 @@ public class HourlyAvailability extends BaseTest {
 
         /* Verify that a success toast appears and that all availability has been removed */
         Assert.assertTrue(availabilityPage.verifyAvailabilitySuccessBanner(), "The profile saved successfully toast is displayed");
-        availabilityPage.clickCloseCertificationBannerBtn();
+        availabilityPage.clickCloseAvailabilityBannerBtn();
         Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "No availability is selected");
 
         /* Verify that the availability card is in an empty state on the view profile page */

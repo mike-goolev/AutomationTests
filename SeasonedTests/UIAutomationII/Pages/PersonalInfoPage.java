@@ -15,7 +15,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if the user avatar is displayed
-
      * @return Whether or not the user avatar is displayed
      */
     public boolean isUserAvatarDisplayed() {
@@ -24,7 +23,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if the user photo is displayed
-
      * @return Whether or not the user photo is displayed
      */
     public boolean isUserPhotoDisplayed() {
@@ -33,7 +31,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get photo message from the text
-
      * @return Personal info photo text
      */
     public String getPhotoText() {
@@ -42,7 +39,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's first name from the text field
-
      * @return User's first name
      */
     public String getUserFirstName() {
@@ -51,7 +47,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's last name from the text field
-
      * @return User's last name
      */
     public String getUserLastName() {
@@ -60,7 +55,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Update the user's first + last name fields
-
      * @param firstName The user's first name
      * @param lastName The user's last name
      */
@@ -73,7 +67,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the first name text field
-
      * @param firstName The first and last name of the user
      */
     public void enterUserFirstName(String firstName) {
@@ -82,7 +75,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the last name text field
-
      * @param lastName The first and last name of the user
      */
     public void enterUserLastName(String lastName) {
@@ -109,7 +101,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Update the user's location field
-
      * @param location The text to enter into the field
      */
     public void updateUserLocation(String location) throws Exception {
@@ -120,7 +111,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's location from the text field
-
      * @return User's location
      */
     public String getUserLocation() {
@@ -129,7 +119,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the location text field
-
      * @param location The home location of the user
      */
     public void enterUserLocation(String location) {
@@ -160,7 +149,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's phone from the text field
-
      * @return User's phone
      */
     public String getUserPhone() {
@@ -169,7 +157,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Enter text into the phone text field
-
      * @param phone The user's phone #
      */
     public void enterUserPhone(String phone) {
@@ -192,7 +179,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see if the phone text field is empty
-
      * @return Whether or not the phone text field is empty or not
      */
     public boolean isUserPhoneTxtFieldEmpty() {
@@ -201,7 +187,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Selects a month on the date dropdown
-
      * @param month The month to select from the date dropdown
      */
     public void selectMonthFromDate(String month) {
@@ -212,7 +197,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Selects a day on the date dropdown
-
      * @param day The day to select from the date dropdown
      */
     public void selectDayFromDate(String day) {
@@ -223,7 +207,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Selects a year on the date dropdown
-
      * @param year The year to select from the date dropdown
      */
     public void selectYearFromDate(String year) {
@@ -234,7 +217,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's dob Month from the dropdown
-
      * @return User's dob Month
      */
     public String getSelectedMonth() {
@@ -246,7 +228,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's dob Day from the dropdown
-
      * @return User's dob Day
      */
     public String getSelectedDay() {
@@ -258,7 +239,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get user's dob Year from the dropdown
-
      * @return User's dob Year
      */
     public String getSelectedYear() {
@@ -270,7 +250,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see if the birthday Month dropdown is empty
-
      * @return Whether or not the birthday Month dropdown is empty or not
      */
     public Boolean isBirthdayMonthEmpty(){
@@ -279,7 +258,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see if the birthday Day dropdown is empty
-
      * @return Whether or not the birthday Day dropdown is empty or not
      */
     public Boolean isBirthdayDayEmpty(){
@@ -288,7 +266,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see if the birthday Year dropdown is empty
-
      * @return Whether or not the birthday Year dropdown is empty or not
      */
     public Boolean isBirthdayYearEmpty(){
@@ -297,7 +274,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Check to see if the birthday dropdowns are empty
-
      * @return Whether or not the birthday dropdowns are empty or not
      */
     public Boolean isBirthdayEmpty(){
@@ -309,7 +285,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if the eligibility checkbox is selected
-
      * @return Whether or not the eligibility checkbox is selected
      */
     public boolean isEligibilitySelected() {
@@ -332,7 +307,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if the personal info save button is enabled
-
      * @return Whether or not the personal info save button is enabled
      */
     public boolean isSaveButtonEnabled(){
@@ -341,7 +315,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if the personal info success toast is visible
-
      * @return Whether or not the personal info success toast is visible
      */
     public boolean verifyPersonalInfoSuccessToast(){

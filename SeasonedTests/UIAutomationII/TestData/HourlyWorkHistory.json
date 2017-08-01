@@ -4,7 +4,10 @@
     "password":"12348765",
     "employer":"Seattle Seahawks",
     "job":"Runner",
-    "timePeriodPresent":"Jul 2017 - Present • 1 mo",
-    "timePeriodPast":"Jun 2017 - Jul 2017 • 1 mo"
+    "userLocation":"Bremerton, WA",
+    "timePeriodPresent":"Jul 2017 - Present",
+    "durationPresent":"  • 1 mo",
+    "timePeriodPast":"Jun 2017 - Jul 2017",
+    "durationPast":"  • 1 mo"
   }
 }
