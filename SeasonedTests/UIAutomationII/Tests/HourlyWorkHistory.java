@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class HourlyWorkHistory extends BaseTest {
     String timePeriodPast;
     String durationPresent;
     String durationPast;
+    String shortMonth;
 
     @BeforeClass
     public void setUp() {
@@ -47,10 +49,12 @@ public class HourlyWorkHistory extends BaseTest {
         jobPosition = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("job");
         userLocation = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("userLocation");
         Calendar now = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("MMM yyyy");
+        shortMonth = format.format(now.getTime());
         month = now.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
         int year = now.get(Calendar.YEAR);
         strYear = String.valueOf(year);
-        timePeriodPresent = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("timePeriodPresent");
+        timePeriodPresent = shortMonth + TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("timePeriodPresent");
         timePeriodPast = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("timePeriodPast");
         durationPresent = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("durationPresent");
         durationPast = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("durationPast");
@@ -110,8 +114,8 @@ public class HourlyWorkHistory extends BaseTest {
         Assert.assertTrue(workHistoryPage.verifyAddExperienceSuccessToast());
         workHistoryPage.dismissAddExperienceSuccessToast();
 
-        /* Verify the edit work history list displays the new entry*/
-        Assert.assertTrue(workHistoryPage.isEmployerLogoPresent("0"), "Employer logo should be present");
+        /* Verify the edit work history list displays the new entry */
+        Assert.assertTrue(workHistoryPage.isEmployerLogoPresent(""), "Employer logo should be present");
         Assert.assertEquals(workHistoryPage.getJobPosition("0", "0"), jobPosition);
         Assert.assertEquals(workHistoryPage.getEmployerName("0"), employer);
         Assert.assertEquals(workHistoryPage.getTimePeriod("0"), timePeriodPresent);
@@ -125,7 +129,7 @@ public class HourlyWorkHistory extends BaseTest {
         Assert.assertEquals(profilePage.getSummaryLocation(), "in " + userLocation);
 
         /* Verify that the work history card on profile view is now showing the new entry */
-        Assert.assertTrue(profilePage.isEmployerLogoPresent("0"), "Employer logo should be present");
+        Assert.assertTrue(profilePage.isEmployerLogoPresent(""), "Employer logo should be present");
         Assert.assertEquals(profilePage.getEmployerName("0"), employer);
         Assert.assertEquals(profilePage.getJobPosition("0", "0"), jobPosition);
         Assert.assertEquals(profilePage.getTimePeriod("0"), timePeriodPresent);
