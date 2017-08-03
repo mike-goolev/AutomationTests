@@ -319,7 +319,6 @@ public class Locators {
 
         /**
          * Locates a job search position in the dropdown for a given index
-
          * @param index The index (Starting at 0) of the job search position in the dropdown you wish to locate
          * @return Returns a locator for a job search position in the dropdown by index
          */
@@ -330,7 +329,6 @@ public class Locators {
         public By searchLocationField = By.id("searchLocationTextField");
 
         /* Search Results */
-        public By searchResultPaginationTxt = By.id("searchShowResults");
 
         /**
          * Locates a job search result employer logo for a given index
@@ -351,16 +349,6 @@ public class Locators {
         }
 
         /**
-         * Locates a job search result wage for a given index
-
-         * @param index The index (Starting at 0) of the job search result wage you wish to locate
-         * @return Returns a locator for a job search result wage by index
-         */
-        public By findSearchResultWageTxtByIndex(String index) {
-            return  By.id("searchResultWageText" + index);
-        }
-
-        /**
          * Locates a job search result employer name for a given index
 
          * @param index The index (Starting at 0) of the job search result employer name you wish to locate
@@ -372,7 +360,6 @@ public class Locators {
 
         /**
          * Locates a job search result location for a given index
-
          * @param index The index (Starting at 0) of the job search result location you wish to locate
          * @return Returns a locator for a job search result location by index
          */
@@ -399,29 +386,31 @@ public class Locators {
         }
 
         public By searchResultsCountTxt = By.id("jobSearchJobCount");
-        public By searchResultsPage1Btn = By.id("searchPage1");
-        public By searchResultsPage2Btn = By.id("searchPage2");
-        public By searchResultsNextPageBtn = By.id("searchPaginationArrowNext");
-        public By searchResultsPreviousPageBtn = By.id("searchPaginationArrowPrev");
-        public By emptySearchTextTitle = By.cssSelector("emptySearchTextTitle");
-        public By searchResultsEmptyMessageTxt = By.cssSelector("emptySearchTextContent");
+        public By emptySearchTextTitle = By.id("emptySearchTextTitle");
+        public By searchResultsEmptyMessageTxt = By.id("emptySearchTextContent");
         public By applySuccessToastTxt = By.id("applyForJobToast");
         public By applySuccessToastDismissBtn = By.id("applyForJobToastCloseBtn");
 
         /* Job Details - Auth'd */
-        public By jobDetailsPosition = By.id("jobNameTxt");
-        public By jobDetailsWage = By.id("jobWageTxt");
+        public By jobDetailsPositionTxt = By.id("jobNameTxt");
+        public By jobDetailsWageTxt = By.id("jobWageTxt");
         public By jobDetailsApplyBtn = By.id("jobApplyBtn");
+        public By jobDetailsApplySuccessToastTxt = By.id("applyForJobToast");
+        public By jobDetailsApplySuccessToastDismissBtn = By.id("applyForJobToastCloseBtn");
         public By jobDetailsJobDescriptionTitleTxt = By.id("jobDescriptionTitleTxt");
         public By jobDetailsJobDescriptionTxt = By.id("jobDescriptionTxt");
         public By jobDetailsEmployerLogoImg = By.id("jobEmployerPhotoImg");
         public By jobDetailsEmployerNameTxt = By.id("employerNameTxt");
+        public By jobDetailsEmployerDescriptionTitleTxt = By.id("employerDescriptionTitleTxt");
+        public By jobDetailsEmployerDescriptionTxt = By.id("employerDescriptionTxt");
         public By jobDetailsEmployerAddressTxt = By.id("employerAddressTxt");
         public By jobDetailsEmployerPPATxt = By.id("employerPPATypeTxt");
         public By jobDetailsEmployerTypeTxt = By.id("employerTypeTxt");
         public By jobDetailsEmployerDistanceTxt = By.id("employerDistanceTxt");
         public By jobDetailsEmployerFollowBtn = By.xpath("//button[@id='employerFollowBtn']/div/span[contains(text(), 'Follow')]");
         public By jobDetailsEmployerFollowingBtn = By.xpath("//button[@id='employerFollowBtn']/div/span[contains(text(), 'Following')]");
+        public By jobDetailsEmployerFollowToastTxt = By.id("jobDetailsToast");
+        public By jobDetailsEmployerFollowToastDismissBtn = By.id("jobDetailsToastCloseBtn");
     }
 
     public static class ProfilePageLocators {
