@@ -33,7 +33,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Enters text in to the edit work history employer/store field
-
      * @param employer The text to enter in the employer/store field
      */
     public void enterWhereHaveYouWorkedText(String employer) throws Exception {
@@ -46,7 +45,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Selects a job position from the position drop down
-
      * @param index The index (Starting at 0) of the position you wish to locate
      */
     public void clickJobPosition(String index) {
@@ -58,7 +56,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Removes a job position from the user's selected positions
-
      * @param index The index (Starting at 0) of the position you wish to locate
      */
     public void removeJobPosition(String index) {
@@ -70,7 +67,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Selects a month from the from month drop down
-
      * @param month The month to select from the from month drop down
      */
     public void selectMonthFromDate(String month) {
@@ -81,7 +77,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Selects a year from the from year drop down
-
      * @param year The year to select from the from year drop down
      */
     public void selectYearFromDate(String year) {
@@ -92,7 +87,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Selects a month from the to date drop down
-
      * @param month The month to select from the to month drop down
      */
     public void selectMonthToDate(String month) {
@@ -103,7 +97,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Selects a year from the to year drop down
-
      * @param year The year to select from the to year drop down
      */
     public void selectYearToDate(String year) {
@@ -130,7 +123,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Clicks on the edit work history button for a given index
-
      * @param index The index (Starting at 0) of the work history edit button you wish to locate
      */
     public void clickEditWorkHistory(String index) {
@@ -196,7 +188,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Verifies that the employer logo is present at the given index
-
      * @param index The index (Starting at 0) of the employer logo you wish to locate
      * @return Whether or not the employer logo is present at the given index
      */
@@ -206,7 +197,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Gets the job position name at the given index
-
      * @param employerIndex The index (Starting at 0) of the employer you wish to locate
      * @param positionIndex The index (Starting at 0) of the position name you wish to locate
      * @return The job position text at the given index
@@ -217,7 +207,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Gets the employer name from the given index
-
      * @param index The index (Starting at 0) of the employer you wish to locate
      * @return The employer name text at the given index
      */
@@ -227,7 +216,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Gets the time period at the given index
-
      * @param index The index (Starting at 0) of the employer you wish to locate
      * @return The time period text at the given index
      */
@@ -237,7 +225,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Gets the work history duration at the given index
-
      * @param index The index (Starting at 0) of the work history duration you wish to locate
      * @return The duration text at the given index
      */
@@ -247,7 +234,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Checks to see if the edit experience success toast is visible
-
      * @return Whether or not the edit experience success toast is visible
      */
     public boolean verifyExperienceEmptyState(){
@@ -259,7 +245,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Checks to see if the edit experience success toast is visible
-
      * @return Whether or not the edit experience success toast is visible
      */
     public boolean verifyEditExperienceSuccessToast(){
@@ -278,7 +263,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Checks to see if the add experience success toast is visible
-
      * @return Whether or not the add experience success toast is visible
      */
     public boolean verifyAddExperienceSuccessToast(){
@@ -297,7 +281,6 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Checks to see if the delete experience success toast is visible
-
      * @return Whether or not the delete experience success toast is visible
      */
     public boolean verifyDeleteExperienceSuccessToast(){

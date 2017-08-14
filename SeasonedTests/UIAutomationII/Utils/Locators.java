@@ -23,11 +23,13 @@ public class Locators {
         public By userPhotoImg = By.id("profilePictureImg");
         public By userAvatarImg = By.id("profilePictureImg");
 
-
         public By menuProfileBtn = By.id("headerMenuProfileLink");
         public By menuSettingsBtn = By.id("headerMenuSettingsLink");
         public By menuManagerBtn = By.id("headerMenuManagersLink");
         public By menuLogoutBtn = By.id("headerMenuLogOutLink");
+
+        /* Nav utility methods */
+        public By rebrandingModalBtn = By.id("rebrandAnnouncementSubmitBtn");
     }
 
     public static class LoginPageLocators {

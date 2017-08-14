@@ -19,7 +19,6 @@ public class TestUtils {
 
     /**
      * Navigate to the content feed as a starting point for tests with a filter applied
-     *
      * @param labelFilter The label (job type) to filter the content page results
      */
     public void loadContentFeedPageWithFilter(String labelFilter) {
@@ -44,7 +43,6 @@ public class TestUtils {
 
     /**
      * Switches webdriver focus from current window to a new open window ie Facebook Login
-     *
      * @param parentWindow The original window as returned in driver.getWindowHandle()
      */
     public void switchToNewWindow(String parentWindow) {
@@ -63,7 +61,6 @@ public class TestUtils {
 
     /**
      * Switches webdriver focus from new window to the original window
-     * 
      * @param parentWindow The original window as returned in driver.getWindowHandle()
      */
     public void switchToParentWindow(String parentWindow) {

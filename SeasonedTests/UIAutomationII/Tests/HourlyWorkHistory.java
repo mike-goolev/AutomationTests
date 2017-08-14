@@ -65,10 +65,12 @@ public class HourlyWorkHistory extends BaseTest {
     public void testAddWorkHistory() throws Exception {
         /* Start test on the content feed page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(username, password);
+        testUtils.loadJobSearchPageNoTerms();
 
         /* Verify job search page displayed */
         Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"));
@@ -93,7 +95,7 @@ public class HourlyWorkHistory extends BaseTest {
         workHistoryPage.clickJobPosition("16");
         workHistoryPage.removeJobPosition("0");
 
-        /* Enter an employer*/
+        /* Enter an employer */
         workHistoryPage.enterWhereHaveYouWorkedText(employer);
 
         /* Grab the list of google places results */

@@ -85,6 +85,14 @@ public class NavPage extends BasePage {
     }
 
     /**
+     * Clicks on the "Okay, got it." button to dismiss the rebranding modal
+     */
+    public void dismissRebrandingModal() {
+        wait.until(elementToBeClickable(navPageLocators.rebrandingModalBtn));
+        driver.findElement(navPageLocators.rebrandingModalBtn).click();
+    }
+
+    /**
      * Logs the user out via nav header and clicking log out
      */
     public void logout() {
