@@ -55,6 +55,7 @@ public class HourlyConnections extends BaseTest {
     public void testHourlyConnections() throws Exception {
         /* Start test on the content feed */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();

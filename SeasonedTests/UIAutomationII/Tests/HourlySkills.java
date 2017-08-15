@@ -43,6 +43,7 @@ public class HourlySkills extends BaseTest {
     public void testSkills() throws Exception {
         /* Start test on the content feed */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();

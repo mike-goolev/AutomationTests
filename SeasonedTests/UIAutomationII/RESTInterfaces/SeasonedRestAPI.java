@@ -350,6 +350,7 @@ public class SeasonedRestAPI {
             user.setFirstname(firstname);
             user.setLastname(lastname);
             user.setEmail(email);
+            user.setAccountState("normal");
 
             user.setAbout(about);
 

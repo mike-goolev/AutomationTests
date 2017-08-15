@@ -50,6 +50,7 @@ public class HourlyRegistration extends BaseTest {
     public void testHourlySignUpAllJobsByEmail() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -89,6 +90,7 @@ public class HourlyRegistration extends BaseTest {
     public void testHourlySignUpPopularJobsByEmail() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -127,6 +129,7 @@ public class HourlyRegistration extends BaseTest {
     public void testHourlySignUpSelectedJobsByEmail() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -166,6 +169,7 @@ public class HourlyRegistration extends BaseTest {
     public void testHourlySignUpCareerByEmail() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -204,6 +208,7 @@ public class HourlyRegistration extends BaseTest {
     public void testHourlySignUpNetworkByEmail() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -246,6 +251,7 @@ public class HourlyRegistration extends BaseTest {
     public void testHourlySignUpManagerRedirect() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickJoinBtn();

@@ -52,6 +52,7 @@ public class HourlyAvailability extends BaseTest {
     public void testAvailability() throws Exception {
         /* Start on the content feed page */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Click the login button from the nav header and login */
         navPage.clickLoginBtn();

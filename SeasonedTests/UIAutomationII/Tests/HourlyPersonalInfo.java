@@ -99,6 +99,7 @@ public class HourlyPersonalInfo extends BaseTest {
     public void testPersonalInfo() throws Exception {
         /* Start test on the content feed page */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();

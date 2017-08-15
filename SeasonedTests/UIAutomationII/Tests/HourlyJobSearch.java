@@ -1,8 +1,6 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class HourlyJobSearch extends BaseTest {
 
@@ -36,13 +34,8 @@ public class HourlyJobSearch extends BaseTest {
 
 
     @BeforeClass
-    public void setUp() {
+    public void intializeTestDataAndCreateJob() {
         System.out.println("Initializing Hourly Job Search test...");
-        driver = new FirefoxDriver();
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        jobSearchPage = new JobSearchPage(driver);
         usernameEmail = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("username");
         passwordEmail = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("password");
         searchResultsCount = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("searchResultsCount");
@@ -68,13 +61,25 @@ public class HourlyJobSearch extends BaseTest {
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         jobGuid = seasonedRestAPI.postJob();
         seasonedRestAPI.unfollowEmployer(employerGuid, userGuid);
-        System.out.println("Starting test run!");
+        System.out.println("Created job with guid: " + jobGuid);
+        System.out.println("Finished initializing test data...");
+    }
+
+    @BeforeMethod
+    public void setUp() {
+        System.out.println("Starting job search tests...");
+        driver = new FirefoxDriver();
+        testUtils = new TestUtils(driver);
+        navPage = new NavPage(driver);
+        loginPage = new LoginPage(driver);
+        jobSearchPage = new JobSearchPage(driver);
     }
 
     @Test
     public void testHourlyJobSearchCommitSearchAndViewJobDetails() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -94,7 +99,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(jobSearchPage.isApplyButtonEnabled("0"), "Apply button is enabled");
 
         /* View job search result at index 0 */
-        //jobSearchPage.clickJobPostingViewBtn("0");
+        jobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
         Assert.assertTrue(jobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
@@ -167,6 +172,7 @@ public class HourlyJobSearch extends BaseTest {
     public void testHourlyJobSearchFollowStore() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -183,13 +189,13 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertTrue(jobSearchPage.isApplyButtonEnabled("0"), "Apply button is enabled");
+        Assert.assertFalse(jobSearchPage.isApplyButtonEnabled("0"), "Apply button is disabled");
 
         /* Click job search result at index 0 */
         jobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
-        Assert.assertTrue(jobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
+        Assert.assertFalse(jobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be disabled");
         Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
         Assert.assertEquals(jobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
@@ -220,7 +226,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertTrue(jobSearchPage.isApplyButtonEnabled("0"), "Apply button is enabled");
+        Assert.assertFalse(jobSearchPage.isApplyButtonEnabled("0"), "Apply button is disabled");
 
          /* Click job search result at index 0 */
         jobSearchPage.clickJobPostingViewBtn("0");
@@ -237,6 +243,7 @@ public class HourlyJobSearch extends BaseTest {
     public void testHourlyJobSearchEmptyResults() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -250,12 +257,16 @@ public class HourlyJobSearch extends BaseTest {
         jobSearchPage.verifyJobSearchEmptyResultElements();
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the hourly job search test");
         navPage.attemptLogout();
+        driver.quit();
+    }
+
+    @AfterClass
+    public void removeJob() {
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteJob(jobGuid);
-        driver.quit();
     }
 }

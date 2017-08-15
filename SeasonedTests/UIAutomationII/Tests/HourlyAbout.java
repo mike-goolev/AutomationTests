@@ -47,6 +47,7 @@ public class HourlyAbout extends BaseTest {
     public void testAbout() throws Exception {
         /* Start test on the content feed */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
