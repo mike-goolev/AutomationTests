@@ -11,6 +11,7 @@ public class HourlyAbout extends BaseTest {
     private LoginPage loginPage;
     private ProfilePage profilePage;
     private AboutPage aboutPage;
+    private EditProfilePage editProfilePage;
 
     private String username;
     private String password;
@@ -30,6 +31,7 @@ public class HourlyAbout extends BaseTest {
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
         aboutPage = new AboutPage(driver);
+        editProfilePage = new EditProfilePage(driver);
         aboutMeTxt = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("aboutMe");
         username = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("username");
         password = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("password");
@@ -40,7 +42,7 @@ public class HourlyAbout extends BaseTest {
         token = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("token");
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.updateUserAbout(id, guid, firstname, lastname, username, "");
-        System.out.println("Starting hourly profile test!");
+        System.out.println("Starting hourly profile About test!");
     }
 
     @Test
@@ -56,7 +58,7 @@ public class HourlyAbout extends BaseTest {
         /* Navigate to profile -> Click edit profile -> Navigate to the HourlyAbout page */
         navPage.navigateToProfilePage();
         profilePage.clickEditProfile();
-        profilePage.clickSideMenuAboutMeLink();
+        editProfilePage.clickSideMenuAboutLink();
 
         /* Verify that there is no text in the about text field */
         Assert.assertTrue(aboutPage.aboutTxtFieldIsEmpty(), "HourlyAbout text field should be empty");
@@ -72,7 +74,7 @@ public class HourlyAbout extends BaseTest {
 
         /* Go to edit about and verify that there is text, then remove it */
         profilePage.clickEditProfile();
-        profilePage.clickSideMenuAboutMeLink();
+        editProfilePage.clickSideMenuAboutLink();
         Assert.assertTrue(aboutPage.aboutTxtEquals(aboutMeTxt), "HourlyAbout text field should be )" + aboutMeTxt);
         aboutPage.removeAboutTxt();
 
@@ -82,7 +84,7 @@ public class HourlyAbout extends BaseTest {
         Thread.sleep(500);
 
         /* Go back to view profile and verify that there is no about text */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertFalse(profilePage.isAboutSectionPresent(), "The user should NOT have about text");
     }
 

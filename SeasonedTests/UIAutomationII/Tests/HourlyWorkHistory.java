@@ -18,6 +18,7 @@ public class HourlyWorkHistory extends BaseTest {
     JobSearchPage jobSearchPage;
     ProfilePage profilePage;
     WorkHistoryPage workHistoryPage;
+    EditProfilePage editProfilePage;
 
     String username;
     String password;
@@ -42,6 +43,7 @@ public class HourlyWorkHistory extends BaseTest {
         jobSearchPage = new JobSearchPage(driver);
         profilePage = new ProfilePage(driver);
         workHistoryPage = new WorkHistoryPage(driver);
+        editProfilePage = new EditProfilePage(driver);
 
         username = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("username");
         password = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("password");
@@ -70,10 +72,9 @@ public class HourlyWorkHistory extends BaseTest {
         /* Log in */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(username, password);
-        testUtils.loadJobSearchPageNoTerms();
 
         /* Verify job search page displayed */
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"));
+        Assert.assertTrue(jobSearchPage.verifyPositionDropdown(), "Job search page should be displayed");
 
         /* Navigate to the profile page */
         navPage.navigateToProfilePage();
@@ -83,17 +84,16 @@ public class HourlyWorkHistory extends BaseTest {
 
         /* Go to the work history page and add an entry */
         profilePage.clickEditProfile();
-        workHistoryPage.navigateToEditExperience();
+        editProfilePage.clickSideMenuExperienceLink();
 
         /* Verify empty edit profile state */
-        Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState());
+        Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState(), "Work availability empty state text should be displayed");
 
         /* Click to add a new position */
         workHistoryPage.clickAddWorkHistoryBtn();
 
         /* Select a job position */
         workHistoryPage.clickJobPosition("16");
-        workHistoryPage.removeJobPosition("0");
 
         /* Enter an employer */
         workHistoryPage.enterWhereHaveYouWorkedText(employer);
@@ -124,7 +124,7 @@ public class HourlyWorkHistory extends BaseTest {
         Assert.assertEquals(workHistoryPage.getDuration("0"), durationPresent);
 
         /* Navigate to profile view */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
 
         /* Verify the user's primary job and job location displayed in profile summary section */
         Assert.assertEquals(profilePage.getSummaryPrimaryJob("0"), jobPosition);
@@ -139,7 +139,7 @@ public class HourlyWorkHistory extends BaseTest {
 
         /* Go back to edit work history and delete the entry */
         profilePage.clickEditProfile();
-        workHistoryPage.navigateToEditExperience();
+        editProfilePage.clickSideMenuExperienceLink();
         workHistoryPage.clickEditWorkHistory("0");
         workHistoryPage.clickEditWorkHistoryDeleteBtn();
 
@@ -154,7 +154,7 @@ public class HourlyWorkHistory extends BaseTest {
         Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState());
 
         /* Navigate to the profile page */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
 
         /* Verify the empty text state on the card */
         Assert.assertFalse(profilePage.isExperienceHeaderDisplayed(), "Work history card should not be displayed");

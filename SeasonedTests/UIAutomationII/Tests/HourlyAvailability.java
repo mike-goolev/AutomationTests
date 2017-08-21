@@ -11,6 +11,7 @@ public class HourlyAvailability extends BaseTest {
     private LoginPage loginPage;
     private ProfilePage profilePage;
     private AvailabilityPage availabilityPage;
+    private EditProfilePage editProfilePage;
 
     private String username;
     private String password;
@@ -32,6 +33,7 @@ public class HourlyAvailability extends BaseTest {
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
         availabilityPage = new AvailabilityPage(driver);
+        editProfilePage = new EditProfilePage(driver);
         username = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("username");
         password = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("password");
         firstname = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("firstname");
@@ -61,7 +63,7 @@ public class HourlyAvailability extends BaseTest {
         /* Navigate to profile -> Navigate to the Availability page */
         navPage.navigateToProfilePage();
         profilePage.clickEditProfile();
-        profilePage.clickSideMenuAvailabilityLink();
+        editProfilePage.clickSideMenuWorkAvailabilityLink();
 
         /* Verify that no availability has been selected, then select all availability and save. A success toast should appear. */
         Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "The user should have no availability selected");
@@ -82,7 +84,7 @@ public class HourlyAvailability extends BaseTest {
 
         /* Go back to the profile page */
         profilePage.clickEditProfile();
-        profilePage.clickSideMenuAvailabilityLink();
+        editProfilePage.clickSideMenuWorkAvailabilityLink();
 
         /* Verify that all availability cards are selected then un-select all availability */
         Assert.assertTrue(availabilityPage.allAvailabilitySelected(), "All availability has been been selected");
@@ -99,7 +101,7 @@ public class HourlyAvailability extends BaseTest {
 
         /* Verify that the availability card is in an empty state on the view profile page */
         Thread.sleep(300);
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertFalse(profilePage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
     }
 

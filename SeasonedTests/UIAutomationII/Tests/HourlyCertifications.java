@@ -11,7 +11,7 @@ public class HourlyCertifications extends BaseTest {
     private LoginPage loginPage;
     private ProfilePage profilePage;
     private CertificationsPage certificationsPage;
-
+    private EditProfilePage editProfilePage;
     private String username;
     private String password;
 
@@ -24,6 +24,7 @@ public class HourlyCertifications extends BaseTest {
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
         certificationsPage = new CertificationsPage(driver);
+        editProfilePage = new EditProfilePage(driver);
         username = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("username");
         password = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("password");
     }
@@ -43,30 +44,30 @@ public class HourlyCertifications extends BaseTest {
 
         /* Click edit profile and navigate to the Certs Page and verify that there are no certs present */
         profilePage.clickEditProfile();
-        profilePage.clickSideMenuCertificationsLink();
+        editProfilePage.clickSideMenuCertificationsLink();
         Assert.assertTrue(certificationsPage.areNoCertsSelected(), "No certs should be selected");
 
         /* Select all certifications and verify that the upload button appears */
         certificationsPage.selectAllCertifications();
         Assert.assertTrue(certificationsPage.verifyCertificationSuccessBanner(), "The success toast should appear");
         certificationsPage.clickCloseCertificationBannerBtn();
-        //Assert.assertTrue(certificationsPage.areAllCertUploadBtnsDisplayed(), "All certs should have an upload button displayed");
+        Assert.assertTrue(certificationsPage.areAllCertUploadBtnsDisplayed(), "All certs should have an upload button displayed");
 
         /* Go back to the profile page and verify all certs are displayed */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Thread.sleep(200);
         Assert.assertTrue(profilePage.verifyAllCertifications(), "All certifications have been selected");
 
         /* Go back and remove all certifications */
         profilePage.clickEditProfile();
-        profilePage.clickSideMenuCertificationsLink();
+        editProfilePage.clickSideMenuCertificationsLink();
         certificationsPage.selectAllCertifications();
         Assert.assertTrue(certificationsPage.verifyCertificationSuccessBanner(), "Success toast should appear");
         certificationsPage.clickCloseCertificationBannerBtn();
-        //Assert.assertTrue(certificationsPage.areNoCertUploadBtnsDisplayed());
+        Assert.assertTrue(certificationsPage.areNoCertUploadBtnsDisplayed());
 
         /* Navigate to the profile page and verify that certs are in an empty state */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertTrue(profilePage.verifyNoCertifications(), "No certs should be selected");
     }
 

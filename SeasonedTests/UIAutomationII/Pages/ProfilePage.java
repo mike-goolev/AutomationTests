@@ -204,14 +204,6 @@ public class ProfilePage extends BasePage {
                 !verifyHACCPCert();
     }
 
-    /**
-     * Clicks the Certifications link from the side menu on the edit profile page
-     */
-    public void clickSideMenuCertificationsLink() {
-        wait.until(elementToBeClickable(profilePageLocators.sideMenuCertificationsLink));
-        driver.findElement(profilePageLocators.sideMenuCertificationsLink).click();
-    }
-
     /*--------- Availability ----------*/
 
     /**
@@ -253,14 +245,6 @@ public class ProfilePage extends BasePage {
         return typeTxt.equals(type);
     }
 
-    /**
-     * Clicks the availability link from the side menu on the edit profile page
-     */
-    public void clickSideMenuAvailabilityLink() {
-        wait.until(elementToBeClickable(profilePageLocators.sideMenuAvailabilityLink));
-        driver.findElement(profilePageLocators.sideMenuAvailabilityLink).click();
-    }
-
     /*---------- About -----------*/
 
     /**
@@ -280,13 +264,6 @@ public class ProfilePage extends BasePage {
         return aboutTxt.equals(driver.findElement(profilePageLocators.aboutTxtField).getText());
     }
 
-    /**
-     * Clicks the About Me link from the side menu on the edit profile page
-     */
-    public void clickSideMenuAboutMeLink() {
-        wait.until(elementToBeClickable(profilePageLocators.sideMenuAboutMeLink));
-        driver.findElement(profilePageLocators.sideMenuAboutMeLink).click();
-    }
 
     /*---------- HourlySkills -----------*/
 

@@ -16,14 +16,6 @@ public class WorkHistoryPage extends BasePage {
     }
 
     /**
-     * Navigates to the edit work history page
-     */
-    public void navigateToEditExperience(){
-        wait.until(elementToBeClickable(workHistoryPageLocators.navMenuExperience));
-        driver.findElement(workHistoryPageLocators.navMenuExperience).click();
-    }
-
-    /**
      * Clicks on the Add Experience button
      */
     public void clickAddWorkHistoryBtn() {

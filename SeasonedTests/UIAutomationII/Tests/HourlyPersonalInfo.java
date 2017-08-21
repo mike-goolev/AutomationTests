@@ -11,6 +11,7 @@ public class HourlyPersonalInfo extends BaseTest {
     private LoginPage loginPage;
     private ProfilePage profilePage;
     private PersonalInfoPage personalInfoPage;
+    private EditProfilePage editProfilePage;
 
     private String username;
     private String password;
@@ -54,6 +55,7 @@ public class HourlyPersonalInfo extends BaseTest {
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
         personalInfoPage = new PersonalInfoPage(driver);
+        editProfilePage = new EditProfilePage(driver);
 
         username = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("username");
         password = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("password");
@@ -117,6 +119,9 @@ public class HourlyPersonalInfo extends BaseTest {
         /* Navigate to the edit profile page */
         profilePage.clickEditProfile();
 
+        /* Navigate to the personal info page */
+        editProfilePage.clickSideMenuPersonalInfoLink();
+
         /* Verify the user's initial name, location, phone, dob and eligibility # */
         Assert.assertTrue(navPage.isNavMenuAvatarDisplayed(), "User avatar should be displayed in the menu");
         Assert.assertEquals(navPage.getUserFirstNameLastInitial(), originalFirstNameLastInitial);
@@ -160,11 +165,12 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Go back and verify that the new name shows on the view profile page */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertEquals(profilePage.getFirstAndLastName(), newFirstName + ' ' + newLastName);
 
         /* Go to edit personal info and change name, location, phone and eligibility back to the original state */
         profilePage.clickEditProfile();
+        editProfilePage.clickSideMenuPersonalInfoLink();
         personalInfoPage.updateUserFirstAndLastName(originalFirstName, originalLastName);
         personalInfoPage.updateUserLocation(originalLocation);
         personalInfoPage.removeUserPhone();
@@ -188,7 +194,7 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Go back to view profile and verify that the original name and location are displayed */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertEquals(profilePage.getFirstAndLastName(), originalFirstName + ' ' + originalLastName);
     }
 

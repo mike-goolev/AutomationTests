@@ -16,14 +16,6 @@ public class SkillsPage extends BasePage {
     }
 
     /**
-     * Navigates to the edit skills page
-     */
-    public void navigateToEditSkills(){
-        wait.until(elementToBeClickable(skillsPageLocators.navMenuSkills));
-        driver.findElement(skillsPageLocators.navMenuSkills).click();
-    }
-
-    /**
      * Selects a skill at the specified index
      * @param index The index of the skill to select
      */
