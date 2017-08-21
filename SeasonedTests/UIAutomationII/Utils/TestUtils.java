@@ -1,3 +1,4 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import java.util.UUID;
 
@@ -18,7 +19,6 @@ public class TestUtils {
 
     /**
      * Navigate to the content feed as a starting point for tests with a filter applied
-     *
      * @param labelFilter The label (job type) to filter the content page results
      */
     public void loadContentFeedPageWithFilter(String labelFilter) {
@@ -34,12 +34,12 @@ public class TestUtils {
 
     /**
      * Navigate to the job search page as a starting point for tests
-     *
-     * @param searchTerm The search term to enter in the search term field
+     * @param searchPosition The search term to enter in the search term field
      * @param searchLocation The search location to enter in the search location field
      */
-    public void loadJobSearchPage(String searchTerm, String searchLocation) {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL() + "?term=" + searchTerm + "&location=" + searchLocation + "&start=0&rows=25#/");
+
+    public void loadJobSearchPage(String searchLocation, String searchPosition) {
+        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL() + "/" + searchLocation + "/" + searchPosition);
     }
 
     /**
@@ -81,5 +81,13 @@ public class TestUtils {
     public String generateRandomUUID() {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "").substring(0,9);
         return uuid;
+    }
+
+    /**
+     * Scrolls user to the top of the current page
+     */
+    public void scrollToTop(){
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("window.scrollTo(document.body.scrollHeight, 0)");
     }
 }

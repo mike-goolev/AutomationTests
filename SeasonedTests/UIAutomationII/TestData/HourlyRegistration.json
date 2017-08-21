@@ -2,6 +2,9 @@
   "testHourlySignUpByEmail": {
     "password": "12348765",
     "ipLocation":"Austin, TX",
-    "userLocation":"Philadelphia, PA"
+    "userLocation":"Philadelphia, PA",
+    "availabilityStatusOpen":"I'm open to opportunities",
+    "availabilityStatusLooking":"I'm looking for a job",
+    "availabilityStatusEmployed":"I'm currently employed."
   }
 }

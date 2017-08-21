@@ -2,10 +2,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 import java.util.List;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class WorkHistoryPage extends BasePage {
 
@@ -17,12 +16,28 @@ public class WorkHistoryPage extends BasePage {
     }
 
     /**
-     * Enters text in to the edit work history where have you worked field
-     * @param s The text to enter in the where you have worked field
+     * Navigates to the edit work history page
      */
-    public void enterWhereHaveYouWorkedText(String s) throws Exception {
+    public void navigateToEditExperience(){
+        wait.until(elementToBeClickable(workHistoryPageLocators.navMenuExperience));
+        driver.findElement(workHistoryPageLocators.navMenuExperience).click();
+    }
+
+    /**
+     * Clicks on the Add Experience button
+     */
+    public void clickAddWorkHistoryBtn() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.addWorkHistoryBtn));
+        driver.findElement(workHistoryPageLocators.addWorkHistoryBtn).click();
+    }
+
+    /**
+     * Enters text in to the edit work history employer/store field
+     * @param employer The text to enter in the employer/store field
+     */
+    public void enterWhereHaveYouWorkedText(String employer) throws Exception {
         wait.until(elementToBeClickable(workHistoryPageLocators.employerLocationTxtField));
-        driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(s);
+        driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(employer);
         Thread.sleep(500);
         driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(Keys.ARROW_DOWN);
         Thread.sleep(500);
@@ -30,37 +45,49 @@ public class WorkHistoryPage extends BasePage {
 
     /**
      * Selects a job position from the position drop down
-     * @param value the job position to select in the drop down
+     * @param index The index (Starting at 0) of the position you wish to locate
      */
-    public void selectJobPosition(String value) {
-        wait.until(elementToBeClickable(workHistoryPageLocators.jobPositionSelect));
-        Select jobPositionDropDown = new Select(driver.findElement(workHistoryPageLocators.jobPositionSelect));
-        jobPositionDropDown.selectByValue(value);
+    public void clickJobPosition(String index) {
+        wait.until(elementToBeClickable(workHistoryPageLocators.jobPositionDropdown));
+        driver.findElement(workHistoryPageLocators.jobPositionDropdown).click();
+        wait.until(elementToBeClickable(workHistoryPageLocators.findPositionByIndex(index)));
+        driver.findElement(workHistoryPageLocators.findPositionByIndex(index)).click();
     }
 
     /**
-     * Selects a month on the from date field
-     * @param month the month to select from the from date drop down
+     * Removes a job position from the user's selected positions
+     * @param index The index (Starting at 0) of the position you wish to locate
+     */
+    public void removeJobPosition(String index) {
+        wait.until(elementToBeClickable(workHistoryPageLocators.findSelectedPositionRemoveBtnByIndex(index)));
+        driver.findElement(workHistoryPageLocators.findSelectedPositionRemoveBtnByIndex(index)).click();
+    }
+
+
+
+    /**
+     * Selects a month from the from month drop down
+     * @param month The month to select from the from month drop down
      */
     public void selectMonthFromDate(String month) {
         wait.until(elementToBeClickable(workHistoryPageLocators.fromMonthDateSelect));
         Select fromMonthSelect = new Select(driver.findElement(workHistoryPageLocators.fromMonthDateSelect));
-        fromMonthSelect.selectByValue(month);
+        fromMonthSelect.selectByVisibleText(month);
     }
 
     /**
-     * Selects a year on the from date field
-     * @param year the year to select from the from date drop down
+     * Selects a year from the from year drop down
+     * @param year The year to select from the from year drop down
      */
     public void selectYearFromDate(String year) {
         wait.until(elementToBeClickable(workHistoryPageLocators.fromYearDateSelect));
         Select fromYearSelect = new Select(driver.findElement(workHistoryPageLocators.fromYearDateSelect));
-        fromYearSelect.selectByValue(year);
+        fromYearSelect.selectByVisibleText(year);
     }
 
     /**
-     * Selects a month on the to date field
-     * @param month the month to select from the to date drop down
+     * Selects a month from the to date drop down
+     * @param month The month to select from the to month drop down
      */
     public void selectMonthToDate(String month) {
         wait.until(elementToBeClickable(workHistoryPageLocators.toMonthDateSelect));
@@ -69,8 +96,8 @@ public class WorkHistoryPage extends BasePage {
     }
 
     /**
-     * Selects a year on the to date field
-     * @param year the year to select from the to date drop down
+     * Selects a year from the to year drop down
+     * @param year The year to select from the to year drop down
      */
     public void selectYearToDate(String year) {
         wait.until(elementToBeClickable(workHistoryPageLocators.toYearDateSelect));
@@ -79,27 +106,44 @@ public class WorkHistoryPage extends BasePage {
     }
 
     /**
+     * Toggles current position off
+     */
+    public void clickCurrentlyWorkHereOnBtn() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.currentWorkHistoryEnableBtn));
+        driver.findElement(workHistoryPageLocators.currentWorkHistoryEnableBtn).click();
+    }
+
+    /**
+     * Toggles current position on
+     */
+    public void clickCurrentlyWorkHereOffBtn() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.currentWorkHistoryDisableBtn));
+        driver.findElement(workHistoryPageLocators.currentWorkHistoryDisableBtn).click();
+    }
+
+    /**
      * Clicks on the edit work history button for a given index
-     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @param index The index (Starting at 0) of the work history edit button you wish to locate
      */
     public void clickEditWorkHistory(String index) {
         driver.findElement(workHistoryPageLocators.findEditWorkHistoryItemByIndex(index)).click();
     }
 
     /**
-     * Clicks the Yes, Delete button on the delete work history entry modal
+     * Clicks the Delete confirmation button on the delete work history modal
      */
-    public void clickYesDeleteBtn() {
-        wait.until(elementToBeClickable(workHistoryPageLocators.yesDeleteBtn));
-        driver.findElement(workHistoryPageLocators.yesDeleteBtn).click();
+    public void clickConfirmDeleteBtn() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.deleteWorkHistoryDeleteBtn));
+        driver.findElement(workHistoryPageLocators.deleteWorkHistoryDeleteBtn).click();
+        wait.until(elementToBeClickable(workHistoryPageLocators.addWorkHistoryBtn));
     }
 
     /**
      * Clicks cancel on the delete work history modal
      */
     public void clickCancelDeleteBtn() {
-        wait.until(elementToBeClickable(workHistoryPageLocators.cancelDeleteBtn));
-        driver.findElement(workHistoryPageLocators.cancelDeleteBtn);
+        wait.until(elementToBeClickable(workHistoryPageLocators.deleteWorkHistoryCancelBtn));
+        driver.findElement(workHistoryPageLocators.deleteWorkHistoryCancelBtn);
     }
 
     /**
@@ -113,7 +157,7 @@ public class WorkHistoryPage extends BasePage {
     /**
      * Clicks on the edit work history save button
      */
-    public void clickSaveBtn() {
+    public void clickEditWorkHistorySaveBtn() {
         wait.until(elementToBeClickable(workHistoryPageLocators.editWorkHistorySaveBtn));
         driver.findElement(workHistoryPageLocators.editWorkHistorySaveBtn).click();
     }
@@ -121,7 +165,7 @@ public class WorkHistoryPage extends BasePage {
     /**
      * Clicks on the edit work history cancel button
      */
-    public void clickCancelBtn() {
+    public void clickEditWorkHistoryCancelBtn() {
         wait.until(elementToBeClickable(workHistoryPageLocators.editWorkHistoryCancelBtn));
         driver.findElement(workHistoryPageLocators.editWorkHistoryCancelBtn).click();
     }
@@ -129,16 +173,127 @@ public class WorkHistoryPage extends BasePage {
     /**
      * Clicks on the edit work history delete button
      */
-    public void clickDeleteBtn() {
+    public void clickEditWorkHistoryDeleteBtn() {
         wait.until(elementToBeClickable(workHistoryPageLocators.editWorkHistoryDeleteBtn));
         driver.findElement(workHistoryPageLocators.editWorkHistoryDeleteBtn).click();
     }
 
     /**
-     * Returns a list of elements returned by the location drop down when typing in a location/store
+     * Returns a list of elements returned in the location drop down when typing in an employer
      * @return a list of elements that represents the stores returned by google places
      */
     public List<WebElement> getGooglePlacesElements() {
         return driver.findElements(workHistoryPageLocators.googlePlacesMyStoreBtns);
+    }
+
+    /**
+     * Verifies that the employer logo is present at the given index
+     * @param index The index (Starting at 0) of the employer logo you wish to locate
+     * @return Whether or not the employer logo is present at the given index
+     */
+    public boolean isEmployerLogoPresent(String index) {
+        return elementExists(workHistoryPageLocators.findWorkHistoryEmployerLogoByIndex(index));
+    }
+
+    /**
+     * Gets the job position name at the given index
+     * @param employerIndex The index (Starting at 0) of the employer you wish to locate
+     * @param positionIndex The index (Starting at 0) of the position name you wish to locate
+     * @return The job position text at the given index
+     */
+    public String getJobPosition(String employerIndex, String positionIndex) {
+        return driver.findElement(workHistoryPageLocators.findWorkHistoryPositionByIndex(employerIndex, positionIndex)).getText();
+    }
+
+    /**
+     * Gets the employer name from the given index
+     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @return The employer name text at the given index
+     */
+    public String getEmployerName(String index) {
+        return driver.findElement(workHistoryPageLocators.findWorkHistoryEmployerByIndex(index)).getText();
+    }
+
+    /**
+     * Gets the time period at the given index
+     * @param index The index (Starting at 0) of the employer you wish to locate
+     * @return The time period text at the given index
+     */
+    public String getTimePeriod(String index) {
+        return driver.findElement(workHistoryPageLocators.findWorkHistoryTimePeriodByIndex(index)).getText();
+    }
+
+    /**
+     * Gets the work history duration at the given index
+     * @param index The index (Starting at 0) of the work history duration you wish to locate
+     * @return The duration text at the given index
+     */
+    public String getDuration(String index) {
+        return driver.findElement(workHistoryPageLocators.findWorkHistoryDurationByIndex(index)).getText();
+    }
+
+    /**
+     * Checks to see if the edit experience success toast is visible
+     * @return Whether or not the edit experience success toast is visible
+     */
+    public boolean verifyExperienceEmptyState(){
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.emptyWorkHistoryTitle));
+        return elementExists(workHistoryPageLocators.emptyWorkHistoryTitle) &&
+                elementExists(workHistoryPageLocators.emptyWorkHistoryTxt);
+    }
+
+
+    /**
+     * Checks to see if the edit experience success toast is visible
+     * @return Whether or not the edit experience success toast is visible
+     */
+    public boolean verifyEditExperienceSuccessToast(){
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.editExperienceSuccessToast));
+        return elementExists(workHistoryPageLocators.editExperienceSuccessToast);
+    }
+
+    /**
+     * Clicks the 'X' to dismiss the edit experience success toast
+     */
+    public void dismissEditExperienceSuccessToast(){
+        wait.until(elementToBeClickable(workHistoryPageLocators.editExperienceSuccessToastCloseBtn));
+        driver.findElement(workHistoryPageLocators.editExperienceSuccessToastCloseBtn).click();
+        wait.until(invisibilityOfElementLocated(workHistoryPageLocators.editExperienceSuccessToast));
+    }
+
+    /**
+     * Checks to see if the add experience success toast is visible
+     * @return Whether or not the add experience success toast is visible
+     */
+    public boolean verifyAddExperienceSuccessToast(){
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.addExperienceSuccessToast));
+        return elementExists(workHistoryPageLocators.addExperienceSuccessToast);
+    }
+
+    /**
+     * Clicks the 'X' to dismiss the add experience success toast
+     */
+    public void dismissAddExperienceSuccessToast(){
+        wait.until(elementToBeClickable(workHistoryPageLocators.addExperienceSuccessToastCloseBtn));
+        driver.findElement(workHistoryPageLocators.addExperienceSuccessToastCloseBtn).click();
+        wait.until(invisibilityOfElementLocated(workHistoryPageLocators.addExperienceSuccessToast));
+    }
+
+    /**
+     * Checks to see if the delete experience success toast is visible
+     * @return Whether or not the delete experience success toast is visible
+     */
+    public boolean verifyDeleteExperienceSuccessToast(){
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.deleteWorkHistorySuccessToast));
+        return elementExists(workHistoryPageLocators.deleteWorkHistorySuccessToast);
+    }
+
+    /**
+     * Clicks the 'X' to dismiss the delete experience success toast
+     */
+    public void dismissDeleteExperienceSuccessToast(){
+        wait.until(elementToBeClickable(workHistoryPageLocators.deleteWorkHistorySuccessToastCloseBtn));
+        driver.findElement(workHistoryPageLocators.deleteWorkHistorySuccessToastCloseBtn).click();
+        wait.until(invisibilityOfElementLocated(workHistoryPageLocators.deleteWorkHistorySuccessToast));
     }
 }

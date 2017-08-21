@@ -5,11 +5,26 @@ import java.util.List;
 
 public interface SeasonedAPI {
 
+    /*-------- User Endpoints --------*/
     @PUT("user/{guid}/eligibility")
     Call<User> updateEligibility(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body List<EligibilityAnswers> eligibility);
 
     @PUT("user/{guid}/availability")
     Call<Availability> updateAvailability(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body AvailabilityUpdate availabilityUpdate);
+
+    @GET("user/{guid}")
+    Call<User> getUser(@Path("guid") String guid, @Header("Authorization") String accessToken);
+
+    @PUT("user")
+    Call<User> updateUserNameEmailPhoneBday(@Header("Authorization") String accessToken, @Body User user);
+
+    @POST("user/{guid}/primaryLocation")
+    Call<Location_> postUserLocation(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body Location_ location);
+
+    @PUT("user")
+    Call<User> updateUserAbout(@Header("Authorization") String accessToken, @Body User user);
+
+    /*-------- Job Endpoints --------*/
 
     @POST("job")
     Call<Job> postJob(@Header("Authorization") String accessToken, @Body Job job);
@@ -17,11 +32,10 @@ public interface SeasonedAPI {
     @DELETE("job/{guid}")
     Call<Job> deleteJob(@Path("guid") String guid, @Header("Authorization") String accessToken);
 
-    @GET("user/{guid}")
-    Call<User> getUser(@Path("guid") String guid, @Header("Authorization") String accessToken);
+    /*-------- Employer Endpoints --------*/
 
     @PUT("user")
-    Call<User> updateUserNameEmailPhone(@Header("Authorization") String accessToken, @Body User user);
+    Call<User> setAvailabilityStatus(@Header("Authorization") String accessToken, @Body User user);
 
     @GET("employer/{guid}/employees/count")
     Call<EmployeeCount> getEmployeeCount(@Path("guid") String guid, @Header("Authorization") String accessToken);
@@ -29,8 +43,7 @@ public interface SeasonedAPI {
     @POST("employer/{employerGuid}/unfollow")
     Call<User> unFollowEmployer(@Path("employerGuid") String employerGuid, @Header("Authorization") String accessToken, @Body User user);
 
-    @POST("user/{guid}/primaryLocation")
-    Call<Location_> postUserLocation(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body Location_ location);
+    /*-------- Network Endpoints --------*/
 
     @POST("network")
     Call<Network> postNetworkConnection(@Header("Authorization") String accessToken, @Body Network network);

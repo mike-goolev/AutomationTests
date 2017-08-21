@@ -178,12 +178,12 @@ public class SeasonedRestAPI {
             updatedBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
             createdBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
             employer.setGuid("75ced677-4368-4026-9f57-34ba6246c3cb");
-            jobType.setGuid("fd1ad822-f2e6-4faf-9d04-d04ac7c3fdcb");
+            jobType.setGuid("1ad36e51-57a1-47bb-a7c4-0100540d20eb");
             job.setEmployer(employer);
             job.setUpdatedBy(updatedBy);
             job.setCreatedBy(createdBy);
             job.setJobType(jobType);
-            job.setJobName("Bartender");
+            job.setJobName("Payaso");
             job.setWage("1.99");
             job.setWageType("HOURLY");
             job.setDescription("$1.99 are you outta yo mind?");
@@ -225,11 +225,12 @@ public class SeasonedRestAPI {
      * @param lastName The user's last name
      * @param email The user's email address
      * @param phone The user's phone #
+     * @param dob The user's date of birth
      * @param accountState The user's account state
      * @param roleGuid  The guid of the user's role
      * @param roleName The name of the user's role
      */
-    public void updateUserNameEmailPhone(String id, String userGuid, String firstName, String lastName, String email, String phone, String accountState, String roleGuid, String roleName) {
+    public void updateUserNameEmailPhoneBday(String id, String userGuid, String firstName, String lastName, String email, String phone, String dob, String accountState, String roleGuid, String roleName) {
         /* Construct Job Request Body */
         try {
             ArrayList<Role> roles = new ArrayList<Role>();
@@ -248,11 +249,12 @@ public class SeasonedRestAPI {
             user.setLastname(lastName);
             user.setEmail(email);
             user.setPhone(phone);
+            user.setDob(dob);
             user.setAccountState(accountState);
             user.setRoles(roles);
 
             /* Make a PUT request to user */
-            Call<User> call = seasonedAPI.updateUserNameEmailPhone(accessToken, user);
+            Call<User> call = seasonedAPI.updateUserNameEmailPhoneBday(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a " + response.code());
         }
@@ -293,6 +295,72 @@ public class SeasonedRestAPI {
         }
         catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Sets a user availability status by calling the /user endpoint
+     * @param id the db id for the user
+     * @param guid the guid of the user you want to set the status of
+     * @param firstname user's first name
+     * @param lastname user's last name
+     * @param email user's email
+     * @param empInterestStatus set the user's status to OPEN, LOOKING, or EMPLOYED
+     * @param empInterestType set the user's type to ANYTHING, FULL_TIME, PART_TIME, or SEASONAL
+     * @param gigInterestStatus set the user's gig status to UNSPECIFIED, NO, YES
+     */
+    public void setAvailabilityStatus(String id, String guid, String firstname, String lastname, String email, String empInterestStatus, String empInterestType, String gigInterestStatus) {
+        try {
+            User user = new User();
+
+            user.setId(id);
+            user.setGuid(guid);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmail(email);
+            user.setAccountState("normal");
+            user.setEmploymentInterestStatus(empInterestStatus);
+            user.setEmploymentInterestType(empInterestType);
+            user.setGigInterestStatus(gigInterestStatus);
+
+            /* Make a PUT request to user */
+            Call<User> call = seasonedAPI.setAvailabilityStatus(accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user returned a " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /** Updates a user's about section by calling the /user endpoint
+     * @param id the db id for the user
+     * @param guid the guid for the user to update
+     * @param firstname user's firstname
+     * @param lastname user's lastname
+     * @param email user's email
+     * @param about The about string to set for the user
+     */
+    public void updateUserAbout(String id, String guid, String firstname, String lastname, String email, String about) {
+        try {
+            User user = new User();
+
+            user.setId(id);
+            user.setGuid(guid);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmail(email);
+            user.setAccountState("normal");
+
+            user.setAbout(about);
+
+            /* Make a PUT request to /user */
+            Call<User> call = seasonedAPI.updateUserAbout(accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user returned a: " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
         }
     }
 

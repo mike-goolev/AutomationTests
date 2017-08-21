@@ -79,8 +79,15 @@ public class SignupPage extends BasePage {
     }
 
     /**
-     * Get suggested location text
+     * Get location title text
+     * @return The location page's title text
+     */
+    public String getLocationTitleTxt(){
+        return driver.findElement(signUpPageLocators.locationField).getText();
+    }
 
+    /**
+     * Get suggested location text
      * @return The suggested location
      */
     public String getLocationTxt(){
@@ -89,7 +96,6 @@ public class SignupPage extends BasePage {
 
     /**
      * Selects a location suggestion by index
-
      * @param index The index (Starting at 0) of the location suggestion you wish to locate
      */
     public void selectLocationFromList(String index){
@@ -116,7 +122,6 @@ public class SignupPage extends BasePage {
 
     /**
      * Enter a job type
-
      * @param job User's job type selection
      */
     public void enterJob(String job) {
@@ -151,7 +156,6 @@ public class SignupPage extends BasePage {
 
     /**
      * Selects specific jobs
-
      * @param index The index (Starting at 0) of the job type you wish to locate
      */
     public void selectSpecificJobsByIndex(String index) {
@@ -179,7 +183,6 @@ public class SignupPage extends BasePage {
 
     /**
      * Selects specific topics
-
      * @param index The index (Starting at 0) of the topic you wish to locate
      */
     public void selectTopicsByIndex(String index){
@@ -223,7 +226,6 @@ public class SignupPage extends BasePage {
 
     /**
      * Register user with an email and password
-
      * @param firstName User's first name
      * @param lastName User's last name
      * @param email    User's email
@@ -237,6 +239,7 @@ public class SignupPage extends BasePage {
         driver.findElement(signUpPageLocators.emailField).sendKeys(email);
         driver.findElement(signUpPageLocators.passwordField).sendKeys(password);
         driver.findElement(signUpPageLocators.emailSignupNextBtn).click();
+        wait.until(invisibilityOfElementLocated(signUpPageLocators.emailSignUpNextLoadingBtn));
     }
 
     /**

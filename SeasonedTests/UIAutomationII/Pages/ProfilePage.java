@@ -17,14 +17,6 @@ public class ProfilePage extends BasePage {
     /*--------- Personal Info ----------*/
 
     /**
-     * Clicks the edit personal info button *
-     */
-    public void clickEditPersonalInfo() {
-        wait.until(elementToBeClickable(profilePageLocators.personalInfoEditBtn));
-        driver.findElement(profilePageLocators.personalInfoEditBtn).click();
-    }
-
-    /**
      * Checks to see if the user's profile photo is on the profile page
      * @return Whether or not the user's profile photo is on the profile page
      */
@@ -33,54 +25,36 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Checks to see if the user's name is on the profile page
-     * @param name The user's name on the profile page
-     * @return Whether or not the text for the user's name matches the text param
-     */
-    public boolean verifyUserFirstAndLastName(String name) {
-        return name.equals(driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText());
-    }
-
-    /**
      * Get user's first and last name from the text field
      * @return User's first and last name
      */
-    public String getFirstAndLastNameTxt() {
+    public String getFirstAndLastName() {
         return driver.findElement(profilePageLocators.personalInfoUserFirstAndLastNameTxt).getText();
     }
 
     /**
-     * Checks to see if the user's primary job is on the profile page
-     * @param job The user's primary job on the profile page
-     * @return Whether or not the text of the user's primary job matches the text param
-     */
-    public boolean verifyUserPrimaryJob(String job) {
-        return job.equals(driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText());
-    }
-
-    /**
      * Get user's primary job from the text field
+     * @param index The index (Starting at 0) of the user primary job you wish to locate
      * @return User's primary job
      */
-    public String getPrimaryJobTxt() {
-        return driver.findElement(profilePageLocators.personalInfoUserPrimaryJobTxt).getText();
-    }
-
-    /**
-     * Checks to see if the user's location is on the profile page
-     * @param location The user's location on the profile page
-     * @return Whether or not the text of the user's location matches the text param
-     */
-    public boolean verifyUserLocation(String location) {
-        return location.equals(driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText());
+    public String getSummaryPrimaryJob(String index) {
+        return driver.findElement(profilePageLocators.findPrimaryJobTxtByIndex(index)).getText();
     }
 
     /**
      * Get user's location from the text field
      * @return User's location
      */
-    public String getLocationTxt() {
-        return driver.findElement(profilePageLocators.personalInfoUserLocationTxt).getText();
+    public String getSummaryLocation() {
+        return driver.findElement(profilePageLocators.personalInfoLocationTxt).getText();
+    }
+
+    /**
+     * Get user's skills from the text field
+     * @return User's skills
+     */
+    public String getSummarySkills() {
+        return driver.findElement(profilePageLocators.personalInfoSkillsTxt).getText();
     }
 
     /**
@@ -104,27 +78,11 @@ public class ProfilePage extends BasePage {
     /*--------- Work History ----------*/
 
     /**
-     * Clicks on the add work history button when a user has no work history
-     */
-    public void clickAddWorkHistory() {
-        wait.until(elementToBeClickable(profilePageLocators.workHistoryAddBtn));
-        driver.findElement(profilePageLocators.workHistoryAddBtn).click();
-    }
-
-    /**
-     * Clicks on the edit work history button when a user has work history on their profile
-     */
-    public void clickEditWorkHistory() {
-        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
-        driver.findElement(profilePageLocators.workHistoryEditBtn).click();
-    }
-
-    /**
      * Verifies that the empty state text is present on the work history card
      * @return Whether or not the empty state text is present on the work history card
      */
-    public boolean isWorkHistoryEmptyCardTextPresent() {
-        return elementExists(profilePageLocators.workHistoryEmptyCardTxt);
+    public boolean isExperienceHeaderDisplayed() {
+        return elementExists(profilePageLocators.workHistoryCardHeader);
     }
 
     /**
@@ -137,47 +95,40 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Verifies that the job position name is present at the given index
+     * Gets the job position name at the given index
      * @param employerIndex The index (Starting at 0) of the employer you wish to locate
-     * @param jobIndex The index (Starting at 0) of the job name you wish to locate
-     * @return Whether or not the job name is present at the given index
+     * @param positionIndex The index (Starting at 0) of the position name you wish to locate
+     * @return The job position text at the given index
      */
-    public boolean isJobPositionPresent(String employerIndex, String jobIndex) {
-        return elementExists(profilePageLocators.findWorkHistoryJobPositionByIndex(employerIndex, jobIndex));
+    public String getJobPosition(String employerIndex, String positionIndex) {
+        return driver.findElement(profilePageLocators.findWorkHistoryJobPositionByIndex(employerIndex, positionIndex)).getText();
     }
 
     /**
-     * Verifies that the employer name is present at the given index
+     * Gets the employer name from the given index
      * @param index The index (Starting at 0) of the employer you wish to locate
-     * @return Whether or not the employer name is present at the given index
+     * @return The employer name text at the given index
      */
-    public boolean isEmployerNamePresent(String index) {
-        return elementExists(profilePageLocators.findWorkHistoryEmployerNameByIndex(index));
+    public String getEmployerName(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerNameByIndex(index)).getText();
     }
 
     /**
-     * Verifies that the employer location is present at the given index
-     * @param index The index (Starting at 0) of the employer you wish to locate
-     * @return Whether or not the employer location is present at the given index
+     * Gets the time period at the given index
+     * @param index The index (Starting at 0) of the time period you wish to locate
+     * @return The time period text at the given index
      */
-    public boolean isEmployerLocationPresent(String index) {
-        return elementExists(profilePageLocators.findWorkHistoryEmployerLocationByIndex(index));
+    public String getTimePeriod(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index)).getText();
     }
 
     /**
-     * Verifies that the time period is present at the given index
-     * @param index The index (Starting at 0) of the employer you wish to locate
-     * @return Whether or not the time period is present at the given index
+     * Gets the work history duration at the given index
+     * @param index The index (Starting at 0) of the work history duration you wish to locate
+     * @return The duration text at the given index
      */
-    public boolean isTimePeriodPresent(String index) {
-        return elementExists(profilePageLocators.findWorkHistoryEmployerTimePeriodByIndex(index));
-    }
-
-    /**
-     * Waits for the edit work history button to be clickable
-     */
-    public void waitForEditWorkHistoryBtn() {
-        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
+    public String getDuration(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryEmployerDurationByIndex(index)).getText();
     }
 
     /*--------- Certifications ----------*/
@@ -246,25 +197,29 @@ public class ProfilePage extends BasePage {
      * @return Whether or not the certs card is in a empty state
      */
     public boolean verifyNoCertifications() {
-        return elementExists(profilePageLocators.certsEmptyCardTxt);
+        return !elementExists(profilePageLocators.certsHeader) &&
+                !verifyAlcoholCert() &&
+                !verifyFoodHandlerCert() &&
+                !verifyFoodProtectionMangerCert() &&
+                !verifyHACCPCert();
+    }
+
+    /**
+     * Clicks the Certifications link from the side menu on the edit profile page
+     */
+    public void clickSideMenuCertificationsLink() {
+        wait.until(elementToBeClickable(profilePageLocators.sideMenuCertificationsLink));
+        driver.findElement(profilePageLocators.sideMenuCertificationsLink).click();
     }
 
     /*--------- Availability ----------*/
 
     /**
-     * Clicks the add availability button when a user does NOT have availability
+     * Verifies that the availability title is displayed
+     * @return Whether or not the availability title is displayed
      */
-    public void clickAddAvailability() {
-        wait.until(elementToBeClickable(profilePageLocators.addAvailabilityBtn));
-        driver.findElement(profilePageLocators.addAvailabilityBtn).click();
-    }
-
-    /**
-     * Clicks the edit availability button when a user has availability entered on their profile
-     */
-    public void clickEditAvailability() {
-        wait.until(elementToBeClickable(profilePageLocators.editAvailabilityBtn));
-        driver.findElement(profilePageLocators.editAvailabilityBtn).click();
+    public boolean verifyAvailabilityTitle() {
+        return elementExists(profilePageLocators.availabilityTitleTxt);
     }
 
     /**
@@ -272,13 +227,41 @@ public class ProfilePage extends BasePage {
      * @return Whether or not the user has selected all availability
      */
     public boolean verifyAllAvailabilitySelected() {
-        return elementExists(profilePageLocators.availabilityMorningsSelectedImg) &&
-                elementExists(profilePageLocators.availabilityAfternoonsSelectedImg) &&
-                elementExists(profilePageLocators.availabilityEveningsSelectedImg) &&
-                elementExists(profilePageLocators.availabilityNightsSelectedImg);
+        return elementExists(profilePageLocators.availabilityMorningsCard) &&
+                elementExists(profilePageLocators.availabilityAfternoonsCard) &&
+                elementExists(profilePageLocators.availabilityEveningsCard) &&
+                elementExists(profilePageLocators.availabilityNightsCard);
     }
 
-    /*---------- HourlyAbout -----------*/
+    /**
+     * Verifies that the status text displayed on the profile matches a given string
+     * @param status The string to match the interest status text with on the view profile page
+     * @return Whether or not the interest text matches the given status string
+     */
+    public boolean verifyAvailabilityInterestStatusTxt(String status) {
+        String statusTxt = driver.findElement(profilePageLocators.availabilityInterestStatusTxt).getText();
+        return statusTxt.equals(status);
+    }
+
+    /**
+     * Verifies that the type text displayed on the profile matches a given string
+     * @param type The string to match the interest type text with on the view profile page
+     * @return
+     */
+    public boolean verifyAvailabilityInterestTypeTxt(String type) {
+        String typeTxt = driver.findElement(profilePageLocators.availabilityInterestTypeTxt).getText();
+        return typeTxt.equals(type);
+    }
+
+    /**
+     * Clicks the availability link from the side menu on the edit profile page
+     */
+    public void clickSideMenuAvailabilityLink() {
+        wait.until(elementToBeClickable(profilePageLocators.sideMenuAvailabilityLink));
+        driver.findElement(profilePageLocators.sideMenuAvailabilityLink).click();
+    }
+
+    /*---------- About -----------*/
 
     /**
      * Verifies that the about section on the view profile page is present
@@ -286,22 +269,6 @@ public class ProfilePage extends BasePage {
      */
     public boolean isAboutSectionPresent() {
         return elementExists(profilePageLocators.aboutTxtField);
-    }
-
-    /**
-     * Clicks the add about button when a user DOESN'T have about text on their profile
-     */
-    public void clickAddAbout() {
-        wait.until(elementToBeClickable(profilePageLocators.addAboutBtn));
-        driver.findElement(profilePageLocators.addAboutBtn).click();
-    }
-
-    /**
-     * Clicks the edit about button when a user has about txt on their profile
-     */
-    public void clickEditAbout() {
-        wait.until(elementToBeClickable(profilePageLocators.editAboutBtn));
-        driver.findElement(profilePageLocators.editAboutBtn).click();
     }
 
     /**
@@ -314,14 +281,6 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Checks for about text on the user's profile
-     * @return Whether or not a user has about text on their profile
-     */
-    public boolean isAboutTxtEmptyStatePresent() {
-        return driver.findElement(profilePageLocators.emptyAboutTxtField).isDisplayed();
-    }
-
-    /**
      * Clicks the About Me link from the side menu on the edit profile page
      */
     public void clickSideMenuAboutMeLink() {
@@ -329,302 +288,19 @@ public class ProfilePage extends BasePage {
         driver.findElement(profilePageLocators.sideMenuAboutMeLink).click();
     }
 
-    /*---------- Basic Info ---------*/
-
-    /**
-     * Clicks on the add basic info button when a user does NOT have basic info
-     */
-    public void clickAddBasicInfo() {
-        wait.until(elementToBeClickable(profilePageLocators.addBasicInfoBtn));
-        driver.findElement(profilePageLocators.addBasicInfoBtn).click();
-    }
-
-    /**
-     * Clicks on the edit basic info button when a user has basic info filled out
-     */
-    public void clickEditBasicInfo() {
-        wait.until(elementToBeClickable(profilePageLocators.editBasicInfoBtn));
-        driver.findElement(profilePageLocators.editBasicInfoBtn).click();
-    }
-
-    /**
-     * Checks to see if the age question is answered yes on the view profile page
-     * @return Whether or not the age question is answered yes
-     */
-    public boolean basicInfoAgeQuestionAnsweredYes() {
-        return elementExists(profilePageLocators.basicInfoAgeYesBtn);
-    }
-
-    /**
-     * Checks to see if the transport question is answered yes on the view profile page
-     * @return Whether or not the transport question is answered yes
-     */
-    public boolean basicInfoTransportQuestionAnsweredYes() {
-        return elementExists(profilePageLocators.basicInfoTransportYesBtn);
-    }
-
-    /**
-     * Checks to see if the legal question is answered yes on the view profile page
-     * @return Whether or not the legal question is answered yes
-     */
-    public boolean basicInfoLegalQuestionAnsweredYes() {
-        return elementExists(profilePageLocators.basicInfoLegalYesBtn);
-    }
-
-    /**
-     * Checks to see if all basic info questions are answered yes on the view profile page
-     * @return Whether or not all basic info questions are answered yes
-     */
-    public boolean basicInfoQuestionsAnsweredYes() {
-        return basicInfoAgeQuestionAnsweredYes() &&
-                basicInfoTransportQuestionAnsweredYes() &&
-                basicInfoLegalQuestionAnsweredYes();
-    }
-
-    /**
-     * Checks to see if the age question is answered yes no the view profile page
-     * @return Whether or not the age question is answered no
-     */
-    public boolean basicInfoAgeQuestionAnsweredNo() {
-        return elementExists(profilePageLocators.basicInfoAgeNoBtn);
-    }
-
-    /**
-     * Checks to see if the transport question is answered no on the view profile page
-     * @return Whether or not the transport question is answered no
-     */
-    public boolean basicInfoTransportQuestionAnsweredNo() {
-        return elementExists(profilePageLocators.basicInfoTransportNoBtn);
-    }
-
-    /**
-     * Checks to see if the legal question is answered no on the view profile page
-     * @return Whether or not the legal question is answered no
-     */
-    public boolean basicInfoLegalQuestionAnsweredNo() {
-        return elementExists(profilePageLocators.basicInfoLegalNoBtn);
-    }
-
-    /**
-     * Checks to see if all basic info questions are answered yes on the view profile page
-     * @return Whether or not all basic info questions are answered yes
-     */
-    public boolean basicInfoQuestionsAnsweredNo() {
-        return basicInfoAgeQuestionAnsweredNo() &&
-                basicInfoTransportQuestionAnsweredNo() &&
-                basicInfoLegalQuestionAnsweredNo();
-    }
-
-        /*---------- HourlySkills -----------*/
-
-    /**
-     * Clicks the add skills button when a user DOESN'T have skills on their profile
-     */
-    public void clickAddSkills() {
-        wait.until(elementToBeClickable(profilePageLocators.addSkillsBtn));
-        driver.findElement(profilePageLocators.addSkillsBtn).click();
-    }
-
-    /**
-     * Clicks the edit skills button when a user has >= 1 skill selected on their profile
-     */
-    public void clickEditSkills() {
-        wait.until(elementToBeClickable(profilePageLocators.editSkillsBtn));
-        driver.findElement(profilePageLocators.editSkillsBtn).click();
-    }
-
-    /**
-     * Checks to see if the Baker skill is selected
-     */
-    public boolean skillBakerSelectedYes() {
-        return elementExists(profilePageLocators.skillsBakerTxt);
-    }
-
-    /**
-     * Checks to see if the Bar-back skill is selected
-     */
-    public boolean skillBarbackSelectedYes() {
-        return elementExists(profilePageLocators.skillsBarBackTxt);
-    }
-
-    /**
-     * Checks to see if the Barista skill is selected
-     */
-    public boolean skillBaristaSelectedYes() {
-        return elementExists(profilePageLocators.skillsBaristaTxt);
-    }
-
-    /**
-     * Checks to see if the bartender skill is selected
-     */
-    public boolean skillBartenderSelectedYes() {
-        return elementExists(profilePageLocators.skillsBartenderTxt);
-    }
-
-    /**
-     * Checks to see if the Busser skill is selected
-     */
-    public boolean skillBusserSelectedYes() {
-        return elementExists(profilePageLocators.skillsBusserTxt);
-    }
-
-    /**
-     * Checks to see if the Cashier skill is selected
-     */
-    public boolean skillCashierSelectedYes() {
-        return elementExists(profilePageLocators.skillsCashierTxt);
-    }
-
-    /**
-     * Checks to see if the Chef skill is selected
-     */
-    public boolean skillChefSelectedYes() {
-        return elementExists(profilePageLocators.skillsChefTxt);
-    }
-
-    /**
-     * Checks to see if the Cook skill is selected
-     */
-    public boolean skillCookSelectedYes() {
-        return elementExists(profilePageLocators.skillsCookTxt);
-    }
-
-    /**
-     * Checks to see if the Crew skill is selected
-     */
-    public boolean skillCrewSelectedYes() {
-        return elementExists(profilePageLocators.skillsCrewTxt);
-    }
-
-    /**
-     * Checks to see if the Dishhwasher skill is selected
-     */
-    public boolean skillDishwasherSelectedYes() {
-        return elementExists(profilePageLocators.skillsDishwasherTxt);
-    }
-
-    /**
-     * Checks to see if the Driver skill is selected
-     */
-    public boolean skillDriverSelectedYes() {
-        return elementExists(profilePageLocators.skillsDriverTxt);
-    }
-
-    /**
-     * Checks to see if the Drive-thru skill is selected
-     */
-    public boolean skillDrivethruSelectedYes() {
-        return elementExists(profilePageLocators.skillsDriveThruTxt);
-    }
-
-    /**
-     * Checks to see if the Host skill is selected
-     */
-    public boolean skillHostSelectedYes() {
-        return elementExists(profilePageLocators.skillsHostTxt);
-    }
-
-    /**
-     * Checks to see if the Manager skill is selected
-     */
-    public boolean skillManagerSelectedYes() {return elementExists(profilePageLocators.skillsManagerTxt); }
-
-    /**
-     * Checks to see if the Prep Cook skill is selected
-     */
-    public boolean skillPrepCookSelectedYes() {
-        return elementExists(profilePageLocators.skillsPrepCookTxt);
-    }
-
-    /**
-     * Checks to see if the Runner skill is selected
-     */
-    public boolean skillRunnerSelectedYes() {
-        return elementExists(profilePageLocators.skillsRunnerTxt);
-    }
-
-    /**
-     * Checks to see if the Server skill is selected
-     */
-    public boolean skillServerSelectedYes() {
-        return elementExists(profilePageLocators.skillsServerTxt);
-    }
-
-    /**
-     * Checks to see if the Sommelier skill is selected
-     */
-    public boolean skillSommelierSelectedYes() {
-        return elementExists(profilePageLocators.skillsSommelierTxt);
-    }
-
-    /**
-     * Checks to see if the Sous Chef skill is selected
-     */
-    public boolean skillSousChefSelectedYes() {
-        return elementExists(profilePageLocators.skillsSousChefTxt);
-    }
-
-    /**
-     * Checks to see if the TeamMember skill is selected
-     */
-    public boolean skillTeamMemberSelectedYes() {
-        return elementExists(profilePageLocators.skillsTeamMemberTxt);
-    }
-
-    /**
-     * Checks to see if the Trainer skill is selected
-     */
-    public boolean skillTrainerSelectedYes() {
-        return elementExists(profilePageLocators.skillsTrainerTxt);
-    }
+    /*---------- HourlySkills -----------*/
 
     /**
      * Checks to see if the selected skills match what is on the view profile screen
-     *
-     * @return Whether or not the selected skills are on the page
+     * @param index The index (Starting at 0) of the skill you wish to locate
+     * @return Whether or not the selected skill is on the page
      */
-    public boolean verifySelectedSkills() {
-        return skillBakerSelectedYes() &&
-                skillBarbackSelectedYes() &&
-                skillBaristaSelectedYes() &&
-                skillBartenderSelectedYes() &&
-                skillBusserSelectedYes() &&
-                skillCashierSelectedYes() &&
-                skillChefSelectedYes() &&
-                skillCookSelectedYes() &&
-                skillCrewSelectedYes() &&
-                skillDishwasherSelectedYes() &&
-                skillDriverSelectedYes() &&
-                skillDrivethruSelectedYes() &&
-                skillHostSelectedYes() &&
-                skillManagerSelectedYes() &&
-                skillPrepCookSelectedYes() &&
-                skillRunnerSelectedYes() &&
-                skillServerSelectedYes() &&
-                skillSommelierSelectedYes() &&
-                skillSousChefSelectedYes() &&
-                skillTeamMemberSelectedYes() &&
-                skillTrainerSelectedYes();
+    public String getSelectedSkill(String index) {
+        return driver.findElement(profilePageLocators.findSkillLabelByIndex(index)).getText();
     }
 
-    /**
-     * Checks for empty skills text on the user's profile
-     * @return Whether or not a user has empty skills text on their profile
-     */
-    public boolean isEmptySkillsTxtStatePresent() {
-        driver.findElement(profilePageLocators.emptySkillsTxt);
-        return driver.findElement(profilePageLocators.emptySkillsTxt).isDisplayed();
-    }
-
-    /**
-     * Resets skills to a known (blank) state
-     */
-    public void resetSkills() {
-        if (elementExists(profilePageLocators.editSkillsBtn)) {
-            clickEditSkills();
-            skillsPage.removeAllSkills();
-            clickBackBtn();
-        }
+    public Boolean isSkillsHeaderDisplayed(){
+        return elementExists(profilePageLocators.skillsHeader);
     }
 
     /*---------- HourlyConnections -----------*/
@@ -728,10 +404,11 @@ public class ProfilePage extends BasePage {
     /*---------- Utility Methods ----------*/
 
     /**
-     * Clicks the edit profile button on the view profile page
+     * Clicks on the edit profile button on the view profile page
      */
-    public void clickEditProfileBtn() {
-        driver.findElement(profilePageLocators.editProfileBtn).click();
+    public void clickEditProfile() {
+        wait.until(elementToBeClickable(profilePageLocators.profileEditBtn));
+        driver.findElement(profilePageLocators.profileEditBtn).click();
     }
 
     /**

@@ -14,6 +14,11 @@ public class HourlyAbout extends BaseTest {
 
     private String username;
     private String password;
+    private String firstname;
+    private String lastname;
+    private String id;
+    private String guid;
+    private String token;
     private String aboutMeTxt;
 
     @BeforeClass
@@ -28,6 +33,13 @@ public class HourlyAbout extends BaseTest {
         aboutMeTxt = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("aboutMe");
         username = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("username");
         password = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("password");
+        firstname = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("firstname");
+        lastname = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("lastname");
+        id = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("userid");
+        guid = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("userguid");
+        token = (String) TestDataImporter.get("HourlyAbout", "HourlyAbout").get("token");
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        seasonedRestAPI.updateUserAbout(id, guid, firstname, lastname, username, "");
         System.out.println("Starting hourly profile test!");
     }
 
@@ -35,6 +47,7 @@ public class HourlyAbout extends BaseTest {
     public void testAbout() throws Exception {
         /* Start test on the content feed */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -42,7 +55,7 @@ public class HourlyAbout extends BaseTest {
 
         /* Navigate to profile -> Click edit profile -> Navigate to the HourlyAbout page */
         navPage.navigateToProfilePage();
-        profilePage.clickEditProfileBtn();
+        profilePage.clickEditProfile();
         profilePage.clickSideMenuAboutMeLink();
 
         /* Verify that there is no text in the about text field */
@@ -58,7 +71,7 @@ public class HourlyAbout extends BaseTest {
         Assert.assertTrue(profilePage.verifyAboutTxt(aboutMeTxt), "About me text should match aboutMeTxt variable");
 
         /* Go to edit about and verify that there is text, then remove it */
-        profilePage.clickEditProfileBtn();
+        profilePage.clickEditProfile();
         profilePage.clickSideMenuAboutMeLink();
         Assert.assertTrue(aboutPage.aboutTxtEquals(aboutMeTxt), "HourlyAbout text field should be )" + aboutMeTxt);
         aboutPage.removeAboutTxt();

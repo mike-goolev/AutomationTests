@@ -34,6 +34,9 @@ public class User {
     @SerializedName("phone")
     @Expose
     private Object phone;
+    @SerializedName("dobMillis")
+    @Expose
+    private Object dob;
     @SerializedName("verified")
     @Expose
     private Boolean verified;
@@ -158,6 +161,15 @@ public class User {
     @Expose
     private Integer networkCount;
 
+    @Expose
+    private String employmentInterestStatus;
+
+    @Expose
+    private String employmentInterestType;
+
+    @Expose
+    private String gigInterestStatus;
+
     public Integer getErrorCode() {
         return errorCode;
     }
@@ -236,6 +248,14 @@ public class User {
 
     public void setPhone(Object phone) {
         this.phone = phone;
+    }
+
+    public Object getDob() {
+        return dob;
+    }
+
+    public void setDob(Object dob) {
+        this.dob = dob;
     }
 
     public Boolean getVerified() {
@@ -566,4 +586,27 @@ public class User {
         this.networkCount = networkCount;
     }
 
+    public String getEmploymentInterestStatus() {
+        return getEmploymentInterestStatus();
+    }
+
+    public void setEmploymentInterestStatus(String interestStatus) {
+        this.employmentInterestStatus = interestStatus;
+    }
+
+    public String getEmploymentInterestType() {
+        return employmentInterestType;
+    }
+
+    public void setEmploymentInterestType(String interestType) {
+        this.employmentInterestType = interestType;
+    }
+
+    public String getGigInterestStatus() {
+        return gigInterestStatus;
+    }
+
+    public void setGigInterestStatus(String gigInterest) {
+        this.gigInterestStatus = gigInterest;
+    }
 }

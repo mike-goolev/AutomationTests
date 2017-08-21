@@ -1,5 +1,4 @@
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -27,8 +26,7 @@ public class HourlyConnections extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing hourly profile test...");
-        /*driver = new FirefoxDriver();*/
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -53,10 +51,11 @@ public class HourlyConnections extends BaseTest {
         seasonedRestAPI.updateConnectionRequest(fromUserGuid, toUserGuid);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testHourlyConnections() throws Exception {
         /* Start test on the content feed */
         testUtils.loadContentFeedPage();
+        navPage.dismissRebrandingModal();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -70,7 +69,6 @@ public class HourlyConnections extends BaseTest {
 
         /* Navigate to the hourly connections page */
         profilePage.clickViewAllConnections();
-        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify connection card in connections list */
         Assert.assertTrue(connectionsPage.isConnectionPhotoPresent(connectionIndex));
@@ -79,17 +77,15 @@ public class HourlyConnections extends BaseTest {
 
         /* View connection's profile */
         connectionsPage.clickConnectionViewButton(connectionIndex);
-        /*navPage.waitForActivtyIndicator();*/
 
         /* Verify connection's profile displays */
         Assert.assertTrue(profilePage.isDisconnectButtonPresent());
         Assert.assertTrue(profilePage.isUserProfilePhotoPresent());
-        Assert.assertEquals(profilePage.getFirstAndLastNameTxt(), connectionName);
-        Assert.assertEquals(profilePage.getLocationTxt(), connectionLocation);
+        Assert.assertEquals(profilePage.getFirstAndLastName(), connectionName);
+        Assert.assertEquals(profilePage.getSummaryLocation(), connectionLocation);
 
         /* Click 'Back' to return to logged in user's profile */
         profilePage.clickPublicProfileViewBackBtn();
-        /*navPage.waitForActivtyIndicator();*/
     }
 
     @AfterClass

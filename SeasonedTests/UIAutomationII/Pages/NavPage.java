@@ -31,11 +31,47 @@ public class NavPage extends BasePage {
     /*---------- Auth'd methods ---------*/
 
     /**
+     * Checks to see if the user avatar is displayed in the menu
+
+     * @return Whether or not the user avatar is displayed in the menu
+     */
+    public boolean isNavMenuAvatarDisplayed() {
+        return elementExists(navPageLocators.userAvatarImg);
+    }
+
+    /**
+     * Checks to see if the user photo is displayed in the menu
+
+     * @return Whether or not the user photo is displayed in the menu
+     */
+    public boolean isNavMenuPhotoDisplayed() {
+        return elementExists(navPageLocators.userPhotoImg);
+    }
+
+    /**
+     * Get user's first name and last name initial from the menu text
+
+     * @return User's first name and last name initial
+     */
+    public String getUserFirstNameLastInitial() {
+        return driver.findElement(navPageLocators.userNameTxt).getText();
+    }
+
+    /**
+     * Takes the user to the jobs page via nav header and clicking profile
+     */
+    public void navigateToJobsPage() {
+        wait.until(elementToBeClickable(navPageLocators.findJobsBtn));
+        driver.findElement(navPageLocators.findJobsBtn).click();
+    }
+
+    /**
      * Takes the user to the profile page via nav header and clicking profile
      */
     public void navigateToProfilePage() {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
+        wait.until(elementToBeClickable(navPageLocators.menuProfileBtn));
         driver.findElement(navPageLocators.menuProfileBtn).click();
     }
 
@@ -49,11 +85,19 @@ public class NavPage extends BasePage {
     }
 
     /**
+     * Clicks on the "Okay, got it." button to dismiss the rebranding modal
+     */
+    public void dismissRebrandingModal() {
+        wait.until(elementToBeClickable(navPageLocators.rebrandingModalBtn));
+        driver.findElement(navPageLocators.rebrandingModalBtn).click();
+    }
+
+    /**
      * Logs the user out via nav header and clicking log out
      */
     public void logout() {
-        wait.until(elementToBeClickable(navPageLocators.userPhotoBtn));
-        driver.findElement(navPageLocators.userPhotoBtn).click();
+        wait.until(elementToBeClickable(navPageLocators.userNameBtn));
+        driver.findElement(navPageLocators.userNameBtn).click();
         driver.findElement(navPageLocators.menuLogoutBtn).click();
     }
 
@@ -66,17 +110,8 @@ public class NavPage extends BasePage {
             logout();
         }
         catch(Exception e) {
-            System.out.println("An error occured while attempting to log the user out of the app.");
+            System.out.println("An error occurred while attempting to log the user out of the app.");
             System.out.println(e.getLocalizedMessage());
         }
     }
-
-    /**
-     * Waits for activity indicator
-
-    public void waitForActivtyIndicator() {
-        wait.until(presenceOfElementLocated(navPageLocators.loader));
-        wait.until(invisibilityOfElementLocated(navPageLocators.loader));
-    }
-     */
 }

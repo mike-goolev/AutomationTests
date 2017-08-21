@@ -3,6 +3,11 @@
     "username":"aprofile@mailinator.com",
     "password":"12348765",
     "employer":"Seattle Seahawks",
-    "job":"Runner"
+    "job":"Runner",
+    "userLocation":"Bremerton, WA",
+    "timePeriodPresent":" - Present  ",
+    "durationPresent":"•  1 mo",
+    "timePeriodPast":"Jun 2017 - Jul 2017",
+    "durationPast":"  • 1 mo"
   }
 }
