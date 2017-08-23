@@ -313,7 +313,7 @@ public class Locators {
 
     public static class JobSearchPageLocators {
 
-        public By searchPositionDropdown = By.id("searchJobTypeDropDown"); 
+        public By searchPositionDropdown = By.id("searchJobTypeDropDown");
         public By searchPositionDropdownLbl = By.id("searchJobTypeDropDownLabel");
 
         /**
@@ -484,6 +484,15 @@ public class Locators {
             return By.id("workHistoryCardListItemDurationText" + index);
         }
 
+        /**
+         * Locates the work history description by index
+         * @param index The index (Starting at 0) of the work history description you wish to locate
+         * @return A locator for the work history description by index
+         */
+        public By findWorkHistoryJobDescriptionByIndex(String index) {
+            return By.id("workHistoryCardListItemDescriptionTxt" + index);
+        }
+
         /* Certifications Section */
         public By certsHeader = By.id("profileCertificationsTitleText");
         public By certsAddButton = By.id("certificationsCardEmptyAddBtn");
@@ -597,7 +606,7 @@ public class Locators {
         public By editProfileBtn = By.id("editProfileBtn");
     }
 
-    public static class ProfileNavPageLocators {
+    public static class EditProfilePageLocators {
         public By editProfilePersonalInfoLink = By.id("editProfilePersonalInfoLink");
         public By editProfileExperienceLink = By.id("editProfileExperienceLink");
         public By editProfileWorkAvailabilityLink = By.id("editProfileAvailabilityLink");
@@ -739,6 +748,8 @@ public class Locators {
         public By toYearDateSelect = By.id("addWorkHistoryEndYearSelectBox");
         public By currentWorkHistoryDisableBtn = By.id("addWorkHistoryToggleEndDateBtnOff");
         public By currentWorkHistoryEnableBtn = By.id("addWorkHistoryToggleEndDateBtnOn");
+        public By editjobDescription = By.id("editWorkHistoryDescriptionTxt");
+        public By addjobDescription = By.id("addWorkHistoryDescriptionTxt");
 
         public By customPositionTxtField = By.id("addWorkHistoryCustomJobName");
         public By customEmployerNameTxtField = By.id("addWorkHistoryCustomNameInput");

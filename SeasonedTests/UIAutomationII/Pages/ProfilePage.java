@@ -131,6 +131,15 @@ public class ProfilePage extends BasePage {
         return driver.findElement(profilePageLocators.findWorkHistoryEmployerDurationByIndex(index)).getText();
     }
 
+    /**
+     * Gets the work history description at the given index
+     * @param index The index (Starting at 0) of the work history description you wish to locate
+     * @return The description text at the given index
+     */
+    public String getDescription(String index) {
+        return driver.findElement(profilePageLocators.findWorkHistoryJobDescriptionByIndex(index)).getText();
+    }
+
     /*--------- Certifications ----------*/
 
     /**

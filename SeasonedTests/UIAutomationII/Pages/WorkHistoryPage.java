@@ -114,6 +114,32 @@ public class WorkHistoryPage extends BasePage {
     }
 
     /**
+     * Enter text in to the add job description text field
+     * @param description
+     */
+    public void enterAddJobDescriptionTxt(String description) {
+        driver.findElement(workHistoryPageLocators.addjobDescription).click();
+        driver.findElement(workHistoryPageLocators.addjobDescription).sendKeys(description);
+    }
+
+    /**
+     * Enter text in to the edit job description text field
+     * @param description
+     */
+    public void enterEditJobDescriptionTxt(String description) {
+        driver.findElement(workHistoryPageLocators.editjobDescription).click();
+        driver.findElement(workHistoryPageLocators.editjobDescription).sendKeys(description);
+    }
+
+    /**
+     * Gets the work history description in edit mode
+     * @return The description text in edit mode
+     */
+    public String getJobDescription() {
+        return driver.findElement(workHistoryPageLocators.editjobDescription).getText();
+    }
+
+    /**
      * Clicks on the edit work history button for a given index
      * @param index The index (Starting at 0) of the work history edit button you wish to locate
      */
@@ -233,7 +259,6 @@ public class WorkHistoryPage extends BasePage {
         return elementExists(workHistoryPageLocators.emptyWorkHistoryTitle) &&
                 elementExists(workHistoryPageLocators.emptyWorkHistoryTxt);
     }
-
 
     /**
      * Checks to see if the edit experience success toast is visible

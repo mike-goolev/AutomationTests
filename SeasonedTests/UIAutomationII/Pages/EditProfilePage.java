@@ -4,66 +4,66 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 
 public class EditProfilePage extends BasePage {
 
-    Locators.ProfileNavPageLocators profileNavPageLocators;
+    Locators.EditProfilePageLocators editProfilePageLocators;
 
     public EditProfilePage(WebDriver driver) {
         super(driver);
-        profileNavPageLocators = new Locators.ProfileNavPageLocators();
+        editProfilePageLocators = new Locators.EditProfilePageLocators();
     }
 
     /**
      * Clicks the Personal Info link from the side menu on the edit profile page
      */
     public void clickSideMenuPersonalInfoLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfilePersonalInfoLink));
-        driver.findElement(profileNavPageLocators.editProfilePersonalInfoLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfilePersonalInfoLink));
+        driver.findElement(editProfilePageLocators.editProfilePersonalInfoLink).click();
     }
 
     /**
      * Clicks the Experience link from the side menu on the edit profile page
      */
     public void clickSideMenuExperienceLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfileExperienceLink));
-        driver.findElement(profileNavPageLocators.editProfileExperienceLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileExperienceLink));
+        driver.findElement(editProfilePageLocators.editProfileExperienceLink).click();
     }
 
     /**
      * Clicks the Work Availability link from the side menu on the edit profile page
      */
     public void clickSideMenuWorkAvailabilityLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfileWorkAvailabilityLink));
-        driver.findElement(profileNavPageLocators.editProfileWorkAvailabilityLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileWorkAvailabilityLink));
+        driver.findElement(editProfilePageLocators.editProfileWorkAvailabilityLink).click();
     }
 
     /**
      * Clicks the Skills link from the side menu on the edit profile page
      */
     public void clickSideMenuSkillsLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfileSkillsLink));
-        driver.findElement(profileNavPageLocators.editProfileSkillsLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileSkillsLink));
+        driver.findElement(editProfilePageLocators.editProfileSkillsLink).click();
     }
 
     /**
      * Clicks the Certifications link from the side menu on the edit profile page
      */
     public void clickSideMenuCertificationsLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfileCertificationsLink));
-        driver.findElement(profileNavPageLocators.editProfileCertificationsLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileCertificationsLink));
+        driver.findElement(editProfilePageLocators.editProfileCertificationsLink).click();
     }
 
     /**
      * Clicks the About link from the side menu on the edit profile page
      */
     public void clickSideMenuAboutLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfileAboutLink));
-        driver.findElement(profileNavPageLocators.editProfileAboutLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileAboutLink));
+        driver.findElement(editProfilePageLocators.editProfileAboutLink).click();
     }
 
     /**
      * Clicks the View Profile link from the side menu on the edit profile page
      */
     public void clickSideMenuViewProfileLink() {
-        wait.until(elementToBeClickable(profileNavPageLocators.editProfileViewProfileLink));
-        driver.findElement(profileNavPageLocators.editProfileViewProfileLink).click();
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileViewProfileLink));
+        driver.findElement(editProfilePageLocators.editProfileViewProfileLink).click();
     }
 }

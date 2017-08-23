@@ -32,6 +32,7 @@ public class HourlyWorkHistory extends BaseTest {
     String durationPresent;
     String durationPast;
     String shortMonth;
+    String jobDescription;
 
     @BeforeClass
     public void setUp() {
@@ -50,6 +51,7 @@ public class HourlyWorkHistory extends BaseTest {
         employer = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("employer");
         jobPosition = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("job");
         userLocation = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("userLocation");
+        jobDescription = (String) TestDataImporter.get("HourlyWorkHistory", "testWorkHistory").get("jobDescription");
         Calendar now = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("MMM yyyy");
         shortMonth = format.format(now.getTime());
@@ -109,6 +111,9 @@ public class HourlyWorkHistory extends BaseTest {
         /* Select the current work history toggle */
         workHistoryPage.clickCurrentlyWorkHereOffBtn();
 
+        /* Enter job description */
+        workHistoryPage.enterAddJobDescriptionTxt(jobDescription);
+
         /* Save add work history form */
         workHistoryPage.clickAddWorkHistorySaveBtn();
 
@@ -136,6 +141,7 @@ public class HourlyWorkHistory extends BaseTest {
         Assert.assertEquals(profilePage.getJobPosition("0", "0"), jobPosition);
         Assert.assertEquals(profilePage.getTimePeriod("0"), timePeriodPresent);
         Assert.assertEquals(profilePage.getDuration("0"), durationPresent);
+        Assert.assertEquals(profilePage.getDescription("0"), jobDescription);
 
         /* Go back to edit work history and delete the entry */
         profilePage.clickEditProfile();
