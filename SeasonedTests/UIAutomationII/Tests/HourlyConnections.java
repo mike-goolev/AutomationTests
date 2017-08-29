@@ -54,7 +54,7 @@ public class HourlyConnections extends BaseTest {
     @Test(enabled = false)
     public void testHourlyConnections() throws Exception {
         /* Start test on the content feed */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
         navPage.dismissRebrandingModal();
 
         /* Log in */

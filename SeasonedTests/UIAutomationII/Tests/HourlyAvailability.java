@@ -53,7 +53,7 @@ public class HourlyAvailability extends BaseTest {
     @Test
     public void testAvailability() throws Exception {
         /* Start on the content feed page */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
         navPage.dismissRebrandingModal();
 
         /* Click the login button from the nav header and login */

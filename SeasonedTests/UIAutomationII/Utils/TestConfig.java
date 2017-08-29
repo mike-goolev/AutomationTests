@@ -2,8 +2,10 @@ public class TestConfig {
 
     private static String baseURL = "http://qa-www.seasoned.co/services/webapp/";
     private static String baseAPIUrl = "http://qa-brushfire.seasoned.co/services/";
-    private static String searchRelativeURL = "jobs";
-    private static String contentRelativeURL = "app#/feed/";
+    private static String searchRelativeUrl = "jobs";
+    private static String networkRelativeUrl = "community/suggested";
+    private static String beSuccessfulRelativeUrl = "besuccessful";
+    private static String firefoxProfile = "/Users/kkotyk/Library/Application\\ Support/Firefox/Profiles/7jzcee9i.web_automation";
 
     /**
      * Gets path to base URL
@@ -26,14 +28,30 @@ public class TestConfig {
      * @return The job search page URL
      */
     public static String getJobSearchRelativeURL() {
-        return searchRelativeURL;
+        return searchRelativeUrl;
     }
 
     /**
-     * Gets path to content page URL
-     * @return The content page URL
+     * Gets path to network page URL
+     * @return The network page URL
      */
-    public static String getContentRelativeURL() {
-        return contentRelativeURL;
+    public static String getNetworkRelativeUrl() {
+        return networkRelativeUrl;
+    }
+
+    /**
+     * Gets path to success page URL
+     * @return The success page URL
+     */
+    public static String getSuccessRelativeUrl() {
+        return beSuccessfulRelativeUrl;
+    }
+
+    /**
+     * Gets path to success page URL
+     * @return The success page URL
+     */
+    public static String getFirefoxProfile() {
+        return firefoxProfile;
     }
 }

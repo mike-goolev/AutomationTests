@@ -10,7 +10,23 @@ public class ContentFeedPage extends BasePage {
         super(driver);
         contentPageLocators = new Locators.ContentPageLocators();
         navPage = new NavPage(driver);
+    }
 
+    /**
+     * Gets the My Home header text
+     * @return The My Home header text
+     */
+    public String getMyHomeHeader() {
+        return driver.findElement(contentPageLocators.myHomeHeaderTxt).getText();
+    }
+
+    /**
+     * Clicks the article to view in a new tab/window
+     * @param index The index of the article to select
+     */
+    public void viewArticle(String index){
+        wait.until(elementToBeClickable(contentPageLocators.artcleTitleTxtByIndex(index)));
+        driver.findElement(contentPageLocators.artcleTitleTxtByIndex(index)).click();
     }
 
     /**
@@ -19,7 +35,7 @@ public class ContentFeedPage extends BasePage {
      * @return Whether or not the article's image is displayed
      */
     public boolean isArticleImageDisplayed(String index) {
-        return elementExists(contentPageLocators.articleImgByIndex(index));
+        return elementExistsLongTimeout(contentPageLocators.articleImgByIndex(index));
     }
 
     /**
@@ -41,21 +57,12 @@ public class ContentFeedPage extends BasePage {
     }
 
     /**
-     * Gets the article's description
-     * @param index The index (Starting at 0) of the article description you wish to locate
-     * @return The article's description
-     */
-    public String getArticleDescription(String index) {
-        return driver.findElement(contentPageLocators.articleDescriptionTxtByIndex(index)).getText();
-    }
-
-    /**
      * Verifies that the article's publisher image is displayed
      * @param index The index (Starting at 0) of the article publisher image you wish to locate
      * @return Whether or not the article's publisher image is displayed
      */
     public boolean isArticlePublisherImageDisplayed(String index) {
-        return elementExists(contentPageLocators.articlePublisherImgByIndex(index));
+        return elementExistsLongTimeout(contentPageLocators.articlePublisherImgByIndex(index));
     }
 
     /**
@@ -84,6 +91,16 @@ public class ContentFeedPage extends BasePage {
     public boolean isArticleLikeButtonDisplayed(String index) {
         return elementExists(contentPageLocators.articleLikeBtnByIndex(index));
     }
+
+    /**
+     * Clicks an article's like button
+     * @param index The index of the article like button to select
+     */
+    public void clickArticleLikeButton(String index){
+        wait.until(elementToBeClickable(contentPageLocators.articleLikeBtnByIndex(index)));
+        driver.findElement(contentPageLocators.articleLikeBtnByIndex(index)).click();
+    }
+
 
     /**
      * Gets the article's like count

@@ -231,7 +231,7 @@ public class SeasonedRestAPI {
      * @param roleName The name of the user's role
      */
     public void updateUserNameEmailPhoneBday(String id, String userGuid, String firstName, String lastName, String email, String phone, String dob, String accountState, String roleGuid, String roleName) {
-        /* Construct Job Request Body */
+        /* Construct User Request Body */
         try {
             ArrayList<Role> roles = new ArrayList<Role>();
 
@@ -274,7 +274,7 @@ public class SeasonedRestAPI {
      * @param longitude The location's long
      */
     public void updateUserLocation(String guid, String city, String state, String zip, String country, Double latitude, Double longitude) {
-        /* Construct Job Request Body */
+        /* Construct Location Request Body */
         try {
             Location_ location = new Location_();
             Geo geo = new Geo();
@@ -310,6 +310,7 @@ public class SeasonedRestAPI {
      * @param gigInterestStatus set the user's gig status to UNSPECIFIED, NO, YES
      */
     public void setAvailabilityStatus(String id, String guid, String firstname, String lastname, String email, String empInterestStatus, String empInterestType, String gigInterestStatus) {
+        /* Construct User Request Body */
         try {
             User user = new User();
 
@@ -342,6 +343,7 @@ public class SeasonedRestAPI {
      * @param about The about string to set for the user
      */
     public void updateUserAbout(String id, String guid, String firstname, String lastname, String email, String about) {
+        /* Construct User Request Body */
         try {
             User user = new User();
 
@@ -351,7 +353,6 @@ public class SeasonedRestAPI {
             user.setLastname(lastname);
             user.setEmail(email);
             user.setAccountState("normal");
-
             user.setAbout(about);
 
             /* Make a PUT request to /user */
@@ -370,7 +371,7 @@ public class SeasonedRestAPI {
      * @param toUserGuid The guid of the user receiving the connection request
      */
     public void postConnectionRequest(String fromUserGuid, String toUserGuid) {
-        /* Construct Job Request Body */
+        /* Construct Network Request Body */
         try {
             Network network = new Network();
 
@@ -393,7 +394,7 @@ public class SeasonedRestAPI {
      * @param toUserGuid The guid of the user receiving the connection request
      */
     public void updateConnectionRequest(String fromUserGuid, String toUserGuid) {
-        /* Construct Job Request Body */
+        /* Construct Network Request Body */
         try {
             Network network = new Network();
 
@@ -416,7 +417,7 @@ public class SeasonedRestAPI {
      * @param toUserGuid The guid of the user receiving the connection request
      */
     public void deleteConnection(String fromUserGuid, String toUserGuid) {
-        /* Construct Job Request Body */
+        /* Construct Network Request Body */
         try {
             Network network = new Network();
 
@@ -439,7 +440,7 @@ public class SeasonedRestAPI {
      * @param userGuid The guid of the user that is unfollowing
      */
     public void unfollowEmployer(String employerGuid, String userGuid) {
-        /* Construct Job Request Body */
+        /* Construct User Request Body */
         try {
             User user = new User();
 
@@ -452,6 +453,101 @@ public class SeasonedRestAPI {
         }
         catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Create a new article
+     * @param url The url of the article
+     * @param siteName The site name of the article
+     * @param imageUrl The url to the card's image placeholder
+     * @param title The title of the article
+     * @param description The description of the article
+     * @param labels The label(s) associated with an article
+     */
+    public String postArticle(String url, String siteName, String imageUrl, String title, String description, ArrayList labels) {
+        /* Construct Article Request Body */
+        String articleGuid = "";
+        try {
+            Content content = new Content();
+
+            content.setUrl(url);
+            content.setSiteName(siteName);
+            content.setImageUrl(imageUrl);
+            content.setTitle(title);
+            content.setDescription(description);
+            content.setLabels(labels);
+
+            /* Make a POST request to content */
+            Call<Content> call = seasonedAPI.postArticle(accessToken, content);
+            Response<Content> response = call.execute();
+            System.out.println("POST request to /content/article returned a " + response.code());
+            articleGuid = response.body().getGuid();
+        }
+        catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+        return articleGuid;
+    }
+
+    /**
+     * Set article status to 'Published'
+     * @param guid The guid of the article to be published
+     * @param url The url of the article
+     * @param siteName The site name of the article
+     * @param imageUrl The url to the card's image placeholder
+     * @param description The description of the article
+     * @param title The title of the article
+     * @param published The article's published date
+     * @param created The article's created date
+     * @param updated The article's updated date
+     * @param id The id of the publishing user
+     * @param labels The label(s) associated with an article
+     */
+    public void updateArticlePublishedStatus(String guid, String url, String siteName, String imageUrl, String title, String description, Long published, Long created, Long updated, String id, ArrayList labels) {
+        /* Construct Job Request Body */
+        try {
+            UploadedBy uploadedBy = new UploadedBy();
+            Content content = new Content();
+
+            uploadedBy.setId(id);
+            content.setUrl(url);
+            content.setSiteName(siteName);
+            content.setImageUrl(imageUrl);
+            content.setTitle(title);
+            content.setDescription(description);
+            content.setLabels(labels);
+            content.setGuid(guid);
+            content.setUploadedBy(uploadedBy);
+            content.setPublished(published);
+            content.setCreated(created);
+            content.setUpdated(updated);
+            content.setLabels(labels);
+
+            /* Make a PUT request to content */
+            Call<Content> call = seasonedAPI.updateArticlePublishedStatus(accessToken, content);
+            Response<Content> response = call.execute();
+            System.out.println("PUT request to /content/article returned a " + response.code());
+        }
+        catch (Exception e) {
+            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Delete an article
+     * @param articleGuid The guid of the user sending the connection request
+     */
+    public void deleteArticle(String articleGuid) {
+        /* Construct Content Request Body */
+        try {
+            /* Make a DELETE request to network */
+            Call<Content> call = seasonedAPI.deleteArticle(articleGuid, accessToken);
+            Response<Content> response = call.execute();
+            System.out.println("Delete request to /content/article/" + articleGuid + " returned a " + response.code());
+        }
+        catch (Exception e) {
+            System.out.println("Delete request to /content/article/" + articleGuid + " failed with error: " + e.getLocalizedMessage());
         }
     }
 }

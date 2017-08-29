@@ -55,8 +55,6 @@ public class WorkHistoryPage extends BasePage {
         driver.findElement(workHistoryPageLocators.findSelectedPositionRemoveBtnByIndex(index)).click();
     }
 
-
-
     /**
      * Selects a month from the from month drop down
      * @param month The month to select from the from month drop down
@@ -118,8 +116,8 @@ public class WorkHistoryPage extends BasePage {
      * @param description
      */
     public void enterAddJobDescriptionTxt(String description) {
-        driver.findElement(workHistoryPageLocators.addjobDescription).click();
-        driver.findElement(workHistoryPageLocators.addjobDescription).sendKeys(description);
+        driver.findElement(workHistoryPageLocators.addjobDescriptionField).click();
+        driver.findElement(workHistoryPageLocators.addjobDescriptionField).sendKeys(description);
     }
 
     /**
@@ -127,8 +125,8 @@ public class WorkHistoryPage extends BasePage {
      * @param description
      */
     public void enterEditJobDescriptionTxt(String description) {
-        driver.findElement(workHistoryPageLocators.editjobDescription).click();
-        driver.findElement(workHistoryPageLocators.editjobDescription).sendKeys(description);
+        driver.findElement(workHistoryPageLocators.editjobDescriptionField).click();
+        driver.findElement(workHistoryPageLocators.editjobDescriptionField).sendKeys(description);
     }
 
     /**
@@ -136,7 +134,23 @@ public class WorkHistoryPage extends BasePage {
      * @return The description text in edit mode
      */
     public String getJobDescription() {
-        return driver.findElement(workHistoryPageLocators.editjobDescription).getText();
+        return driver.findElement(workHistoryPageLocators.editjobDescriptionField).getText();
+    }
+
+    /**
+     * Toggles first job selection on/off
+     */
+    public void clickFirstJobChk() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.firstJobChk));
+        driver.findElement(workHistoryPageLocators.firstJobChk).click();
+    }
+
+    /**
+     * Checks to see if the first job checkbox is selected
+     * @return Whether or not the first job checkbox is selected
+     */
+    public boolean isFirstJobChkSelected() {
+        return isCheckboxSelected(driver.findElement(workHistoryPageLocators.firstJobChk));
     }
 
     /**
@@ -153,7 +167,6 @@ public class WorkHistoryPage extends BasePage {
     public void clickConfirmDeleteBtn() {
         wait.until(elementToBeClickable(workHistoryPageLocators.deleteWorkHistoryDeleteBtn));
         driver.findElement(workHistoryPageLocators.deleteWorkHistoryDeleteBtn).click();
-        wait.until(elementToBeClickable(workHistoryPageLocators.addWorkHistoryBtn));
     }
 
     /**
@@ -248,16 +261,6 @@ public class WorkHistoryPage extends BasePage {
      */
     public String getDuration(String index) {
         return driver.findElement(workHistoryPageLocators.findWorkHistoryDurationByIndex(index)).getText();
-    }
-
-    /**
-     * Checks to see if the edit experience success toast is visible
-     * @return Whether or not the edit experience success toast is visible
-     */
-    public boolean verifyExperienceEmptyState(){
-        wait.until(visibilityOfElementLocated(workHistoryPageLocators.emptyWorkHistoryTitle));
-        return elementExists(workHistoryPageLocators.emptyWorkHistoryTitle) &&
-                elementExists(workHistoryPageLocators.emptyWorkHistoryTxt);
     }
 
     /**

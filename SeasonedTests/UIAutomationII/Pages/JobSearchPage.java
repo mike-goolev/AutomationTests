@@ -155,7 +155,7 @@ public class JobSearchPage extends BasePage {
      * @return Whether or not the Employer Logo is on the job's card
      */
     public boolean verifyEmployerLogo(String index) {
-        return elementExists(jobSearchPageLocators.findSearchResultEmployerImgByIndex(index));
+        return elementExistsLongTimeout(jobSearchPageLocators.findSearchResultEmployerImgByIndex(index));
     }
 
     /**

@@ -32,7 +32,7 @@ public class HourlyCertifications extends BaseTest {
     @Test
     public void testCerts() throws Exception {
         /* Start test from the content feed */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
         navPage.dismissRebrandingModal();
 
         /* Login via email */

@@ -38,8 +38,8 @@ public class HourlyWorkHistory extends BaseTest {
     public void setUp() {
         System.out.println("Initializing work history tests...");
         driver = new FirefoxDriver();
-        testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
+        testUtils = new TestUtils(driver);
         loginPage = new LoginPage(driver);
         jobSearchPage = new JobSearchPage(driver);
         profilePage = new ProfilePage(driver);
@@ -88,12 +88,6 @@ public class HourlyWorkHistory extends BaseTest {
         profilePage.clickEditProfile();
         editProfilePage.clickSideMenuExperienceLink();
 
-        /* Verify empty edit profile state */
-        Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState(), "Work availability empty state text should be displayed");
-
-        /* Click to add a new position */
-        workHistoryPage.clickAddWorkHistoryBtn();
-
         /* Select a job position */
         workHistoryPage.clickJobPosition("16");
 
@@ -113,6 +107,9 @@ public class HourlyWorkHistory extends BaseTest {
 
         /* Enter job description */
         workHistoryPage.enterAddJobDescriptionTxt(jobDescription);
+
+        /* Verify first job check is deselected */
+        Assert.assertFalse(workHistoryPage.isFirstJobChkSelected(), "First job checkbox should be deselected");
 
         /* Save add work history form */
         workHistoryPage.clickAddWorkHistorySaveBtn();
@@ -156,8 +153,8 @@ public class HourlyWorkHistory extends BaseTest {
         Assert.assertTrue(workHistoryPage.verifyDeleteExperienceSuccessToast());
         workHistoryPage.dismissDeleteExperienceSuccessToast();
 
-        /* Verify empty edit profile state */
-        Assert.assertTrue(workHistoryPage.verifyExperienceEmptyState());
+        /* Verify add work history form displayed in an empty state */
+        Assert.assertFalse(workHistoryPage.isFirstJobChkSelected(), "First job checkbox should be deselected");
 
         /* Navigate to the profile page */
         editProfilePage.clickSideMenuViewProfileLink();

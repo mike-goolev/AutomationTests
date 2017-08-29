@@ -48,7 +48,7 @@ public class HourlyAbout extends BaseTest {
     @Test
     public void testAbout() throws Exception {
         /* Start test on the content feed */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
         navPage.dismissRebrandingModal();
 
         /* Log in */

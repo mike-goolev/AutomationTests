@@ -5,6 +5,7 @@ public class Locators {
     public static class NavPageLocators {
         /* Common Nav Header Locators */
         public By largeBrushfireLogo = By.id("headerBigLogoImg");
+        public By myHomeBtn = By.id("headerMyHomeLink");
         public By findJobsBtn = By.id("headerFindJobsLink");
         public By careerBtn = By.id("headerCareerPathLink");
         public By networkBtn = By.id("headerCommunityLink");
@@ -142,20 +143,16 @@ public class Locators {
     }
 
     public static class ContentPageLocators {
-        /* Non Auth Content Locators */
-        public By getStartedImg = By.id("marketingCardImg");
-        public By getStartedTitle = By.id("marketingCardTitleText");
-        public By getStartedTxt = By.id("marketingCardDescriptionText");
-        public By getStartedBtn = By.id("marketingCardBtn");
 
-        /* Shared Non Auth and Auth'd Content Locators */
+        public By myHomeHeaderTxt = By.id("myHomeHeaderTxt");
+
         /**
          * Locates an article image for a given index
          * @param index The index (Starting at 0) of the article image you wish to locate
          * @return Returns a locator for an article's image by index
          */
         public By articleImgByIndex(String index) {
-            return By.id("articleImg" + index);
+            return By.id("myHomeCardImg" + index);
         }
 
         /**
@@ -164,7 +161,7 @@ public class Locators {
          * @return Returns a locator for an article's title by index
          */
         public By artcleTitleTxtByIndex(String index) {
-            return By.cssSelector("h2#articleTitleText" + index + ">div>div");
+            return By.id("myHomeCardTitleTxt" + index);
         }
 
         /**
@@ -173,16 +170,7 @@ public class Locators {
          * @return Returns a locator for an article's site name by index
          */
         public By articleSiteTxtByIndex(String index) {
-            return By.id("articleSiteNameText" + index);
-        }
-
-        /**
-         * Locates an article description for a given index
-         * @param index The index (Starting at 0) of the article description you wish to locate
-         * @return Returns a locator for an article's description by index
-         */
-        public By articleDescriptionTxtByIndex(String index) {
-            return By.id("articleDescriptionText" + index);
+            return By.id("myHomeCardSiteNameTxt" + index);
         }
 
         /**
@@ -191,7 +179,7 @@ public class Locators {
          * @return Returns a locator for an article's publisher image by index
          */
         public By articlePublisherImgByIndex(String index) {
-            return By.id("articleAuthorImg" + index);
+            return By.id("myHomeCardAuthorImg" + index);
         }
 
         /**
@@ -200,7 +188,7 @@ public class Locators {
          * @return Returns a locator for an article's publisher name by index
          */
         public By articlePublisherNameTxtByIndex(String index) {
-            return By.id("articleAuthorNameText" + index);
+            return By.id("myHomeCardAuthorNameTxt" + index);
         }
 
         /**
@@ -209,7 +197,7 @@ public class Locators {
          * @return Returns a locator for an article's publisher date by index
          */
         public By articlePublishedDateTxtByIndex(String index) {
-            return By.id("articlePostedTimeAgoText" + index);
+            return By.id("myHomeCardPostedTimeAgoTxt" + index);
         }
 
         /**
@@ -218,7 +206,7 @@ public class Locators {
          * @return Returns a locator for an article's like button by index
          */
         public By articleLikeBtnByIndex(String index) {
-            return By.id("articleLikeBtn" + index);
+            return By.id("myHomeCardLikeBtn" + index);
         }
 
         /**
@@ -227,7 +215,7 @@ public class Locators {
          * @return Returns a locator for an article's like count by index
          */
         public By articleLikeCountTxtByIndex(String index) {
-            return By.id("articleLikeCountText" + index);
+            return By.id("myHomeCardLikeCountTxt" + index);
         }
 
         public By trendingTitle = By.id("trendingArticlesPreviewCardTitle");
@@ -258,11 +246,6 @@ public class Locators {
         public By trendingArticleSiteTxtByIndex(String index) {
             return By.id("trendingArticlesPreviewItemSiteName" + index);
         }
-
-        public By findJobsImg = By.id("dedicatedJobsCardImg");
-        public By findJobsTitle = By.id("dedicatedJobsCardTitleText");
-        public By findJobsTxt = By.id("dedicatedJobsCardDescriptionText");
-        public By findJobsBtn = By.id("dedicatedJobsCardBtn");
 
         /* Auth'd Content Locators */
         public By viewedArticleTitle = By.id("recentlyViewedArticlesPreviewCardTitle");
@@ -644,8 +627,8 @@ public class Locators {
         public By addWorkHistoryBtn = By.id("addExperienceBtn");
         public By emptyWorkHistoryTitle = By.id("experienceMessageTitleText");
         public By emptyWorkHistoryTxt = By.id("experienceMessageText");
-        public By firstJobChk = By.id("addExperienceFirstJobCheckboxBox");
-        public By firstJobChkLbl = By.id("addExperienceFirstJobCheckboxLabel");
+        public By firstJobChk = By.id("addWorkHistoryFirstJobCheckboxBox");
+        public By firstJobChkLbl = By.id("addWorkHistoryFirstJobCheckboxLabel");
 
         /**
          * Locates a work history entry's employer logo by index
@@ -748,8 +731,8 @@ public class Locators {
         public By toYearDateSelect = By.id("addWorkHistoryEndYearSelectBox");
         public By currentWorkHistoryDisableBtn = By.id("addWorkHistoryToggleEndDateBtnOff");
         public By currentWorkHistoryEnableBtn = By.id("addWorkHistoryToggleEndDateBtnOn");
-        public By editjobDescription = By.id("editWorkHistoryDescriptionTxt");
-        public By addjobDescription = By.id("addWorkHistoryDescriptionTxt");
+        public By editjobDescriptionField = By.id("editWorkHistoryDescriptionTxt");
+        public By addjobDescriptionField = By.id("addWorkHistoryDescriptionTxt");
 
         public By customPositionTxtField = By.id("addWorkHistoryCustomJobName");
         public By customEmployerNameTxtField = By.id("addWorkHistoryCustomNameInput");
@@ -767,7 +750,7 @@ public class Locators {
         public By deleteWorkHistoryDeleteBtn = By.id("editWorkHistoryDeleteConfirmationBtn");
         public By deleteWorkHistoryCancelBtn = By.id("editWorkHistoryCancelDeleteBtn");
         public By deleteWorkHistorySuccessToast = By.id("deleteWorkHistorySuccessToast");
-        public By deleteWorkHistorySuccessToastCloseBtn = By.id("deleteWorkHistorySuccessToast");
+        public By deleteWorkHistorySuccessToastCloseBtn = By.id("deleteWorkHistorySuccessToastCloseBtn");
         public By googlePlacesMyStoreBtns = By.cssSelector("div.pac-container>div");
         /**
          * Locates a edit work history button for a given index

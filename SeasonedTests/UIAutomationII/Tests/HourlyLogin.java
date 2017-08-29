@@ -43,7 +43,7 @@ public class HourlyLogin extends BaseTest {
         jobSearchPage.verifyPositionDropdown();
     }
 
-    @Test(enabled=false)
+    @Test
     public void testHourlyLoginFromJobSearchPageByFacebook() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();

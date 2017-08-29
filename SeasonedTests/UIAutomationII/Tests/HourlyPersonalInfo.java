@@ -100,7 +100,7 @@ public class HourlyPersonalInfo extends BaseTest {
     @Test
     public void testPersonalInfo() throws Exception {
         /* Start test on the content feed page */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
         navPage.dismissRebrandingModal();
 
         /* Log in */

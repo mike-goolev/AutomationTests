@@ -1,0 +1,23 @@
+{
+  "testHourlyHomeContentFeed": {
+    "firstName":"Auto",
+    "username":"aprofile@mailinator.com",
+    "password":"12348765",
+    "url": "https://www.buzzfeed.com/omarvillegas/life-lessons-you-learned-from-workaholics",
+    "siteName": "BuzzFeed",
+    "imageUrlGif": "http://i.imgur.com/ecjKemM.gif",
+    "imageUrl":"http://filmgarb.com/wp-content/uploads/tv-workaholics-2011_-blake_henderson-blake_anderson-accessories-s05e07-the_mountain_knight_shirt.jpg",
+    "title": "29 Life Lessons You Learned From \"Workaholics\"",
+    "description": "Lookin like a boss though… in head-to-toe Costco.",
+    "labels": [],
+    "articlePublisherName":"Franco el Tanko",
+    "articlePublishedDate":"Just now",
+    "articleLikeCount":"",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
+    "publisherId":"70919",
+    "publisherName":"Alex Support",
+    "articleLikeCount1":"1 like",
+    "articleLikeCount0":"",
+    "articleIndex":"0"
+  }
+}

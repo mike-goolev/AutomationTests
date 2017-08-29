@@ -45,7 +45,7 @@ public class HourlySkills extends BaseTest {
     @Test
     public void testSkills() throws Exception {
         /* Start test on the content feed */
-        testUtils.loadContentFeedPage();
+        testUtils.loadJobSearchPageNoTerms();
         navPage.dismissRebrandingModal();
 
         /* Log in */
@@ -95,8 +95,8 @@ public class HourlySkills extends BaseTest {
         Assert.assertEquals(skillsPage.getSkillTxt("4"), skill5);
 
         /* Verify a 6th skill cannot be added */
-        skillsPage.toggleSkill("0");
-        Assert.assertFalse(skillsPage.isSkillSelected("0"), "User should not be able to add more than 5 skills");
+        skillsPage.toggleSkill("10");
+        Assert.assertFalse(skillsPage.isSkillSelected("10"), "User should not be able to add more than 5 skills");
 
         /* Navigate to profile (view) */
         editProfilePage.clickSideMenuViewProfileLink();

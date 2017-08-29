@@ -53,4 +53,15 @@ public interface SeasonedAPI {
 
     @DELETE("network/between/{fromUserGuid}/{toUserGuid}")
     Call<Network> deleteNetworkConnection(@Header("Authorization") String accessToken, @Path("fromUserGuid") String fromUserGuid, @Path("toUserGuid") String toUserGuid);
+
+    /*-------- Content Endpoints --------*/
+
+    @POST("content/article")
+    Call<Content> postArticle(@Header("Authorization") String accessToken, @Body Content content);
+
+    @PUT("content/article")
+    Call<Content> updateArticlePublishedStatus(@Header("Authorization") String accessToken, @Body Content content);
+
+    @DELETE("content/article/{guid}")
+    Call<Content> deleteArticle(@Path("guid") String guid, @Header("Authorization") String accessToken);
 }

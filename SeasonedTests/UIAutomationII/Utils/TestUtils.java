@@ -11,21 +11,6 @@ public class TestUtils {
     }
 
     /**
-     * Navigate to the content feed as a starting point for tests
-     */
-    public void loadContentFeedPage() {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getContentRelativeURL());
-    }
-
-    /**
-     * Navigate to the content feed as a starting point for tests with a filter applied
-     * @param labelFilter The label (job type) to filter the content page results
-     */
-    public void loadContentFeedPageWithFilter(String labelFilter) {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getContentRelativeURL() + "?f_label=" + labelFilter);
-    }
-
-    /**
      * Navigate to the search page with no terms
      */
     public void loadJobSearchPageNoTerms() {
