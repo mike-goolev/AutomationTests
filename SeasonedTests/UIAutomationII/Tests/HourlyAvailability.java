@@ -23,6 +23,8 @@ public class HourlyAvailability extends BaseTest {
     private String id;
     private String userGuid;
     private String token;
+    private String availabilityTitleTooltip;
+    private String availabilityTxtTooltip;
 
     @BeforeClass
     public void setUp() {
@@ -44,6 +46,9 @@ public class HourlyAvailability extends BaseTest {
         id = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("userid");
         userGuid = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("userguid");
         token = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("token");
+        availabilityTitleTooltip = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("availabilityTitleTooltip");
+        availabilityTxtTooltip = (String) TestDataImporter.get("HourlyAvailability", "Hourly Availability").get("availabilityTxtTooltip");
+
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.clearAvailabilityForUser(userGuid);
         seasonedRestAPI.setAvailabilityStatus(id, userGuid, firstname, lastname, username, empInterestStatus, empInterestType, gigInterestStatus);
@@ -64,6 +69,15 @@ public class HourlyAvailability extends BaseTest {
         navPage.navigateToProfilePage();
         profilePage.clickEditProfile();
         editProfilePage.clickSideMenuWorkAvailabilityLink();
+
+        /* Verify the work availability tooltip is displayed*/
+        Assert.assertTrue(availabilityPage.isAvailabilityTooltipDisplayed(), "Work availability tooltip should be displayed");
+
+        /* Verify the work availability title tooltip */
+        Assert.assertEquals(availabilityPage.getAvailabilityTitleTooltip(), availabilityTitleTooltip);
+
+        /* Verify the work availability title tooltip */
+        Assert.assertEquals(availabilityPage.getAvailabilityTxtTooltip(), availabilityTxtTooltip);
 
         /* Verify that no availability has been selected, then select all availability and save. A success toast should appear. */
         Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "The user should have no availability selected");

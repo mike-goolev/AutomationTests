@@ -86,4 +86,13 @@ public class AboutPage extends BasePage {
         wait.until(elementToBeClickable(aboutPageLocators.aboutBannerCloseBtn));
         driver.findElement(aboutPageLocators.aboutBannerCloseBtn).click();
     }
+
+    /**
+     * Checks to see if the about tooltip is displayed
+     * @return Whether or not the about tooltip is displayed
+     */
+    public boolean isAboutTooltipDisplayed() {
+        return elementExists(aboutPageLocators.aboutTooltip);
+    }
+
 }

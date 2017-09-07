@@ -75,4 +75,30 @@ public class SkillsPage extends BasePage {
     public boolean isSaveButtonEnabled(){
         return (driver.findElement(skillsPageLocators.skillsSaveBtn).isEnabled());
     }
+
+    /**
+     * Checks to see if the skills tooltip is displayed
+     * @return Whether or not the skills tooltip is displayed
+     */
+    public boolean isSkillsTooltipDisplayed() {
+        return elementExists(skillsPageLocators.skillsTooltip);
+    }
+
+    /**
+     * Get skills title from the skills tooltip
+     *
+     * @return The skills tooltip title
+     */
+    public String getSkillsTitleTooltip() {
+        return driver.findElement(skillsPageLocators.skillsTitleTooltip).getText();
+    }
+
+    /**
+     * Get skills text from the skills tooltip
+     *
+     * @return The skills tooltip text
+     */
+    public String getSkillsTxtTooltip() {
+        return driver.findElement(skillsPageLocators.skillsTxtTooltip).getText();
+    }
 }

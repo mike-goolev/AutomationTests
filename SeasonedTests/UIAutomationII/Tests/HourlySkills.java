@@ -20,6 +20,8 @@ public class HourlySkills extends BaseTest {
     String skill3;
     String skill4;
     String skill5;
+    String skillsTitleTooltip;
+    String skillsTxtTooltip;
 
     @BeforeClass
     public void setUp() {
@@ -39,6 +41,8 @@ public class HourlySkills extends BaseTest {
         skill3= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill3");
         skill4= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill4");
         skill5= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill5");
+        skillsTitleTooltip= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skillsTitleTooltip");
+        skillsTxtTooltip= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skillsTxtTooltip");
         System.out.println("Starting test run!");
     }
 
@@ -56,7 +60,7 @@ public class HourlySkills extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify skills section empty */
-        Assert.assertFalse(profilePage.isSkillsHeaderDisplayed(), "Skills section & header should not be displayed when the user has no skills added");
+        Assert.assertTrue(profilePage.isSkillsHeaderDisplayed(), "Skills section & header should be displayed when the user has no skills added");
 
         /* Navigate to the edit profile page */
         profilePage.clickEditProfile();
@@ -102,7 +106,7 @@ public class HourlySkills extends BaseTest {
         editProfilePage.clickSideMenuViewProfileLink();
 
         /* Verify selected skills in the summary section */
-        Assert.assertEquals(profilePage.getSummarySkills(), "My top skills are " + skill1 + ", " + skill2 + ", " + skill3 + ", " + skill4 + " and " + skill5 + ".");
+        Assert.assertEquals(profilePage.getSummarySkills(), "My top skill are " + skill1 + ", " + skill2 + ", " + skill3 + ", " + skill4 + " and " + skill5 + ".");
 
         /* Verify selected skills displayed in Skills section */
         Assert.assertEquals(profilePage.getSelectedSkill("0"), skill1);
@@ -116,6 +120,15 @@ public class HourlySkills extends BaseTest {
 
         /* Navigate to the edit skills page */
         editProfilePage.clickSideMenuSkillsLink();
+
+        /* Verify the skills tooltip is displayed*/
+        Assert.assertTrue(skillsPage.isSkillsTooltipDisplayed(), "Skills tooltip should be displayed");
+
+        /* Verify the skills title tooltip is displayed*/
+        Assert.assertEquals(skillsPage.getSkillsTitleTooltip(), skillsTitleTooltip);
+
+        /* Verify the skills text tooltip is displayed*/
+        Assert.assertEquals(skillsPage.getSkillsTxtTooltip(), skillsTxtTooltip);
 
         /* Verify selected skills are toggled on */
         Assert.assertTrue(skillsPage.isSkillSelected("0"), "Skill at index 0 should be selected");
@@ -158,7 +171,7 @@ public class HourlySkills extends BaseTest {
         editProfilePage.clickSideMenuViewProfileLink();
 
         /* Verify skills section empty */
-        Assert.assertFalse(profilePage.isSkillsHeaderDisplayed(),"Skills section & header should not be displayed when the user has no skills added");
+        Assert.assertTrue(profilePage.isSkillsHeaderDisplayed(),"Skills section & header should be displayed when the user has no skills added");
     }
 
     @AfterClass

@@ -185,4 +185,31 @@ public class CertificationsPage extends BasePage {
         wait.until(elementToBeClickable(certificationsPageLocators.certsBannerCloseBtn));
         driver.findElement(certificationsPageLocators.certsBannerCloseBtn).click();
     }
+
+    /**
+     * Checks to see if the certifications tooltip is displayed
+     *
+     * @return Whether or not the certifications tooltip is displayed
+     */
+    public boolean isCertsTooltipDisplayed() {
+        return elementExists(certificationsPageLocators.certsTooltip);
+    }
+
+    /**
+     * Get certifications title from the certifications tooltip
+     *
+     * @return The certifications tooltip title
+     */
+    public String getCertsTitleTooltip() {
+        return driver.findElement(certificationsPageLocators.certsTitleTooltip).getText();
+    }
+
+    /**
+     * Get certifications text from the certifications tooltip
+     *
+     * @return The certifications tooltip text
+     */
+    public String getCertsTxtTooltip() {
+        return driver.findElement(certificationsPageLocators.certsTxtTooltip).getText();
+    }
 }

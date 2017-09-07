@@ -14,7 +14,7 @@ public class AvailabilityPage extends BasePage {
     }
 
     /**
-     *  Set all availability from an empty state, regardless of state
+     * Set all availability from an empty state, regardless of state
      */
     public void clickAllAvailabilityBoxes() {
         wait.until(elementToBeClickable(availabilityPageLocators.morningCard));
@@ -35,7 +35,7 @@ public class AvailabilityPage extends BasePage {
     /**
      * Clicks the Gigs checkbox on the edit availability page
      */
-    public void clickGigsCheckbox(){
+    public void clickGigsCheckbox() {
         wait.until(elementToBeClickable(availabilityPageLocators.availabilityGigsChkBox));
         driver.findElement(availabilityPageLocators.availabilityGigsChkBox).click();
     }
@@ -74,10 +74,11 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Verify that morning, afternoon, evening, and nights have been selected
+     *
      * @return Whether or not if all availability has been selected
      */
     public boolean allAvailabilitySelected() {
-        if(isMorningSelected() && isAfternoonSelected() && isEveningSelected() && isNightSelected()) {
+        if (isMorningSelected() && isAfternoonSelected() && isEveningSelected() && isNightSelected()) {
             return true;
         }
         return false;
@@ -85,10 +86,11 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Verify that morning, afternoon, evening, and nights have NOT been selected
+     *
      * @return Whether or not if all availability has NOT been selected
      */
     public boolean noAvailabilitySelected() {
-        if(!isMorningSelected()&& !isAfternoonSelected() && !isEveningSelected() && !isNightSelected()) {
+        if (!isMorningSelected() && !isAfternoonSelected() && !isEveningSelected() && !isNightSelected()) {
             return true;
         }
         return false;
@@ -96,6 +98,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the morning card is selected
+     *
      * @return Whether or not the morning card is selected
      */
     public boolean isMorningSelected() {
@@ -104,6 +107,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the afternoon card is selected
+     *
      * @return Whether or not the afternoon card is selected
      */
     public boolean isAfternoonSelected() {
@@ -112,6 +116,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the evening card is selected
+     *
      * @return Whether or not the evening card is selected
      */
     public boolean isEveningSelected() {
@@ -120,6 +125,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the night card is selected
+     *
      * @return Whether or not the night card is selected
      */
     public boolean isNightSelected() {
@@ -128,6 +134,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Checks to see if the gigs checkbox is selected
+     *
      * @return Whether or not the gigs checkbox is selected
      */
     public boolean isGigsSelected() {
@@ -136,6 +143,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Verifies that the success banner is displayed after saving changes
+     *
      * @return Whether or not the success banner is displayed
      */
     public boolean verifyAvailabilitySuccessBanner() {
@@ -152,6 +160,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Selects the status (by value) passed in by the user
+     *
      * @param status The availability status value to set on the drop down
      */
     public void selectAvailabilityStatus(String status) {
@@ -159,8 +168,7 @@ public class AvailabilityPage extends BasePage {
         try {
             Select availabilityStatusSelect = new Select(driver.findElement(availabilityPageLocators.availabilityStatusDropDown));
             availabilityStatusSelect.selectByValue(status);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Could not select the given value: " + status);
             System.out.println(e.getLocalizedMessage());
         }
@@ -168,6 +176,7 @@ public class AvailabilityPage extends BasePage {
 
     /**
      * Gets the user's selected availability status
+     *
      * @return The user's selected availability status
      */
     public String getSelectedAvailabilityStatus() {
@@ -175,5 +184,32 @@ public class AvailabilityPage extends BasePage {
         Select availabilityStatusSelect = new Select(driver.findElement(availabilityPageLocators.availabilityStatusDropDown));
         String availabilityValue = availabilityStatusSelect.getFirstSelectedOption().getAttribute("value");
         return availabilityValue;
+    }
+
+    /**
+     * Checks to see if the work availability tooltip is displayed
+     *
+     * @return Whether or not the work availability tooltip is displayed
+     */
+    public boolean isAvailabilityTooltipDisplayed() {
+        return elementExists(availabilityPageLocators.availabilityTooltip);
+    }
+
+    /**
+     * Get work availability title from the work availability tooltip
+     *
+     * @return The work availability tooltip title
+     */
+    public String getAvailabilityTitleTooltip() {
+        return driver.findElement(availabilityPageLocators.availabilityTitleTooltip).getText();
+    }
+
+    /**
+     * Get work availability text from the work availability tooltip
+     *
+     * @return The work availability tooltip text
+     */
+    public String getAvailabilityTxtTooltip() {
+        return driver.findElement(availabilityPageLocators.availabilityTxtTooltip).getText();
     }
 }

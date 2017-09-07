@@ -38,6 +38,9 @@
     "accountState":"normal",
     "roleGuid":"925f5aa2-a9b9-4dab-a441-d8e48a893f89",
     "roleName":"user",
-    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
+    "locationTxtTooltip":"This allows us to match you with stronger job prospects.",
+    "phoneTxtTooltip":"It’s only used for account verification and password recovery.",
+    "birthdateTxtTooltip":"Used solely for data analysis—we’ll never share it."
   }
 }

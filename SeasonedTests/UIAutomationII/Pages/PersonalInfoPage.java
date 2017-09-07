@@ -329,4 +329,70 @@ public class PersonalInfoPage extends BasePage {
          driver.findElement(personalInfoPageLocators.personalInfoSuccessToastCloseBtn).click();
          wait.until(invisibilityOfElementLocated(personalInfoPageLocators.personalInfoSuccessToastTxt));
      }
+
+    /**
+     * Checks to see if the personal info tooltip is displayed
+     *
+     * @return Whether or not the personal info tooltip is displayed
+     */
+     public boolean isPersonalInfoTooltipDisplayed() {
+        return elementExists(personalInfoPageLocators.personalInfoTooltip);
+    }
+
+    /**
+     * Get location title from the personal info tooltip
+     *
+     * @return The location tooltip title
+     */
+    public String getLocationTitleTooltip() {
+        return driver.findElement(personalInfoPageLocators.personalInfoLocationTitleTooltip).getText();
+    }
+
+    /**
+     * Get phone title from the personal info tooltip
+     *
+     * @return The phone tooltip text
+     */
+    public String getPhoneTitleTooltip() {
+        return driver.findElement(personalInfoPageLocators.personalInfoPhoneTitleTooltip).getText();
+    }
+
+    /**
+     * Get birthdate title from the personal info tooltip
+     *
+     * @return The birthdate tooltip text
+     */
+    public String getBirthdateTitleTooltip() {
+        return driver.findElement(personalInfoPageLocators.personalInfoBirthdateTitleTooltip).getText();
+    }
+
+    /**
+     * Checks to see if location text tooltip is displayed
+     *
+     * @return The location tooltip text
+     */
+    public String getLocationTxtTooltip() {
+        return driver.findElement(personalInfoPageLocators.personalInfoLocationTxtTooltip).getText();
+    }
+
+    /**
+     * Checks to see if phone text tooltip is displayed
+     *
+     * @return The phone tooltip text
+     */
+    public String getPhoneTxtTooltip() {
+        return driver.findElement(personalInfoPageLocators.personalInfoPhoneTxtTooltip).getText();
+    }
+
+    /**
+     * Checks to see if birthdate text tooltip is displayed
+     *
+     * @return The birthdate tooltip text
+     */
+    public String getBirthdateTxtTooltip() {
+        return driver.findElement(personalInfoPageLocators.personalInfoBirthdateTxtTooltip).getText();
+    }
+
+
+
 }

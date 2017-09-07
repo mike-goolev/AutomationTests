@@ -14,6 +14,8 @@ public class HourlyCertifications extends BaseTest {
     private EditProfilePage editProfilePage;
     private String username;
     private String password;
+    private String certsTitletooltip;
+    private String certsTxttooltip;
 
     @BeforeClass
     public void setUp() {
@@ -27,6 +29,8 @@ public class HourlyCertifications extends BaseTest {
         editProfilePage = new EditProfilePage(driver);
         username = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("username");
         password = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("password");
+        certsTitletooltip = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("certsTitletooltip");
+        certsTxttooltip = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("certsTxttooltip");
     }
 
     @Test
@@ -46,6 +50,15 @@ public class HourlyCertifications extends BaseTest {
         profilePage.clickEditProfile();
         editProfilePage.clickSideMenuCertificationsLink();
         Assert.assertTrue(certificationsPage.areNoCertsSelected(), "No certs should be selected");
+
+        /* Verify the certifications tooltip is displayed*/
+        Assert.assertTrue(certificationsPage.isCertsTooltipDisplayed(), "Certifications tooltip should be displayed");
+
+        /* Verify the certifications title tooltip is displayed*/
+        Assert.assertEquals(certificationsPage.getCertsTitleTooltip(), certsTitletooltip);
+
+        /* Verify the certifications text tooltip is displayed*/
+        Assert.assertEquals(certificationsPage.getCertsTxtTooltip(), certsTxttooltip);
 
         /* Select all certifications and verify that the upload button appears */
         certificationsPage.selectAllCertifications();

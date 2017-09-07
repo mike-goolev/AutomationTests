@@ -82,7 +82,7 @@ public class HourlyWorkHistory extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify the empty text state on the card */
-        Assert.assertFalse(profilePage.isExperienceHeaderDisplayed(), "Work history card should not be displayed");
+        Assert.assertTrue(profilePage.isExperienceHeaderDisplayed(), "Work history card should be displayed");
 
         /* Go to the work history page and add an entry */
         profilePage.clickEditProfile();
@@ -160,7 +160,7 @@ public class HourlyWorkHistory extends BaseTest {
         editProfilePage.clickSideMenuViewProfileLink();
 
         /* Verify the empty text state on the card */
-        Assert.assertFalse(profilePage.isExperienceHeaderDisplayed(), "Work history card should not be displayed");
+        Assert.assertTrue(profilePage.isExperienceHeaderDisplayed(), "Work history card should be displayed");
     }
 
     @AfterClass

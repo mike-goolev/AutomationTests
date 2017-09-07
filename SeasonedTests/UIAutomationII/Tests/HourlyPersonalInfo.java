@@ -45,6 +45,9 @@ public class HourlyPersonalInfo extends BaseTest {
     private String accountState;
     private String roleGuid;
     private String roleName;
+    private String locationTxtTooltip;
+    private String phoneTxtTooltip;
+    private String birthdateTxtTooltip;
 
     @BeforeClass
     public void setUp() {
@@ -89,6 +92,9 @@ public class HourlyPersonalInfo extends BaseTest {
         roleGuid = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("roleGuid");
         roleName = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("roleName");
         token = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("token");
+        locationTxtTooltip = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("locationTxtTooltip");
+        phoneTxtTooltip = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("phoneTxtTooltip");
+        birthdateTxtTooltip = (String) TestDataImporter.get("HourlyPersonalInfo", "testPersonalInfo").get("birthdateTxtTooltip");
 
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.updateUserLocation(userGuid, originalCity, originalState, originalZip, country, originalLatitude, originalLongitude);
@@ -121,6 +127,27 @@ public class HourlyPersonalInfo extends BaseTest {
 
         /* Navigate to the personal info page */
         editProfilePage.clickSideMenuPersonalInfoLink();
+
+        /* Verify the personal info tooltip is displayed*/
+        Assert.assertTrue(personalInfoPage.isPersonalInfoTooltipDisplayed(), "Personal info tooltip should be displayed");
+
+        /* Verify personal info location title tooltip */
+        Assert.assertEquals(personalInfoPage.getLocationTitleTooltip(), "Location");
+
+        /* Verify personal info phone title tooltip */
+        Assert.assertEquals(personalInfoPage.getPhoneTitleTooltip(), "Phone");
+
+        /* Verify personal info birth date title tooltip */
+        Assert.assertEquals(personalInfoPage.getBirthdateTitleTooltip(), "Birth date");
+
+        /* Verify personal info location text tooltip */
+        Assert.assertEquals(personalInfoPage.getLocationTxtTooltip(), locationTxtTooltip);
+
+        /* Verify personal info phone text tooltip */
+        Assert.assertEquals(personalInfoPage.getPhoneTxtTooltip(), phoneTxtTooltip);
+
+        /* Verify personal info birth date text tooltip */
+        Assert.assertEquals(personalInfoPage.getBirthdateTxtTooltip(), birthdateTxtTooltip);
 
         /* Verify the user's initial name, location, phone, dob and eligibility # */
         Assert.assertTrue(navPage.isNavMenuAvatarDisplayed(), "User avatar should be displayed in the menu");

@@ -316,4 +316,13 @@ public class WorkHistoryPage extends BasePage {
         driver.findElement(workHistoryPageLocators.deleteWorkHistorySuccessToastCloseBtn).click();
         wait.until(invisibilityOfElementLocated(workHistoryPageLocators.deleteWorkHistorySuccessToast));
     }
+
+    /**
+     * Checks to see if the work history tooltip is displayed
+     * @return Whether or not the work history tooltip is displayed
+     */
+
+    public boolean isWorkHistoryTooltipDisplayed() {
+        return elementExists(workHistoryPageLocators.workHistoryTooltip);
+    }
 }
