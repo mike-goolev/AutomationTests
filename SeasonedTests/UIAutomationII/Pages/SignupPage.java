@@ -61,9 +61,10 @@ public class SignupPage extends BasePage {
     /**
      * Waits for the user's location to be pulled from IP and populated in location field
      */
-    public void waitForLocation() {
+    public void waitForLocation() throws Exception {
         for (int i = 0; i < (driver.findElement(signUpPageLocators.locationField)).getAttribute("value").length(); i++) {
         }
+        Thread.sleep(1500);
     }
 
      /**

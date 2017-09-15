@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +11,7 @@ public class HourlyRegistration extends BaseTest {
     JobSearchPage jobSearchPage;
     ContentFeedPage contentFeedPage;
     ProfilePage profilePage;
+    HourlyConnectionsSuggestedPage hourlyConnectionsSuggestedPage;
 
     String ipLocation;
     String userLocation;
@@ -26,13 +26,14 @@ public class HourlyRegistration extends BaseTest {
     @BeforeMethod
     public void setUp() {
         System.out.println("Initializing Hourly Registration test...");
-        driver = new FirefoxDriver();
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         signupPage = new SignupPage(driver);
         jobSearchPage = new JobSearchPage(driver);
         profilePage = new ProfilePage(driver);
         contentFeedPage = new ContentFeedPage(driver);
+        hourlyConnectionsSuggestedPage = new HourlyConnectionsSuggestedPage(driver);
 
         ipLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("ipLocation");
         userLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("userLocation");
@@ -48,9 +49,8 @@ public class HourlyRegistration extends BaseTest {
 
     @Test
     public void testHourlySignUpAllJobsByEmail() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -76,20 +76,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Jobs page */
         jobSearchPage.verifyPositionDropdown();
-
-        /* Navigate to profile page */
-        navPage.navigateToProfilePage();
-
-        /* Verify user's availability status */
-        /* Commenting out for now because availability status is incorrect */
-        //Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusLooking));
     }
 
     @Test
     public void testHourlySignUpPopularJobsByEmail() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -116,20 +108,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Jobs page */
         jobSearchPage.verifyPositionDropdown();
-
-        /* Navigate to profile page */
-        navPage.navigateToProfilePage();
-
-        /* Verify user's availability status */
-        /* Commenting out for now because availability status is incorrect */
-        //Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusLooking));
     }
 
     @Test
     public void testHourlySignUpSelectedJobsByEmail() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -157,20 +141,12 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Jobs page */
         jobSearchPage.verifyPositionDropdown();
-
-        /* Navigate to profile page */
-        navPage.navigateToProfilePage();
-
-        /* Verify user's availability status */
-        /* Commenting out for now because availability status is incorrect */
-        //Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusLooking));
     }
 
     @Test
     public void testHourlySignUpCareerByEmail() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -196,20 +172,13 @@ public class HourlyRegistration extends BaseTest {
         signupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Content page */
-        /*contentFeedPage.();*/
-
-        /* Navigate to profile page */
-        navPage.navigateToProfilePage();
-
-        /* Verify user's availability status */
-        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusOpen));
+        contentFeedPage.isArticleImageDisplayed("0");
     }
 
     @Test
     public void testHourlySignUpNetworkByEmail() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickJoinBtn();
@@ -239,19 +208,13 @@ public class HourlyRegistration extends BaseTest {
         signupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Get Connected page */
-
-        /* Navigate to profile page */
-        navPage.navigateToProfilePage();
-
-        /* Verify user's availability status */
-        Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt(availabilityStatusOpen));
+        hourlyConnectionsSuggestedPage.isSuggestedConnectionsPhotoPresent("0");
     }
 
     @Test(enabled = false)
     public void testHourlySignUpManagerRedirect() throws Exception {
-        /* Start test on the job search page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickJoinBtn();

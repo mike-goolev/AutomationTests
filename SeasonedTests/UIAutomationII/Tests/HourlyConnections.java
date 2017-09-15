@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,7 +9,7 @@ public class HourlyConnections extends BaseTest {
     private NavPage navPage;
     private LoginPage loginPage;
     private ProfilePage profilePage;
-    private ConnectionsPage connectionsPage;
+    private HourlyConnectionsPage hourlyConnectionsPage;
 
     private String username;
     private String password;
@@ -25,13 +24,13 @@ public class HourlyConnections extends BaseTest {
 
     @BeforeClass
     public void setUp() {
-        System.out.println("Initializing hourly profile test...");
-        driver = new FirefoxDriver();
+        System.out.println("Initializing hourly connections test...");
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
-        connectionsPage = new ConnectionsPage(driver);
+        hourlyConnectionsPage = new HourlyConnectionsPage(driver);
 
         username = (String) TestDataImporter.get("HourlyConnections", "testHourlyConnections").get("username");
         password = (String) TestDataImporter.get("HourlyConnections", "testHourlyConnections").get("password");
@@ -53,9 +52,8 @@ public class HourlyConnections extends BaseTest {
 
     @Test(enabled = false)
     public void testHourlyConnections() throws Exception {
-        /* Start test on the content feed */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -71,18 +69,18 @@ public class HourlyConnections extends BaseTest {
         profilePage.clickViewAllConnections();
 
         /* Verify connection card in connections list */
-        Assert.assertTrue(connectionsPage.isConnectionPhotoPresent(connectionIndex));
-        Assert.assertEquals(connectionsPage.getConnectionName(connectionIndex), connectionName);
-        Assert.assertEquals(connectionsPage.getConnectionLocation(connectionIndex), connectionLocation);
+        Assert.assertTrue(hourlyConnectionsPage.isConnectionPhotoPresent(connectionIndex));
+        Assert.assertEquals(hourlyConnectionsPage.getConnectionName(connectionIndex), connectionName);
+        Assert.assertEquals(hourlyConnectionsPage.getConnectionLocation(connectionIndex), connectionLocation);
 
         /* View connection's profile */
-        connectionsPage.clickConnectionViewButton(connectionIndex);
+        hourlyConnectionsPage.clickConnectionViewButton(connectionIndex);
 
         /* Verify connection's profile displays */
         Assert.assertTrue(profilePage.isDisconnectButtonPresent());
         Assert.assertTrue(profilePage.isUserProfilePhotoPresent());
         Assert.assertEquals(profilePage.getFirstAndLastName(), connectionName);
-        Assert.assertEquals(profilePage.getSummaryLocation(), connectionLocation);
+        //Assert.assertEquals(profilePage.getSummaryLocation(), connectionLocation);
 
         /* Click 'Back' to return to logged in user's profile */
         profilePage.clickPublicProfileViewBackBtn();

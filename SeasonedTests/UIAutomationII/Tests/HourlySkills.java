@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,7 +25,7 @@ public class HourlySkills extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing hourly skills test...");
-        driver = new FirefoxDriver();
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -48,9 +47,8 @@ public class HourlySkills extends BaseTest {
 
     @Test
     public void testSkills() throws Exception {
-        /* Start test on the content feed */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -60,13 +58,10 @@ public class HourlySkills extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify skills section empty */
-        Assert.assertTrue(profilePage.isSkillsHeaderDisplayed(), "Skills section & header should be displayed when the user has no skills added");
-
-        /* Navigate to the edit profile page */
-        profilePage.clickEditProfile();
+        Assert.assertTrue(profilePage.isSkillsHeaderDisplayed(), "Skills header should be displayed");
 
         /* Navigate to the edit skills page */
-        editProfilePage.clickSideMenuSkillsLink();
+        profilePage.clickAddSkills();
 
         /* Verify save button initializes in a disabled state */
         Assert.assertFalse(skillsPage.isSaveButtonEnabled(), "Save button should be disabled until a selection is made");
@@ -106,7 +101,7 @@ public class HourlySkills extends BaseTest {
         editProfilePage.clickSideMenuViewProfileLink();
 
         /* Verify selected skills in the summary section */
-        Assert.assertEquals(profilePage.getSummarySkills(), "My top skill are " + skill1 + ", " + skill2 + ", " + skill3 + ", " + skill4 + " and " + skill5 + ".");
+        Assert.assertEquals(profilePage.getSummarySkills(), "My top skills are " + skill1 + ", " + skill2 + ", " + skill3 + ", " + skill4 + " and " + skill5 + ".");
 
         /* Verify selected skills displayed in Skills section */
         Assert.assertEquals(profilePage.getSelectedSkill("0"), skill1);
@@ -115,11 +110,8 @@ public class HourlySkills extends BaseTest {
         Assert.assertEquals(profilePage.getSelectedSkill("3"), skill4);
         Assert.assertEquals(profilePage.getSelectedSkill("4"), skill5);
 
-        /* Navigate to the edit profile page */
-        profilePage.clickEditProfile();
-
         /* Navigate to the edit skills page */
-        editProfilePage.clickSideMenuSkillsLink();
+        profilePage.clickEditSkills();
 
         /* Verify the skills tooltip is displayed*/
         Assert.assertTrue(skillsPage.isSkillsTooltipDisplayed(), "Skills tooltip should be displayed");

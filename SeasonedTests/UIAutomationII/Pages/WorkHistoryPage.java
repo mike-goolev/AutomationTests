@@ -72,7 +72,7 @@ public class WorkHistoryPage extends BasePage {
     public void selectYearFromDate(String year) {
         wait.until(elementToBeClickable(workHistoryPageLocators.fromYearDateSelect));
         Select fromYearSelect = new Select(driver.findElement(workHistoryPageLocators.fromYearDateSelect));
-        fromYearSelect.selectByVisibleText(year);
+        fromYearSelect.selectByValue(year);
     }
 
     /**
@@ -82,7 +82,7 @@ public class WorkHistoryPage extends BasePage {
     public void selectMonthToDate(String month) {
         wait.until(elementToBeClickable(workHistoryPageLocators.toMonthDateSelect));
         Select toMonthSelect = new Select(driver.findElement(workHistoryPageLocators.toMonthDateSelect));
-        toMonthSelect.selectByValue(month);
+        toMonthSelect.selectByVisibleText(month);
     }
 
     /**
@@ -151,6 +151,38 @@ public class WorkHistoryPage extends BasePage {
      */
     public boolean isFirstJobChkSelected() {
         return isCheckboxSelected(driver.findElement(workHistoryPageLocators.firstJobChk));
+    }
+
+    /**
+     * Toggles primary job selection on/off when adding a job
+     */
+    public void clickAddPrimaryJobChk() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.addWorkHistoryPrimaryJobChk));
+        driver.findElement(workHistoryPageLocators.addWorkHistoryPrimaryJobChk).click();
+    }
+
+    /**
+     * Toggles primary job selection on/off when editing a job
+     */
+    public void clickEditPrimaryJobChk() {
+        wait.until(elementToBeClickable(workHistoryPageLocators.editWorkHistoryPrimaryJobChk));
+        driver.findElement(workHistoryPageLocators.editWorkHistoryPrimaryJobChk).click();
+    }
+
+    /**
+     * Checks to see if the primary job checkbox is selected when adding work history
+     * @return Whether or not the primary job checkbox is selected
+     */
+    public boolean isAddPrimaryJobChkSelected() {
+        return isCheckboxSelected(driver.findElement(workHistoryPageLocators.addWorkHistoryPrimaryJobChk));
+    }
+
+    /**
+     * Checks to see if the primary job checkbox is selected when adding work history
+     * @return Whether or not the primary job checkbox is selected
+     */
+    public boolean isEditPrimaryJobChkSelected() {
+        return isCheckboxSelected(driver.findElement(workHistoryPageLocators.editWorkHistoryPrimaryJobChk));
     }
 
     /**

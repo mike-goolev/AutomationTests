@@ -1,11 +1,12 @@
 public class TestConfig {
 
-    private static String baseURL = "http://qa-www.seasoned.co/services/webapp/";
+    private static String baseURL = "https://qa-www.seasoned.co/services/webapp/";
     private static String baseAPIUrl = "http://qa-brushfire.seasoned.co/services/";
     private static String searchRelativeUrl = "jobs";
-    private static String networkRelativeUrl = "community/suggested";
+    private static String networkSuggestedRelativeUrl = "community/suggested";
     private static String beSuccessfulRelativeUrl = "besuccessful";
     private static String firefoxProfile = "/Users/kkotyk/Library/Application\\ Support/Firefox/Profiles/7jzcee9i.web_automation";
+    private static String chromedriverBinary = "/usr/local/bin/chromedriver";
 
     /**
      * Gets path to base URL
@@ -32,11 +33,11 @@ public class TestConfig {
     }
 
     /**
-     * Gets path to network page URL
-     * @return The network page URL
+     * Gets path to network suggested connections page URL
+     * @return The network suggested connections page URL
      */
     public static String getNetworkRelativeUrl() {
-        return networkRelativeUrl;
+        return networkSuggestedRelativeUrl;
     }
 
     /**
@@ -48,10 +49,18 @@ public class TestConfig {
     }
 
     /**
-     * Gets path to success page URL
+     * Gets path to firefox profile
      * @return The success page URL
      */
     public static String getFirefoxProfile() {
         return firefoxProfile;
+    }
+
+    /**
+     * Gets path to success page URL
+     * @return The success page URL
+     */
+    public static String getChromedriverPath() {
+        return chromedriverBinary;
     }
 }

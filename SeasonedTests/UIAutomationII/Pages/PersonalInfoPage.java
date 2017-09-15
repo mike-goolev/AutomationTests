@@ -392,7 +392,4 @@ public class PersonalInfoPage extends BasePage {
     public String getBirthdateTxtTooltip() {
         return driver.findElement(personalInfoPageLocators.personalInfoBirthdateTxtTooltip).getText();
     }
-
-
-
 }

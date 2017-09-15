@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -29,7 +28,7 @@ public class HourlyAvailability extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing Hourly Availability test...");
-        driver = new FirefoxDriver();
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -57,9 +56,8 @@ public class HourlyAvailability extends BaseTest {
 
     @Test
     public void testAvailability() throws Exception {
-        /* Start on the content feed page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Click the login button from the nav header and login */
         navPage.clickLoginBtn();
@@ -67,8 +65,12 @@ public class HourlyAvailability extends BaseTest {
 
         /* Navigate to profile -> Navigate to the Availability page */
         navPage.navigateToProfilePage();
-        profilePage.clickEditProfile();
-        editProfilePage.clickSideMenuWorkAvailabilityLink();
+
+        /* Verify availability empty state */
+        Assert.assertTrue(profilePage.isAvailabilityHeaderDisplayed());
+
+        /* Navigate to the Availability page */
+        profilePage.clickAddAvailability();
 
         /* Verify the work availability tooltip is displayed*/
         Assert.assertTrue(availabilityPage.isAvailabilityTooltipDisplayed(), "Work availability tooltip should be displayed");
@@ -91,14 +93,13 @@ public class HourlyAvailability extends BaseTest {
         availabilityPage.clickCloseAvailabilityBannerBtn();
 
         /* Verify that the availability is persisted on the view profile screen */
-        navPage.navigateToProfilePage();
+        editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertTrue(profilePage.verifyAllAvailabilitySelected(), "All availability should be selected on the view profile page");
         Assert.assertTrue(profilePage.verifyAvailabilityInterestStatusTxt("I'm looking for a job"), "The interest status text should say: I'm looking for a job");
         Assert.assertTrue(profilePage.verifyAvailabilityInterestTypeTxt("full-time"),"The interest type text should say: full-time");
 
         /* Go back to the profile page */
-        profilePage.clickEditProfile();
-        editProfilePage.clickSideMenuWorkAvailabilityLink();
+        profilePage.clickEditAvailability();
 
         /* Verify that all availability cards are selected then un-select all availability */
         Assert.assertTrue(availabilityPage.allAvailabilitySelected(), "All availability has been been selected");
@@ -114,7 +115,6 @@ public class HourlyAvailability extends BaseTest {
         Assert.assertTrue(availabilityPage.noAvailabilitySelected(), "No availability is selected");
 
         /* Verify that the availability card is in an empty state on the view profile page */
-        Thread.sleep(300);
         editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertFalse(profilePage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
     }

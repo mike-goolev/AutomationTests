@@ -1,5 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -34,19 +32,10 @@ public class ProfilePage extends BasePage {
 
     /**
      * Get user's primary job from the text field
-     * @param index The index (Starting at 0) of the user primary job you wish to locate
-     * @return User's primary job
+     * @return User's primary job text
      */
-    public String getSummaryPrimaryJob(String index) {
-        return driver.findElement(profilePageLocators.findPrimaryJobTxtByIndex(index)).getText();
-    }
-
-    /**
-     * Get user's location from the text field
-     * @return User's location
-     */
-    public String getSummaryLocation() {
-        return driver.findElement(profilePageLocators.personalInfoLocationTxt).getText();
+    public String getSummaryPrimaryJob() {
+        return driver.findElement(profilePageLocators.findPrimaryJobTxt).getText();
     }
 
     /**
@@ -78,11 +67,35 @@ public class ProfilePage extends BasePage {
     /*--------- Work History ----------*/
 
     /**
-     * Verifies that the empty state text is present on the work history card
-     * @return Whether or not the empty state text is present on the work history card
+     * Verifies that the work history title is present on the work history card
+     * @return Whether or not the work history title is present on the work history card
      */
     public boolean isExperienceHeaderDisplayed() {
-        return elementExists(profilePageLocators.workHistoryCardHeader);
+        return elementExists(profilePageLocators.workHistoryTitleTxt);
+    }
+
+    /**
+     * Gets the empty state text on the work history card
+     * @return The empty state text on the work history card
+     */
+    public String getExperienceEmptyTxt() {
+        return driver.findElement(profilePageLocators.workHistoryEmptyTxt).getText();
+    }
+
+    /**
+     * Clicks the empty state add experience button
+     */
+    public void clickAddExperience() {
+        wait.until(elementToBeClickable(profilePageLocators.workHistoryAddBtn));
+        driver.findElement(profilePageLocators.workHistoryAddBtn).click();
+    }
+
+    /**
+     * Clicks the edit experience button when a user has >= 1 work history
+     */
+    public void clickEditExperience() {
+        wait.until(elementToBeClickable(profilePageLocators.workHistoryEditBtn));
+        driver.findElement(profilePageLocators.workHistoryEditBtn).click();
     }
 
     /**
@@ -143,19 +156,35 @@ public class ProfilePage extends BasePage {
     /*--------- Certifications ----------*/
 
     /**
-     * Clicks the add certifications button when a user has no certifications
-     */
-    public void clickAddCertifications() {
-        wait.until(elementToBeClickable(profilePageLocators.certsAddButton));
-        driver.findElement(profilePageLocators.certsAddButton).click();
+    * Checks to see if the Certifications header is displayed
+     * @return Whether or not the certifications title is displayed
+    */
+    public Boolean isCertificationsHeaderDisplayed(){
+        return elementExists(profilePageLocators.certsTitleTxt);
     }
 
     /**
-     * Clicks the edit certifications button when a user has certifications selected
+     * Gets the empty state text on the certifications card
+     * @return The empty state text on the certifications card
+     */
+    public String getCertificationsEmptyTxt() {
+        return driver.findElement(profilePageLocators.certsEmptyTxt).getText();
+    }
+
+    /**
+     * Clicks the add certifications button when a user has no certifications
+     */
+    public void clickAddCertifications() {
+        wait.until(elementToBeClickable(profilePageLocators.certsAddBtn));
+        driver.findElement(profilePageLocators.certsAddBtn).click();
+    }
+
+    /**
+     * Clicks the edit certifications button when a user has >= 1 certification selected
      */
     public void clickEditCertifications() {
-        wait.until(elementToBeClickable(profilePageLocators.certsEditButton));
-        driver.findElement(profilePageLocators.certsEditButton).click();
+        wait.until(elementToBeClickable(profilePageLocators.certsEditBtn));
+        driver.findElement(profilePageLocators.certsEditBtn).click();
     }
 
     /**
@@ -206,8 +235,7 @@ public class ProfilePage extends BasePage {
      * @return Whether or not the certs card is in a empty state
      */
     public boolean verifyNoCertifications() {
-        return !elementExists(profilePageLocators.certsHeader) &&
-                !verifyAlcoholCert() &&
+        return  !verifyAlcoholCert() &&
                 !verifyFoodHandlerCert() &&
                 !verifyFoodProtectionMangerCert() &&
                 !verifyHACCPCert();
@@ -219,8 +247,32 @@ public class ProfilePage extends BasePage {
      * Verifies that the availability title is displayed
      * @return Whether or not the availability title is displayed
      */
-    public boolean verifyAvailabilityTitle() {
+    public boolean isAvailabilityHeaderDisplayed() {
         return elementExists(profilePageLocators.availabilityTitleTxt);
+    }
+
+    /**
+     * Gets the empty state text on the availability card
+     * @return The empty state text on the availability card
+     */
+    public String getAvailabilityEmptyTxt() {
+        return driver.findElement(profilePageLocators.availabilityEmptyTxt).getText();
+    }
+
+    /**
+     * Clicks the add availability button when a user has no availability selected
+     */
+    public void clickAddAvailability() {
+        wait.until(elementToBeClickable(profilePageLocators.availabilityAddBtn));
+        driver.findElement(profilePageLocators.availabilityAddBtn).click();
+    }
+
+    /**
+     * Clicks the edit availability button when a user has >= 1 day part selected
+     */
+    public void clickEditAvailability() {
+        wait.until(elementToBeClickable(profilePageLocators.availabilityEditBtn));
+        driver.findElement(profilePageLocators.availabilityEditBtn).click();
     }
 
     /**
@@ -257,6 +309,30 @@ public class ProfilePage extends BasePage {
     /*---------- About -----------*/
 
     /**
+     * Verifies that the about title is displayed
+     * @return Whether or not the about title is displayed
+     */
+    public boolean isAboutHeaderDisplayed() {
+        return elementExists(profilePageLocators.aboutTitleTxt);
+    }
+
+    /**
+     * Gets the empty state text on the about card
+     * @return The empty state text on the about card
+     */
+    public String getAboutEmptyTxt() {
+        return driver.findElement(profilePageLocators.aboutEmptyTxt).getText();
+    }
+
+    /**
+     * Clicks the add about button when a user has no about
+     */
+    public void clickAddAbout() {
+        wait.until(elementToBeClickable(profilePageLocators.aboutAddBtn));
+        driver.findElement(profilePageLocators.aboutAddBtn).click();
+    }
+
+    /**
      * Verifies that the about section on the view profile page is present
      * @return Whether or not the about section is present on the view profile page
      */
@@ -265,16 +341,46 @@ public class ProfilePage extends BasePage {
     }
 
     /**
-     * Checks to see if the about text matches what is on the view profile screen
-     * @param aboutTxt The text you're expecting to be on the page
-     * @return Whether or not the text is on the page
+     * Gets the about text on the view profile screen
+     * @return The about text
      */
-    public boolean verifyAboutTxt(String aboutTxt) {
-        return aboutTxt.equals(driver.findElement(profilePageLocators.aboutTxtField).getText());
+    public String getAboutTxt() {
+        return driver.findElement(profilePageLocators.aboutTxtField).getText();
     }
 
-
     /*---------- HourlySkills -----------*/
+
+    /**
+     * Verifies that the skills title is displayed
+     * @return Whether or not the skills title is displayed
+     */
+    public Boolean isSkillsHeaderDisplayed(){
+        return elementExists(profilePageLocators.skillsTitleTxt);
+    }
+
+    /**
+     * Gets the empty state text on the skills card
+     * @return The empty state text on the skills card
+     */
+    public String getSkillsEmptyTxt() {
+        return driver.findElement(profilePageLocators.skillsEmptyTxt).getText();
+    }
+
+    /**
+     * Clicks the add about button when a user has no about
+     */
+    public void clickAddSkills() {
+        wait.until(elementToBeClickable(profilePageLocators.skillsAddBtn));
+        driver.findElement(profilePageLocators.skillsAddBtn).click();
+    }
+
+    /**
+     * Clicks the edit about button when a user has about completed
+     */
+    public void clickEditSkills() {
+        wait.until(elementToBeClickable(profilePageLocators.skillsEditBtn));
+        driver.findElement(profilePageLocators.skillsEditBtn).click();
+    }
 
     /**
      * Checks to see if the selected skills match what is on the view profile screen
@@ -283,10 +389,6 @@ public class ProfilePage extends BasePage {
      */
     public String getSelectedSkill(String index) {
         return driver.findElement(profilePageLocators.findSkillLabelByIndex(index)).getText();
-    }
-
-    public Boolean isSkillsHeaderDisplayed(){
-        return elementExists(profilePageLocators.skillsHeader);
     }
 
     /*---------- HourlyConnections -----------*/

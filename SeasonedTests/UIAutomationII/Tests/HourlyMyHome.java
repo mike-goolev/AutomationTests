@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -34,9 +33,7 @@ public class HourlyMyHome extends BaseTest {
 
     @BeforeClass
     public void initializeTestDataAndCreateArticle() {
-        System.out.println("Initializing hourly My Home test...");
-        driver = new FirefoxDriver();
-        testUtils = new TestUtils(driver);
+        driver = BrowserFactory.getDriver("firefox");        testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
         contentFeedPage = new ContentFeedPage(driver);
@@ -67,7 +64,6 @@ public class HourlyMyHome extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new FirefoxDriver();
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -76,11 +72,9 @@ public class HourlyMyHome extends BaseTest {
 
     @Test
     public void testHourlyMyHomeContentFeed() throws Exception {
-        Thread.sleep(30000);
         System.out.println("Starting hourly content feed test!");
-        /* Start test on the jobs page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickLoginBtn();
@@ -91,6 +85,8 @@ public class HourlyMyHome extends BaseTest {
 
         /* Verify My Home header */
         Assert.assertEquals(contentFeedPage.getMyHomeHeader(), "Hi " + firstName + ", we have some articles that we think you may like.");
+        // Explicit wait for certs to load and display until we have loading indicators
+        Thread.sleep(2000);
 
         /* Verify article attributes */
         Assert.assertEquals(contentFeedPage.getArticleTitle(articleIndex), title);
@@ -135,6 +131,5 @@ public class HourlyMyHome extends BaseTest {
     public void deleteArticle() {
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteArticle(articleGuid);
-        driver.quit();
     }
 }

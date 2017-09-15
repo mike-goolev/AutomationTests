@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,6 +11,7 @@ public class HourlyCertifications extends BaseTest {
     private ProfilePage profilePage;
     private CertificationsPage certificationsPage;
     private EditProfilePage editProfilePage;
+
     private String username;
     private String password;
     private String certsTitletooltip;
@@ -20,7 +20,7 @@ public class HourlyCertifications extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing certifications test...");
-        driver = new FirefoxDriver();
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -35,9 +35,8 @@ public class HourlyCertifications extends BaseTest {
 
     @Test
     public void testCerts() throws Exception {
-        /* Start test from the content feed */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Login via email */
         navPage.clickLoginBtn();
@@ -46,9 +45,13 @@ public class HourlyCertifications extends BaseTest {
         /* Navigate to the profile page */
         navPage.navigateToProfilePage();
 
-        /* Click edit profile and navigate to the Certs Page and verify that there are no certs present */
-        profilePage.clickEditProfile();
-        editProfilePage.clickSideMenuCertificationsLink();
+        /* Verify certification empty state */
+        Assert.assertTrue(profilePage.isCertificationsHeaderDisplayed());
+
+        /* Navigate to the Certs Page */
+        profilePage.clickAddCertifications();
+
+        /* Verify that there are no certs present */
         Assert.assertTrue(certificationsPage.areNoCertsSelected(), "No certs should be selected");
 
         /* Verify the certifications tooltip is displayed*/
@@ -72,8 +75,7 @@ public class HourlyCertifications extends BaseTest {
         Assert.assertTrue(profilePage.verifyAllCertifications(), "All certifications have been selected");
 
         /* Go back and remove all certifications */
-        profilePage.clickEditProfile();
-        editProfilePage.clickSideMenuCertificationsLink();
+        profilePage.clickEditCertifications();
         certificationsPage.selectAllCertifications();
         Assert.assertTrue(certificationsPage.verifyCertificationSuccessBanner(), "Success toast should appear");
         certificationsPage.clickCloseCertificationBannerBtn();

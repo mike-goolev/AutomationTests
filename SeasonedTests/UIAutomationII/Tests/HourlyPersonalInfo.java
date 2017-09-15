@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -52,7 +51,7 @@ public class HourlyPersonalInfo extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing hourly personal info test...");
-        driver = new FirefoxDriver();
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -105,9 +104,8 @@ public class HourlyPersonalInfo extends BaseTest {
 
     @Test
     public void testPersonalInfo() throws Exception {
-        /* Start test on the content feed page */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickLoginBtn();

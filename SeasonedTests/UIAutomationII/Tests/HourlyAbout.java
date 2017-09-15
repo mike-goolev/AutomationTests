@@ -1,4 +1,3 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -25,7 +24,7 @@ public class HourlyAbout extends BaseTest {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing hourly profile test...");
-        driver = new FirefoxDriver();
+        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
@@ -47,18 +46,19 @@ public class HourlyAbout extends BaseTest {
 
     @Test
     public void testAbout() throws Exception {
-        /* Start test on the content feed */
-        testUtils.loadJobSearchPageNoTerms();
-        navPage.dismissRebrandingModal();
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
 
         /* Log in */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(username, password);
 
-        /* Navigate to profile -> Click edit profile -> Navigate to the HourlyAbout page */
+        /* Navigate to profile */
         navPage.navigateToProfilePage();
-        profilePage.clickEditProfile();
-        editProfilePage.clickSideMenuAboutLink();
+        Assert.assertTrue(profilePage.isAboutHeaderDisplayed());
+
+        /* Navigate to edit about */
+        profilePage.clickAddAbout();
 
         /* Verify that there is no text in the about text field */
         Assert.assertTrue(aboutPage.aboutTxtFieldIsEmpty(), "HourlyAbout text field should be empty");
@@ -69,8 +69,8 @@ public class HourlyAbout extends BaseTest {
         aboutPage.clickCloseAboutBannerBtn();
 
         /* Go back and verify that the text shows on the view profile page */
-        navPage.navigateToProfilePage();
-        Assert.assertTrue(profilePage.verifyAboutTxt(aboutMeTxt), "About me text should match aboutMeTxt variable");
+        editProfilePage.clickSideMenuViewProfileLink();
+        Assert.assertEquals(profilePage.getAboutTxt(), aboutMeTxt);
 
         /* Go to edit about and verify that there is text, then remove it */
         profilePage.clickEditProfile();
@@ -81,7 +81,6 @@ public class HourlyAbout extends BaseTest {
         /* Verify success banner */
         Assert.assertTrue(aboutPage.verifyAboutSuccessBanner(), "Success toast should be displayed");
         aboutPage.clickCloseAboutBannerBtn();
-        Thread.sleep(500);
 
         /* Go back to view profile and verify that there is no about text */
         editProfilePage.clickSideMenuViewProfileLink();

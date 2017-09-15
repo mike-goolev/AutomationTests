@@ -16,8 +16,12 @@ public class NavPage extends BasePage {
      * Clicks the login link in the nav header
      */
     public void clickLoginBtn() {
-        wait.until(elementToBeClickable(navPageLocators.loginBtn));
-        driver.findElement(navPageLocators.loginBtn).click();
+        if (isNavMenuAvatarDisplayed() | isNavMenuPhotoDisplayed()) {
+            attemptLogout();
+        } else {
+            wait.until(elementToBeClickable(navPageLocators.loginBtn));
+            driver.findElement(navPageLocators.loginBtn).click();
+        }
     }
 
     /**
@@ -96,8 +100,12 @@ public class NavPage extends BasePage {
      * Clicks on the "Okay, got it." button to dismiss the rebranding modal
      */
     public void dismissRebrandingModal() {
-        wait.until(elementToBeClickable(navPageLocators.rebrandingModalBtn));
-        driver.findElement(navPageLocators.rebrandingModalBtn).click();
+        if (elementExistsLongTimeout(navPageLocators.rebrandingModalBtn)) {
+            wait.until(elementToBeClickable(navPageLocators.rebrandingModalBtn));
+            driver.findElement(navPageLocators.rebrandingModalBtn).click();
+        } else {
+            System.out.println("Rebrand modal not displayed for this test");
+        }
     }
 
     /**

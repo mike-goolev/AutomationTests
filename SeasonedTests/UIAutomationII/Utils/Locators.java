@@ -69,7 +69,6 @@ public class Locators {
 
         /**
          * Locates a location suggestion by index
-         *
          * @param index The index (Starting at 0) of the location you wish to locate
          * @return A locator for the location suggestion at the given index
          */
@@ -108,6 +107,7 @@ public class Locators {
         }
 
         /* Topics */
+
         /**
          * Locates a preferred topic checkbox by index
          * @param index The index (Starting at 0) of the job type you wish to locate
@@ -231,6 +231,7 @@ public class Locators {
 
         /**
          * Locates a trending article title for a given index
+         *
          * @param index The index (Starting at 0) of the trending article title you wish to locate
          * @return Returns a locator for a trending article's title by index
          */
@@ -327,7 +328,7 @@ public class Locators {
          * @return Returns a locator for a job search result position by index
          */
         public By findSearchResultPositionTxtByIndex(String index) {
-            return  By.id("searchResultJobNameText" + index);
+            return By.id("searchResultJobNameText" + index);
         }
 
         /**
@@ -350,6 +351,7 @@ public class Locators {
 
         /**
          * Locates a job search result view button for a given index
+         *
          * @param index The index (Starting at 0) of the job search result view button you wish to locate
          * @return Returns a locator for a job search result view button by index
          */
@@ -401,28 +403,20 @@ public class Locators {
         /* Personal Info Section */
         public By personInfoUserPhotoImg = By.id("profilePhotoImg");
         public By personalInfoUserFirstAndLastNameTxt = By.id("profileNameTxt");
-
-        /**
-         * Locates a user's primary job on the profile page by index
-         *
-         * @param index The index (Starting at 0) of the user's primary job you wish to locate
-         * @return A locator for the user's primary job at the given index
-         */
-        public By findPrimaryJobTxtByIndex(String index){
-            return By.id("profilePrimaryJobJobName" + index);
-        }
-
-        public By personalInfoLocationTxt = By.id("profileLocationTxt");
+        public By findPrimaryJobTxt = By.id("profileSubtitleTxt");
         public By personalInfoSkillsTxt = By.id("profileTopSkillsTxt");
         public By personalInfoActionsMenuBtn = By.cssSelector("div.actions-menu-toggle");
         public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
         /* Work History Section */
-        public By workHistoryCardHeader = By.id("profileExperienceTitle");
+        public By workHistoryTitleTxt = By.id("profileExperienceTitle");
+        public By workHistoryEmptyTxt = By.id("workHistoryCardListItemProfileEmptyText");
+        public By workHistoryAddBtn = By.id("workHistoryCardListItemeditBtn");
+        public By workHistoryEditBtn = By.id("/workHistoryCardListItemEditLink");
+
 
         /**
          * Locates an employer logo on the profile page by index
-         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the employer logo at the given index
          */
@@ -432,7 +426,7 @@ public class Locators {
 
         /**
          * Locates a job position on the profile page by index for the employer and job name
-         * @param listIndex The index (Starting at 0) of the employer you wish to locate
+         * @param listIndex     The index (Starting at 0) of the employer you wish to locate
          * @param positionIndex The index (Starting at 0) of the job name you wish to locate
          * @return A locator for the job position at the given indexes
          */
@@ -477,9 +471,10 @@ public class Locators {
         }
 
         /* Certifications Section */
-        public By certsHeader = By.id("profileCertificationsTitleText");
-        public By certsAddButton = By.id("certificationsCardEmptyAddBtn");
-        public By certsEditButton = By.id("certificationsCardEditBtn");
+        public By certsTitleTxt = By.id("profileCertificationsTitleText");
+        public By certsEmptyTxt = By.id("profileCertificationsProfileEmptyText");
+        public By certsAddBtn = By.id("profileCertificationseditBtn");
+        public By certsEditBtn = By.id("profileCertificationsEditLink");
         public By certsAlcoholImg = By.id("profileCertificationAlcoholSeller/ServerCardListItemImg");
         public By certsAlcoholTxt = By.id("certificationsCardListItemAlcoholSeller/ServerText");
         public By certsFoodHandlerImg = By.id("profileCertificationFoodHandlerCardListItemImg");
@@ -490,7 +485,10 @@ public class Locators {
         public By certsHACCPTxt = By.id("certificationsCardListItemHACCPText");
 
         /* Skills Section */
-        public By skillsHeader = By.id("viewProfileSkillTitle");
+        public By skillsTitleTxt = By.id("viewProfileSkillTitle");
+        public By skillsEmptyTxt = By.id("viewProfileSkillProfileEmptyText");
+        public By skillsAddBtn = By.id("viewProfileSkilleditBtn");
+        public By skillsEditBtn = By.id("/viewProfileSkillEditLink");
 
         /**
          * Locates a skill label for a given index
@@ -502,14 +500,16 @@ public class Locators {
         }
 
         /* About Section */
-        public By addAboutBtn = By.id("aboutCardEmptyAddBtn");
-        public By editAboutBtn = By.id("aboutCardEditBtn");
-        public By aboutHeader = By.id("aboutCardTitleText");
+        public By aboutTitleTxt = By.id("profileAboutTitleText");
+        public By aboutEmptyTxt = By.id("profileAboutProfileEmptyText");
+        public By aboutAddBtn = By.id("profileAbouteditBtn");
         public By aboutTxtField = By.id("profileAboutText");
-        public By emptyAboutTxtField = By.id("aboutCardEmptyDescriptionText");
 
         /* Availability Section */
         public By availabilityTitleTxt = By.id("profileAvailabilityTitle");
+        public By availabilityEmptyTxt = By.id("profileAvailabilityProfileEmptyText");
+        public By availabilityAddBtn = By.id("profileAvailabilityeditBtn");
+        public By availabilityEditBtn = By.id("profileAvailabilityEditLink");
         public By availabilityMorningsCard = By.id("profileAvailabilityCardMornings");
         public By availabilityAfternoonsCard = By.id("profileAvailabilityCardAfternoons");
         public By availabilityEveningsCard = By.id("profileAvailabilityCardEvenings");
@@ -637,11 +637,13 @@ public class Locators {
         public By emptyWorkHistoryTxt = By.id("experienceMessageText");
         public By firstJobChk = By.id("addWorkHistoryFirstJobCheckboxBox");
         public By firstJobChkLbl = By.id("addWorkHistoryFirstJobCheckboxLabel");
+
         public By workHistoryTooltip = By.id("tooltip");
+        public By addWorkHistoryPrimaryJobChk = By.id("addWorkHistoryPrimaryExperienceCheckboxBox");
+        public By editWorkHistoryPrimaryJobChk = By.id("editWorkHistoryPrimaryExperienceCheckboxBox");
 
         /**
          * Locates a work history entry's employer logo by index
-         *
          * @param index The index (Starting at 0) of the work history employer logo you wish to locate
          * @return A locator for a work history employer logo at the given index
          */
@@ -651,8 +653,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's position by index
-         *
-         * @param listIndex The index (Starting at 0) of the work history list item position you wish to locate
+         * @param listIndex     The index (Starting at 0) of the work history list item position you wish to locate
          * @param positionIndex The index (Starting at 0) of the work history position
          * @return A locator for a work history position at the given index
          */
@@ -662,7 +663,6 @@ public class Locators {
 
         /**
          * Locates a work history entry's employer by index
-         *
          * @param index The index (Starting at 0) of the work history employer you wish to locate
          * @return A locator for a work history employer at the given index
          */
@@ -672,7 +672,6 @@ public class Locators {
 
         /**
          * Locates a work history entry's time period by index
-         *
          * @param index The index (Starting at 0) of the work history time period you wish to locate
          * @return A locator for a work history time period at the given index
          */
@@ -682,7 +681,6 @@ public class Locators {
 
         /**
          * Locates a work history entry's duration by index
-         *
          * @param index The index (Starting at 0) of the work history duration you wish to locate
          * @return A locator for a work history duration at the given index
          */
@@ -692,7 +690,6 @@ public class Locators {
 
         /**
          * Locates a work history entry's edit button by index
-         *
          * @param index The index (Starting at 0) of the work history edit button you wish to locate
          * @return A locator for a work history edit button at the given index
          */
@@ -702,7 +699,6 @@ public class Locators {
 
         /**
          * Locates a selected position by index
-         *
          * @param index The index (Starting at 0) of the selected position you wish to locate
          * @return A locator for a selected position at the given index
          */
@@ -712,7 +708,6 @@ public class Locators {
 
         /**
          * Locates a selected position remove button by index
-         *
          * @param index The index (Starting at 0) of the selected position remove button you wish to locate
          * @return A locator for a selected position remove button at the given index
          */
@@ -724,7 +719,6 @@ public class Locators {
 
         /**
          * Locates a position to add by index
-         *
          * @param index The index (Starting at 0) of the position you wish to locate
          * @return A locator for a position to add at the given index
          */
@@ -761,9 +755,9 @@ public class Locators {
         public By deleteWorkHistorySuccessToast = By.id("deleteWorkHistorySuccessToast");
         public By deleteWorkHistorySuccessToastCloseBtn = By.id("deleteWorkHistorySuccessToastCloseBtn");
         public By googlePlacesMyStoreBtns = By.cssSelector("div.pac-container>div");
+
         /**
          * Locates a edit work history button for a given index
-
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return Returns a locator for the edit work history button by index
          */
@@ -811,7 +805,6 @@ public class Locators {
 
         /**
          * Locates a skill by index
-         *
          * @param index The index (Starting at 0) of the skill you wish to locate
          * @return A locator for a skill at the given index
          */
@@ -821,7 +814,6 @@ public class Locators {
 
         /**
          * Locates a selected skill by index
-         *
          * @param index The index (Starting at 0) of the selected skill you wish to locate
          * @return A locator for a selected skill at the given index
          */
@@ -835,9 +827,9 @@ public class Locators {
     }
 
     public static class AboutPageLocators {
-        public By aboutHeader =  By.id("editProfileAboutTitleText");
-        public By aboutTextField =  By.id("editProfileAboutTextArea");
-        public By aboutSaveBtn =  By.id("saveProfileAboutBtn");
+        public By aboutHeader = By.id("editProfileAboutTitleText");
+        public By aboutTextField = By.id("editProfileAboutTextArea");
+        public By aboutSaveBtn = By.id("saveProfileAboutBtn");
         public By aboutBannerDiv = By.id("editProfileAboutToast");
         public By aboutSuccessToastDiv = By.cssSelector("div#editProfileAboutToast.success");
         public By aboutBannerCloseBtn = By.id("editProfileAboutToastCloseBtn");
@@ -864,8 +856,16 @@ public class Locators {
     }
 
     public static class HourlyConnectionPageLocators {
-        public By connectionBackBtn = By.id("connectionsBackBtn");
-        public By connectionsTitle = By.id("connectionsTitleText");
+        /* Global connections page locators */
+        public By connectionsGetConnectedBtn = By.id("communityGetConnectedLinkTab");
+        public By connectionsMyConnectionsBtn = By.id("communityMyConnectionsLinkTab");
+        public By connectionsInvitationsBtn = By.id("communityInvitationsLinkTab");
+        public By userSearchTextField = By.id("memberSearchInput");
+
+
+        /* My Connections section */
+        //public By connectionsTitle = By.id("connectionsTitleText");
+
 
         /**
          * Locates a connection's photo for a given index
@@ -918,11 +918,9 @@ public class Locators {
         public By connectionPage4Btn = By.id("connectionsPage4Btn");
         public By connectionNextPageBtn = By.id("connectionsNextBtn");
         public By connectionPreviousPageBtn = By.id("connectionsPreviousBtn");
-    }
 
-    public static class HourlySuggestedConnectionPageLocators {
-        public By suggestedConnectionBackBtn = By.id("suggestedConnectionsBackBtn");
-        public By suggestedConnectionsTitle = By.id("suggestedConnectionsTitleText");
+        /* Suggested connections section */
+        //public By suggestedConnectionsTitle = By.id("");
 
         /**
          * Locates a suggested connection's photo for a given index
@@ -975,7 +973,10 @@ public class Locators {
         public By suggestedConnectionPage4Btn = By.id("suggestedConnectionsPage4Btn");
         public By suggestedConnectionNextPageBtn = By.id("suggestedConnectionsNextBtn");
         public By suggestedConnectionPreviousPageBtn = By.id("suggestedConnectionsPreviousBtn");
-        }
+
+        /* Invitations section */
+
+    }
 
     public static class HourlyMessagePageLocators {
         public By messageListSenderNameTxt0 = By.id("messageListItemSenderNameText0");
@@ -994,5 +995,9 @@ public class Locators {
         public By messageThreadTextField = By.id("chatMessageTextArea");
         public By messageThreadSendBtn = By.id("chatMessageSendBtn");
         public By successToastDiv = By.id("bodySideMenuToast");
-        }
     }
+
+    public static class HourlyBeSuccessfulPageLocators{
+        public By beSuccessfulTitleTxt = By.id("beSuccessfulPageHeaderTxt");
+    }
+}
