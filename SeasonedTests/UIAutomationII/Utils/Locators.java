@@ -619,12 +619,12 @@ public class Locators {
         public By personalInfoSuccessToastTxt = By.id("personalInfoToastTypeTxt");
         public By personalInfoSuccessToastCloseBtn = By.id("personalInfoToastCloseBtn");
         public By personalInfoTooltip = By.id("tooltip");
-        public By personalInfoLocationTitleTooltip = By.id("toolTipSpan0");
-        public By personalInfoPhoneTitleTooltip = By.id("toolTipSpan2");
-        public By personalInfoBirthdateTitleTooltip = By.id("toolTipSpan4");
-        public By personalInfoLocationTxtTooltip = By.id("toolTipSpan1");
-        public By personalInfoPhoneTxtTooltip = By.id("toolTipSpan3");
-        public By personalInfoBirthdateTxtTooltip = By.id("toolTipSpan5");
+        public By personalInfoLocationTitleTooltip = By.id("personalInfoLocationTitleTooltip");
+        public By personalInfoPhoneTitleTooltip = By.id("personalInfoPhoneTitleTooltip");
+        public By personalInfoBirthdateTitleTooltip = By.id("personalInfoBirthDateTitleTooltip");
+        public By personalInfoLocationTxtTooltip = By.id("personalInfoLocationDescriptionTooltip");
+        public By personalInfoPhoneTxtTooltip = By.id("personalInfoPhoneDescriptionTooltip");
+        public By personalInfoBirthdateTxtTooltip = By.id("personalInfoBirthDateDescriptionTooltip");
     }
 
     public static class WorkHistoryPageLocators {
@@ -793,15 +793,15 @@ public class Locators {
         public By certsSuccessToastDiv = By.cssSelector("div#editProfileCertificationsToast.success");
         public By certsBannerCloseBtn = By.id("editProfileCertificationsToastCloseBtn");
         public By certsTooltip = By.id("tooltip");
-        public By certsTitleTooltip = By.id("toolTipSpan0");
-        public By certsTxtTooltip = By.id("toolTipSpan1");
+        public By certsTitleTooltip = By.id("certificationsTitleTooltip");
+        public By certsTxtTooltip = By.id("certificationsDescriptionTooltip0");
     }
 
     public static class SkillsPageLocators {
         public By skillsTitleTxt = By.id("editProfileSkillTitle");
         public By skillsTooltip = By.id("tooltip");
-        public By skillsTitleTooltip = By.id("toolTipSpan0");
-        public By skillsTxtTooltip = By.id("toolTipSpan1");
+        public By skillsTitleTooltip = By.id("skillsTitleTooltip");
+        public By skillsTxtTooltip = By.id("skillsDescriptionTooltip0");
 
         /**
          * Locates a skill by index
@@ -851,8 +851,8 @@ public class Locators {
         public By availabilitySuccessToastDiv = By.cssSelector("div#editProfileAvailabilityToast.success");
         public By availabilityBannerCloseBtn = By.id("editProfileAvailabilityToastCloseBtn");
         public By availabilityTooltip = By.id("tooltip");
-        public By availabilityTitleTooltip = By.id("toolTipSpan0");
-        public By availabilityTxtTooltip = By.id("toolTipSpan1");
+        public By availabilityTitleTooltip = By.id("availabilityTitleTooltip");
+        public By availabilityTxtTooltip = By.id("availabilityDescriptionTooltip");
     }
 
     public static class HourlyConnectionPageLocators {
