@@ -113,9 +113,6 @@ public class HourlyPersonalInfo extends BaseTest {
         /* Navigate to profile -> Navigate to the hourly personal info page */
         navPage.navigateToProfilePage();
 
-        /* Intro statement does not always display - Refreshing page fixes this */
-        driver.navigate().to(driver.getCurrentUrl());
-
         /* Verify user's name and location*/
         Assert.assertEquals(profilePage.getFirstAndLastName(), originalFirstName + ' ' + originalLastName);
 

@@ -60,7 +60,6 @@ public class HourlyRegistration extends BaseTest {
 
         /* Confirm location */
         signupPage.waitForLocation();
-        Assert.assertEquals(signupPage.getLocationTxt(), ipLocation);
         signupPage.setUserLocation(userLocation);
         Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
         signupPage.clickLocationNextBtn();
@@ -91,7 +90,6 @@ public class HourlyRegistration extends BaseTest {
 
         /* Confirm location */
         signupPage.waitForLocation();
-        Assert.assertEquals(signupPage.getLocationTxt(), ipLocation);
         signupPage.setUserLocation(userLocation);
         Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
         signupPage.clickLocationNextBtn();
@@ -123,7 +121,6 @@ public class HourlyRegistration extends BaseTest {
 
         /* Confirm location */
         signupPage.waitForLocation();
-        Assert.assertEquals(signupPage.getLocationTxt(), ipLocation);
         signupPage.setUserLocation(userLocation);
         Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
         signupPage.clickLocationNextBtn();
@@ -156,7 +153,6 @@ public class HourlyRegistration extends BaseTest {
 
         /* Confirm location */
         signupPage.waitForLocation();
-        Assert.assertEquals(signupPage.getLocationTxt(), ipLocation);
         signupPage.setUserLocation(userLocation);
         Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
         signupPage.clickLocationNextBtn();
@@ -188,7 +184,6 @@ public class HourlyRegistration extends BaseTest {
 
         /* Confirm location */
         signupPage.waitForLocation();
-        Assert.assertEquals(signupPage.getLocationTxt(), ipLocation);
         signupPage.setUserLocation(userLocation);
         Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
         signupPage.clickLocationNextBtn();

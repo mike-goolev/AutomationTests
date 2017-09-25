@@ -111,7 +111,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        //Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
@@ -149,7 +149,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        //Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
@@ -203,7 +203,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        //Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click the follow button for a given employer */
