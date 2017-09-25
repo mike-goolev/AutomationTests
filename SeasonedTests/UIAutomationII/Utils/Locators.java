@@ -614,7 +614,6 @@ public class Locators {
         public By personalInfoBirthdayMonthSelect = By.id("personalInfoMonthSelect");
         public By personalInfoBirthdayDaySelect = By.id("personalInfoDaySelect");
         public By personalInfoBirthdayYearSelect = By.id("personalInfoYearSelect");
-        public By personalInfoEligibilityChk = By.id("eligibleToWorkChkBox");
         public By personalInfoSaveBtn = By.id("savePersonalInfoBtn");
         public By personalInfoSuccessToastTxt = By.id("personalInfoToastTypeTxt");
         public By personalInfoSuccessToastCloseBtn = By.id("personalInfoToastCloseBtn");

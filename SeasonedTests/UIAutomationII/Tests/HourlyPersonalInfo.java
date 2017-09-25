@@ -98,7 +98,6 @@ public class HourlyPersonalInfo extends BaseTest {
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.updateUserLocation(userGuid, originalCity, originalState, originalZip, country, originalLatitude, originalLongitude);
         seasonedRestAPI.updateUserNameEmailPhoneBday(id, userGuid, originalFirstName, originalLastName, email, phone, dob, accountState, roleGuid, roleName);
-        seasonedRestAPI.clearEligibilityAnswersForUser(userGuid);
         System.out.println("Starting hourly personal info test!");
     }
 
@@ -147,7 +146,7 @@ public class HourlyPersonalInfo extends BaseTest {
         /* Verify personal info birth date text tooltip */
         Assert.assertEquals(personalInfoPage.getBirthdateTxtTooltip(), birthdateTxtTooltip);
 
-        /* Verify the user's initial name, location, phone, dob and eligibility # */
+        /* Verify the user's initial name, location, phone and dob # */
         Assert.assertTrue(navPage.isNavMenuAvatarDisplayed(), "User avatar should be displayed in the menu");
         Assert.assertEquals(navPage.getUserFirstNameLastInitial(), originalFirstNameLastInitial);
         Assert.assertTrue(personalInfoPage.isUserAvatarDisplayed(), "User avatar should be displayed on the personal info page");
@@ -157,24 +156,22 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertEquals(personalInfoPage.getUserLocation(), originalLocation);
         Assert.assertTrue(personalInfoPage.isUserPhoneTxtFieldEmpty(), "Phone field should be empty");
         Assert.assertTrue(personalInfoPage.isBirthdayEmpty(), "Birthday dropdowns should have default selections");
-        Assert.assertFalse(personalInfoPage.isEligibilitySelected(), "Eligibility should not be checked");
         Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
-        /* Update the user's name, location, phone, birthday and eligibility and then save */
+        /* Update the user's name, location, phone and birthday and then save */
         personalInfoPage.updateUserFirstAndLastName(newFirstName, newLastName);
         personalInfoPage.updateUserLocation(newLocation);
         personalInfoPage.enterUserPhone(newPhone);
         personalInfoPage.selectMonthFromDate(dobMonthValue);
         personalInfoPage.selectDayFromDate(dobDay);
         personalInfoPage.selectYearFromDate(dobYear);
-        personalInfoPage.clickEligibilityChk();
         personalInfoPage.clickSaveBtn();
 
         /* Verify that the success toast displays after saving */
         Assert.assertTrue(personalInfoPage.verifyPersonalInfoSuccessToast(), "Success toast should be displayed");
         personalInfoPage.dismissPersonalInfoSuccessToast();
 
-        /* Verify new name, location, phone, dob and eligibility are displayed after saving */
+        /* Verify new name, location, phone and dob are displayed after saving */
         Assert.assertTrue(navPage.isNavMenuAvatarDisplayed(), "User avatar should be displayed in the menu");
         Assert.assertEquals(navPage.getUserFirstNameLastInitial(), newFirstNameLastInitial);
         Assert.assertTrue(personalInfoPage.isUserAvatarDisplayed(), "User avatar should be displayed on the personal info page");
@@ -186,20 +183,18 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertEquals(personalInfoPage.getSelectedMonth(), dobMonth);
         Assert.assertEquals(personalInfoPage.getSelectedDay(), dobDay);
         Assert.assertEquals(personalInfoPage.getSelectedYear(), dobYear);
-        Assert.assertTrue(personalInfoPage.isEligibilitySelected(), "Eligibility should be checked");
         Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Go back and verify that the new name shows on the view profile page */
         editProfilePage.clickSideMenuViewProfileLink();
         Assert.assertEquals(profilePage.getFirstAndLastName(), newFirstName + ' ' + newLastName);
 
-        /* Go to edit personal info and change name, location, phone and eligibility back to the original state */
+        /* Go to edit personal info and change name, location and phone back to the original state */
         profilePage.clickEditProfile();
         editProfilePage.clickSideMenuPersonalInfoLink();
         personalInfoPage.updateUserFirstAndLastName(originalFirstName, originalLastName);
         personalInfoPage.updateUserLocation(originalLocation);
         personalInfoPage.removeUserPhone();
-        personalInfoPage.clickEligibilityChk();
         personalInfoPage.clickSaveBtn();
 
         /* Verify that the green banner displays after saving */
@@ -215,7 +210,6 @@ public class HourlyPersonalInfo extends BaseTest {
         Assert.assertEquals(personalInfoPage.getUserLastName(), originalLastName);
         Assert.assertEquals(personalInfoPage.getUserLocation(), originalLocation);
         Assert.assertTrue(personalInfoPage.isUserPhoneTxtFieldEmpty(), "Phone field should be empty");
-        Assert.assertFalse(personalInfoPage.isEligibilitySelected(), "Eligibility should not be checked");
         Assert.assertFalse(personalInfoPage.isSaveButtonEnabled(), "Save button should be disabled");
 
         /* Go back to view profile and verify that the original name and location are displayed */

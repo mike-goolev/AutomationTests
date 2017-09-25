@@ -283,21 +283,6 @@ public class PersonalInfoPage extends BasePage {
     }
 
     /**
-     * Checks to see if the eligibility checkbox is selected
-     * @return Whether or not the eligibility checkbox is selected
-     */
-    public boolean isEligibilitySelected() {
-        return isCheckboxSelected(driver.findElement(personalInfoPageLocators.personalInfoEligibilityChk));
-    }
-
-    /**
-     * Click the eligibility checkbox
-     */
-    public void clickEligibilityChk() {
-        driver.findElement(personalInfoPageLocators.personalInfoEligibilityChk).click();
-    }
-
-    /**
      * Click the save button
      */
     public void clickSaveBtn() {
