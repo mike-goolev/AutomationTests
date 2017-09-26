@@ -616,6 +616,7 @@ public class Locators {
         public By personalInfoBirthdayYearSelect = By.id("personalInfoYearSelect");
         public By personalInfoSaveBtn = By.id("savePersonalInfoBtn");
         public By personalInfoSuccessToastTxt = By.id("personalInfoToastTypeTxt");
+        public By personalInfoSuccessToast = By.cssSelector("div#personalInfoToast.success");
         public By personalInfoSuccessToastCloseBtn = By.id("personalInfoToastCloseBtn");
         public By personalInfoTooltip = By.id("tooltip");
         public By personalInfoLocationTitleTooltip = By.id("personalInfoLocationTitleTooltip");

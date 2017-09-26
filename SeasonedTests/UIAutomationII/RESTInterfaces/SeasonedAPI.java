@@ -6,6 +6,7 @@ import java.util.List;
 public interface SeasonedAPI {
 
     /*-------- User Endpoints --------*/
+
     @PUT("user/{guid}/eligibility")
     Call<User> updateEligibility(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body List<EligibilityAnswers> eligibility);
 
@@ -23,6 +24,9 @@ public interface SeasonedAPI {
 
     @PUT("user")
     Call<User> updateUserAbout(@Header("Authorization") String accessToken, @Body User user);
+
+    @PUT("user")
+    Call<User> clearUserSkills(@Header("Authorization") String accessToken, @Body User user);
 
     /*-------- Job Endpoints --------*/
 

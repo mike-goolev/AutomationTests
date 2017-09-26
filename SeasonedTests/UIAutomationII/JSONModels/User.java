@@ -160,15 +160,16 @@ public class User {
     @SerializedName("networkCount")
     @Expose
     private Integer networkCount;
-
     @Expose
     private String employmentInterestStatus;
-
     @Expose
     private String employmentInterestType;
-
     @Expose
     private String gigInterestStatus;
+    @SerializedName("skills")
+    @Expose
+    private List<Skill> skills;
+
 
     public Integer getErrorCode() {
         return errorCode;
@@ -608,5 +609,13 @@ public class User {
 
     public void setGigInterestStatus(String gigInterest) {
         this.gigInterestStatus = gigInterest;
+    }
+
+    public void setSkills(List<Skill> userSkills) {
+        this.skills = userSkills;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
     }
 }

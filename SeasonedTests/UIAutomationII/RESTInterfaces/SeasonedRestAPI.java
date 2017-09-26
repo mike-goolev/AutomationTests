@@ -334,7 +334,8 @@ public class SeasonedRestAPI {
         }
     }
 
-    /** Updates a user's about section by calling the /user endpoint
+    /**
+     * Updates a user's about section by calling the /user endpoint
      * @param id the db id for the user
      * @param guid the guid for the user to update
      * @param firstname user's firstname
@@ -359,6 +360,35 @@ public class SeasonedRestAPI {
             Call<User> call = seasonedAPI.updateUserAbout(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a: " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Clears any skills from the user
+     * @param id
+     * @param guid
+     * @param firstname
+     * @param email
+     */
+    public void clearUserSkills(String id, String guid, String firstname, String lastname, String email) {
+        try {
+            User user = new User();
+
+            user.setId(id);
+            user.setGuid(guid);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmail(email);
+            user.setAccountState("normal");
+            user.setSkills(new ArrayList<Skill>());
+
+            Call<User> call = seasonedAPI.clearUserSkills(accessToken, user);
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user returned a: " + response.code());
+
         }
         catch(Exception e) {
             System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());

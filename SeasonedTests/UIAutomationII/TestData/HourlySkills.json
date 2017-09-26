@@ -2,6 +2,11 @@
   "testSkills": {
     "username":"aprofile@mailinator.com",
     "password":"12348765",
+    "firstname": "Auto",
+    "lastname": "Profile",
+    "guid": "e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
+    "id": "68786",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
     "skill1":"I grab a dog...and...I-I choke him, and I-I...kick the shit out of him! All day long - my foot up a dog's ass! Just, BANG BANG BANG up his ass!",
     "skill2":"Old enough...to party",
     "skill3":"Peekaboo",

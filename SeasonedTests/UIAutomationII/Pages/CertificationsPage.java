@@ -188,7 +188,6 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Checks to see if the certifications tooltip is displayed
-     *
      * @return Whether or not the certifications tooltip is displayed
      */
     public boolean isCertsTooltipDisplayed() {
@@ -197,7 +196,6 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Get certifications title from the certifications tooltip
-     *
      * @return The certifications tooltip title
      */
     public String getCertsTitleTooltip() {
@@ -206,7 +204,6 @@ public class CertificationsPage extends BasePage {
 
     /**
      * Get certifications text from the certifications tooltip
-     *
      * @return The certifications tooltip text
      */
     public String getCertsTxtTooltip() {

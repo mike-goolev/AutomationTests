@@ -15,8 +15,8 @@ public class SignupPage extends BasePage {
      /*---------- Onboarding - Shared elements -----------*/
 
      /**
-     * Selects the 'X' button to exit signup flow and return to previous page
-     */
+      * Selects the 'X' button to exit signup flow and return to previous page
+      */
      public void dismissSignup(){
          wait.until(elementToBeClickable(signUpPageLocators.dismissBtn));
          driver.findElement(signUpPageLocators.dismissBtn).click();
@@ -67,9 +67,8 @@ public class SignupPage extends BasePage {
         Thread.sleep(1500);
     }
 
-     /**
+    /**
      * Sets user's location
-
      * @param location User's location
      */
     public void setUserLocation(String location) {
@@ -245,7 +244,6 @@ public class SignupPage extends BasePage {
 
     /**
      * Register user with Facebook credentials
-
      * @param email    User's Facebook email
      * @param password User's Facebook password
      */

@@ -14,6 +14,11 @@ public class HourlySkills extends BaseTest {
 
     String username;
     String password;
+    String firstname;
+    String lastname;
+    String guid;
+    String id;
+    String token;
     String skill1;
     String skill2;
     String skill3;
@@ -35,6 +40,11 @@ public class HourlySkills extends BaseTest {
 
         username = (String) TestDataImporter.get("HourlySkills", "testSkills").get("username");
         password = (String) TestDataImporter.get("HourlySkills", "testSkills").get("password");
+        firstname = (String) TestDataImporter.get("HourlySkills", "testSkills").get("firstname");
+        lastname = (String) TestDataImporter.get("HourlySkills", "testSkills").get("lastname");
+        guid = (String) TestDataImporter.get("HourlySkills", "testSkills").get("guid");
+        id = (String) TestDataImporter.get("HourlySkills", "testSkills").get("id");
+        token = (String) TestDataImporter.get("HourlySkills", "testSkills").get("token");
         skill1= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill1");
         skill2= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill2");
         skill3= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill3");
@@ -42,7 +52,9 @@ public class HourlySkills extends BaseTest {
         skill5= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skill5");
         skillsTitleTooltip= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skillsTitleTooltip");
         skillsTxtTooltip= (String) TestDataImporter.get("HourlySkills", "testSkills").get("skillsTxtTooltip");
-        System.out.println("Starting test run!");
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        seasonedRestAPI.clearUserSkills(id, guid, firstname, lastname, username);
+        System.out.println("Starting hourly skills test!");
     }
 
     @Test

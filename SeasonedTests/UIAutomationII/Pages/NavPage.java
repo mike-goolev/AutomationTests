@@ -36,7 +36,6 @@ public class NavPage extends BasePage {
 
     /**
      * Checks to see if the user avatar is displayed in the menu
-
      * @return Whether or not the user avatar is displayed in the menu
      */
     public boolean isNavMenuAvatarDisplayed() {
@@ -45,7 +44,6 @@ public class NavPage extends BasePage {
 
     /**
      * Checks to see if the user photo is displayed in the menu
-
      * @return Whether or not the user photo is displayed in the menu
      */
     public boolean isNavMenuPhotoDisplayed() {
@@ -54,7 +52,6 @@ public class NavPage extends BasePage {
 
     /**
      * Get user's first name and last name initial from the menu text
-
      * @return User's first name and last name initial
      */
     public String getUserFirstNameLastInitial() {

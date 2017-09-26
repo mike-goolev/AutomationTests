@@ -86,7 +86,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Get skills title from the skills tooltip
-     *
      * @return The skills tooltip title
      */
     public String getSkillsTitleTooltip() {
@@ -95,7 +94,6 @@ public class SkillsPage extends BasePage {
 
     /**
      * Get skills text from the skills tooltip
-     *
      * @return The skills tooltip text
      */
     public String getSkillsTxtTooltip() {

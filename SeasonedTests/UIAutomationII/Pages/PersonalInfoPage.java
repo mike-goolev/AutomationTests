@@ -302,8 +302,8 @@ public class PersonalInfoPage extends BasePage {
      * @return Whether or not the personal info success toast is visible
      */
     public boolean verifyPersonalInfoSuccessToast(){
-         wait.until(visibilityOfElementLocated(personalInfoPageLocators.personalInfoSuccessToastTxt));
-         return elementExists(personalInfoPageLocators.personalInfoSuccessToastTxt);
+         wait.until(visibilityOfElementLocated(personalInfoPageLocators.personalInfoSuccessToast));
+         return elementExists(personalInfoPageLocators.personalInfoSuccessToast);
      }
 
     /**
@@ -312,12 +312,11 @@ public class PersonalInfoPage extends BasePage {
      public void dismissPersonalInfoSuccessToast(){
          wait.until(elementToBeClickable(personalInfoPageLocators.personalInfoSuccessToastCloseBtn));
          driver.findElement(personalInfoPageLocators.personalInfoSuccessToastCloseBtn).click();
-         wait.until(invisibilityOfElementLocated(personalInfoPageLocators.personalInfoSuccessToastTxt));
+         wait.until(invisibilityOfElementLocated(personalInfoPageLocators.personalInfoSuccessToast));
      }
 
     /**
      * Checks to see if the personal info tooltip is displayed
-     *
      * @return Whether or not the personal info tooltip is displayed
      */
      public boolean isPersonalInfoTooltipDisplayed() {
@@ -326,7 +325,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get location title from the personal info tooltip
-     *
      * @return The location tooltip title
      */
     public String getLocationTitleTooltip() {
@@ -335,7 +333,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get phone title from the personal info tooltip
-     *
      * @return The phone tooltip text
      */
     public String getPhoneTitleTooltip() {
@@ -344,7 +341,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Get birthdate title from the personal info tooltip
-     *
      * @return The birthdate tooltip text
      */
     public String getBirthdateTitleTooltip() {
@@ -353,7 +349,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if location text tooltip is displayed
-     *
      * @return The location tooltip text
      */
     public String getLocationTxtTooltip() {
@@ -362,7 +357,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if phone text tooltip is displayed
-     *
      * @return The phone tooltip text
      */
     public String getPhoneTxtTooltip() {
@@ -371,7 +365,6 @@ public class PersonalInfoPage extends BasePage {
 
     /**
      * Checks to see if birthdate text tooltip is displayed
-     *
      * @return The birthdate tooltip text
      */
     public String getBirthdateTxtTooltip() {
