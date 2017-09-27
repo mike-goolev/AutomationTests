@@ -974,7 +974,7 @@ public class Locators {
         public By suggestedConnectionNextPageBtn = By.id("suggestedConnectionsNextBtn");
         public By suggestedConnectionPreviousPageBtn = By.id("suggestedConnectionsPreviousBtn");
 
-        /* Invitations section */
+        /* TO DO -> Invitations section */
 
     }
 
@@ -998,6 +998,59 @@ public class Locators {
     }
 
     public static class HourlyBeSuccessfulPageLocators{
-        public By beSuccessfulTitleTxt = By.id("beSuccessfulPageHeaderTxt");
+        public By beSuccessfulTitleTxt = By.id("beSuccessfulHeadlineTxt");
+    }
+
+    public static class HorariosCalientesLocators{
+        /* HS Main (Labor) */
+        public By loadingTabIndicator = By.id("hs-LoadingAnimation");
+        public By addEmployeeLoadingIndicator = By.id("loadingImage");
+        public By loginUsernameField = By.id("loginusername");
+        public By loginPasswordField = By.id("loginpassword");
+        public By loginBtn = By.id("loginBtn");
+        public By pendingTasksCancelBtn = By.id("cancelButton");
+        public By staffTabBtn = By.cssSelector("ul#new_ui_menu>li:nth-of-type(4)");
+        public By staffTabAddEmployeeBtn = By.cssSelector("div#addOrImportEmployeeButtonDiv>a");
+        public By addEmployeeFirstNameField = By.id("first-name");
+        public By addEmployeeLastNameField = By.id("last-name");
+        public By addEmployeeUsernameField = By.id("userId");
+        public By addEmployeePasswordField = By.id("password");
+        public By addEmployeeEmailField = By.id("email");
+        public By addEmployeeSaveBtn = By.id("btnSaveEmpDetails");
+        public By addEmployeeJobsTabBtn = By.id("1");
+        public By addEmployeeJobBartenderChk = By.id("job_1027072066");
+        public By addEmployeeJobManager1Chk = By.id("job_1027072067");
+        public By addEmployeeJobManager2Chk = By.id("job_1047288764");
+        public By addEmployeeJobServer1Chk = By.id("job_1047288766");
+        /* HS Support Site */
+        public By supportInfoSearchBtn = By.id("info-search");
+        public By supportSearchField = By.id("search-box");
+        public By supportEmployerResultBtn = By.cssSelector("div#search-list * tbody * td:nth-of-type(2)>a");
+        public By supportUsernameFilterField = By.id("filter-username");
+        public By supportApplyFilterBtn = By.cssSelector("table.dataTable>thead>tr:nth-of-type(3) * input:nth-of-type(2)");
+        public By employeeIdTxt = By.cssSelector("div#info-table_wrapper>div.dataTables_scroll * tbody * td:nth-of-type(2)");
+    }
+
+    public static class MailinatorLocators{
+        public By inboxField = By.id("inboxfield");
+        public By checkEmailBtn = By.cssSelector("button.btn.btn-dark");
+        public By emailSubjectLink = By.cssSelector("ul#inboxpane>li>div>div:nth-of-type(4)");
+        public By iFrame = By.id("msg_body");
+        public By activationActionLink = By.cssSelector("div.float-center>a");
+    }
+
+    public static class AutoProvisionSignUpLocators {
+        public By firstNameField = By.id("undefinedUserFirstname");
+        public By lastNameField = By.id("undefinedUserLastname");
+        public By emailField = By.id("undefinedEmailInput");
+        public By passwordField = By.id("undefinedPasswordInput");
+        public By createAccountBtn = By.id("ConfirmSignUpSubmitBtn");
+    }
+
+    public static class EmployerSignUpLocators{
+        public By signUpTitleTxt = By.id("chooseSignUpTitleText0");
+        public By signUpByEmailBtn = By.id("chooseSignUpEmailSignUpBtn");
+        public By signUpByFacebookBtn = By.id("signUpFacebookBtnIcon");
+        public By signUpBackBtn = By.id("chooseSignUpBackBtn");
     }
 }

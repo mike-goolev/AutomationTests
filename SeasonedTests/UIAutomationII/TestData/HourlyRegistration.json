@@ -5,6 +5,7 @@
     "userLocation":"Philadelphia, PA",
     "availabilityStatusOpen":"I'm open to opportunities",
     "availabilityStatusLooking":"I'm looking for a job",
-    "availabilityStatusEmployed":"I'm currently employed."
+    "availabilityStatusEmployed":"I'm currently employed.",
+    "employerSignUpTitle":"Let's create your account"
   }
 }

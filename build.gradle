@@ -15,7 +15,7 @@ dependencies {
     testCompile 'com.squareup.retrofit2:retrofit:2.2.0'
     testCompile 'com.squareup.retrofit2:converter-gson:2.2.0'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.4.0'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.4.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.5.3'
 }
 
 

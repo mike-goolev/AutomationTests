@@ -33,7 +33,8 @@ public class HourlyMyHome extends BaseTest {
 
     @BeforeClass
     public void initializeTestDataAndCreateArticle() {
-        driver = BrowserFactory.getDriver("firefox");        testUtils = new TestUtils(driver);
+        driver = BrowserFactory.getDriver("firefox");
+        testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
         contentFeedPage = new ContentFeedPage(driver);

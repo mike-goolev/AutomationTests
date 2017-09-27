@@ -12,6 +12,8 @@ public class HourlyRegistration extends BaseTest {
     ContentFeedPage contentFeedPage;
     ProfilePage profilePage;
     HourlyConnectionsSuggestedPage hourlyConnectionsSuggestedPage;
+    EmployerSignUpPage employerSignUpPage;
+    BeSuccessfulPage beSuccessfulPage;
 
     String ipLocation;
     String userLocation;
@@ -22,6 +24,7 @@ public class HourlyRegistration extends BaseTest {
     String availabilityStatusOpen;
     String availabilityStatusLooking;
     String availabilityStatusEmployed;
+    String employerSignUpTitle;
 
     @BeforeMethod
     public void setUp() {
@@ -34,6 +37,8 @@ public class HourlyRegistration extends BaseTest {
         profilePage = new ProfilePage(driver);
         contentFeedPage = new ContentFeedPage(driver);
         hourlyConnectionsSuggestedPage = new HourlyConnectionsSuggestedPage(driver);
+        employerSignUpPage = new EmployerSignUpPage(driver);
+        beSuccessfulPage = new BeSuccessfulPage(driver);
 
         ipLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("ipLocation");
         userLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("userLocation");
@@ -44,6 +49,7 @@ public class HourlyRegistration extends BaseTest {
         availabilityStatusOpen = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusOpen");
         availabilityStatusLooking = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusLooking");
         availabilityStatusEmployed = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusEmployed");
+        employerSignUpTitle = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("employerSignUpTitle");
         System.out.println("Starting test run!");
     }
 
@@ -169,6 +175,9 @@ public class HourlyRegistration extends BaseTest {
 
         /* Verify user lands on Content page */
         contentFeedPage.isArticleImageDisplayed("0");
+
+        /* TO DO -> Verify topics set in user account settings */
+
     }
 
     @Test
@@ -206,7 +215,7 @@ public class HourlyRegistration extends BaseTest {
         hourlyConnectionsSuggestedPage.isSuggestedConnectionsPhotoPresent("0");
     }
 
-    @Test(enabled = false)
+    @Test
     public void testHourlySignUpManagerRedirect() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -217,7 +226,12 @@ public class HourlyRegistration extends BaseTest {
         /* Select registration type */
         signupPage.clickHireExperience();
 
-        /* TO DO -- Verify user directed to manager login page */
+        /* Verify user directed to manager sign up page */
+        Assert.assertEquals(employerSignUpPage.getTitleTxt(), employerSignUpTitle);
+        employerSignUpPage.clickBackBtn();
+        signupPage.dismissSignup();
+        // Dismissing sign up incorrectly routes user to marketing page instead of be successful page
+        //Assert.assertTrue(beSuccessfulPage.isHeaderDisplayed());
     }
 
     @AfterMethod
