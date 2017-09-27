@@ -1,8 +1,10 @@
 {
   "Hourly Certifications": {
-    "username":"aprofile@mailinator.com",
-    "password":"12348765",
-    "certsTitletooltip":"Certified? Tell everyone",
-    "certsTxttooltip":"Not only are certifications a requirement in certain roles, they also make you look more impressive. Share your certifications proudly here."
+    "username": "aprofile@mailinator.com",
+    "password": "12348765",
+    "guid": "e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
+    "certsTitleTooltip": "Certified? Tell everyone",
+    "certsTxtTooltip": "Not only are certifications a requirement in certain roles, they also make you look more impressive. Share your certifications proudly here."
   }
 }

@@ -14,8 +14,11 @@ public class HourlyCertifications extends BaseTest {
 
     private String username;
     private String password;
-    private String certsTitletooltip;
-    private String certsTxttooltip;
+    private String guid;
+    private String id;
+    private String token;
+    private String certsTitleTooltip;
+    private String certsTxtTooltip;
 
     @BeforeClass
     public void setUp() {
@@ -29,8 +32,14 @@ public class HourlyCertifications extends BaseTest {
         editProfilePage = new EditProfilePage(driver);
         username = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("username");
         password = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("password");
-        certsTitletooltip = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("certsTitletooltip");
-        certsTxttooltip = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("certsTxttooltip");
+        guid = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("guid");
+        token = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("token");
+        certsTitleTooltip = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("certsTitleTooltip");
+        certsTxtTooltip = (String) TestDataImporter.get("HourlyCertifications", "Hourly Certifications").get("certsTxtTooltip");
+
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        seasonedRestAPI.clearUserCertifications(guid);
+        System.out.println("Starting certifications test!");
     }
 
     @Test
@@ -58,10 +67,10 @@ public class HourlyCertifications extends BaseTest {
         Assert.assertTrue(certificationsPage.isCertsTooltipDisplayed(), "Certifications tooltip should be displayed");
 
         /* Verify the certifications title tooltip is displayed*/
-        Assert.assertEquals(certificationsPage.getCertsTitleTooltip(), certsTitletooltip);
+        Assert.assertEquals(certificationsPage.getCertsTitleTooltip(), certsTitleTooltip);
 
         /* Verify the certifications text tooltip is displayed*/
-        Assert.assertEquals(certificationsPage.getCertsTxtTooltip(), certsTxttooltip);
+        Assert.assertEquals(certificationsPage.getCertsTxtTooltip(), certsTxtTooltip);
 
         /* Select all certifications and verify that the upload button appears */
         certificationsPage.selectAllCertifications();

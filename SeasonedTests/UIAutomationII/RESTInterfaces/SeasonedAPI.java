@@ -1,6 +1,7 @@
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface SeasonedAPI {
@@ -27,6 +28,9 @@ public interface SeasonedAPI {
 
     @PUT("user")
     Call<User> clearUserSkills(@Header("Authorization") String accessToken, @Body User user);
+
+    @PUT("user/{guid}/certifications")
+    Call<User> clearUserCertifications(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body ArrayList<Certification> certs);
 
     /*-------- Job Endpoints --------*/
 

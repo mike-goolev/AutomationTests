@@ -368,10 +368,11 @@ public class SeasonedRestAPI {
 
     /**
      * Clears any skills from the user
-     * @param id
-     * @param guid
-     * @param firstname
-     * @param email
+     * @param id the db id for the user
+     * @param guid the guid for the user to update
+     * @param firstname user's firstname
+     * @param lastname user's lastname
+     * @param email user's email
      */
     public void clearUserSkills(String id, String guid, String firstname, String lastname, String email) {
         try {
@@ -392,6 +393,21 @@ public class SeasonedRestAPI {
         }
         catch(Exception e) {
             System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Clears out a user's certifications
+     * @param guid the guid for the user
+     */
+    public void clearUserCertifications(String guid) {
+        try {
+            Call<User> call = seasonedAPI.clearUserCertifications(guid, accessToken, new ArrayList<Certification>());
+            Response<User> response = call.execute();
+            System.out.println("PUT request to /user/" + guid + "/certifications returned a: " + response.code());
+        }
+        catch(Exception e) {
+            System.out.println("PUT request to /user/" + guid + "/certifications failed with error: " + e.getLocalizedMessage());
         }
     }
 
