@@ -7,7 +7,8 @@ public class HourlyLogin extends BaseTest {
     NavPage navPage;
     LoginPage loginPage;
     JobSearchPage jobSearchPage;
-    HourlyConnectionsPage hourlyConnectionsPage;
+    HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
+    HourlyNetworkPage hourlyNetworkPage;
     BeSuccessfulPage beSuccessfulPage;
 
     String usernameEmail;
@@ -23,7 +24,8 @@ public class HourlyLogin extends BaseTest {
         navPage = new NavPage(driver);
         loginPage = new LoginPage(driver);
         jobSearchPage = new JobSearchPage(driver);
-        hourlyConnectionsPage = new HourlyConnectionsPage(driver);
+        hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
+        hourlyNetworkPage = new HourlyNetworkPage(driver);
         beSuccessfulPage = new BeSuccessfulPage(driver);
 
         usernameEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("username");
@@ -69,7 +71,7 @@ public class HourlyLogin extends BaseTest {
         loginPage.loginWithEmail(usernameEmail, passwordEmail);
 
         /* Verify user lands on connections page */
-        Assert.assertTrue(hourlyConnectionsPage.isUserSearchFieldPresent());
+        Assert.assertTrue(hourlyNetworkPage.isUserSearchFieldPresent());
     }
 
     @Test(enabled = false)
@@ -82,7 +84,7 @@ public class HourlyLogin extends BaseTest {
         loginPage.loginWithFacebook(usernameFB, passwordFB);
 
         /* Verify user lands on connections page */
-        Assert.assertTrue(hourlyConnectionsPage.isUserSearchFieldPresent());
+        Assert.assertTrue(hourlyNetworkPage.isUserSearchFieldPresent());
     }
 
     @Test

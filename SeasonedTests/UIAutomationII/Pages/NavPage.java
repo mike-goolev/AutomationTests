@@ -4,10 +4,12 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 public class NavPage extends BasePage {
 
     Locators.NavPageLocators navPageLocators;
+    HourlyNetworkPage hourlyNetworkPage;
 
     public NavPage(WebDriver driver) {
         super(driver);
         navPageLocators = new Locators.NavPageLocators();
+        hourlyNetworkPage = new HourlyNetworkPage(driver);
     }
 
     /*---------- Non auth'd methods ---------*/
@@ -82,6 +84,33 @@ public class NavPage extends BasePage {
         driver.findElement(navPageLocators.userNameBtn).click();
         wait.until(elementToBeClickable(navPageLocators.menuProfileBtn));
         driver.findElement(navPageLocators.menuProfileBtn).click();
+    }
+
+    /**
+     * Takes the user to the network connections page via nav header and clicking my
+     */
+    public void navigateToNetworkMyConnectionsPage() {
+        wait.until(elementToBeClickable(navPageLocators.networkBtn));
+        driver.findElement(navPageLocators.networkBtn).click();
+        hourlyNetworkPage.clickNetworkMyConnections();
+    }
+
+    /**
+     * Takes the user to the network suggested connections page via nav header and clicking my
+     */
+    public void navigateToNetworkSuggestedConnectionsPage() {
+        wait.until(elementToBeClickable(navPageLocators.networkBtn));
+        driver.findElement(navPageLocators.networkBtn).click();
+        hourlyNetworkPage.clickNetworkSuggestions();
+    }
+
+    /**
+     * Takes the user to the network connections page via nav header and clicking my
+     */
+    public void navigateToNetworkInvitationsPage() {
+        wait.until(elementToBeClickable(navPageLocators.networkBtn));
+        driver.findElement(navPageLocators.networkBtn).click();
+        hourlyNetworkPage.clickNetworkInvitations();
     }
 
     /**

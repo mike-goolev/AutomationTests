@@ -11,7 +11,7 @@ public class HourlyRegistration extends BaseTest {
     JobSearchPage jobSearchPage;
     ContentFeedPage contentFeedPage;
     ProfilePage profilePage;
-    HourlyConnectionsSuggestedPage hourlyConnectionsSuggestedPage;
+    HourlyNetworkSuggestionsPage hourlyNetworkSuggestionsPage;
     EmployerSignUpPage employerSignUpPage;
     BeSuccessfulPage beSuccessfulPage;
 
@@ -36,7 +36,7 @@ public class HourlyRegistration extends BaseTest {
         jobSearchPage = new JobSearchPage(driver);
         profilePage = new ProfilePage(driver);
         contentFeedPage = new ContentFeedPage(driver);
-        hourlyConnectionsSuggestedPage = new HourlyConnectionsSuggestedPage(driver);
+        hourlyNetworkSuggestionsPage = new HourlyNetworkSuggestionsPage(driver);
         employerSignUpPage = new EmployerSignUpPage(driver);
         beSuccessfulPage = new BeSuccessfulPage(driver);
 
@@ -212,7 +212,7 @@ public class HourlyRegistration extends BaseTest {
         signupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Get Connected page */
-        hourlyConnectionsSuggestedPage.isSuggestedConnectionsPhotoPresent("0");
+        hourlyNetworkSuggestionsPage.isSuggestedConnectionsPhotoDisplayed("0");
     }
 
     @Test

@@ -348,7 +348,7 @@ public class ProfilePage extends BasePage {
         return driver.findElement(profilePageLocators.aboutTxtField).getText();
     }
 
-    /*---------- HourlySkills -----------*/
+    /*---------- HourlyProfileSkills -----------*/
 
     /**
      * Verifies that the skills title is displayed
@@ -391,7 +391,7 @@ public class ProfilePage extends BasePage {
         return driver.findElement(profilePageLocators.findSkillLabelByIndex(index)).getText();
     }
 
-    /*---------- HourlyConnections -----------*/
+    /*---------- HourlyNetworkMyConnections -----------*/
 
     /**
      * Clicks the view all connections button when auth'd user has > 0 connections
@@ -403,6 +403,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * Verifies that the connections title text is displayed on the view profile page
+
      * @return Whether or not the connections title text is displayed
      */
     public boolean isConnectionsTitleTxtPresent() {
@@ -411,14 +412,17 @@ public class ProfilePage extends BasePage {
 
     /**
      * Get user's connections count
+
      * @return User's connections count
      */
     public String getConnectionsCount() {
+        wait.until(visibilityOfElementLocated(profilePageLocators.connectionsCountTxt));
         return driver.findElement(profilePageLocators.connectionsCountTxt).getText();
     }
 
     /**
      * Verifies that a connection's photo is at the given index
+
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return Whether or not a connection's photo is present at the given index
      */
@@ -427,7 +431,18 @@ public class ProfilePage extends BasePage {
     }
 
     /**
+     * Get a connection's name
+
+     * @ param index The index of the connection
+     * @return Connection's name
+     */
+    public String getConnectionsName(String index) {
+        return driver.findElement(profilePageLocators.findConnectionLinkByIndex(index)).getAttribute("title");
+    }
+
+    /**
      * Clicks a connection's view link at the given index
+
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickViewConnection(String index) {
@@ -438,15 +453,8 @@ public class ProfilePage extends BasePage {
     /*---------- HourlySuggestedConnections -----------*/
 
     /**
-     * Clicks the view all suggested connections button when a user has > 0 suggested connections
-     */
-    public void clickViewAllSuggestedConnections() {
-        wait.until(elementToBeClickable(profilePageLocators.viewAllSuggestedConnectionsBtn));
-        driver.findElement(profilePageLocators.viewAllSuggestedConnectionsBtn).click();
-    }
-
-    /**
      * Verifies that the suggested connections title text is displayed on the view profile page
+
      * @return Whether or not the suggested connections title text is displayed
      */
     public boolean isSuggestedConnectionsTitleTxtPresent() {
@@ -455,39 +463,47 @@ public class ProfilePage extends BasePage {
 
     /**
      * Verifies that the suggested connection's photo is at the given index
-     * @param index The index (Starting at 0) of the suggested connection you wish to locate
+
      * @return Whether or not the suggested connection's photo is present at the given index
      */
-    public boolean isSuggestedConnectionsPhotoPresent(String index) {
-        return elementExists(profilePageLocators.findSuggestedConnectionImgByIndex(index));
+    public boolean isSuggestedConnectionsPhotoPresent() {
+        return elementExists(profilePageLocators.suggestedConnectionImg);
     }
 
     /**
      * Get a suggested connection's name
-     * @param index The index (Starting at 0) of the suggested connection you wish to locate
+
      * @return Suggested connection's name
      */
-    public String getSuggestedConnectionsName(String index) {
-        return driver.findElement(profilePageLocators.findSuggestedConnectionNameTxtByIndex(index)).getText();
-    }
-
-    /**
-     * Get a suggested connection's reason
-     * @param index The index (Starting at 0) of the suggested connection you wish to locate
-     * @return Suggested connection's reason
-     */
-    public String getSuggestedConnectionsReason(String index) {
-        return driver.findElement(profilePageLocators.findSuggestedConnectionReasonTxtByIndex(index)).getText();
+    public String getSuggestedConnectionsName() {
+        return driver.findElement(profilePageLocators.suggestedConnectionNameTxt).getText();
     }
 
     /**
      * Clicks a suggested connection's connect button
-     * @param index The index (Starting at 0) of the suggested connection you wish to locate
      */
-    public void clickSuggestedConnectionsConnectBtn(String index) {
-        wait.until(elementToBeClickable(profilePageLocators.findSuggestedConnectionConnectBtnByIndex(index)));
-        driver.findElement(profilePageLocators.findSuggestedConnectionConnectBtnByIndex(index));
+    public void clickSuggestedConnectionsConnectBtn() {
+        wait.until(elementToBeClickable(profilePageLocators.suggestedConnectionConnectBtn));
+        driver.findElement(profilePageLocators.suggestedConnectionConnectBtn).click();
     }
+
+    /**
+     * Clicks a suggested connection's dismiss button
+     */
+    public void clickSuggestedConnectionsDismissBtn() {
+        wait.until(elementToBeClickable(profilePageLocators.suggestedConnectionDismissBtn));
+        driver.findElement(profilePageLocators.suggestedConnectionDismissBtn);
+    }
+
+    /*---------- Network Profile ----------*/
+    /**
+     * Clicks on the edit profile button on the view profile page
+     */
+    public void clickCancelConnectionRequestBtn() {
+        wait.until(elementToBeClickable(profilePageLocators.cancelPendingConnectionRequestBtn));
+        driver.findElement(profilePageLocators.cancelPendingConnectionRequestBtn).click();
+    }
+
 
     /*---------- Utility Methods ----------*/
 
