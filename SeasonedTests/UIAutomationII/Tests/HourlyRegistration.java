@@ -7,13 +7,13 @@ public class HourlyRegistration extends BaseTest {
 
     TestUtils testUtils;
     NavPage navPage;
-    SignupPage signupPage;
-    JobSearchPage jobSearchPage;
-    ContentFeedPage contentFeedPage;
-    ProfilePage profilePage;
+    HourlySignupPage hourlySignupPage;
+    HourlyJobSearchPage hourlyJobSearchPage;
+    HourlyContentFeedPage hourlyContentFeedPage;
+    HourlyProfileViewPage hourlyProfileViewPage;
     HourlyNetworkSuggestionsPage hourlyNetworkSuggestionsPage;
     EmployerSignUpPage employerSignUpPage;
-    BeSuccessfulPage beSuccessfulPage;
+    HourlyBeSuccessfulPage hourlyBeSuccessfulPage;
 
     String ipLocation;
     String userLocation;
@@ -32,13 +32,13 @@ public class HourlyRegistration extends BaseTest {
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        signupPage = new SignupPage(driver);
-        jobSearchPage = new JobSearchPage(driver);
-        profilePage = new ProfilePage(driver);
-        contentFeedPage = new ContentFeedPage(driver);
+        hourlySignupPage = new HourlySignupPage(driver);
+        hourlyJobSearchPage = new HourlyJobSearchPage(driver);
+        hourlyProfileViewPage = new HourlyProfileViewPage(driver);
+        hourlyContentFeedPage = new HourlyContentFeedPage(driver);
         hourlyNetworkSuggestionsPage = new HourlyNetworkSuggestionsPage(driver);
         employerSignUpPage = new EmployerSignUpPage(driver);
-        beSuccessfulPage = new BeSuccessfulPage(driver);
+        hourlyBeSuccessfulPage = new HourlyBeSuccessfulPage(driver);
 
         ipLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("ipLocation");
         userLocation = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("userLocation");
@@ -62,25 +62,25 @@ public class HourlyRegistration extends BaseTest {
         navPage.clickJoinBtn();
 
         /* Select registration type */
-        signupPage.clickJobsExperience();
+        hourlySignupPage.clickJobsExperience();
 
         /* Confirm location */
-        signupPage.waitForLocation();
-        signupPage.setUserLocation(userLocation);
-        Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
-        signupPage.clickLocationNextBtn();
+        hourlySignupPage.waitForLocation();
+        hourlySignupPage.setUserLocation(userLocation);
+        Assert.assertEquals(hourlySignupPage.getLocationTxt(), userLocation);
+        hourlySignupPage.clickLocationNextBtn();
 
         /* Select job(s) */
-        signupPage.selectAllJobs();
+        hourlySignupPage.selectAllJobs();
 
         /* Select sign up method */
-        signupPage.signupEmail();
+        hourlySignupPage.signupEmail();
 
         /* Sign up by email */
-        signupPage.registerEmail(firstName, lastName, email, password);
+        hourlySignupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Jobs page */
-        jobSearchPage.verifyPositionDropdown();
+        hourlyJobSearchPage.verifyPositionDropdown();
     }
 
     @Test
@@ -92,26 +92,26 @@ public class HourlyRegistration extends BaseTest {
         navPage.clickJoinBtn();
 
         /* Select registration type */
-        signupPage.clickJobsExperience();
+        hourlySignupPage.clickJobsExperience();
 
         /* Confirm location */
-        signupPage.waitForLocation();
-        signupPage.setUserLocation(userLocation);
-        Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
-        signupPage.clickLocationNextBtn();
+        hourlySignupPage.waitForLocation();
+        hourlySignupPage.setUserLocation(userLocation);
+        Assert.assertEquals(hourlySignupPage.getLocationTxt(), userLocation);
+        hourlySignupPage.clickLocationNextBtn();
 
         /* Select job(s) */
-        signupPage.selectPopularJobs();
-        signupPage.clickJobsNextBtn();
+        hourlySignupPage.selectPopularJobs();
+        hourlySignupPage.clickJobsNextBtn();
 
         /* Select sign up method */
-        signupPage.signupEmail();
+        hourlySignupPage.signupEmail();
 
         /* Sign up by email */
-        signupPage.registerEmail(firstName, lastName, email, password);
+        hourlySignupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Jobs page */
-        jobSearchPage.verifyPositionDropdown();
+        hourlyJobSearchPage.verifyPositionDropdown();
     }
 
     @Test
@@ -123,27 +123,27 @@ public class HourlyRegistration extends BaseTest {
         navPage.clickJoinBtn();
 
         /* Select registration type */
-        signupPage.clickJobsExperience();
+        hourlySignupPage.clickJobsExperience();
 
         /* Confirm location */
-        signupPage.waitForLocation();
-        signupPage.setUserLocation(userLocation);
-        Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
-        signupPage.clickLocationNextBtn();
+        hourlySignupPage.waitForLocation();
+        hourlySignupPage.setUserLocation(userLocation);
+        Assert.assertEquals(hourlySignupPage.getLocationTxt(), userLocation);
+        hourlySignupPage.clickLocationNextBtn();
 
         /* Select job(s) */
-        signupPage.selectJobsFromList();
-        signupPage.selectSpecificJobsByIndex("0");
-        signupPage.clickJobsNextBtn();
+        hourlySignupPage.selectJobsFromList();
+        hourlySignupPage.selectSpecificJobsByIndex("0");
+        hourlySignupPage.clickJobsNextBtn();
 
         /* Select sign up method */
-        signupPage.signupEmail();
+        hourlySignupPage.signupEmail();
 
         /* Sign up by email */
-        signupPage.registerEmail(firstName, lastName, email, password);
+        hourlySignupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Jobs page */
-        jobSearchPage.verifyPositionDropdown();
+        hourlyJobSearchPage.verifyPositionDropdown();
     }
 
     @Test
@@ -155,26 +155,26 @@ public class HourlyRegistration extends BaseTest {
         navPage.clickJoinBtn();
 
         /* Select registration type */
-        signupPage.clickCareerExperience();
+        hourlySignupPage.clickCareerExperience();
 
         /* Confirm location */
-        signupPage.waitForLocation();
-        signupPage.setUserLocation(userLocation);
-        Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
-        signupPage.clickLocationNextBtn();
+        hourlySignupPage.waitForLocation();
+        hourlySignupPage.setUserLocation(userLocation);
+        Assert.assertEquals(hourlySignupPage.getLocationTxt(), userLocation);
+        hourlySignupPage.clickLocationNextBtn();
 
         /* Select topics */
-        signupPage.selectTopicsByIndex("0");
-        signupPage.clickTopicsNextBtn();
+        hourlySignupPage.selectTopicsByIndex("0");
+        hourlySignupPage.clickTopicsNextBtn();
 
         /* Select sign up method */
-        signupPage.signupEmail();
+        hourlySignupPage.signupEmail();
 
         /* Sign up by email */
-        signupPage.registerEmail(firstName, lastName, email, password);
+        hourlySignupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Content page */
-        contentFeedPage.isArticleImageDisplayed("0");
+        hourlyContentFeedPage.isArticleImageDisplayed("0");
 
         /* TO DO -> Verify topics set in user account settings */
 
@@ -189,27 +189,27 @@ public class HourlyRegistration extends BaseTest {
         navPage.clickJoinBtn();
 
         /* Select registration type */
-        signupPage.clickNetworkExperience();
+        hourlySignupPage.clickNetworkExperience();
 
         /* Confirm location */
-        signupPage.waitForLocation();
-        signupPage.setUserLocation(userLocation);
-        Assert.assertEquals(signupPage.getLocationTxt(), userLocation);
-        signupPage.clickLocationNextBtn();
+        hourlySignupPage.waitForLocation();
+        hourlySignupPage.setUserLocation(userLocation);
+        Assert.assertEquals(hourlySignupPage.getLocationTxt(), userLocation);
+        hourlySignupPage.clickLocationNextBtn();
 
         /* Select topics */
-        signupPage.selectTopicsByIndex("0");
-        signupPage.selectTopicsByIndex("1");
-        signupPage.selectTopicsByIndex("2");
-        signupPage.selectTopicsByIndex("3");
-        signupPage.selectTopicsByIndex("4");
-        signupPage.clickTopicsNextBtn();
+        hourlySignupPage.selectTopicsByIndex("0");
+        hourlySignupPage.selectTopicsByIndex("1");
+        hourlySignupPage.selectTopicsByIndex("2");
+        hourlySignupPage.selectTopicsByIndex("3");
+        hourlySignupPage.selectTopicsByIndex("4");
+        hourlySignupPage.clickTopicsNextBtn();
 
         /* Select sign up method */
-        signupPage.signupEmail();
+        hourlySignupPage.signupEmail();
 
         /* Sign up by email */
-        signupPage.registerEmail(firstName, lastName, email, password);
+        hourlySignupPage.registerEmail(firstName, lastName, email, password);
 
         /* Verify user lands on Get Connected page */
         hourlyNetworkSuggestionsPage.isSuggestedConnectionsPhotoDisplayed("0");
@@ -224,14 +224,14 @@ public class HourlyRegistration extends BaseTest {
         navPage.clickJoinBtn();
 
         /* Select registration type */
-        signupPage.clickHireExperience();
+        hourlySignupPage.clickHireExperience();
 
         /* Verify user directed to manager sign up page */
         Assert.assertEquals(employerSignUpPage.getTitleTxt(), employerSignUpTitle);
         employerSignUpPage.clickBackBtn();
-        signupPage.dismissSignup();
+        hourlySignupPage.dismissSignup();
         // Dismissing sign up incorrectly routes user to marketing page instead of be successful page
-        //Assert.assertTrue(beSuccessfulPage.isHeaderDisplayed());
+        //Assert.assertTrue(hourlyBeSuccessfulPage.isHeaderDisplayed());
     }
 
     @AfterMethod

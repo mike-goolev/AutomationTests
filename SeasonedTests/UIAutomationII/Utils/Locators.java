@@ -412,8 +412,7 @@ public class Locators {
         public By workHistoryTitleTxt = By.id("profileExperienceTitle");
         public By workHistoryEmptyTxt = By.id("workHistoryCardListItemProfileEmptyText");
         public By workHistoryAddBtn = By.id("workHistoryCardListItemeditBtn");
-        public By workHistoryEditBtn = By.id("/workHistoryCardListItemEditLink");
-
+        public By workHistoryEditBtn = By.id("workHistoryCardListItemEditLink");
 
         /**
          * Locates an employer logo on the profile page by index
@@ -488,7 +487,7 @@ public class Locators {
         public By skillsTitleTxt = By.id("viewProfileSkillTitle");
         public By skillsEmptyTxt = By.id("viewProfileSkillProfileEmptyText");
         public By skillsAddBtn = By.id("viewProfileSkilleditBtn");
-        public By skillsEditBtn = By.id("/viewProfileSkillEditLink");
+        public By skillsEditBtn = By.id("viewProfileSkillEditLink");
 
         /**
          * Locates a skill label for a given index

@@ -72,4 +72,11 @@ public interface SeasonedAPI {
 
     @DELETE("content/article/{guid}")
     Call<Content> deleteArticle(@Path("guid") String guid, @Header("Authorization") String accessToken);
+
+    /*-------- HotSchedules Autoprovision Endpoints --------*/
+    @POST("test/sqs/user")
+    Call<SQS> sendHSUserToSqs(@Header("Authorization") String accessToken, @Body SQS sqs);
+
+    @POST("scheduler/runner/{guid}")
+    Call<SQS> runTask(@Path("guid") String guid, @Header("Authorization") String accessToken);
 }

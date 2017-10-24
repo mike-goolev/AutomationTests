@@ -1,3 +1,4 @@
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -27,6 +28,22 @@ public class JobType {
     @SerializedName("updated")
     @Expose
     private String updated;
+    @SerializedName("minWage")
+    @Expose
+    private String minWage;
+    @SerializedName("maxWage")
+    @Expose
+    private String maxWage;
+    @SerializedName("skills")
+    @Expose
+    private List<Skill> skills = null;
+    @SerializedName("responsibilities")
+    @Expose
+    private Object responsibilities;
+    @SerializedName("wageType")
+    @Expose
+    private String wageType;
+    private final static long serialVersionUID = 9039658623699802175L;
 
     public Integer getErrorCode() {
         return errorCode;
@@ -90,6 +107,46 @@ public class JobType {
 
     public void setUpdated(String updated) {
         this.updated = updated;
+    }
+
+    public String getMinWage() {
+        return minWage;
+    }
+
+    public void setMinWage(String minWage) {
+        this.minWage = minWage;
+    }
+
+    public String getMaxWage() {
+        return maxWage;
+    }
+
+    public void setMaxWage(String maxWage) {
+        this.maxWage = maxWage;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public Object getResponsibilities() {
+        return responsibilities;
+    }
+
+    public void setResponsibilities(Object responsibilities) {
+        this.responsibilities = responsibilities;
+    }
+
+    public String getWageType() {
+        return wageType;
+    }
+
+    public void setWageType(String wageType) {
+        this.wageType = wageType;
     }
 
 }

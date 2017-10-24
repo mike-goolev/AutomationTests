@@ -1,24 +1,32 @@
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 import java.util.Calendar;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class TestUtils {
 
     WebDriver driver;
     NavPage navPage;
+    Locators.MailinatorLocators mailinatorLocators;
+
+    private String parentWindow;
 
     public TestUtils(WebDriver d) {
         driver = d;
         navPage = new NavPage(driver);
+        mailinatorLocators = new Locators.MailinatorLocators();
+
     }
 
     /**
      * Navigate to the search page with no terms
      */
     public void loadJobSearchPageNoTerms() {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL());
+        driver.get(TestConfig.getBaseUrl() + TestConfig.getJobSearchRelativeUrl());
         navPage.dismissRebrandingModal();
     }
 
@@ -29,7 +37,7 @@ public class TestUtils {
      * @param searchLocation The search location to enter in the search location field
      */
     public void loadJobSearchPage(String searchLocation, String searchPosition) {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getJobSearchRelativeURL() + "/" + searchLocation + "/" + searchPosition);
+        driver.get(TestConfig.getBaseUrl() + TestConfig.getJobSearchRelativeUrl() + "/" + searchLocation + "/" + searchPosition);
         navPage.dismissRebrandingModal();
     }
 
@@ -37,7 +45,7 @@ public class TestUtils {
      * Navigate to the network page
      */
     public void loadConnectionsPage() {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getNetworkRelativeUrl());
+        driver.get(TestConfig.getBaseUrl() + TestConfig.getNetworkRelativeUrl());
         navPage.dismissRebrandingModal();
     }
 
@@ -45,7 +53,7 @@ public class TestUtils {
      * Navigate to the be successful page
      */
     public void loadBeSuccessfulPage() {
-        driver.get(TestConfig.getBaseURL() + TestConfig.getSuccessRelativeUrl());
+        driver.get(TestConfig.getBaseUrl() + TestConfig.getSuccessRelativeUrl());
         navPage.dismissRebrandingModal();
     }
 
@@ -107,4 +115,42 @@ public class TestUtils {
 
         return shortDate;
     }
+
+    /**
+     * Navigate to the horarios calientes login page
+     */
+    public void loadHorariosCalientesLogin() {
+        driver.get(TestConfig.getHorariosCalientesLoginUrl());
+    }
+
+    /**
+     * Navigate to the mailinator homepage
+     */
+    public void loadMailinatorHomePage() {
+        driver.get(TestConfig.getMailinatorHomepageUrl());
+    }
+
+    /**
+     * Navigate to the horarios calientes login page
+     * @param email The user's email
+     */
+    public void openHSAutoProvisionRegisterAction(String email) throws Exception {
+        loadMailinatorHomePage();
+        driver.findElement(mailinatorLocators.inboxField).sendKeys(email);
+        driver.findElement(mailinatorLocators.checkEmailBtn).click();
+        driver.findElement(mailinatorLocators.emailSubjectLink).click();
+        Thread.sleep(2000);
+        parentWindow = driver.getWindowHandle();
+        WebElement iframe = driver.findElement(mailinatorLocators.iFrame);
+        driver.switchTo().frame(iframe);
+        driver.findElement(mailinatorLocators.activationActionLink).click();
+        driver.switchTo().defaultContent();
+        switchToNewWindow(parentWindow);
+    }
+
+    public void jsExecutorElement (String script, WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(script, element);
+    }
+
 }

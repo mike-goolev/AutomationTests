@@ -41,7 +41,7 @@ public class Employer {
     private Location location;
     @SerializedName("about")
     @Expose
-    private Object about;
+    private String about;
     @SerializedName("logo")
     @Expose
     private Object logo;
@@ -60,9 +60,9 @@ public class Employer {
     @SerializedName("metric")
     @Expose
     private Object metric;
-    @SerializedName("type")
+    @SerializedName("certificationType")
     @Expose
-    private Integer type;
+    private CertificationType certificationType;
     @SerializedName("premium")
     @Expose
     private Boolean premium;
@@ -184,11 +184,11 @@ public class Employer {
         this.location = location;
     }
 
-    public Object getAbout() {
+    public String getAbout() {
         return about;
     }
 
-    public void setAbout(Object about) {
+    public void setAbout(String about) {
         this.about = about;
     }
 
@@ -240,12 +240,12 @@ public class Employer {
         this.metric = metric;
     }
 
-    public Integer getType() {
-        return type;
+    public CertificationType getCertificationType() {
+        return certificationType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setCertificationType(CertificationType certificationType) {
+        this.certificationType = certificationType;
     }
 
     public Boolean getPremium() {

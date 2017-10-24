@@ -62,9 +62,9 @@ public class AdminEmployer {
     @SerializedName("metric")
     @Expose
     private Object metric;
-    @SerializedName("type")
+    @SerializedName("adminEmployerType")
     @Expose
-    private Integer type;
+    private AdminEmployerType adminEmployerType;
     @SerializedName("premium")
     @Expose
     private Boolean premium;
@@ -243,12 +243,12 @@ public class AdminEmployer {
         this.metric = metric;
     }
 
-    public Integer getType() {
-        return type;
+    public AdminEmployerType getAdminEmployerType() {
+        return adminEmployerType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setAdminEmployerType(AdminEmployerType adminEmployerType) {
+        this.adminEmployerType = adminEmployerType;
     }
 
     public Boolean getPremium() {

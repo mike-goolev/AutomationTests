@@ -18,16 +18,17 @@ public class SeasonedRestAPI {
     public SeasonedRestAPI(String accessToken) {
         OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS).build();
         retrofit = new Retrofit.Builder()
-                               .baseUrl(TestConfig.getBaseAPIURL() + "services/rest/")
-                               .addConverterFactory(GsonConverterFactory.create())
-                               .client(httpClient)
-                               .build();
+                .baseUrl(TestConfig.getBaseApiUrl() + "services/rest/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build();
         seasonedAPI = retrofit.create(SeasonedAPI.class);
         this.accessToken = accessToken;
     }
 
     /**
      * Clears out a user's eligibility questions by setting it to null
+     *
      * @param guid the user guid you want to clear
      */
     public void clearEligibilityAnswersForUser(String guid) {
@@ -79,14 +80,14 @@ public class SeasonedRestAPI {
                     System.out.println("PUT request to user/guid/eligibility failed with error: " + t.getLocalizedMessage());
                 }
             });
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
     }
 
     /**
      * Clears out a user's availability for every day of the week
+     *
      * @param guid The guid of the user you want to clear availability for
      */
     public void clearAvailabilityForUser(String guid) {
@@ -156,8 +157,7 @@ public class SeasonedRestAPI {
                     System.out.println("PUT request to user/guid/Availability failed with error: " + t.getLocalizedMessage());
                 }
             });
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
     }
@@ -178,7 +178,7 @@ public class SeasonedRestAPI {
             updatedBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
             createdBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
             employer.setGuid("75ced677-4368-4026-9f57-34ba6246c3cb");
-            jobType.setGuid("1ad36e51-57a1-47bb-a7c4-0100540d20eb");
+            jobType.setGuid("231382da-ab91-41fd-aeba-1477620546d1");
             job.setEmployer(employer);
             job.setUpdatedBy(updatedBy);
             job.setCreatedBy(createdBy);
@@ -194,8 +194,7 @@ public class SeasonedRestAPI {
             Response<Job> response = call.execute();
             System.out.println("POST request to /job returned a " + response.code());
             jobGuid = response.body().getGuid();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
         return jobGuid;
@@ -203,6 +202,7 @@ public class SeasonedRestAPI {
 
     /**
      * Deletes a job for a given employer
+     *
      * @param guid The job's guid
      */
     public void deleteJob(String guid) {
@@ -210,25 +210,25 @@ public class SeasonedRestAPI {
             /* Make a DELETE request to job */
             Call<Job> call = seasonedAPI.deleteJob(guid, accessToken);
             Response<Job> response = call.execute();
-            System.out.println("DELETE request to /job/{guid} returned a " + response.code());
-        }
-        catch(Exception e) {
+            System.out.println("DELETE request to /job/" + guid + " returned a " + response.code());
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Updates a user's name, email, and phone number
-     * @param id The user's id
-     * @param userGuid The user's guid
-     * @param firstName The user's first name
-     * @param lastName The user's last name
-     * @param email The user's email address
-     * @param phone The user's phone #
-     * @param dob The user's date of birth
+     *
+     * @param id           The user's id
+     * @param userGuid     The user's guid
+     * @param firstName    The user's first name
+     * @param lastName     The user's last name
+     * @param email        The user's email address
+     * @param phone        The user's phone #
+     * @param dob          The user's date of birth
      * @param accountState The user's account state
-     * @param roleGuid  The guid of the user's role
-     * @param roleName The name of the user's role
+     * @param roleGuid     The guid of the user's role
+     * @param roleName     The name of the user's role
      */
     public void updateUserNameEmailPhoneBday(String id, String userGuid, String firstName, String lastName, String email, String phone, String dob, String accountState, String roleGuid, String roleName) {
         /* Construct User Request Body */
@@ -257,20 +257,20 @@ public class SeasonedRestAPI {
             Call<User> call = seasonedAPI.updateUserNameEmailPhoneBday(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Updates a user's location
-     * @param guid The user's guid
-     * @param city The location's city
-     * @param state The location's state
-     * @param zip The location's zip
-     * @param country The location's country
-     * @param latitude The location's lat
+     *
+     * @param guid      The user's guid
+     * @param city      The location's city
+     * @param state     The location's state
+     * @param zip       The location's zip
+     * @param country   The location's country
+     * @param latitude  The location's lat
      * @param longitude The location's long
      */
     public void updateUserLocation(String guid, String city, String state, String zip, String country, Double latitude, Double longitude) {
@@ -292,21 +292,21 @@ public class SeasonedRestAPI {
             Call<Location_> call = seasonedAPI.postUserLocation(guid, accessToken, location);
             Response<Location_> response = call.execute();
             System.out.println("POST request to /primaryLocation returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Sets a user availability status by calling the /user endpoint
-     * @param id the db id for the user
-     * @param guid the guid of the user you want to set the status of
-     * @param firstname user's first name
-     * @param lastname user's last name
-     * @param email user's email
+     *
+     * @param id                the db id for the user
+     * @param guid              the guid of the user you want to set the status of
+     * @param firstname         user's first name
+     * @param lastname          user's last name
+     * @param email             user's email
      * @param empInterestStatus set the user's status to OPEN, LOOKING, or EMPLOYED
-     * @param empInterestType set the user's type to ANYTHING, FULL_TIME, PART_TIME, or SEASONAL
+     * @param empInterestType   set the user's type to ANYTHING, FULL_TIME, PART_TIME, or SEASONAL
      * @param gigInterestStatus set the user's gig status to UNSPECIFIED, NO, YES
      */
     public void setAvailabilityStatus(String id, String guid, String firstname, String lastname, String email, String empInterestStatus, String empInterestType, String gigInterestStatus) {
@@ -328,8 +328,7 @@ public class SeasonedRestAPI {
             Call<User> call = seasonedAPI.setAvailabilityStatus(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a " + response.code());
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
         }
     }
@@ -339,9 +338,9 @@ public class SeasonedRestAPI {
      * @param id the db id for the user
      * @param guid the guid for the user to update
      * @param firstname user's firstname
-     * @param lastname user's lastname
-     * @param email user's email
-     * @param about The about string to set for the user
+     * @param lastname  user's lastname
+     * @param email     user's email
+     * @param about     The about string to set for the user
      */
     public void updateUserAbout(String id, String guid, String firstname, String lastname, String email, String about) {
         /* Construct User Request Body */
@@ -360,8 +359,7 @@ public class SeasonedRestAPI {
             Call<User> call = seasonedAPI.updateUserAbout(accessToken, user);
             Response<User> response = call.execute();
             System.out.println("PUT request to /user returned a: " + response.code());
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
         }
     }
@@ -404,17 +402,18 @@ public class SeasonedRestAPI {
         try {
             Call<User> call = seasonedAPI.clearUserCertifications(guid, accessToken, new ArrayList<Certification>());
             Response<User> response = call.execute();
-            System.out.println("PUT request to /user/" + guid + "/certifications returned a: " + response.code());
+            System.out.println("PUT request to /user/" + guid + "/certifications" + " returned a: " + response.code());
         }
         catch(Exception e) {
-            System.out.println("PUT request to /user/" + guid + "/certifications failed with error: " + e.getLocalizedMessage());
+            System.out.println("PUT request to /user/" + guid + "/certifications" + "failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Posts a connection request from user a to user b
+     *
      * @param fromUserGuid The guid of the user sending the connection request
-     * @param toUserGuid The guid of the user receiving the connection request
+     * @param toUserGuid   The guid of the user receiving the connection request
      */
     public void postConnectionRequest(String fromUserGuid, String toUserGuid) {
         /* Construct Network Request Body */
@@ -428,16 +427,16 @@ public class SeasonedRestAPI {
             Call<Network> call = seasonedAPI.postNetworkConnection(accessToken, network);
             Response<Network> response = call.execute();
             System.out.println("POST request to /network returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Accept a connection request
+     *
      * @param fromUserGuid The guid of the user sending the connection request
-     * @param toUserGuid The guid of the user receiving the connection request
+     * @param toUserGuid   The guid of the user receiving the connection request
      */
     public void updateConnectionRequest(String fromUserGuid, String toUserGuid) {
         /* Construct Network Request Body */
@@ -451,16 +450,16 @@ public class SeasonedRestAPI {
             Call<Network> call = seasonedAPI.updateNetworkConnection(accessToken, network);
             Response<Network> response = call.execute();
             System.out.println("PUT request to /network/accept returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Delete a connection request
+     *
      * @param fromUserGuid The guid of the user sending the connection request
-     * @param toUserGuid The guid of the user receiving the connection request
+     * @param toUserGuid   The guid of the user receiving the connection request
      */
     public void deleteConnection(String fromUserGuid, String toUserGuid) {
         /* Construct Network Request Body */
@@ -474,16 +473,16 @@ public class SeasonedRestAPI {
             Call<Network> call = seasonedAPI.deleteNetworkConnection(accessToken, fromUserGuid, toUserGuid);
             Response<Network> response = call.execute();
             System.out.println("Delete request to /network/between/{guid}/{guid} returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Delete request to /network/between/{guid}/{guid} failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Unfollows an employer
+     *
      * @param employerGuid The guid of the employer to unfollow
-     * @param userGuid The guid of the user that is unfollowing
+     * @param userGuid     The guid of the user that is unfollowing
      */
     public void unfollowEmployer(String employerGuid, String userGuid) {
         /* Construct User Request Body */
@@ -496,20 +495,20 @@ public class SeasonedRestAPI {
             Call<User> call = seasonedAPI.unFollowEmployer(employerGuid, accessToken, user);
             Response<User> response = call.execute();
             System.out.println("POST request to /employer/{guid/unfollow returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Create a new article
-     * @param url The url of the article
-     * @param siteName The site name of the article
-     * @param imageUrl The url to the card's image placeholder
-     * @param title The title of the article
+     *
+     * @param url         The url of the article
+     * @param siteName    The site name of the article
+     * @param imageUrl    The url to the card's image placeholder
+     * @param title       The title of the article
      * @param description The description of the article
-     * @param labels The label(s) associated with an article
+     * @param labels      The label(s) associated with an article
      */
     public String postArticle(String url, String siteName, String imageUrl, String title, String description, ArrayList labels) {
         /* Construct Article Request Body */
@@ -529,8 +528,8 @@ public class SeasonedRestAPI {
             Response<Content> response = call.execute();
             System.out.println("POST request to /content/article returned a " + response.code());
             articleGuid = response.body().getGuid();
-        }
-        catch (Exception e) {
+            System.out.println("Article guid: " + articleGuid);
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
         return articleGuid;
@@ -538,17 +537,18 @@ public class SeasonedRestAPI {
 
     /**
      * Set article status to 'Published'
-     * @param guid The guid of the article to be published
-     * @param url The url of the article
-     * @param siteName The site name of the article
-     * @param imageUrl The url to the card's image placeholder
+     *
+     * @param guid        The guid of the article to be published
+     * @param url         The url of the article
+     * @param siteName    The site name of the article
+     * @param imageUrl    The url to the card's image placeholder
      * @param description The description of the article
-     * @param title The title of the article
-     * @param published The article's published date
-     * @param created The article's created date
-     * @param updated The article's updated date
-     * @param id The id of the publishing user
-     * @param labels The label(s) associated with an article
+     * @param title       The title of the article
+     * @param published   The article's published date
+     * @param created     The article's created date
+     * @param updated     The article's updated date
+     * @param id          The id of the publishing user
+     * @param labels      The label(s) associated with an article
      */
     public void updateArticlePublishedStatus(String guid, String url, String siteName, String imageUrl, String title, String description, Long published, Long created, Long updated, String id, ArrayList labels) {
         /* Construct Job Request Body */
@@ -574,14 +574,14 @@ public class SeasonedRestAPI {
             Call<Content> call = seasonedAPI.updateArticlePublishedStatus(accessToken, content);
             Response<Content> response = call.execute();
             System.out.println("PUT request to /content/article returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
         }
     }
 
     /**
      * Delete an article
+     *
      * @param articleGuid The guid of the user sending the connection request
      */
     public void deleteArticle(String articleGuid) {
@@ -591,9 +591,55 @@ public class SeasonedRestAPI {
             Call<Content> call = seasonedAPI.deleteArticle(articleGuid, accessToken);
             Response<Content> response = call.execute();
             System.out.println("Delete request to /content/article/" + articleGuid + " returned a " + response.code());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Delete request to /content/article/" + articleGuid + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Add HS user to SQS
+     *
+     * @param email         The user's email
+     * @param password      The user's password
+     * @param firstName     The user's first name
+     * @param lastName      The user's last name
+     * @param hsUserId      The HotSchedules user id
+     * @param termsAccepted The description of the article
+     */
+    public void postSendUserToSqs(String email, String password, String firstName, String lastName, String hsUserId, Boolean termsAccepted) {
+        /* Construct SQS User Request Body */
+        try {
+            SQS sqs = new SQS();
+
+            sqs.setEmail(email);
+            sqs.setPassword(password);
+            sqs.setFirstName(firstName);
+            sqs.setLastName(lastName);
+            sqs.setHsUserId(hsUserId);
+            sqs.setTermsAccepted(termsAccepted);
+
+            /* Make a POST request to test/sqs/user */
+            Call<SQS> call = seasonedAPI.sendHSUserToSqs(accessToken, sqs);
+            Response<SQS> response = call.execute();
+            System.out.println("POST request to /test/sqs/user returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Task to send user to SQS queue failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Posts a connection request from user a to user b
+     *
+     * @param guid The task scheduler guid
+     */
+    public void postRunTask(String guid) {
+        try {
+        /* Make a POST request to task runner */
+            Call<SQS> call = seasonedAPI.runTask(guid, accessToken);
+            Response<SQS> response = call.execute();
+            System.out.println("POST request to /schedule/runner/" + guid + " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Task " + guid +  " failed with error: " + e.getLocalizedMessage());
         }
     }
 }

@@ -7,8 +7,8 @@ public class HourlyProfileConnections extends BaseTest {
 
     private TestUtils testUtils;
     private NavPage navPage;
-    private LoginPage loginPage;
-    private ProfilePage profilePage;
+    private HourlyLoginPage hourlyLoginPage;
+    private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
 
     private String username;
@@ -27,8 +27,8 @@ public class HourlyProfileConnections extends BaseTest {
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        profilePage = new ProfilePage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+        hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
 
         username = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("username");
@@ -53,13 +53,13 @@ public class HourlyProfileConnections extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(username, password);
+        hourlyLoginPage.loginWithEmail(username, password);
 
         /* Navigate to profile page */
         navPage.navigateToProfilePage();
 
         /* The connection card should not be visible if user has 0 connections */
-        Assert.assertFalse(profilePage.isConnectionsTitleTxtPresent());
+        Assert.assertFalse(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
 
         /* Navigate to connections page and verify the empty connection state */
         navPage.navigateToNetworkMyConnectionsPage();
@@ -74,13 +74,13 @@ public class HourlyProfileConnections extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify new connection is displayed */
-        Assert.assertTrue(profilePage.isConnectionsTitleTxtPresent());
-        Assert.assertEquals(profilePage.getConnectionsCount(), connectionCount);
-        Assert.assertTrue(profilePage.isConnectionsPhotoPresent(connectionIndex));
-        Assert.assertEquals(profilePage.getConnectionsName(connectionIndex), connectionName);
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
+        Assert.assertEquals(hourlyProfileViewPage.getConnectionsCount(), connectionCount);
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsPhotoPresent(connectionIndex));
+        Assert.assertEquals(hourlyProfileViewPage.getConnectionsName(connectionIndex), connectionName);
 
         /* Navigate to the hourly connections page */
-        profilePage.clickViewAllConnections();
+        hourlyProfileViewPage.clickViewAllConnections();
 
         /* Verify connection's card is displayed */
         Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex));

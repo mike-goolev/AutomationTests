@@ -5,8 +5,8 @@ public class HourlyJobSearch extends BaseTest {
 
     TestUtils testUtils;
     NavPage navPage;
-    LoginPage loginPage;
-    JobSearchPage jobSearchPage;
+    HourlyLoginPage hourlyLoginPage;
+    HourlyJobSearchPage hourlyJobSearchPage;
 
     String usernameEmail;
     String passwordEmail;
@@ -56,11 +56,6 @@ public class HourlyJobSearch extends BaseTest {
         employerGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerGuid");
         userGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("userGuid");
         token = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("token");
-
-        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-        jobGuid = seasonedRestAPI.postJob();
-        seasonedRestAPI.unfollowEmployer(employerGuid, userGuid);
-        System.out.println("Created job with guid: " + jobGuid);
         System.out.println("Finished initializing test data...");
     }
 
@@ -70,8 +65,13 @@ public class HourlyJobSearch extends BaseTest {
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        jobSearchPage = new JobSearchPage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+        hourlyJobSearchPage = new HourlyJobSearchPage(driver);
+
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        jobGuid = seasonedRestAPI.postJob();
+        seasonedRestAPI.unfollowEmployer(employerGuid, userGuid);
+        System.out.println("Created job with guid: " + jobGuid);
     }
 
     @Test
@@ -81,89 +81,90 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(usernameEmail, passwordEmail);
+        hourlyLoginPage.loginWithEmail(usernameEmail, passwordEmail);
 
         /* Commit a search on the job search page */
-        Assert.assertTrue(jobSearchPage.verifySearchLocationField(), "Search location field is present");
-        jobSearchPage.searchForJobs("15", searchLocation);
+        hourlyJobSearchPage.searchForJobs("15", searchLocation);
 
         /* Verify search result elements on job card at index 0 */
-        jobSearchPage.waitForSearchResults("0");
-        Assert.assertEquals(jobSearchPage.getSearchResultsCount(), searchResultsCount);
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
-        Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertTrue(jobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
+        hourlyJobSearchPage.waitForSearchResults("0");
+        Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
+        Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
+        Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
         /* View job search result at index 0 */
-        jobSearchPage.clickJobPostingViewBtn("0");
+        hourlyJobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
-        Assert.assertTrue(jobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
-        Assert.assertEquals(jobSearchPage.getJobDetailsWage(), jobDetailsWage);
-        Assert.assertEquals(jobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        //Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
+        Assert.assertTrue(hourlyJobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
+        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
         navPage.navigateToJobsPage();
         /* Have to commit a new search here because we are not preserving the user's previous search query when navigating back to search results */
-        jobSearchPage.searchForJobs("15", searchLocation);
+        hourlyJobSearchPage.searchForJobs("15", searchLocation);
 
         /* Verify search results match original search query on job card at index 0 */
-        Assert.assertEquals(jobSearchPage.getSearchResultsCount(), searchResultsCount);
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
-        Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertTrue(jobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
+        hourlyJobSearchPage.waitForSearchResults("0");
+        Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
+        Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
+        Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
         /* View job search result at index 0 */
-        jobSearchPage.clickJobPostingApplyBtn("0");
+        hourlyJobSearchPage.clickJobPostingApplyBtn("0");
 
         /* Verify and dismiss success toast*/
-        Assert.assertTrue(jobSearchPage.verifyApplySuccessToast());
-        jobSearchPage.dismissApplySuccessToast();
+        Assert.assertTrue(hourlyJobSearchPage.verifyApplySuccessToast());
+        hourlyJobSearchPage.dismissApplySuccessToast();
 
         /* Navigate to job details */
-        jobSearchPage.clickJobPostingViewBtn("0");
+        hourlyJobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
-        Assert.assertFalse(jobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be disabled");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
-        Assert.assertEquals(jobSearchPage.getJobDetailsWage(), jobDetailsWage);
-        Assert.assertEquals(jobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        //Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
+        Assert.assertFalse(hourlyJobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be disabled");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
+        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
         navPage.navigateToJobsPage();
         /* Have to commit a new search here because we are not preserving the user's previous search query when navigating back to search results */
-        jobSearchPage.searchForJobs("15", searchLocation);
+        hourlyJobSearchPage.searchForJobs("15", searchLocation);
 
         /* Verify search results match original search query on job card at index 0 and job is marked as 'Applied' */
-        Assert.assertEquals(jobSearchPage.getSearchResultsCount(), searchResultsCount);
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
-        Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertFalse(jobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
+        hourlyJobSearchPage.waitForSearchResults("0");
+        Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
+        Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
+        Assert.assertFalse(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
     }
 
     @Test
@@ -173,67 +174,67 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(usernameEmail, passwordEmail);
+        hourlyLoginPage.loginWithEmail(usernameEmail, passwordEmail);
 
         /* Commit a search on the job search page */
-        Assert.assertTrue(jobSearchPage.verifySearchLocationField(), "Search location field is present");
-        jobSearchPage.searchForJobs("15", searchLocation);
+        hourlyJobSearchPage.searchForJobs("15", searchLocation);
 
         /* Verify search result elements on job card at index 0 */
-        jobSearchPage.waitForSearchResults("0");
-        Assert.assertEquals(jobSearchPage.getSearchResultsCount(), searchResultsCount);
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
-        Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertFalse(jobSearchPage.isApplyButtonEnabled("0"), "Apply button should be disabled");
+        hourlyJobSearchPage.waitForSearchResults("0");
+        Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
+        Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
+        Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
         /* Click job search result at index 0 */
-        jobSearchPage.clickJobPostingViewBtn("0");
+        hourlyJobSearchPage.clickJobPostingViewBtn("0");
 
         /* Verify job details of selected job */
-        Assert.assertFalse(jobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be disabled");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
-        Assert.assertEquals(jobSearchPage.getJobDetailsWage(), jobDetailsWage);
-        Assert.assertEquals(jobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        //Assert.assertEquals(jobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
-        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
+        Assert.assertTrue(hourlyJobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
+        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click the follow button for a given employer */
-        jobSearchPage.clickJobDetailsFollowButton();
-        jobSearchPage.verifyFollowSuccessToast();
-        jobSearchPage.dismissFollowSuccessToast();
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowingButton());
+        hourlyJobSearchPage.clickJobDetailsFollowButton();
+        hourlyJobSearchPage.verifyFollowSuccessToast();
+        hourlyJobSearchPage.dismissFollowSuccessToast();
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowingButton());
 
         /* Click 'Back' to return to search results */
         navPage.navigateToJobsPage();
         /* Have to commit a new search here because we are not preserving the user's previous search query when navigating back to search results */
-        jobSearchPage.searchForJobs("15", searchLocation);
+        hourlyJobSearchPage.searchForJobs("15", searchLocation);
 
         /* Verify search results match original search query on job card at index 0 */
-        Assert.assertEquals(jobSearchPage.getSearchResultsCount(), searchResultsCount);
-        Assert.assertTrue(jobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
-        Assert.assertEquals(jobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(jobSearchPage.getEmployerName("0"), employerName);
-        Assert.assertEquals(jobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
-        Assert.assertFalse(jobSearchPage.isApplyButtonEnabled("0"), "Apply button is disabled");
+        hourlyJobSearchPage.waitForSearchResults("0");
+        Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
+        Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
+        Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
+        Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
+        Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
          /* Click job search result at index 0 */
-        jobSearchPage.clickJobPostingViewBtn("0");
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowingButton());
+        hourlyJobSearchPage.clickJobPostingViewBtn("0");
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowingButton());
 
         /* Click the following button to unfollow a given employer */
-        jobSearchPage.clickJobDetailsFollowingButton();
-        jobSearchPage.verifyFollowSuccessToast();
-        jobSearchPage.dismissFollowSuccessToast();
-        Assert.assertTrue(jobSearchPage.verifyJobDetailsFollowButton());
+        hourlyJobSearchPage.clickJobDetailsFollowingButton();
+        hourlyJobSearchPage.verifyFollowSuccessToast();
+        hourlyJobSearchPage.dismissFollowSuccessToast();
+        Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton());
     }
 
     @Test
@@ -243,26 +244,26 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(usernameEmail, passwordEmail);
+        hourlyLoginPage.loginWithEmail(usernameEmail, passwordEmail);
 
         /* Commit a search on the job search page */
-        Assert.assertTrue(jobSearchPage.verifySearchLocationField(), "Search location field is present");
-        jobSearchPage.searchForJobs("15", "Attu");
+        hourlyJobSearchPage.searchForJobs("15", "Attu");
 
         /* Verify empty job search title and text  */
-        jobSearchPage.verifyJobSearchEmptyResultElements();
+        hourlyJobSearchPage.verifyJobSearchEmptyResultElements();
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void methodTearDown() {
         System.out.println("Logging out and shutting down selenium for the hourly job search test");
         navPage.attemptLogout();
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
+        seasonedRestAPI.deleteJob(jobGuid);
         driver.quit();
     }
 
     @AfterClass
-    public void removeJob() {
-        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-        seasonedRestAPI.deleteJob(jobGuid);
+    public void classTearDown() {
+        driver.quit();
     }
 }

@@ -7,8 +7,8 @@ public class HourlyNetworkMyConnections extends BaseTest {
 
     private TestUtils testUtils;
     private NavPage navPage;
-    private LoginPage loginPage;
-    private ProfilePage profilePage;
+    private HourlyLoginPage hourlyLoginPage;
+    private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
 
     private String username;
@@ -27,8 +27,8 @@ public class HourlyNetworkMyConnections extends BaseTest {
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        profilePage = new ProfilePage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+        hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
 
         username = (String) TestDataImporter.get("HourlyNetworkMyConnections", "HourlyNetworkMyConnections").get("username");
@@ -54,7 +54,7 @@ public class HourlyNetworkMyConnections extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(username, password);
+        hourlyLoginPage.loginWithEmail(username, password);
 
         /* Navigate to My Connections */
         navPage.navigateToNetworkMyConnectionsPage();
@@ -64,7 +64,7 @@ public class HourlyNetworkMyConnections extends BaseTest {
 
         /* Navigate to profile and verify connection card is not present */
         navPage.navigateToProfilePage();
-        Assert.assertFalse(profilePage.isConnectionsTitleTxtPresent());
+        Assert.assertFalse(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
 
         /* Create and accept a connection request */
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
@@ -81,11 +81,11 @@ public class HourlyNetworkMyConnections extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify new connection is displayed */
-        Assert.assertTrue(profilePage.isConnectionsTitleTxtPresent());
-        Assert.assertTrue(profilePage.isConnectionsPhotoPresent(connectionIndex));
-        Assert.assertEquals(profilePage.getConnectionsName(connectionIndex), connectionName);
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsPhotoPresent(connectionIndex));
+        Assert.assertEquals(hourlyProfileViewPage.getConnectionsName(connectionIndex), connectionName);
         // The count is updated while the page renders, so the below assert will fail
-        //Assert.assertEquals(profilePage.getConnectionsCount(), connectionCount);
+        //Assert.assertEquals(hourlyProfileViewPage.getConnectionsCount(), connectionCount);
     }
 
     @AfterClass

@@ -6,9 +6,9 @@ public class Certification {
     @SerializedName("guid")
     @Expose
     private String guid;
-    @SerializedName("type")
+    @SerializedName("certificationType")
     @Expose
-    private Type type;
+    private CertificationType certificationType;
     @SerializedName("photo")
     @Expose
     private Object photo;
@@ -21,12 +21,12 @@ public class Certification {
         this.guid = guid;
     }
 
-    public Type getType() {
-        return type;
+    public CertificationType getCertificationType() {
+        return certificationType;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setCertificationType(CertificationType certificationType) {
+        this.certificationType = certificationType;
     }
 
     public Object getPhoto() {

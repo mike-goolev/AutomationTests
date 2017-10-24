@@ -7,8 +7,8 @@ public class HourlyMyHome extends BaseTest {
 
     private TestUtils testUtils;
     private NavPage navPage;
-    private LoginPage loginPage;
-    private ContentFeedPage contentFeedPage;
+    private HourlyLoginPage hourlyLoginPage;
+    private HourlyContentFeedPage hourlyContentFeedPage;
 
     private String firstName;
     private String username;
@@ -36,8 +36,8 @@ public class HourlyMyHome extends BaseTest {
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        contentFeedPage = new ContentFeedPage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+        hourlyContentFeedPage = new HourlyContentFeedPage(driver);
 
         firstName = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("firstName");
         username = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("username");
@@ -67,8 +67,8 @@ public class HourlyMyHome extends BaseTest {
     public void setUp() {
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        contentFeedPage = new ContentFeedPage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+        hourlyContentFeedPage = new HourlyContentFeedPage(driver);
     }
 
     @Test
@@ -79,38 +79,38 @@ public class HourlyMyHome extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(username, password);
+        hourlyLoginPage.loginWithEmail(username, password);
 
         /* Navigate to My Home */
         navPage.navigateToMyHomePage();
 
         /* Verify My Home header */
-        Assert.assertEquals(contentFeedPage.getMyHomeHeader(), "Hi " + firstName + ", we have some articles that we think you may like.");
+        Assert.assertEquals(hourlyContentFeedPage.getMyHomeHeader(), "Hi " + firstName + ", we have some articles that we think you may like.");
         // Explicit wait for certs to load and display until we have loading indicators
-        Thread.sleep(2000);
+        Thread.sleep(10000);
 
         /* Verify article attributes */
-        Assert.assertEquals(contentFeedPage.getArticleTitle(articleIndex), title);
-        Assert.assertEquals(contentFeedPage.getArticleSiteName(articleIndex), siteName);
-        Assert.assertTrue(contentFeedPage.isArticleImageDisplayed(articleIndex), "Article image should be displayed");
-        Assert.assertTrue(contentFeedPage.isArticlePublisherImageDisplayed(articleIndex), "Article publisher image should be displayed");
-        Assert.assertEquals(contentFeedPage.getArticlePublisherName(articleIndex), publisherName);
-        Assert.assertEquals(contentFeedPage.getArticlePublishedDate(articleIndex), "Just now");
-        Assert.assertTrue(contentFeedPage.isArticleLikeButtonDisplayed(articleIndex), "Article like button should be displayed");
-        Assert.assertEquals(contentFeedPage.getArticleLikeCount(articleIndex), articleLikeCount0);
+        Assert.assertTrue(hourlyContentFeedPage.isArticleImageDisplayed(articleIndex), "Article image should be displayed");
+        Assert.assertEquals(hourlyContentFeedPage.getArticleTitle(articleIndex), title);
+        Assert.assertEquals(hourlyContentFeedPage.getArticleSiteName(articleIndex), siteName);
+        Assert.assertTrue(hourlyContentFeedPage.isArticlePublisherImageDisplayed(articleIndex), "Article publisher image should be displayed");
+        Assert.assertEquals(hourlyContentFeedPage.getArticlePublisherName(articleIndex), publisherName);
+        Assert.assertEquals(hourlyContentFeedPage.getArticlePublishedDate(articleIndex), "Just now");
+        Assert.assertTrue(hourlyContentFeedPage.isArticleLikeButtonDisplayed(articleIndex), "Article like button should be displayed");
+        Assert.assertEquals(hourlyContentFeedPage.getArticleLikeCount(articleIndex), articleLikeCount0);
 
         /* Like article */
-        contentFeedPage.clickArticleLikeButton(articleIndex);
+        hourlyContentFeedPage.clickArticleLikeButton(articleIndex);
         Thread.sleep(2000);
-        Assert.assertEquals(contentFeedPage.getArticleLikeCount(articleIndex), articleLikeCount1);
+        Assert.assertEquals(hourlyContentFeedPage.getArticleLikeCount(articleIndex), articleLikeCount1);
         
         /* Unlike article */
-        contentFeedPage.clickArticleLikeButton(articleIndex);
+        hourlyContentFeedPage.clickArticleLikeButton(articleIndex);
         Thread.sleep(2000);
-        Assert.assertEquals(contentFeedPage.getArticleLikeCount(articleIndex), articleLikeCount0);
+        Assert.assertEquals(hourlyContentFeedPage.getArticleLikeCount(articleIndex), articleLikeCount0);
 
         /* View article */
-        contentFeedPage.viewArticle(articleIndex);
+        hourlyContentFeedPage.viewArticle(articleIndex);
 
         /* Switch to new window */
         parentWindow = driver.getWindowHandle();

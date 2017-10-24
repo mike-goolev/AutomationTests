@@ -3,11 +3,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class HourlyNetworkInvitations extends BaseTest {
 
     private TestUtils testUtils;
     private NavPage navPage;
-    private LoginPage loginPage;
+    private HourlyLoginPage hourlyLoginPage;
     private HourlyNetworkInvitationsPage hourlyNetworkInvitationsPage;
     private HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
     private HourlyNetworkPage hourlyNetworkPage;
@@ -23,18 +26,17 @@ public class HourlyNetworkInvitations extends BaseTest {
     private String connectionJob;
     private String invitationsEmptyTitle;
     private String invitationsEmptyTxt;
-
     private String fromUserGuid;
     private String toUserGuid;
     private String token;
 
     @BeforeClass
-    public void setUp() {
+    public void setUp() throws SQLException {
         System.out.println("Initializing hourly network invitations test...");
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyNetworkInvitationsPage = new HourlyNetworkInvitationsPage(driver);
         hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
         hourlyNetworkPage = new HourlyNetworkPage(driver);
@@ -65,7 +67,7 @@ public class HourlyNetworkInvitations extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(username, password);
+        hourlyLoginPage.loginWithEmail(username, password);
 
         /* Navigate to My Connections */
         navPage.navigateToNetworkInvitationsPage();
@@ -94,7 +96,13 @@ public class HourlyNetworkInvitations extends BaseTest {
         Assert.assertTrue(hourlyNetworkInvitationsPage.isInvitationPhotoDisplayed(invitationIndex));
         Assert.assertEquals(hourlyNetworkInvitationsPage.getInvitationName(invitationIndex), invitationName);
         Assert.assertEquals(hourlyNetworkInvitationsPage.getInvitationJob(invitationIndex), invitationJob);
+
+        /* Accept connection request */
         hourlyNetworkInvitationsPage.clickInvitationConnectButton(invitationIndex);
+
+        /* Verify invitations empty state */
+        Assert.assertEquals(hourlyNetworkInvitationsPage.getInvitationEmptyTitleText(), invitationsEmptyTitle);
+        Assert.assertEquals(hourlyNetworkInvitationsPage.getInvitationEmptyText(), invitationsEmptyTxt);
 
         /* Navigate to my connections */
         hourlyNetworkPage.clickNetworkMyConnections();

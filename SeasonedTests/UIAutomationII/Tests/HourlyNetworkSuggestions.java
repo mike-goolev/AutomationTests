@@ -7,8 +7,8 @@ public class HourlyNetworkSuggestions extends BaseTest {
 
     private TestUtils testUtils;
     private NavPage navPage;
-    private LoginPage loginPage;
-    private ProfilePage profilePage;
+    private HourlyLoginPage hourlyLoginPage;
+    private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyNetworkSuggestionsPage hourlyNetworkSuggestionsPage;
     private HourlyNetworkPage hourlyNetworkPage;
 
@@ -23,22 +23,14 @@ public class HourlyNetworkSuggestions extends BaseTest {
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
-        loginPage = new LoginPage(driver);
-        profilePage = new ProfilePage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+        hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyNetworkSuggestionsPage = new HourlyNetworkSuggestionsPage(driver);
         hourlyNetworkPage = new HourlyNetworkPage(driver);
 
         username = (String) TestDataImporter.get("HourlyNetworkSuggestions", "HourlyNetworkSuggestions").get("username");
         password = (String) TestDataImporter.get("HourlyNetworkSuggestions", "HourlyNetworkSuggestions").get("password");
         suggestionIndex = (String) TestDataImporter.get("HourlyNetworkSuggestions", "HourlyNetworkSuggestions").get("suggestionIndex");
-        //fromUserGuid = (String) TestDataImporter.get("HourlyNetworkSuggestions", "HourlyNetworkSuggestions").get("fromUserGuid");
-        //toUserGuid = (String) TestDataImporter.get("HourlyNetworkSuggestions", "HourlyNetworkSuggestions").get("toUserGuid");
-        //token = (String) TestDataImporter.get("HourlyNetworkSuggestions", "HourlyNetworkSuggestions").get("token");
-        //SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-
-        System.out.println("Starting hourly network Suggestions test!");
-        //seasonedRestAPI.deleteConnection(fromUserGuid, toUserGuid);
-
     }
 
     @Test
@@ -48,7 +40,7 @@ public class HourlyNetworkSuggestions extends BaseTest {
 
         /* Log in */
         navPage.clickLoginBtn();
-        loginPage.loginWithEmail(username, password);
+        hourlyLoginPage.loginWithEmail(username, password);
 
         /* Navigate to Get Connected page */
         navPage.navigateToNetworkSuggestedConnectionsPage();
@@ -66,7 +58,7 @@ public class HourlyNetworkSuggestions extends BaseTest {
 
         /* Send suggested connection at specified index a connection request */
         hourlyNetworkSuggestionsPage.clickSuggestedConnectionsConnectButton(suggestionIndex);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         /* Verify user removed from list of connections */
         Assert.assertNotEquals(hourlyNetworkSuggestionsPage.getSuggestedConnectionsName(suggestionIndex), suggestionName);
@@ -75,7 +67,11 @@ public class HourlyNetworkSuggestions extends BaseTest {
         hourlyNetworkPage.submitUserSearchByName(suggestionName);
 
         /* Cancel pending connection request */
-        profilePage.clickCancelConnectionRequestBtn();
+        hourlyProfileViewPage.clickCancelConnectionRequestBtn();
+
+        /* Return to suggested connections */
+        navPage.navigateToNetworkSuggestedConnectionsPage();
+
     }
 
     @AfterClass
