@@ -14,14 +14,21 @@ public class SeasonedRestAPI {
     Retrofit retrofit;
     SeasonedAPI seasonedAPI;
     String accessToken;
+    OkHttpClient httpClient;
 
     public SeasonedRestAPI(String accessToken) {
-        OkHttpClient httpClient = new OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS).build();
+        // Create http client
+        httpClient = new OkHttpClient.Builder()
+                .readTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .build();
+        // Create retrofit instance
         retrofit = new Retrofit.Builder()
                 .baseUrl(TestConfig.getBaseApiUrl() + "services/rest/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient)
                 .build();
+
         seasonedAPI = retrofit.create(SeasonedAPI.class);
         this.accessToken = accessToken;
     }
@@ -165,7 +172,7 @@ public class SeasonedRestAPI {
     /**
      * Posts a job to a given employer
      */
-    public String postJob() {
+    public String postJob(String updatedByGuid, String createdByGuid, String jobTypeGuid, String employerGuid, String jobName, String jobWage, String jobWageType, String jobDescription, String jobStatus) {
         /* Construct Job Request Body */
         String jobGuid = "";
         try {
@@ -175,19 +182,19 @@ public class SeasonedRestAPI {
             CreatedBy createdBy = new CreatedBy();
             JobType jobType = new JobType();
 
-            updatedBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
-            createdBy.setGuid("48e90677-467e-437e-9f3c-8abb3f07d8ba");
-            employer.setGuid("75ced677-4368-4026-9f57-34ba6246c3cb");
-            jobType.setGuid("231382da-ab91-41fd-aeba-1477620546d1");
+            updatedBy.setGuid(updatedByGuid);
+            createdBy.setGuid(createdByGuid);
+            employer.setGuid(employerGuid);
+            jobType.setGuid(jobTypeGuid);
             job.setEmployer(employer);
             job.setUpdatedBy(updatedBy);
             job.setCreatedBy(createdBy);
             job.setJobType(jobType);
-            job.setJobName("Payaso");
-            job.setWage("1.99");
-            job.setWageType("HOURLY");
-            job.setDescription("$1.99 are you outta yo mind?");
-            job.setStatus("POSTED");
+            job.setJobName(jobName);
+            job.setWage(jobWage);
+            job.setWageType(jobWageType);
+            job.setDescription(jobDescription);
+            job.setStatus(jobStatus);
 
             /* Make a POST request to job */
             Call<Job> call = seasonedAPI.postJob(accessToken, job);
@@ -195,7 +202,7 @@ public class SeasonedRestAPI {
             System.out.println("POST request to /job returned a " + response.code());
             jobGuid = response.body().getGuid();
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println("POST request to /job failed with error: " + e.getLocalizedMessage());
         }
         return jobGuid;
     }
@@ -410,6 +417,22 @@ public class SeasonedRestAPI {
     }
 
     /**
+     * Deletes work history for a user by guid
+     *
+     * @param workHistoryGuid The user's work history guid
+     */
+    public void deleteWorkHistoryByGuid(String workHistoryGuid) {
+        try {
+            /* Make a DELETE request to work history */
+            Call<PrimaryWorkHistory> call = seasonedAPI.deleteWorkHistory(workHistoryGuid, accessToken);
+            Response<PrimaryWorkHistory> response = call.execute();
+            System.out.println("DELETE request to /workhistory/placeWorked/" + workHistoryGuid + " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("DELETE request to /workhistory/placeWorked/" + workHistoryGuid + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
      * Posts a connection request from user a to user b
      *
      * @param fromUserGuid The guid of the user sending the connection request
@@ -479,6 +502,55 @@ public class SeasonedRestAPI {
     }
 
     /**
+     * Unclaims an employer
+     *
+     * @param employerGuid The guid of the employer to unclaim
+     */
+    public void unclaimEmployer(String employerGuid) {
+        try {
+            /* Make a POST request to unclaim an employer */
+            Call<Employer> call = seasonedAPI.unclaimEmployer(employerGuid, accessToken);
+            Response<Employer> response = call.execute();
+            System.out.println("POST request to /employer/" + employerGuid + "/unclaim" +  " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println( "POST request to /employer/" + employerGuid + "/unclaim" + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Deletes an employer logo
+     *
+     * @param employerGuid The guid of the employer logo to remove
+     */
+    public void deleteEmployerLogo(String employerGuid) {
+        try {
+            /* Make a DELETE request to remove an employer's logo */
+            Call<Employer> call = seasonedAPI.deleteEmployerLogo(employerGuid, accessToken);
+            Response<Employer> response = call.execute();
+            System.out.println("DELETE request to /employer/logo/" + employerGuid +  " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println( "DELETE request to /employer/logo/" + employerGuid + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Deletes an employer's photos
+     *
+     * @param employerGuid The guid of the employer photo to remove
+     * @param photoGuid The guid of the photo to remove
+     */
+    public void deleteEmployerPhotos(String employerGuid, String photoGuid) {
+        try {
+            /* Make a DELETE request to remove an employer's photos */
+            Call<Employer> call = seasonedAPI.deleteEmployerPhotos(employerGuid, photoGuid,  accessToken);
+            Response<Employer> response = call.execute();
+            System.out.println("DELETE request to /employer/photos/" + employerGuid + "/" + photoGuid + " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println( "DELETE request to /employer/photos/" + employerGuid + "/" + photoGuid + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
      * Unfollows an employer
      *
      * @param employerGuid The guid of the employer to unfollow
@@ -497,6 +569,23 @@ public class SeasonedRestAPI {
             System.out.println("POST request to /employer/{guid/unfollow returned a " + response.code());
         } catch (Exception e) {
             System.out.println("Call failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Delete an admin
+     *
+     * @param employerGuid The employer's guid
+     * @param adminGuid The admin's guid
+     */
+    public void deleteAdmin(String employerGuid, String adminGuid) {
+        try {
+            /* Make a DELETE request to employer admins */
+            Call<Employer> call = seasonedAPI.deleteAdmin(accessToken, employerGuid, adminGuid);
+            Response<Employer> response = call.execute();
+            System.out.println("Delete request to /employer/" +employerGuid + "/admins/" + adminGuid + " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Delete request to /employer/" +employerGuid + "/admins/" + adminGuid + " failed with error: " + e.getLocalizedMessage());
         }
     }
 
@@ -585,7 +674,6 @@ public class SeasonedRestAPI {
      * @param articleGuid The guid of the user sending the connection request
      */
     public void deleteArticle(String articleGuid) {
-        /* Construct Content Request Body */
         try {
             /* Make a DELETE request to network */
             Call<Content> call = seasonedAPI.deleteArticle(articleGuid, accessToken);

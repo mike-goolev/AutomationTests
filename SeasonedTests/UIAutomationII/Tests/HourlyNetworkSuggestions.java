@@ -46,7 +46,7 @@ public class HourlyNetworkSuggestions extends BaseTest {
         navPage.navigateToNetworkSuggestedConnectionsPage();
 
         /* Verify suggested connection card */
-        Assert.assertTrue(hourlyNetworkSuggestionsPage.isSuggestedConnectionsPhotoDisplayed(suggestionIndex));
+        Assert.assertTrue(hourlyNetworkSuggestionsPage.isSuggestedConnectionsPhotoDisplayed(suggestionIndex), "Suggested connection's photo should be displayed");
         suggestionName = hourlyNetworkSuggestionsPage.getSuggestedConnectionsName(suggestionIndex);
         System.out.println("Suggestion name: " + suggestionName);
 

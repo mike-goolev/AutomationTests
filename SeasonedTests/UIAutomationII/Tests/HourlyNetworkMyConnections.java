@@ -41,13 +41,11 @@ public class HourlyNetworkMyConnections extends BaseTest {
         toUserGuid = (String) TestDataImporter.get("HourlyNetworkMyConnections", "HourlyNetworkMyConnections").get("toUserGuid");
         token = (String) TestDataImporter.get("HourlyNetworkMyConnections", "HourlyNetworkMyConnections").get("token");
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-
-        System.out.println("Starting hourly profile test!");
         seasonedRestAPI.deleteConnection(fromUserGuid, toUserGuid);
-
+        System.out.println("Starting hourly connections test!");
     }
 
-    @Test//(enabled = false)
+    @Test
     public void testHourlyNetworkMyConnections() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();

@@ -1,0 +1,16 @@
+{
+  "testEmployerSignUpByEmail": {
+    "password": "12348765",
+    "employerSignUpTitle":"Let's create your account",
+    "locationTitle":"let's start by getting your store's location",
+    "employerSearchTerm":"Bada Bing Arvada",
+    "employerName":"Bada Bing Grill",
+    "employerLocation":"12500 W 58th Ave #107, Arvada, CO",
+    "logoTitle":"Outstanding! Now it's time to slap a logo on it.",
+    "photosTitle":"Get 25x more views by adding some photos to your store!",
+    "photoName":"BadaBing.jpg",
+    "storeTypeTitle":"Choose a store type, add job positions and start finding the right talent.",
+    "employerGuid":"d370a85d-4d86-45aa-93d8-61b97c921899",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+  }
+}

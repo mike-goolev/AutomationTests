@@ -1,12 +1,12 @@
 import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-public class HourlySignupPage extends BasePage {
+public class HourlyRegistrationPage extends BasePage {
 
     Locators.SignUpPageLocators signUpPageLocators;
     TestUtils testUtils;
 
-    public HourlySignupPage(WebDriver driver) {
+    public HourlyRegistrationPage(WebDriver driver) {
         super(driver);
         signUpPageLocators = new Locators.SignUpPageLocators();
         testUtils = new TestUtils(driver);

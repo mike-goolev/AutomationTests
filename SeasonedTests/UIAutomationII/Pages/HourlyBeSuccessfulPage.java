@@ -1,7 +1,5 @@
 import org.openqa.selenium.WebDriver;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-
 public class HourlyBeSuccessfulPage extends BasePage {
 
     Locators.HourlyBeSuccessfulPageLocators hourlyBeSuccessfulPageLocators;

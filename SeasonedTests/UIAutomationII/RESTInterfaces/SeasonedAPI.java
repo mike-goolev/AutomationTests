@@ -8,6 +8,9 @@ public interface SeasonedAPI {
 
     /*-------- User Endpoints --------*/
 
+    @PUT("user")
+    Call<User> setAvailabilityStatus(@Header("Authorization") String accessToken, @Body User user);
+
     @PUT("user/{guid}/eligibility")
     Call<User> updateEligibility(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body List<EligibilityAnswers> eligibility);
 
@@ -42,14 +45,23 @@ public interface SeasonedAPI {
 
     /*-------- Employer Endpoints --------*/
 
-    @PUT("user")
-    Call<User> setAvailabilityStatus(@Header("Authorization") String accessToken, @Body User user);
-
     @GET("employer/{guid}/employees/count")
     Call<EmployeeCount> getEmployeeCount(@Path("guid") String guid, @Header("Authorization") String accessToken);
 
     @POST("employer/{employerGuid}/unfollow")
     Call<User> unFollowEmployer(@Path("employerGuid") String employerGuid, @Header("Authorization") String accessToken, @Body User user);
+
+    @POST("employer/{employerGuid}/unclaim")
+    Call<Employer> unclaimEmployer(@Path("employerGuid") String employerGuid, @Header("Authorization") String accessToken);
+
+    @DELETE("employer/{employerGuid}/admins/{adminGuid}")
+    Call<Employer> deleteAdmin(@Header("Authorization") String accessToken, @Path("employerGuid") String employerGuid, @Path("adminGuid") String adminGuid);
+
+    @DELETE("employer/logo/{employerGuid}")
+    Call<Employer> deleteEmployerLogo(@Path("employerGuid") String employerGuid, @Header("Authorization") String accessToken);
+
+    @DELETE("employer/photos/{employerGuid}/{photoGuid}")
+    Call<Employer> deleteEmployerPhotos(@Path("employerGuid") String employerGuid, @Path("photoGuid") String photoGuid, @Header("Authorization") String accessToken);
 
     /*-------- Network Endpoints --------*/
 
@@ -79,4 +91,8 @@ public interface SeasonedAPI {
 
     @POST("scheduler/runner/{guid}")
     Call<SQS> runTask(@Path("guid") String guid, @Header("Authorization") String accessToken);
+
+    /*-------- Work History Endpoints --------*/
+    @DELETE("workhistory/placeWorked/{workHistoryGuid}")
+    Call<PrimaryWorkHistory> deleteWorkHistory(@Path("workHistoryGuid") String workHistoryGuid, @Header("Authorization") String accessToken);
 }

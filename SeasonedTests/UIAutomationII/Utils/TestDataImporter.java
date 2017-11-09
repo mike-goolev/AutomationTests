@@ -15,7 +15,7 @@ public class TestDataImporter {
         JSONParser parser = new JSONParser();
 
         try {
-            JSONObject testSuiteData = (JSONObject) parser.parse(new FileReader(String.format("/Users/alex.esparza/Documents/workspace/UIAutomationII/SeasonedTests/UIAutomationII/TestData/%s.json", testSuite)));
+            JSONObject testSuiteData = (JSONObject) parser.parse(new FileReader(String.format(System.getProperty("user.dir") + "/SeasonedTests/UIAutomationII/TestData/%s.json", testSuite)));
             testData = (JSONObject) testSuiteData.get(testMethod);
         }
         catch (ParseException e) {

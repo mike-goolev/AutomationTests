@@ -1,12 +1,17 @@
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class HourlyJobSearch extends BaseTest {
 
     TestUtils testUtils;
     NavPage navPage;
     HourlyLoginPage hourlyLoginPage;
     HourlyJobSearchPage hourlyJobSearchPage;
+    SeasonedRestAPI api;
+    SqlSelects sqlSelects;
 
     String usernameEmail;
     String passwordEmail;
@@ -27,7 +32,15 @@ public class HourlyJobSearch extends BaseTest {
     String jobDetailsEmployerType;
     String jobDetailsEmployerDistance;
     String jobGuid;
+    String createdBy;
+    String updatedBy;
+    String jobType;
+    String jobWage;
+    String jobWageType;
+    String jobDescription;
+    String jobStatus;
     String employerGuid;
+    private List<String> jobGuids;
     String userGuid;
     String token;
 
@@ -40,7 +53,13 @@ public class HourlyJobSearch extends BaseTest {
         searchResultsCount = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("searchResultsCount");
         searchPosition = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("searchPosition");
         searchLocation = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("searchLocation");
-        jobPosition = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobPosition");
+        createdBy = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("createdByGuid");
+        updatedBy = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("updatedByGuid");
+        jobType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobTypeGuid");
+        jobWage = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobWage");
+        jobWageType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobWageType");
+        jobDescription = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDescription");
+        jobStatus = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobStatus");
         employerName = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerName");
         employerDistance = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerDistance");
         employerLocation = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerLocation");
@@ -53,6 +72,7 @@ public class HourlyJobSearch extends BaseTest {
         jobDetailsEmployerPPA = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerPPA");
         jobDetailsEmployerType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerType");
         jobDetailsEmployerDistance = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerDistance");
+        jobPosition = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobPosition");
         employerGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerGuid");
         userGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("userGuid");
         token = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("token");
@@ -60,17 +80,20 @@ public class HourlyJobSearch extends BaseTest {
     }
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws SQLException{
         System.out.println("Starting job search tests...");
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);
-
-        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-        jobGuid = seasonedRestAPI.postJob();
-        seasonedRestAPI.unfollowEmployer(employerGuid, userGuid);
+        sqlSelects = new SqlSelects();
+        api = new SeasonedRestAPI(token);
+        jobGuids = sqlSelects.getJobsByEmployer(employerGuid);
+        for (String guid : jobGuids)
+            api.deleteJob(guid);
+        jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobWageType, jobDescription, jobStatus);
+        api.unfollowEmployer(employerGuid, userGuid);
         System.out.println("Created job with guid: " + jobGuid);
     }
 
@@ -110,6 +133,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
+        // Employer types are not being displayed in hourly job details
         //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 

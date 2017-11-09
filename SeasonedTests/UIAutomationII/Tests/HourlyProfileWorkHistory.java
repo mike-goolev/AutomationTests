@@ -2,11 +2,14 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class HourlyProfileWorkHistory extends BaseTest {
@@ -18,6 +21,8 @@ public class HourlyProfileWorkHistory extends BaseTest {
     HourlyProfileViewPage hourlyProfileViewPage;
     HourlyProfileWorkHistoryPage hourlyProfileWorkHistoryPage;
     HourlyProfileEditPage hourlyProfileEditPage;
+    SqlSelects sqlSelects;
+    SeasonedRestAPI api;
 
     String username;
     String password;
@@ -39,10 +44,12 @@ public class HourlyProfileWorkHistory extends BaseTest {
     String jobDescription1;
     String jobDescription2;
     String jobDescription2Formatted;
+    private List<String> whGuids;
+    String userGuid;
+    String token;
 
     @BeforeClass
-    public void setUp() {
-        System.out.println("Initializing work history tests...");
+    public void setup() throws SQLException {
         driver = BrowserFactory.getDriver("firefox");
         navPage = new NavPage(driver);
         testUtils = new TestUtils(driver);
@@ -51,6 +58,8 @@ public class HourlyProfileWorkHistory extends BaseTest {
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyProfileWorkHistoryPage = new HourlyProfileWorkHistoryPage(driver);
         hourlyProfileEditPage = new HourlyProfileEditPage(driver);
+        sqlSelects = new SqlSelects();
+        api = new SeasonedRestAPI(token);
 
         username = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("username");
         password = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("password");
@@ -62,6 +71,8 @@ public class HourlyProfileWorkHistory extends BaseTest {
         userLocation = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("userLocation");
         jobDescription1 = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("jobDescription1");
         jobDescription2 = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("jobDescription2");
+        userGuid = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("userGuid");
+        token = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("userToken");
         jobDescription2Formatted = jobDescription2.substring(0, jobDescription2.length() - 66);
         Calendar now = Calendar.getInstance();
         shortDateCurrent = testUtils.getFormattedMonthYear(0);
@@ -74,7 +85,16 @@ public class HourlyProfileWorkHistory extends BaseTest {
         timePeriodPast = shortDatePast + " - " + shortDateCurrent + "  ";
         durationPresent = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("durationPresent");
         durationPast = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("durationPast");
-        System.out.println("Finished initialization, starting work history tests");
+    }
+
+        @BeforeMethod
+        public void setUp() throws SQLException {
+            System.out.println("Starting work history tests...");
+            sqlSelects = new SqlSelects();
+            api = new SeasonedRestAPI(token);
+            whGuids = sqlSelects.getUserWorkHistoryByGuid(userGuid);
+            for (String guid : whGuids)
+                api.deleteWorkHistoryByGuid(guid);
     }
 
     @Test
@@ -342,7 +362,7 @@ public class HourlyProfileWorkHistory extends BaseTest {
         hourlyProfileWorkHistoryPage.dismissAddExperienceSuccessToast();
 
         /* Verify the edit work history list displays the new entry */
-        Assert.assertTrue(hourlyProfileWorkHistoryPage.isEmployerLogoPresent(""), "Employer logo should be present");
+        Assert.assertTrue(hourlyProfileWorkHistoryPage.isEmployerLogoPresent("1"), "Employer logo should be present");
         Assert.assertEquals(hourlyProfileWorkHistoryPage.getJobPosition("1", "0"), jobPosition2);
         Assert.assertEquals(hourlyProfileWorkHistoryPage.getEmployerName("1"), employer2Formatted);
         Assert.assertEquals(hourlyProfileWorkHistoryPage.getTimePeriod("1"), timePeriodPast);
@@ -355,7 +375,7 @@ public class HourlyProfileWorkHistory extends BaseTest {
         Assert.assertEquals(hourlyProfileViewPage.getSummaryPrimaryJob(), jobPosition2 + " @ " + employer2Formatted);
 
         /* Verify that the work history card on profile view is now showing the new entry */
-        Assert.assertTrue(hourlyProfileViewPage.isEmployerLogoPresent(""), "Employer logo should be present");
+        Assert.assertTrue(hourlyProfileViewPage.isEmployerLogoPresent("1"), "Employer logo should be present");
         Assert.assertEquals(hourlyProfileViewPage.getEmployerName("1"), employer2Formatted);
         Assert.assertEquals(hourlyProfileViewPage.getJobPosition("1", "0"), jobPosition2);
         Assert.assertEquals(hourlyProfileViewPage.getTimePeriod("1"), timePeriodPast);

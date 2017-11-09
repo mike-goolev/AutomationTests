@@ -1108,9 +1108,141 @@ public class Locators {
     }
 
     public static class EmployerSignUpLocators{
+        /* Global */
+        public By closeSignupBtn = By.id("overlayPageCloseBtn");
+
+        /* Choose sign up method */
         public By signUpTitleTxt = By.id("chooseSignUpTitleText0");
         public By signUpByEmailBtn = By.id("chooseSignUpEmailSignUpBtn");
         public By signUpByFacebookBtn = By.id("signUpFacebookBtnIcon");
-        public By signUpBackBtn = By.id("chooseSignUpBackBtn");
+        public By termsTxt = By.id("chooseSignUpTermsOfServiceText");
+        public By termsLink = By.id("chooseSignUpTermsOfServiceLink");
+        public By signUpMethodBackBtn = By.id("chooseSignUpBackBtn");
+
+
+        /* Email signup */
+        public By emailSignupTitleTxt = By.id("EmailSignUpTitle");
+        public By firstNameField = By.id("EmailSignUpUserFirstname");
+        public By lastNameField = By.id("EmailSignUpUserLastname");
+        public By emailField = By.id("EmailSignUpEmailInput");
+        public By passwordField = By.id("EmailSignUpPasswordInput");
+        public By emailSignupBackBtn = By.id("EmailSignUpBackBtn");
+        public By emailSignupNextBtn = By.id("EmailSignUpNextBtn");
+
+        /* Store location */
+        //.../webapp/hiring/storelocation
+        public By storeLocationTtitleTxt = By.id("storeLocationTitle");
+        public By storeLocationSearchField = By.id("storeLocationSelectInput");
+
+        /**
+         * Locates an employer result for a given index
+         * @param index The index (Starting at 0) of the employer result you wish to locate
+         * @return Returns a locator for the employer result by index
+         */
+        public By findEmployerResultByIndex(String index) {
+            return By.id("storeLocationSelectConnection" + index);
+        }
+
+        public By storeLocationClaimedTitleTxt = By.id("storeClaimedBasicDialog");
+        public By storeLocationClaimedTxt = By.id("storeClaimedText");
+        public By storeLocationClaimedBtn = By.id("requestStoreAccessBtn");
+        public By storeLocationClaimedCloseBtn = By.id("storeClaimedDialogCloseBtn");
+        public By storeNameTxt = By.id("storeLocationSelectionStoreDetailsNameTxt");
+        public By storeLocationTxt = By.id("storeLocationSelectionStoreDetailsAddressTxt");
+        public By storeLocationCancelBtn = By.id("storeLocationBackBtn");
+        public By storeLocationNextBtn = By.id("storeLocationNextBtn");
+
+        /* Store logo */
+        //.../webapp/hiring/storelogo/<employerGuid>
+        public By storeLogoTtitleTxt = By.id("storeLogoTitleTxt");
+        public By storeLogoFileInput = By.cssSelector("div.content>div.dropzone>input");
+        public By storeLogoUploadTxt = By.id("storeLogoUploadHintTxt");
+        public By storeLogoUploadBtn = By.id("storeLogoUploadBtn");
+        public By storeLogoEditBtn = By.id("storeLogoEditBtn");
+        public By storeLogoCropRotateBtn = By.id("cropToolRotateBtn");
+        public By storeLogoCropCancelBtn = By.id("cropToolCancelBtn");
+        public By storeLogoCropSaveBtn = By.id("cropToolSaveBtn");
+        public By storeLogoEditUploadBtn = By.id("storeLogoUploadPhotoBtn");
+        public By storeLogoEditRemoveBtn = By.id("storeLogoRemovePhotoBtn");
+        public By storeLogoCancelBtn = By.id("storeLogoBackBtn");
+        public By storeLogoNextBtn = By.id("storeLogoNextBtn");
+
+        /* Store photos */
+        public By storePhotosTitleTxt = By.id("storePhotosTitleTxt");
+        public By storePhotosUploadBtn = By.id("storePhotosUploadBtn");
+
+        /**
+         * Locates a store photo button for a given index
+         * @param index The index (Starting at 0) of the store photo button you wish to locate
+         * @return Returns a locator for the store photo button by index
+         */
+        public By findStorePhotoBtnByIndex(String index) {
+            return By.id("storePhotosImageSelectBtn" + index);
+        }
+
+        public By storePhotosBackBtn = By.id("storePhotosBackBtn");
+        public By storePhotosNextBtn = By.id("storePhotosNextBtn");
+
+        /* Store type */
+        //.../webapp/hiring/storetype/<employerGuid>
+        public By storeTypeTitleTxt = By.id("storeTypeTitleTxt");
+        public By storeTypeTxt = By.id("storeTypeChooseStoreTypeTxt");
+        public By storeTypeDropdownTxt = By.id("storeTypeDropDown");
+        public By storeTypeDropdownBtn = By.id("jobSearchJobTypeArrow");
+
+        /**
+         * Locates a store type selection for a given index
+         * @param index The index (Starting at 0) of the store type selection you wish to locate
+         * @return Returns a locator for the store type selection by index
+         */
+        public By findStoreTypeByIndex(String index) {
+            return By.id("storeTypeDropDownOption" + index);
+        }
+
+        /**
+         * Locates a store type job type checkbox for a given index
+         * @param index The index (Starting at 0) of the store type job type checkbox you wish to locate
+         * @return Returns a locator for the store type job type checkbox by index
+         */
+        public By findStoreTypeJobTypeChkByIndex(String index) {
+            return By.id("storeTypeFormChk" + index + "Box");
+        }
+
+        /**
+         * Locates a store type job type label for a given index
+         * @param index The index (Starting at 0) of the store type job type label you wish to locate
+         * @return Returns a locator for the store type job type label by index
+         */
+        public By findStoreTypeJobTypeTxtByIndex(String index) {
+            return By.id("storeTypeFormChk" + index + "Label");
+        }
+
+        /**
+         * Locates a store type job type toggle for a given index
+         * @param index The index (Starting at 0) of the store type job type toggle you wish to locate
+         * @return Returns a locator for the store type job type toggle by index
+         */
+        public By findStoreTypeJobTypeToggleOnByIndex(String index) {
+            return By.id("storeTypeFormToggleBtn" + index + "On");
+        }
+
+        /**
+         * Locates a store type job type toggle for a given index
+         * @param index The index (Starting at 0) of the store type job type toggle you wish to locate
+         * @return Returns a locator for the store type job type toggle by index
+         */
+        public By findStoreTypeJobTypeToggleOffByIndex(String index) {
+            return By.id("storeTypeFormToggleBtn" + index + "Off");
+        }
+
+        public By storeTypeBackBtn = By.id("storeTypeBackBtn");
+        public By storeTypeFinishBtn = By.id("storeTypeNextBtn");
+
+        /* Registration complete */
+        public By storeCreatedTitle = By.id("storeCreatedDialogTitle");
+        public By storeCreatedTxt = By.id("storeCreatedDialogTitle");
+        public By storeCreatedEditProfileBtn = By.id("acceptBtn");
+        public By storeCreatedViewProfileBtn = By.id("editBtn");
     }
+
 }

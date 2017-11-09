@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.UUID;
 import java.util.Calendar;
 import org.openqa.selenium.JavascriptExecutor;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 
 public class TestUtils {
 
@@ -19,7 +24,6 @@ public class TestUtils {
         driver = d;
         navPage = new NavPage(driver);
         mailinatorLocators = new Locators.MailinatorLocators();
-
     }
 
     /**
@@ -148,9 +152,30 @@ public class TestUtils {
         switchToNewWindow(parentWindow);
     }
 
+    /**
+     * Executes a js statement for given web element
+     * @param script The javascript to execute
+     * @param element The web element where the javascript will be executed against
+     */
     public void jsExecutorElement (String script, WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript(script, element);
+    }
+
+    /**
+     * Convert a JSON string to pretty print version
+     * @param jsonString
+     * @return
+     */
+    public static String toPrettyFormat(String jsonString)
+    {
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(jsonString).getAsJsonObject();
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String prettyJson = gson.toJson(json);
+
+        return prettyJson;
     }
 
 }
