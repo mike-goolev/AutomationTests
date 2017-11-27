@@ -1,0 +1,31 @@
+{
+  "EmployerProfileInfo": {
+    "email":"cb.bfa@mailtothis.com",
+    "password":"password",
+    "employerName":"Cacia's Bakery",
+    "newEmployerName":"WacArnold's",
+    "employerAddress":"1526 W Ritner St",
+    "newEmployerAddress":"6218 Brodie Ln",
+    "employerCity":"Philadelphia",
+    "newEmployerCity":"Austin",
+    "employerState":"Pennsylvania",
+    "newEmployerState":"Texas",
+    "employerCardState":"PA",
+    "newEmployerCardState":"TX",
+    "employerZip":"19145",
+    "newEmployerZip":"78745",
+    "employerCountry":"United States",
+    "employerDistance":"1438.18 miles away",
+    "newEmployerDistance":"1.88 miles away",
+    "employerPhone":"(215) 334-1340",
+    "newEmployerPhone":"(512) 694-1664",
+    "employerWebsite":"http://www.caciabakery.com",
+    "newEmployerWebsite":"https://vimeo.com/174957753",
+    "employerCardWebsite":"www.caciabakery.com",
+    "newEmployerCardWebsite":"vimeo.com/174957753",
+    "employerDescription":"Cacia's has been a South Philadelphia tradition for over 60 years. Cacia's is still family owned and operated, (we are into the 4th generation), and we have one of the last brick oven bakeries left in Philadelphia. You will always find a member of the Cacia family at each location, just ask for a Cacia.",
+    "employerGuid":"75ced677-4368-4026-9f57-34ba6246c3cb",
+    "employerId":9296,
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+  }
+}

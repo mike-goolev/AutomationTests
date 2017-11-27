@@ -5,7 +5,7 @@ public class Employer {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private Long id;
     @SerializedName("guid")
     @Expose
     private String guid;
@@ -88,11 +88,11 @@ public class Employer {
     @Expose
     private Integer fetchMask;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

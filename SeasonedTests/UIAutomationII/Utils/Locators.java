@@ -25,8 +25,10 @@ public class Locators {
         public By userAvatarImg = By.id("profilePictureImg");
 
         public By menuProfileBtn = By.id("headerMenuProfileLink");
+        public By menuStoreProfileBtn = By.id("headerMenuStoreProfileLink");
         public By menuSettingsBtn = By.id("headerMenuSettingsLink");
-        public By menuManagerBtn = By.id("headerMenuManagersLink");
+        public By menuManagerBtn = By.id("headerMenuSwitchViewsLink");
+        public By menuMemberBtn = By.id("headerMenuSwitchViewsLink");
         public By menuLogoutBtn = By.id("headerMenuLogOutLink");
 
         /* Nav utility methods */
@@ -69,6 +71,7 @@ public class Locators {
 
         /**
          * Locates a location suggestion by index
+         *
          * @param index The index (Starting at 0) of the location you wish to locate
          * @return A locator for the location suggestion at the given index
          */
@@ -87,6 +90,7 @@ public class Locators {
 
         /**
          * Locates a job type selection by index
+         *
          * @param index The index (Starting at 0) of the job type you wish to locate
          * @return A locator for a job type selection at the given index
          */
@@ -99,6 +103,7 @@ public class Locators {
 
         /**
          * Locates a job type checkbox by index
+         *
          * @param index The index (Starting at 0) of the job type you wish to locate
          * @return A locator for a job type checkbox at the given index
          */
@@ -110,6 +115,7 @@ public class Locators {
 
         /**
          * Locates a preferred topic checkbox by index
+         *
          * @param index The index (Starting at 0) of the job type you wish to locate
          * @return A locator for a job type checkbox at the given index
          */
@@ -148,6 +154,7 @@ public class Locators {
 
         /**
          * Locates an article image for a given index
+         *
          * @param index The index (Starting at 0) of the article image you wish to locate
          * @return Returns a locator for an article's image by index
          */
@@ -157,6 +164,7 @@ public class Locators {
 
         /**
          * Locates an article title for a given index
+         *
          * @param index The index (Starting at 0) of the article title you wish to locate
          * @return Returns a locator for an article's title by index
          */
@@ -166,6 +174,7 @@ public class Locators {
 
         /**
          * Locates an article site name for a given index
+         *
          * @param index The index (Starting at 0) of the article site name you wish to locate
          * @return Returns a locator for an article's site name by index
          */
@@ -175,6 +184,7 @@ public class Locators {
 
         /**
          * Locates an article publisher image for a given index
+         *
          * @param index The index (Starting at 0) of the article publisher image you wish to locate
          * @return Returns a locator for an article's publisher image by index
          */
@@ -184,6 +194,7 @@ public class Locators {
 
         /**
          * Locates an article publisher name for a given index
+         *
          * @param index The index (Starting at 0) of the article publisher name you wish to locate
          * @return Returns a locator for an article's publisher name by index
          */
@@ -193,6 +204,7 @@ public class Locators {
 
         /**
          * Locates an article publisher date for a given index
+         *
          * @param index The index (Starting at 0) of the article publisher date you wish to locate
          * @return Returns a locator for an article's publisher date by index
          */
@@ -202,6 +214,7 @@ public class Locators {
 
         /**
          * Locates an article like button for a given index
+         *
          * @param index The index (Starting at 0) of the article like button you wish to locate
          * @return Returns a locator for an article's like button by index
          */
@@ -211,6 +224,7 @@ public class Locators {
 
         /**
          * Locates an article like count for a given index
+         *
          * @param index The index (Starting at 0) of the article like count you wish to locate
          * @return Returns a locator for an article's like count by index
          */
@@ -222,6 +236,7 @@ public class Locators {
 
         /**
          * Locates a trending article image for a given index
+         *
          * @param index The index (Starting at 0) of the trending article image you wish to locate
          * @return Returns a locator for a trending article's image by index
          */
@@ -241,6 +256,7 @@ public class Locators {
 
         /**
          * Locates a trending article site name for a given index
+         *
          * @param index The index (Starting at 0) of the trending article site name you wish to locate
          * @return Returns a locator for a trending article's site name by index
          */
@@ -253,6 +269,7 @@ public class Locators {
 
         /**
          * Locates a viewed article image for a given index
+         *
          * @param index The index (Starting at 0) of the viewed article image you wish to locate
          * @return Returns a locator for a viewed article's image by index
          */
@@ -262,6 +279,7 @@ public class Locators {
 
         /**
          * Locates a viewed article title for a given index
+         *
          * @param index The index (Starting at 0) of the viewed article title you wish to locate
          * @return Returns a locator for a viewed article's title by index
          */
@@ -271,6 +289,7 @@ public class Locators {
 
         /**
          * Locates a viewed article site name for a given index
+         *
          * @param index The index (Starting at 0) of the viewed article site name you wish to locate
          * @return Returns a locator for a viewed article's site name by index
          */
@@ -302,6 +321,7 @@ public class Locators {
 
         /**
          * Locates a job search position in the dropdown for a given index
+         *
          * @param index The index (Starting at 0) of the job search position in the dropdown you wish to locate
          * @return Returns a locator for a job search position in the dropdown by index
          */
@@ -315,6 +335,7 @@ public class Locators {
 
         /**
          * Locates a job search result employer logo for a given index
+         *
          * @param index The index (Starting at 0) of the job search result employer logo you wish to locate
          * @return Returns a locator for a job search result employer logo by index
          */
@@ -324,6 +345,7 @@ public class Locators {
 
         /**
          * Locates a job search result position for a given index
+         *
          * @param index The index (Starting at 0) of the job search result position you wish to locate
          * @return Returns a locator for a job search result position by index
          */
@@ -333,6 +355,7 @@ public class Locators {
 
         /**
          * Locates a job search result employer name for a given index
+         *
          * @param index The index (Starting at 0) of the job search result employer name you wish to locate
          * @return Returns a locator for a job search result employer name by index
          */
@@ -342,6 +365,7 @@ public class Locators {
 
         /**
          * Locates a job search result location for a given index
+         *
          * @param index The index (Starting at 0) of the job search result location you wish to locate
          * @return Returns a locator for a job search result location by index
          */
@@ -361,6 +385,7 @@ public class Locators {
 
         /**
          * Locates a job search result apply button for a given index
+         *
          * @param index The index (Starting at 0) of the job search result apply button you wish to locate
          * @return Returns a locator for a job search result apply button by index
          */
@@ -416,6 +441,7 @@ public class Locators {
 
         /**
          * Locates an employer logo on the profile page by index
+         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the employer logo at the given index
          */
@@ -425,6 +451,7 @@ public class Locators {
 
         /**
          * Locates a job position on the profile page by index for the employer and job name
+         *
          * @param listIndex     The index (Starting at 0) of the employer you wish to locate
          * @param positionIndex The index (Starting at 0) of the job name you wish to locate
          * @return A locator for the job position at the given indexes
@@ -435,6 +462,7 @@ public class Locators {
 
         /**
          * Locates an employer name on the profile page by index
+         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the employer name at the given index
          */
@@ -444,6 +472,7 @@ public class Locators {
 
         /**
          * Locates the time period the user worked at the employer by index
+         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the time period the user work at the employer by index
          */
@@ -453,6 +482,7 @@ public class Locators {
 
         /**
          * Locates the duration the user worked at the employer by index
+         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return A locator for the duration the user worked at the employer by index
          */
@@ -462,6 +492,7 @@ public class Locators {
 
         /**
          * Locates the work history description by index
+         *
          * @param index The index (Starting at 0) of the work history description you wish to locate
          * @return A locator for the work history description by index
          */
@@ -491,6 +522,7 @@ public class Locators {
 
         /**
          * Locates a skill label for a given index
+         *
          * @param index The index (Starting at 0) of the skill you wish to locate
          * @return Returns a locator for the skill by index
          */
@@ -525,6 +557,7 @@ public class Locators {
 
         /**
          * Locates a connection's photo for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the connection's image by index
          */
@@ -534,6 +567,7 @@ public class Locators {
 
         /**
          * Locates a connection's view profile link for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the connection's view profile link by index
          */
@@ -612,6 +646,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's employer logo by index
+         *
          * @param index The index (Starting at 0) of the work history employer logo you wish to locate
          * @return A locator for a work history employer logo at the given index
          */
@@ -621,6 +656,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's position by index
+         *
          * @param listIndex     The index (Starting at 0) of the work history list item position you wish to locate
          * @param positionIndex The index (Starting at 0) of the work history position
          * @return A locator for a work history position at the given index
@@ -631,6 +667,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's employer by index
+         *
          * @param index The index (Starting at 0) of the work history employer you wish to locate
          * @return A locator for a work history employer at the given index
          */
@@ -640,6 +677,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's time period by index
+         *
          * @param index The index (Starting at 0) of the work history time period you wish to locate
          * @return A locator for a work history time period at the given index
          */
@@ -649,6 +687,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's duration by index
+         *
          * @param index The index (Starting at 0) of the work history duration you wish to locate
          * @return A locator for a work history duration at the given index
          */
@@ -658,6 +697,7 @@ public class Locators {
 
         /**
          * Locates a work history entry's edit button by index
+         *
          * @param index The index (Starting at 0) of the work history edit button you wish to locate
          * @return A locator for a work history edit button at the given index
          */
@@ -667,6 +707,7 @@ public class Locators {
 
         /**
          * Locates a selected position by index
+         *
          * @param index The index (Starting at 0) of the selected position you wish to locate
          * @return A locator for a selected position at the given index
          */
@@ -676,6 +717,7 @@ public class Locators {
 
         /**
          * Locates a selected position remove button by index
+         *
          * @param index The index (Starting at 0) of the selected position remove button you wish to locate
          * @return A locator for a selected position remove button at the given index
          */
@@ -687,6 +729,7 @@ public class Locators {
 
         /**
          * Locates a position to add by index
+         *
          * @param index The index (Starting at 0) of the position you wish to locate
          * @return A locator for a position to add at the given index
          */
@@ -726,6 +769,7 @@ public class Locators {
 
         /**
          * Locates a edit work history button for a given index
+         *
          * @param index The index (Starting at 0) of the employer you wish to locate
          * @return Returns a locator for the edit work history button by index
          */
@@ -773,6 +817,7 @@ public class Locators {
 
         /**
          * Locates a skill by index
+         *
          * @param index The index (Starting at 0) of the skill you wish to locate
          * @return A locator for a skill at the given index
          */
@@ -782,6 +827,7 @@ public class Locators {
 
         /**
          * Locates a selected skill by index
+         *
          * @param index The index (Starting at 0) of the selected skill you wish to locate
          * @return A locator for a selected skill at the given index
          */
@@ -835,6 +881,7 @@ public class Locators {
 
         /**
          * Locates an invitation's photo for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's image by index
          */
@@ -844,6 +891,7 @@ public class Locators {
 
         /**
          * Locates an invitation's name for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's name by index
          */
@@ -853,6 +901,7 @@ public class Locators {
 
         /**
          * Locates an invitation's work history for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's work history by index
          */
@@ -862,6 +911,7 @@ public class Locators {
 
         /**
          * Locates an invitation's ignore button for a given index
+         *
          * @param index The index (Starting at 0) of the user's ignore button you wish to locate
          * @return Returns a locator for the user card's ignore button by index
          */
@@ -871,6 +921,7 @@ public class Locators {
 
         /**
          * Locates an invitation's connect button for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's connect button by index
          */
@@ -884,6 +935,7 @@ public class Locators {
 
         /**
          * Locates a connection's photo for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's image by index
          */
@@ -893,6 +945,7 @@ public class Locators {
 
         /**
          * Locates a connection's name for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's name by index
          */
@@ -902,6 +955,7 @@ public class Locators {
 
         /**
          * Locates a connection's work history for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's work history by index
          */
@@ -911,6 +965,7 @@ public class Locators {
 
         /**
          * Locates a connection's view button for a given index
+         *
          * @param index The index (Starting at 0) of the user's view button you wish to locate
          * @return Returns a locator for the user card's view button by index
          */
@@ -920,6 +975,7 @@ public class Locators {
 
         /**
          * Locates a connection's message button for a given index
+         *
          * @param index The index (Starting at 0) of the user's message button you wish to locate
          * @return Returns a locator for the user card's message button by index
          */
@@ -935,8 +991,10 @@ public class Locators {
         public By connectionPreviousPageBtn = By.id("connectionsPreviousBtn");
 
         /* Suggested connections section */
+
         /**
          * Locates a suggested connection's photo for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's image by index
          */
@@ -946,6 +1004,7 @@ public class Locators {
 
         /**
          * Locates a suggested connection's name for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's name by index
          */
@@ -955,6 +1014,7 @@ public class Locators {
 
         /**
          * Locates a suggested connection's reason for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's reason by index
          */
@@ -964,6 +1024,7 @@ public class Locators {
 
         /**
          * Locates a suggested connection's view button for a given index
+         *
          * @param index The index (Starting at 0) of the user's view button you wish to locate
          * @return Returns a locator for the user card's view button by index
          */
@@ -973,6 +1034,7 @@ public class Locators {
 
         /**
          * Locates a suggested connection's connect button for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's connect button by index
          */
@@ -994,6 +1056,7 @@ public class Locators {
 
         /**
          * Locates an invitation's photo for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's image by index
          */
@@ -1003,6 +1066,7 @@ public class Locators {
 
         /**
          * Locates an invitation's name for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's name by index
          */
@@ -1012,6 +1076,7 @@ public class Locators {
 
         /**
          * Locates an invitation's work history for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's work history by index
          */
@@ -1021,6 +1086,7 @@ public class Locators {
 
         /**
          * Locates an invitation's ignore button for a given index
+         *
          * @param index The index (Starting at 0) of the user's ignore button you wish to locate
          * @return Returns a locator for the user card's ignore button by index
          */
@@ -1030,6 +1096,7 @@ public class Locators {
 
         /**
          * Locates an invitation's connect button for a given index
+         *
          * @param index The index (Starting at 0) of the user you wish to locate
          * @return Returns a locator for the user card's connect button by index
          */
@@ -1057,11 +1124,11 @@ public class Locators {
         public By successToastDiv = By.id("bodySideMenuToast");
     }
 
-    public static class HourlyBeSuccessfulPageLocators{
+    public static class HourlyBeSuccessfulPageLocators {
         public By beSuccessfulTitleTxt = By.id("beSuccessfulHeadlineTxt");
     }
 
-    public static class HorariosCalientesLocators{
+    public static class HorariosCalientesLocators {
         /* HS Main (Labor) */
         public By loadingSpinnerIndicator = By.id("hs-LoadingAnimation");
         public By loadingBarIndicator = By.id("loadingImage");
@@ -1091,7 +1158,7 @@ public class Locators {
         public By employeeIdTxt = By.cssSelector("div#info-table_wrapper>div.dataTables_scroll * tbody * td:nth-of-type(2)");
     }
 
-    public static class MailinatorLocators{
+    public static class MailinatorLocators {
         public By inboxField = By.id("inboxfield");
         public By checkEmailBtn = By.cssSelector("button.btn.btn-dark");
         public By emailSubjectLink = By.cssSelector("ul#inboxpane>li>div>div:nth-of-type(4)");
@@ -1107,7 +1174,7 @@ public class Locators {
         public By createAccountBtn = By.id("ConfirmSignUpSubmitBtn");
     }
 
-    public static class EmployerSignUpLocators{
+    public static class EmployerSignUpLocators {
         /* Global */
         public By closeSignupBtn = By.id("overlayPageCloseBtn");
 
@@ -1136,6 +1203,7 @@ public class Locators {
 
         /**
          * Locates an employer result for a given index
+         *
          * @param index The index (Starting at 0) of the employer result you wish to locate
          * @return Returns a locator for the employer result by index
          */
@@ -1173,6 +1241,7 @@ public class Locators {
 
         /**
          * Locates a store photo button for a given index
+         *
          * @param index The index (Starting at 0) of the store photo button you wish to locate
          * @return Returns a locator for the store photo button by index
          */
@@ -1192,6 +1261,7 @@ public class Locators {
 
         /**
          * Locates a store type selection for a given index
+         *
          * @param index The index (Starting at 0) of the store type selection you wish to locate
          * @return Returns a locator for the store type selection by index
          */
@@ -1201,6 +1271,7 @@ public class Locators {
 
         /**
          * Locates a store type job type checkbox for a given index
+         *
          * @param index The index (Starting at 0) of the store type job type checkbox you wish to locate
          * @return Returns a locator for the store type job type checkbox by index
          */
@@ -1210,6 +1281,7 @@ public class Locators {
 
         /**
          * Locates a store type job type label for a given index
+         *
          * @param index The index (Starting at 0) of the store type job type label you wish to locate
          * @return Returns a locator for the store type job type label by index
          */
@@ -1219,6 +1291,7 @@ public class Locators {
 
         /**
          * Locates a store type job type toggle for a given index
+         *
          * @param index The index (Starting at 0) of the store type job type toggle you wish to locate
          * @return Returns a locator for the store type job type toggle by index
          */
@@ -1228,6 +1301,7 @@ public class Locators {
 
         /**
          * Locates a store type job type toggle for a given index
+         *
          * @param index The index (Starting at 0) of the store type job type toggle you wish to locate
          * @return Returns a locator for the store type job type toggle by index
          */
@@ -1245,4 +1319,261 @@ public class Locators {
         public By storeCreatedViewProfileBtn = By.id("editBtn");
     }
 
+    public static class EmployerProfileViewPageLocators {
+
+        /**
+         * Locates an employer photo for a given index
+         *
+         * @param index The index (Starting at 0) of the employer photo you wish to locate
+         * @return Returns a locator for the employer photo by index
+         */
+        public By findEmployerPhotoByIndex (String index) {
+            return By.id("storeProfilePhoto" + index);
+        }
+
+        public By employerProfileLoadingIndicator = By.cssSelector("div.spinner.active");
+        public By employerHeaderNameTxt = By.id("storeProfileTitle");
+        public By employerHeaderAddressTxt  = By.id("storeProfileSubtitle");
+        public By employerHeaderEditProfileBtn = By.id("storeProfileEditIcon");
+        public By employerHeaderLogoImg  = By.id("storeProfileLogo");
+        public By employerHeaderLikeBtn = By.id("storeProfileLikeBtn");
+        public By employerHeaderFollowBtn = By.id("storeProfileFollowBtn");
+        public By employerEditProfileBtn = By.id("manageMyStoreBtn");
+        public By employerMapImg = By.id("storeMapImg");
+        public By employerMapLink = By.id("storeMapLink");
+        public By employerCityTxt = By.id("employerCityText");
+        public By employerDistanceTxt  = By.id("employerDistanceText");
+        public By employerAddressTxt = By.id("employerAddressText");
+        public By employerGetDirectionsLbl  = By.id("employerGetDirectionsLabel");
+        public By employerGetDirectionsLink = By.id("employerGetDirectionsLink");
+        public By employerWebsiteLbl = By.id("employerWebsiteLabel");
+        public By employerWebsiteLink  = By.id("employerWebsiteLink");
+        public By employerWebsitePhoneLbl = By.id("employerPhoneLabel");
+        public By employerPhoneLink = By.id("employerPhoneLink");
+        public By employerFacebookBtn = By.id("storeProfileFacebookBtn");
+        public By employerTwitterBtn = By.id("storeProfileTwitterBtn");
+        public By employerShareProfileBtn = By.id("storeProfileShareLinkBtn");
+        public By employerAboutTitleTxt = By.id("storeProfileAboutTitle");
+        public By employerAboutTxt = By.id("storeProfileAboutText");
+        public By employerAboutExpandTextBtn = By.id("storeProfileAboutExpandableContentIconBtn");
+        public By employerAboutEditBtn = By.id("storeProfileAboutEditBtn");
+        public By employerManagementTitleTxt = By.id("storeProfileManagementTitle");
+        public By employerManagementEditBtn = By.id("storeProfileManagementEditBtn");
+
+        /**
+         * Locates an employer manager photo for a given index
+         *
+         * @param index The index (Starting at 0) of the employer manager photo you wish to locate
+         * @return Returns a locator for the employer manager photo by index
+         */
+        public By findEmployerManagerPhotoByIndex(String index) {
+            return By.id("StoreMember" + index + "Avatar");
+        }
+
+        /**
+         * Locates an employer manager name for a given index
+         *
+         * @param index The index (Starting at 0) of the employer manager name you wish to locate
+         * @return Returns a locator for the employer manager name by index
+         */
+        public By findEmployerManagerNameByIndex(String index) {
+            return By.id("storeMember" + index + "NameText");
+        }
+
+        /**
+         * Locates an employer manager label for a given index
+         *
+         * @param index The index (Starting at 0) of the employer manager label you wish to locate
+         * @return Returns a locator for the employer manager label by index
+         */
+        public By findEmployerManagerLabelByIndex(String index) {
+            return By.id("storeMember" + index + "Label");
+        }
+
+        /**
+         * Locates an employer manager description for a given index
+         *
+         * @param index The index (Starting at 0) of the employer manager description you wish to locate
+         * @return Returns a locator for the employer manager description by index
+         */
+        public By findEmployerManagerDescriptionByIndex(String index) {
+            return By.id("storeMember" + index + "DescriptionText" + index);
+        }
+
+        public By employerJobTitleTxt = By.id("");
+
+        /**
+         * Locates an employer job position for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job position you wish to locate
+         * @return Returns a locator for the employer job position by index
+         */
+        public By findEmployerJobCardPositionByIndex(String index) {
+            return By.id("searchResultJobNameTextJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job wage for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job wage you wish to locate
+         * @return Returns a locator for the employer job wage by index
+         */
+        public By findEmployerJobCardWageByIndex(String index) {
+            return By.id("searchResultWageTextJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job availability for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job availability you wish to locate
+         * @return Returns a locator for the employer job availability by index
+         */
+        public By findEmployerJobCardAvailabilityByIndex(String index) {
+            return By.id("searchResultAvailabilityTextJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job view button for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job view button you wish to locate
+         * @return Returns a locator for the employer job view button by index
+         */
+        public By findEmployerJobCardViewBtnByIndex(String index) {
+            return By.id("searchResultViewBtnJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job edit button for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job edit button you wish to locate
+         * @return Returns a locator for the employer job edit button by index
+         */
+        public By findEmployerJobCardEditBtnByIndex(String index) {
+            return By.id("searchResultApplyBtnJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job apply button for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job apply button you wish to locate
+         * @return Returns a locator for the employer job apply button by index
+         */
+        public By findEmployerJobCardApplyBtnByIndex(String index) {
+            return By.id("searchResultApplyBtnJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer logo for a given index
+         *
+         * @param index The index (Starting at 0) of the job's employer logo you wish to locate
+         * @return Returns a locator for the job's employer logo by index
+         */
+        public By findEmployerJobCardLogoByIndex(String index) {
+            return By.id("searchResultEmployerPhotoJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer name for a given index
+         *
+         * @param index The index (Starting at 0) of the job's employer name you wish to locate
+         * @return Returns a locator for the job's employer name by index
+         */
+        public By findEmployerJobCardNameByIndex(String index) {
+            return By.id("searchResultEmployerNameTextJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer address for a given index
+         *
+         * @param index The index (Starting at 0) of the job's employer address you wish to locate
+         * @return Returns a locator for the job's employer address by index
+         */
+        public By findEmployerJobCardAddressByIndex(String index) {
+            return By.id("searchResultAddressTextJobCard" + index);
+        }
+    }
+
+    public static class EmployerProfileEditInfoPageLocators {
+        public By employerProfileEditInfoLogoLbl = By.id("editStoreInfoLogo");
+        public By employerProfileEditInfoLogoImg = By.id("storeLogoImg");
+        public By employerProfileEditInfoLogoUploadBtn = By.id("storeLogoUploadBtn");
+        public By employerProfileEditInfoLogoEditBtn = By.id("storeLogoEditBtn");
+        public By employerProfileEditInfoLogoTxt = By.id("storeLogoUploadHintEmbeddedTxt");
+        public By employerProfileEditInfoNameField = By.id("storeLocationFormStoreName");
+        public By employerProfileEditInfoAddress1Field = By.id("storeLocationFormAddress1");
+        public By employerProfileEditInfoAddress2Field = By.id("storeLocationFormAddress2");
+        public By employerProfileEditInfoCityField = By.id("storeLocationFormCity");
+        public By employerProfileEditInfoStateTxt = By.id("storeLocationFormDropdownValueText");
+        public By employerProfileEditInfoStateDropdownBtn = By.id("storeLocationFormDropdownDropDown");
+        public By employerProfileEditInfoStateList = By.id("storeLocationFormDropdownDropDownList");
+
+        /**
+         * Locates a state for a given index
+         *
+         * @param index The index (Starting at 0) of the state you wish to locate
+         * @return Returns a locator for the state by index
+         */
+        public By findEmployerStateByIndex(String index) {
+            return By.id("storeLocationFormDropdownDropDownOption" + index);
+        }
+
+        public By employerProfileEditInfoZipField = By.id("storeLocationFormZipCode");
+        public By employerProfileEditInfoPhoneField = By.id("storeLocationFormPhoneNumber");
+        public By employerProfileEditInfoWebsiteField = By.id("storeLocationFormWebsite");
+        public By employerProfileEditInfoSaveBtn = By.id("storeLocationFormSaveBtn");
+        public By employerProfileInfoSuccessToast = By.id("storeLocationFormToast");
+        public By employerProfileInfoSuccessToastCloseBtn = By.id("storeLocationFormToastCloseIcon");
+        public By employerProfileEditInfoTooltipTitle = By.id("storeInfoTitleTooltip");
+        public By employerProfileEditInfoTooltipTxt = By.id("storeInfoDescriptionTooltip");
+    }
+
+    public static class EmployerProfileEditPhotosPageLocators {
+        public By employerProfileEditPhotosTitleTxt = By.id("editPhotosTitle");
+        public By employerProfileEditPhotosUploadBtn = By.id("storePhotosUploadBtn");
+        public By employerProfilePhotosUploadLoadingIndicator = By.id("Loader");
+        public By employerProfilePhotosDeleteLoadingIndicator = By.cssSelector("button#storePhotosDeletePhotosBtn>div.button-content>div.loader");
+        public By employerProfileEditPhotosFileInput = By.cssSelector("div.dropzone>input");
+        public By employerProfileEditPhotosDeletePhotosBtn = By.id("storePhotosDeletePhotosBtn");
+
+        /**
+         * Locates an employer photo for a given index
+         *
+         * @param index The index (Starting at 0) of the employer photo you wish to locate
+         * @return Returns a locator for the employer photo by index
+         */
+        public By findEmployerPhotoByIndex(String index) {
+
+            return By.id("storePhotosImageSelectBtn" + index);
+        }
+
+        public By employerProfileEditPhotosDeleteConfirmYesBtn = By.id("removeBtn");
+        public By employerProfileEditPhotosDeleteConfirmCancelBtn = By.id("cancelBtn");
+        public By employerProfileEditPhotosSuccessToast = By.id("storePhotosSelectionToast");
+        public By employerProfileEditPhotosSuccessToastCloseBtn = By.id("storePhotosSelectionToastCloseBtn");
+        public By employerProfileEditPhotoTooltipTitle = By.id("storeInfoTitleTooltip");
+        public By employerProfileEditPhotoTooltipTxt = By.id("storeInfoDescriptionTooltip");
+    }
+
+    public static class EmployerProfileEditAboutPageLocators {
+        public By employerProfileEditAboutTitleTxt = By.id("");
+        public By employerProfileEditAboutField = By.id("editStoreAboutDescriptionTextArea");
+        public By employerProfileEditAboutSaveBtn = By.id("editStoreAboutAddButton");
+        public By employerProfileEditAboutSuccessToast = By.id("editStoreAboutSuccessToast");
+        public By employerProfileEditAboutSuccessToastDismissBtn = By.id("editStoreAboutSuccessToastCloseBtn");
+        public By employerProfileEditAboutTooltipTitle = By.id("storeAboutTitleTooltip");
+        public By employerProfileEditAboutTooltipTxt = By.id("storeAboutDescriptionTooltip");
+    }
+
+    public static class EmployerProfileEditJobsPageLocators {
+
+    }
+
+    public static class EmployerProfileEditPageLocators {
+        public By employerProfileEditInfoBtn = By.id("editprofileInfoLink");
+        public By employerProfileEditPhotosBtn = By.id("editprofilePhotosLink");
+        public By employerProfileEditAboutBtn = By.id("editprofileAboutMyStoreLink");
+        public By employerProfileEditJobsBtn = By.id("editprofileHiringLink");
+        public By employerProfileEditViewProfileBtn = By.id("editprofileViewProfileLink");
+
+    }
 }

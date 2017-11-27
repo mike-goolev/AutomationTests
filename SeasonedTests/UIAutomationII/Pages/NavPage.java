@@ -156,4 +156,33 @@ public class NavPage extends BasePage {
             System.out.println(e.getLocalizedMessage());
         }
     }
+
+    /**
+     * Takes the user to the store profile page via nav header and clicking store profile
+     */
+    public void navigateToStoreProfilePage() {
+        wait.until(elementToBeClickable(navPageLocators.userNameBtn));
+        driver.findElement(navPageLocators.userNameBtn).click();
+        wait.until(elementToBeClickable(navPageLocators.menuStoreProfileBtn));
+        driver.findElement(navPageLocators.menuStoreProfileBtn).click();
+    }
+
+    /**
+     * Switches from member view to manager view
+     */
+    public void switchToEmployerView() {
+        wait.until(elementToBeClickable(navPageLocators.userNameBtn));
+        driver.findElement(navPageLocators.userNameBtn).click();
+        driver.findElement(navPageLocators.menuManagerBtn).click();
+    }
+
+    /**
+     * Switches from manager view to member view
+     */
+    public void switchToMemberView() {
+        wait.until(elementToBeClickable(navPageLocators.userNameBtn));
+        driver.findElement(navPageLocators.userNameBtn).click();
+        driver.findElement(navPageLocators.menuMemberBtn).click();
+    }
+
 }

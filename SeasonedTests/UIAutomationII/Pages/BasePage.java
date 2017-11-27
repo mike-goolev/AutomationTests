@@ -10,8 +10,8 @@ public class BasePage {
 
     public BasePage(WebDriver d) {
         driver = d;
-        wait = new WebDriverWait(driver, 10);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 5);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     /**
@@ -27,7 +27,7 @@ public class BasePage {
         catch(NoSuchElementException e) {
             return false;
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         return true;
     }

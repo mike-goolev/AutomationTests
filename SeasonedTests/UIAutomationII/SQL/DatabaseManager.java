@@ -17,7 +17,7 @@ public class DatabaseManager {
             c.setAutoCommit(false);
             c.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
         } catch (SQLException e) {
-            System.out.println("Unable to connect to the PostgreSQL server. Check VPN connection.");
+            System.out.println("Unable to connect to the PostgreSQL server. Check VPN connection... \n");
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
             System.exit((0));

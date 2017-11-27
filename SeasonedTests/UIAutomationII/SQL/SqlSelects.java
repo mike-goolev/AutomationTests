@@ -26,7 +26,7 @@ public class SqlSelects {
      *
      * @return SQS message of the most recently created user in the SQS queue
     */
-    public String getDeferredUser() throws SQLException {
+    public String getDeferredUser() throws SQLException, NullPointerException {
         sql = "SELECT message "
                 + "from bf_deferred_sqs_message "
                 + "order by created desc "
@@ -42,7 +42,11 @@ public class SqlSelects {
         } catch (SQLException e) {
             System.out.println("Query failed:\n" + sql);
             e.printStackTrace();
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed:\n" + sql);
+            npe.printStackTrace();
         }
+
         return sqsMessage;
     }
 
@@ -69,6 +73,7 @@ public class SqlSelects {
             System.out.println("Query failed:\n" + sql);
             e.printStackTrace();
         }
+
         return jobGuids;
     }
 
@@ -78,7 +83,7 @@ public class SqlSelects {
      * @param email The user's email
      * @return User's email address
      */
-    public String getUserByEmail(String email) throws SQLException {
+    public String getUserByEmail(String email) throws SQLException, NullPointerException {
         sql = "SELECT email "
                 + "from bf_user "
                 + "where email = ?";
@@ -87,12 +92,15 @@ public class SqlSelects {
             pstmt = dbManager.prepareStatement(connection, sql, ps -> ps.setString(1, email));
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                    emailField = rs.getString("email");
-                    System.out.println("Email: " + emailField);
-                }
-            } catch(SQLException e){
-                System.out.println("Query failed:\n" + sql);
-                e.printStackTrace();
+                emailField = rs.getString("email");
+                System.out.println("Email: " + emailField);
+            }
+        } catch (SQLException e){
+            System.out.println("Query failed:\n" + sql);
+            e.printStackTrace();
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed:\n" + sql);
+            npe.printStackTrace();
         }
         return emailField;
     }
@@ -133,7 +141,7 @@ public class SqlSelects {
         List<String> photoGuids = new ArrayList<>();
         sql = "SELECT guid "
                 + "from bf_photo "
-                + "where phototype_name = 'GooglePlacesPhoto' "
+                + "where phototype_name in ('GooglePlacesPhoto', 'EmployerAdditionalPhoto') "
                 + "and owner_guid = ?";
 
         try {

@@ -125,18 +125,15 @@ public class HourlyJobSearchPage extends BasePage {
      * @param index The index (Starting at 0) of the search result view button you wish to locate
      */
     public void clickJobPostingViewBtn(String index) {
-        if (elementExists(jobSearchPageLocators.findSearchResultViewBtnByIndex(index))) {
-            wait.until(elementToBeClickable(jobSearchPageLocators.findSearchResultViewBtnByIndex(index)));
             driver.findElement(jobSearchPageLocators.findSearchResultViewBtnByIndex(index)).click();
+            wait.until(visibilityOfElementLocated(jobSearchPageLocators.jobDetailsApplyBtn));
         }
-    }
 
     /**
      * Clicks the apply button for a posted job
      * @param index The index (Starting at 0) of the search result apply button you wish to locate
      */
     public void clickJobPostingApplyBtn(String index) {
-        wait.until(elementToBeClickable(jobSearchPageLocators.findSearchResultApplyBtnByIndex(index)));
         driver.findElement(jobSearchPageLocators.findSearchResultApplyBtnByIndex(index)).click();
     }
 
@@ -186,12 +183,10 @@ public class HourlyJobSearchPage extends BasePage {
     }
 
     /**
-     * Checks to see if the apply success toast is visible
-     * @return Whether or not the apply success toast is visible
+     * Waits for the apply success toast to be visible
      */
-    public boolean verifyApplySuccessToast(){
-        wait.until(visibilityOfElementLocated(jobSearchPageLocators.applySuccessToastTxt));
-        return elementExists(jobSearchPageLocators.applySuccessToastTxt);
+    public void waitForApplySuccessToast(){
+        wait.until(presenceOfElementLocated(jobSearchPageLocators.applySuccessToastTxt));
     }
 
     /**
@@ -257,7 +252,8 @@ public class HourlyJobSearchPage extends BasePage {
      * Checks to see if the Job Details Employer Logo is on the job details page
      * @return Whether or not the Employer Logo is on the job details page
      */
-    public boolean verifyJobDetailsEmployerLogo() { return elementExists(jobSearchPageLocators.jobDetailsEmployerLogoImg); }
+    public boolean verifyJobDetailsEmployerLogo() {
+        return elementExists(jobSearchPageLocators.jobDetailsEmployerLogoImg); }
 
     /**
      * Gets the Job Details employer name

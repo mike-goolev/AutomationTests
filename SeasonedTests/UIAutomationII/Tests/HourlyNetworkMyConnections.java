@@ -58,11 +58,11 @@ public class HourlyNetworkMyConnections extends BaseTest {
         navPage.navigateToNetworkMyConnectionsPage();
 
         /* Verify connections empty state */
-        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isEmptyConnectionTitleTxtDisplayed());
+        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isEmptyConnectionTitleTxtDisplayed(), "Empty connection title should be displayed");
 
         /* Navigate to profile and verify connection card is not present */
         navPage.navigateToProfilePage();
-        Assert.assertFalse(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
+        Assert.assertFalse(hourlyProfileViewPage.isConnectionsTitleTxtPresent(), "The connection's card should not be displayed");
 
         /* Create and accept a connection request */
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
@@ -71,7 +71,7 @@ public class HourlyNetworkMyConnections extends BaseTest {
 
         /* Navigate to My Connections */
         navPage.navigateToNetworkMyConnectionsPage();
-        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex));
+        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex), "Connection's photo should be displayed");
         Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionName(connectionIndex), connectionName);
         Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionJob(connectionIndex), connectionJob);
 
@@ -79,8 +79,8 @@ public class HourlyNetworkMyConnections extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify new connection is displayed */
-        Assert.assertTrue(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
-        Assert.assertTrue(hourlyProfileViewPage.isConnectionsPhotoPresent(connectionIndex));
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsTitleTxtPresent(), "Connection's title text should be displayed" );
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsPhotoPresent(connectionIndex), "Connection's photo should be displayed");
         Assert.assertEquals(hourlyProfileViewPage.getConnectionsName(connectionIndex), connectionName);
         // The count is updated while the page renders, so the below assert will fail
         //Assert.assertEquals(hourlyProfileViewPage.getConnectionsCount(), connectionCount);

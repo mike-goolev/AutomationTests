@@ -124,23 +124,11 @@ public class HourlyProfilePersonal extends BaseTest {
 
         /* Verify the personal info tooltip is displayed*/
         Assert.assertTrue(hourlyProfilePersonalInfoPage.isPersonalInfoTooltipDisplayed(), "Personal info tooltip should be displayed");
-
-        /* Verify personal info location title tooltip */
         Assert.assertEquals(hourlyProfilePersonalInfoPage.getLocationTitleTooltip(), "Location");
-
-        /* Verify personal info phone title tooltip */
-        Assert.assertEquals(hourlyProfilePersonalInfoPage.getPhoneTitleTooltip(), "Phone");
-
-        /* Verify personal info birth date title tooltip */
-        Assert.assertEquals(hourlyProfilePersonalInfoPage.getBirthdateTitleTooltip(), "Birth date");
-
-        /* Verify personal info location text tooltip */
         Assert.assertEquals(hourlyProfilePersonalInfoPage.getLocationTxtTooltip(), locationTxtTooltip);
-
-        /* Verify personal info phone text tooltip */
+        Assert.assertEquals(hourlyProfilePersonalInfoPage.getPhoneTitleTooltip(), "Phone");
         Assert.assertEquals(hourlyProfilePersonalInfoPage.getPhoneTxtTooltip(), phoneTxtTooltip);
-
-        /* Verify personal info birth date text tooltip */
+        Assert.assertEquals(hourlyProfilePersonalInfoPage.getBirthdateTitleTooltip(), "Birth date");
         Assert.assertEquals(hourlyProfilePersonalInfoPage.getBirthdateTxtTooltip(), birthdateTxtTooltip);
 
         /* Verify the user's initial name, location, phone and dob # */

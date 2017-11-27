@@ -41,13 +41,12 @@ public class HourlyProfileConnections extends BaseTest {
         toUserGuid = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("toUserGuid");
         token = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("token");
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-
-        System.out.println("Starting hourly profile Connections test!");
         seasonedRestAPI.deleteConnection(fromUserGuid, toUserGuid);
+        System.out.println("Starting hourly profile Connections test!");
     }
 
-    @Test//(enabled = false)
-    public void viewHourlyProfileConnections() throws Exception {
+    @Test
+    public void testViewHourlyProfileConnections() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
@@ -59,11 +58,11 @@ public class HourlyProfileConnections extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* The connection card should not be visible if user has 0 connections */
-        Assert.assertFalse(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
+        Assert.assertFalse(hourlyProfileViewPage.isConnectionsTitleTxtPresent(), "The connection card should not be visible if user has 0 connections");
 
         /* Navigate to connections page and verify the empty connection state */
         navPage.navigateToNetworkMyConnectionsPage();
-        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isEmptyConnectionTitleTxtDisplayed());
+        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isEmptyConnectionTitleTxtDisplayed(), "The empty connections state title should be displayed");
 
         /* Create and accept a connection request */
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
@@ -74,16 +73,16 @@ public class HourlyProfileConnections extends BaseTest {
         navPage.navigateToProfilePage();
 
         /* Verify new connection is displayed */
-        Assert.assertTrue(hourlyProfileViewPage.isConnectionsTitleTxtPresent());
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsTitleTxtPresent(), "The connection title should be displayed");
         Assert.assertEquals(hourlyProfileViewPage.getConnectionsCount(), connectionCount);
-        Assert.assertTrue(hourlyProfileViewPage.isConnectionsPhotoPresent(connectionIndex));
+        Assert.assertTrue(hourlyProfileViewPage.isConnectionsPhotoPresent(connectionIndex), "The connection's photo should be displayed");
         Assert.assertEquals(hourlyProfileViewPage.getConnectionsName(connectionIndex), connectionName);
 
         /* Navigate to the hourly connections page */
         hourlyProfileViewPage.clickViewAllConnections();
 
         /* Verify connection's card is displayed */
-        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex));
+        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex), "The connection's photo should be displayed");
         Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionName(connectionIndex), connectionName);
         Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionJob(connectionIndex), connectionJob);
     }

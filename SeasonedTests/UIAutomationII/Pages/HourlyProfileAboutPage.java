@@ -63,11 +63,7 @@ public class HourlyProfileAboutPage extends BasePage {
      * Clears out about text field
      */
     public void clearAboutTxtField() {
-        int textLength = driver.findElement(aboutPageLocators.aboutTextField).getText().length();
-        driver.findElement(aboutPageLocators.aboutTextField).click();
-        for(int i = 0; i < textLength; i++) {
-            driver.findElement(aboutPageLocators.aboutTextField).sendKeys("\u0008");
-        }
+        driver.findElement(aboutPageLocators.aboutTextField).clear();
     }
 
     /**
@@ -93,5 +89,4 @@ public class HourlyProfileAboutPage extends BasePage {
     public boolean isAboutTooltipDisplayed() {
         return elementExists(aboutPageLocators.aboutTooltip);
     }
-
 }

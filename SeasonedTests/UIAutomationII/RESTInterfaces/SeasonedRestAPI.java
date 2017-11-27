@@ -590,6 +590,50 @@ public class SeasonedRestAPI {
     }
 
     /**
+     * Updates an employer's info section
+     * @param id the db id for the employer
+     * @param guid the guid for the employer to update
+     * @param name employer's name
+     * @param address1 employer's street address
+     * @param city employer's city
+     * @param state employer's state
+     * @param zip employer's zip
+     * @param country employer's country
+     * @param phone employer's phone
+     * @param url employer's website
+     * @param about employer's description
+     *
+     */
+    public void updateEmployerInfo(Long id, String guid, String name, String address1, String city, String state, String zip, String country, String phone, String url, String about) {
+        /* Construct User Request Body */
+        try {
+            Location location = new Location();
+            Employer employer = new Employer();
+
+            location.setAddress1(address1);
+            location.setCity(city);
+            location.setState(state);
+            location.setZip(zip);
+            location.setCountry(country);
+
+            employer.setId(id);
+            employer.setGuid(guid);
+            employer.setName(name);
+            employer.setLocation(location);
+            employer.setPhone(phone);
+            employer.setUrl(url);
+            employer.setAbout(about);
+
+            /* Make a PUT request to /user */
+            Call<Employer> call = seasonedAPI.updateEmployerInfo(guid, accessToken, employer);
+            Response<Employer> response = call.execute();
+            System.out.println("PUT request to /employer/" + guid +  " returned a: " + response.code());
+        } catch (Exception e) {
+            System.out.println( "PUT request to /employer/" + guid + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
      * Create a new article
      *
      * @param url         The url of the article

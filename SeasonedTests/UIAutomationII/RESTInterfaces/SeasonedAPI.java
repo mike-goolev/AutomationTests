@@ -63,6 +63,9 @@ public interface SeasonedAPI {
     @DELETE("employer/photos/{employerGuid}/{photoGuid}")
     Call<Employer> deleteEmployerPhotos(@Path("employerGuid") String employerGuid, @Path("photoGuid") String photoGuid, @Header("Authorization") String accessToken);
 
+    @PUT("employer/{employerGuid}")
+    Call<Employer> updateEmployerInfo(@Path("employerGuid") String employerGuid, @Header("Authorization") String accessToken, @Body Employer employer);
+
     /*-------- Network Endpoints --------*/
 
     @POST("network")

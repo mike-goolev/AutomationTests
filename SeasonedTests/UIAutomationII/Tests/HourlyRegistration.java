@@ -45,6 +45,7 @@ public class HourlyRegistration extends BaseTest {
         firstName = ("ssHourlyFirst" + testUtils.generateRandomUUID());
         lastName = ("ssHourlyLast" + testUtils.generateRandomUUID());
         email = (testUtils.generateRandomUUID() + "@mailinator.com");
+        System.out.println("Email : " +  email);
         password = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("password");
         availabilityStatusOpen = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusOpen");
         availabilityStatusLooking = (String) TestDataImporter.get("HourlyRegistration", "testHourlySignUpByEmail").get("availabilityStatusLooking");

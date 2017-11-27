@@ -1,7 +1,9 @@
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -14,6 +16,7 @@ public class BrowserFactory {
         WebDriver driver;
         DesiredCapabilities caps = new DesiredCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
         FirefoxProfile ffProfile = new FirefoxProfile();
 
             switch (browser.toLowerCase()) {
@@ -21,11 +24,19 @@ public class BrowserFactory {
                     driver = new FirefoxDriver();
                     break;
                 case "firefoxProfile":
-                    ffProfile.setAcceptUntrustedCertificates(true);
-                    ffProfile.setAssumeUntrustedCertificateIssuer(true);
-                    caps = new FirefoxOptions().setProfile(ffProfile).addTo(caps);
-                    caps.setCapability(FirefoxDriver.PROFILE, TestConfig.getFirefoxProfile());
-                    driver = new FirefoxDriver(caps);
+                    /* Setup Firefox profile */
+                    ffProfile.setPreference("webdriver_accept_untrusted_certs", true);
+                    ffProfile.setPreference("webdriver_assume_untrusted_issuer", true);
+                    ffProfile.setPreference("webdriver.log.driver", "ERROR");
+                    firefoxOptions.setProfile(ffProfile);
+
+                    /* Setup Firefox options */
+                    firefoxOptions
+                            .setLogLevel(FirefoxDriverLogLevel.ERROR)
+                            .setPageLoadStrategy(PageLoadStrategy.NORMAL);
+
+                    /* Create firefox driver instance */
+                    driver = new FirefoxDriver(firefoxOptions);
                     break;
                 case "ie":
                     driver = new InternetExplorerDriver();
@@ -34,20 +45,15 @@ public class BrowserFactory {
                     driver = new SafariDriver();
                     break;
                 case "chrome":
-                    System.setProperty("webdriver.chrome.driver", TestConfig.getChromedriverPath());
                     chromeOptions.addArguments("--start-fullscreen");
                     chromeOptions.addArguments("--disable-gpu");
-                    caps.setJavascriptEnabled(true);
-                    caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                    driver = new ChromeDriver(caps);
+                    driver = new ChromeDriver(chromeOptions);
                     break;
                 case "chromeHeadless":
                     System.setProperty("webdriver.chrome.driver", TestConfig.getChromedriverPath());
                     chromeOptions.setBinary("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
                     chromeOptions.addArguments("--headless");
-                    caps.setJavascriptEnabled(true);
-                    caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                    driver = new ChromeDriver(caps);
+                    driver = new ChromeDriver(chromeOptions);
                     break;
                 default:
                     driver = new FirefoxDriver();

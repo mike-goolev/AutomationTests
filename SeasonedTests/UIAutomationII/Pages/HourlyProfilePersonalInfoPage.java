@@ -138,13 +138,9 @@ public class HourlyProfilePersonalInfoPage extends BasePage {
      * Clears out location text field
      */
     public void removeUserLocation() {
-        int textLength = driver.findElement(personalInfoPageLocators.personalInfoLocationTxtField).getAttribute("value").length();
-        wait.until(elementToBeClickable(personalInfoPageLocators.personalInfoLocationTxtField));
-        driver.findElement(personalInfoPageLocators.personalInfoLocationTxtField).click();
-        for (int i = 0; i < textLength; i++) {
-            driver.findElement(personalInfoPageLocators.personalInfoLocationTxtField).sendKeys("\u0008");
-        }
+        driver.findElement(personalInfoPageLocators.personalInfoLocationTxtField).clear();
     }
+
 
     /**
      * Get user's phone from the text field
@@ -168,12 +164,7 @@ public class HourlyProfilePersonalInfoPage extends BasePage {
      * Clears out phone text field
      */
     public void removeUserPhone() {
-        int textLength = driver.findElement(personalInfoPageLocators.personalInfoPhoneTxtField).getAttribute("value").length();
-        wait.until(elementToBeClickable(personalInfoPageLocators.personalInfoPhoneTxtField));
-        driver.findElement(personalInfoPageLocators.personalInfoPhoneTxtField).click();
-        for (int i = 0; i < textLength; i++) {
-            driver.findElement(personalInfoPageLocators.personalInfoPhoneTxtField).sendKeys("\u0008");
-        }
+        driver.findElement(personalInfoPageLocators.personalInfoPhoneTxtField).clear();
     }
 
     /**
@@ -294,7 +285,7 @@ public class HourlyProfilePersonalInfoPage extends BasePage {
      * @return Whether or not the personal info save button is enabled
      */
     public boolean isSaveButtonEnabled(){
-        return (driver.findElement(personalInfoPageLocators.personalInfoSaveBtn).isEnabled());
+        return driver.findElement(personalInfoPageLocators.personalInfoSaveBtn).isEnabled();
     }
 
     /**

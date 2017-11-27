@@ -1,8 +1,4 @@
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-
-import java.awt.image.Kernel;
-
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class EmployerRegistrationPage extends BasePage {
@@ -182,7 +178,7 @@ public class EmployerRegistrationPage extends BasePage {
     }
 
     /**
-     * Selects the 'Cancel' button to exit registration wizard
+     * Sets the employer logo by specifying filename/path of the logo
      */
     public void setLogo(String fileName) {
         selectUploadPhotoBtn();
