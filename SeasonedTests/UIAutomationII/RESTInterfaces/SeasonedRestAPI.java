@@ -604,10 +604,11 @@ public class SeasonedRestAPI {
      * @param about employer's description
      *
      */
-    public void updateEmployerInfo(Long id, String guid, String name, String address1, String city, String state, String zip, String country, String phone, String url, String about) {
+    public void updateEmployerInfo(Long id, String guid, String name, String address1, String city, String state, String zip, String country, String phone, String url, String about, Long employerTypeId, String employerTypeName) {
         /* Construct User Request Body */
         try {
             Location location = new Location();
+            EmployerType employerType = new EmployerType();
             Employer employer = new Employer();
 
             location.setAddress1(address1);
@@ -616,6 +617,9 @@ public class SeasonedRestAPI {
             location.setZip(zip);
             location.setCountry(country);
 
+            employerType.setId(employerTypeId);
+            employerType.setName(employerTypeName);
+
             employer.setId(id);
             employer.setGuid(guid);
             employer.setName(name);
@@ -623,6 +627,7 @@ public class SeasonedRestAPI {
             employer.setPhone(phone);
             employer.setUrl(url);
             employer.setAbout(about);
+            employer.setEmployerType(employerType);
 
             /* Make a PUT request to /user */
             Call<Employer> call = seasonedAPI.updateEmployerInfo(guid, accessToken, employer);

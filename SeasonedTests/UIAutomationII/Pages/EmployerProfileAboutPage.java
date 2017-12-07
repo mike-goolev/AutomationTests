@@ -59,7 +59,7 @@ public class EmployerProfileAboutPage extends BasePage {
     }
 
     /**
-     * Checks to see if the employer about save button is enabled
+     * Selects the employer about save button
      */
     public void selectSaveBtn(){
         driver.findElement(employerProfileEditAboutPageLocators.employerProfileEditAboutSaveBtn).click();
@@ -75,7 +75,7 @@ public class EmployerProfileAboutPage extends BasePage {
     }
 
     /**
-     * Clicks the 'X' to dismiss the employer about success toast
+     * Selects the 'X' to dismiss the employer about success toast
      */
     public void dismissEmployerAboutSuccessToast(){
         wait.until(elementToBeClickable(employerProfileEditAboutPageLocators.employerProfileEditAboutSuccessToastDismissBtn));

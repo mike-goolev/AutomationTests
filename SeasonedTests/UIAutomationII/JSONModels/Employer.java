@@ -87,6 +87,9 @@ public class Employer {
     @SerializedName("fetchMask")
     @Expose
     private Integer fetchMask;
+    @SerializedName("type")
+    @Expose
+    private EmployerType employerType;
 
     public Long getId() {
         return id;
@@ -310,6 +313,14 @@ public class Employer {
 
     public void setFetchMask(Integer fetchMask) {
         this.fetchMask = fetchMask;
+    }
+
+    public EmployerType employerType() {
+        return employerType;
+    }
+
+    public void setEmployerType(EmployerType employerType) {
+        this.employerType = employerType;
     }
 
 }

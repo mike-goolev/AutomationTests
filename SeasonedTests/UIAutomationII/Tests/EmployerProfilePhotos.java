@@ -23,6 +23,7 @@ public class EmployerProfilePhotos extends BaseTest {
     private String photoFilePath;
     private String photoName;
     private List<String> employerPhotos;
+    private String photoIndex;
 
     @BeforeMethod
     public void setUp() throws SQLException {
@@ -42,6 +43,7 @@ public class EmployerProfilePhotos extends BaseTest {
         photoName = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("photoName");
         employerGuid = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("employerGuid");
         photoFilePath = TestConfig.getWorkingDir() + "TestData/" + photoName;
+        photoIndex = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("photoIndex");
         token = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("token");
 
         SeasonedRestAPI api = new SeasonedRestAPI(token);
@@ -65,14 +67,14 @@ public class EmployerProfilePhotos extends BaseTest {
         navPage.navigateToStoreProfilePage();
 
         /* Verify employer's photo empty state */
-        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent("0"));
+        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent(photoIndex));
 
         /* Navigate to edit photos page */
         employerProfileViewPage.selectManageStore();
         employerProfileEditPage.selectMenuPhotosLink();
 
         /* Verify employer photos empty state */
-        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent("0"));
+        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex));
 
         /* Add a photo */
         employerProfilePhotosPage.selectUploadPhotoBtn();
@@ -84,14 +86,14 @@ public class EmployerProfilePhotos extends BaseTest {
 //        employerProfilePhotosPage.dismissEmployerPhotosSuccessToast();
 
         /* Verify photo added */
-        Assert.assertTrue(employerProfilePhotosPage.isPhotoPresent("0"), "Employer photo should be present");
+        Assert.assertTrue(employerProfilePhotosPage.isPhotoPresent(photoIndex), "Employer photo should be present");
 
         /* Navigate to store profile view page */
         employerProfileEditPage.selectMenuViewProfileLink();
 
         /* Verify employer photo added to store profile */
 //        Below line is commented out because store photos do not display consistently
-//        Assert.assertTrue(employerProfileViewPage.isEmployerPhotoPresent("0"), "Employer photo should be present");
+//        Assert.assertTrue(employerProfileViewPage.isEmployerPhotoPresent(photoIndex), "Employer photo should be present");
         /* TO DO - Verify employer photo added to public store profile */
 
         /* Navigate to employer profile photos page */
@@ -99,20 +101,20 @@ public class EmployerProfilePhotos extends BaseTest {
         employerProfileEditPage.selectMenuPhotosLink();
 
         /* Delete employer photo */
-        employerProfilePhotosPage.deletePhotoByIndex("0");
+        employerProfilePhotosPage.deletePhotoByIndex(photoIndex);
 
         /* Verify delete photo success toast */
         Assert.assertTrue(employerProfilePhotosPage.verifyEmployerPhotosSuccessToast());
         employerProfilePhotosPage.dismissEmployerPhotosSuccessToast();
 
         /* Verify employer photos empty state */
-        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent("0"));
+        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex));
 
         /* Navigate to store profile view page */
         employerProfileEditPage.selectMenuViewProfileLink();
 
         /* Verify employer's photo empty state */
-        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent("0"));
+        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent(photoIndex));
     }
 
     @AfterMethod

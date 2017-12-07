@@ -1,23 +1,25 @@
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class EmployerProfileViewPage extends BasePage {
 
     Locators.EmployerProfileViewPageLocators profilePageLocators;
-
+    TestUtils testUtils;
 
     public EmployerProfileViewPage(WebDriver driver) {
         super(driver);
         profilePageLocators = new Locators.EmployerProfileViewPageLocators();
-
+        testUtils = new TestUtils(driver);
     }
 
     /*--------- Store Photos ----------*/
 
     /**
      * Checks to see if an employer photos is on the profile page
+     *
      * @param index The index of the store photo (starting at 0)
      * @return Whether or not an employer photo is on the profile page
      */
@@ -152,6 +154,7 @@ public class EmployerProfileViewPage extends BasePage {
 
     /**
      * Checks to see if the manager's photo is displayed
+     *
      * @param index The index of the store manager's photo (starting at 0)
      * @return Whether or not the manager's photo is displayed
      */
@@ -161,6 +164,7 @@ public class EmployerProfileViewPage extends BasePage {
 
     /**
      * Gets the store manager's name
+     *
      * @param index The index of the store manager's name (starting at 0)
      * @return The manager's first and last name
      */
@@ -170,6 +174,7 @@ public class EmployerProfileViewPage extends BasePage {
 
     /**
      * Gets the store manager's label
+     *
      * @param index The index of the store manager's label (starting at 0)
      * @return The manager's label
      */
@@ -179,6 +184,7 @@ public class EmployerProfileViewPage extends BasePage {
 
     /**
      * Gets the store manager's description
+     *
      * @param index The index of the store manager's description (starting at 0)
      * @return The manager's description
      */
@@ -199,12 +205,13 @@ public class EmployerProfileViewPage extends BasePage {
      * Checks to see if the Open Jobs section header is displayed
      * @return Whether or not the Open Jobs section header is displayed
      */
-    public Boolean isMJobsHeaderDisplayed(){
+    public Boolean isJobsHeaderDisplayed(){
         return elementExists(profilePageLocators.employerJobTitleTxt);
     }
 
     /**
      * Gets the job position
+     *
      * @param index The index of the job card's position (starting at 0)
      * @return The job position
      */
@@ -214,6 +221,7 @@ public class EmployerProfileViewPage extends BasePage {
 
     /**
      * Gets the job wage
+     *
      * @param index The index of the job card's wage (starting at 0)
      * @return The job wage
      */
@@ -223,12 +231,23 @@ public class EmployerProfileViewPage extends BasePage {
 
     /**
      * Gets the job availability
+     *
      * @param index The index of the job card's availability (starting at 0)
      * @return The job availability
      */
     public String getJobAvailability(String index){
         return driver.findElement(profilePageLocators.findEmployerJobCardAvailabilityByIndex(index)).getText();
     }
+
+    /**
+     * Scroll to job cards
+     * @param index the index of the job card to scroll to
+     */
+    public void scrollToJobCard(String index){
+        WebElement jobCard = driver.findElement(profilePageLocators.findEmployerJobCardLogoByIndex(index));
+        testUtils.jsExecutorElement("arguments[0].scrollIntoView(true);", jobCard);
+    }
+
 
     /**
      * Select the job's view button

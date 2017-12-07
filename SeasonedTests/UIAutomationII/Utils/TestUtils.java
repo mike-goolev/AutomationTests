@@ -1,6 +1,7 @@
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.text.SimpleDateFormat;
 import java.util.UUID;
@@ -17,6 +18,8 @@ public class TestUtils {
     WebDriver driver;
     NavPage navPage;
     Locators.MailinatorLocators mailinatorLocators;
+    Actions actions;
+
 
     private String parentWindow;
 
@@ -24,6 +27,7 @@ public class TestUtils {
         driver = d;
         navPage = new NavPage(driver);
         mailinatorLocators = new Locators.MailinatorLocators();
+        actions = new Actions(driver);
     }
 
     /**
@@ -167,8 +171,7 @@ public class TestUtils {
      * @param jsonString
      * @return
      */
-    public static String toPrettyFormat(String jsonString)
-    {
+    public static String toPrettyFormat(String jsonString){
         JsonParser parser = new JsonParser();
         JsonObject json = parser.parse(jsonString).getAsJsonObject();
 
@@ -178,4 +181,13 @@ public class TestUtils {
         return prettyJson;
     }
 
+    /**
+     * Executes a js statement for given web element
+     * @param element The webelement to drag and drop
+     * @param xOffset The # of pixels to move horizontally
+     * @param yOffset The # of pixels to move vertically
+     */
+    public void dragAndDropElement (WebElement element, int xOffset, int yOffset){
+        actions.dragAndDropBy(element, xOffset, yOffset).build().perform();
+    }
 }

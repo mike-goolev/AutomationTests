@@ -1,4 +1,6 @@
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class EmployerRegistrationPage extends BasePage {
@@ -269,7 +271,8 @@ public class EmployerRegistrationPage extends BasePage {
      */
     public void selectStoreTypeByIndex(String index){
         selectStoreTypeDropdown();
-        testUtils.jsExecutorElement("arguments[0].scrollIntoView(true);", driver.findElement(employerSignUpLocators.findStoreTypeByIndex(index)));
+        WebElement storeType = driver.findElement(employerSignUpLocators.findStoreTypeByIndex(index));
+        testUtils.jsExecutorElement("arguments[0].scrollIntoView(true);", storeType);
         wait.until(elementToBeClickable(employerSignUpLocators.findStoreTypeByIndex(index)));
         driver.findElement(employerSignUpLocators.findStoreTypeByIndex(index)).click();
     }

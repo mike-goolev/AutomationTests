@@ -15,6 +15,8 @@
     "newEmployerDescription":"Another piece of the great bakery pizza/tomato pie puzzle, Cacia's has been a south Philly staple for over 50 years, a tiny brick-oven bakery storefront - no chairs or tables and room for maybe 5 people, usually full - that sells room-temperature square sheet pan pizza along with bread, rolls, and stromboli. Cacia's pizza is different from most in that their crust is much thinner than the sicilian-and-then-some. Philadelphia tomato pie standard, maybe the thinnest in the city that still falls under the category of authentic bakery pizza.",
     "employerGuid":"75ced677-4368-4026-9f57-34ba6246c3cb",
     "employerId":9296,
+    "employerTypeId":13,
+    "employerTypeName":"ESCUELADEPAYASOS",
     "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
   }
 }

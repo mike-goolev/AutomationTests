@@ -171,6 +171,7 @@ public class NavPage extends BasePage {
      * Switches from member view to manager view
      */
     public void switchToEmployerView() {
+        //TO DO -> Wrap in conditional to handle multi-store admin logins
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
         driver.findElement(navPageLocators.menuManagerBtn).click();

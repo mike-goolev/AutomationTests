@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +16,8 @@ public class TestDataImporter {
         JSONParser parser = new JSONParser();
 
         try {
-            JSONObject testSuiteData = (JSONObject) parser.parse(new FileReader(String.format(System.getProperty("user.dir") + "/SeasonedTests/UIAutomationII/TestData/%s.json", testSuite)));
+            /* Sets path to test data */
+            JSONObject testSuiteData = (JSONObject) parser.parse(new FileReader(String.format(System.getProperty("user.dir") + File.separator + "SeasonedTests" + File.separator + "UIAutomationII" + File.separator + "TestData" + File.separator + "%s.json", testSuite)));
             testData = (JSONObject) testSuiteData.get(testMethod);
         }
         catch (ParseException e) {

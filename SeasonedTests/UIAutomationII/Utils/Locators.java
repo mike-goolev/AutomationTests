@@ -551,8 +551,7 @@ public class Locators {
 
         /* Connections Section */
         public By connectionsTitleTxt = By.cssSelector("h5.card-title");
-        /*public By connectionsCountTxt = By.id("a#profileConnectionMoreConnectionsBtn>div");*/
-        public By connectionsCountTxt = By.id("profileConnectionMoreConnectionsBtn");
+        public By connectionsCountTxt = By.id("profileConnectionMoreConnectionsCountTxt");
         public By viewAllConnectionsBtn = By.id("profileConnectionMoreConnectionsBtn");
 
         /**
@@ -928,7 +927,6 @@ public class Locators {
         public By findInvitationConnectBtnByIndex(String index) {
             return By.id("invitationsBlockConnectBtn" + index);
         }
-
 
         /* My Connections section */
         public By emptyConnectionsTitleTxt = By.id("myConnectionsEmptySearchTextTitle");
@@ -1565,6 +1563,84 @@ public class Locators {
     }
 
     public static class EmployerProfileEditJobsPageLocators {
+
+        public By employerProfileEditHiringAddNewJobBtn = By.id("addPosition");
+        public By employerProfileEditHiringLoadingIndicator = By.id("storeManagersLoaderIcon");
+        public By employerProfileEditHiringJobTypeInput = By.id("jobPostingAddJobTypeInput");
+
+        /**
+         * Locates an employer job type for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job type you wish to locate
+         * @return Returns a locator for the employer job type by index
+         */
+        public By findEmployerJobTypeByIndex(String index) {
+            return By.id("jobPostingAddJobTypeOption" + index);
+        }
+
+        public By employerProfileEditHiringCustomJobNameField = By.id("jobPostingAddname");
+        public By employerProfileEditHiringJobDescriptionField = By.id("jobPostingAddTxtAreadescription");
+        public By employerProfileEditHiringJobResponsibilitiesField = By.id("jobPostingAddTxtArearesponsibilities");
+        public By employerProfileEditHiringJobAgeRequirementChk = By.id("jobPostingAddChkageRequirementBox");
+
+        /**
+         * Locates a required skill by index
+         *
+         * @param index The index (Starting at 0) of the skill you wish to locate
+         * @return A locator for a skill at the given index
+         */
+        public By findSkillByIndex(String index) {
+            return By.id("jobPostingAddLabel" + index);
+        }
+
+        /**
+         * Locates a required skill's selected state by index
+         *
+         * @param index The index (Starting at 0) of the skill you wish to locate
+         * @return A locator for a skill's selected state at the given index
+         */
+        public By findSelectedSkillByIndex(String index) {
+            return By.cssSelector("div#jobPostingAddLabel" + index + ".skill.selected");
+        }
+
+        /**
+         * Locates a required certification by index
+         *
+         * @param index The index (Starting at 0) of the certification you wish to locate
+         * @return A locator for a certification at the given index
+         */
+        public By findCertificationByIndex(String index) {
+            return By.id("jobPostingAddChk" + index + "Box");
+        }
+
+        public By employerProfileEditHiringMinimumWageTxt = By.id("wageOption0");
+        public By employerProfileEditHiringMinimumWageSlider = By.cssSelector("div.handle-0");
+        public By employerProfileEditHiringMaximumWageTxt = By.id("wageOption1");
+        public By employerProfileEditHiringMaximumWageSlider = By.cssSelector("div.handle-1");
+        public By employerProfileEditHiringAvailabilityFTBtn = By.id("jobPostingAddFull-Time");
+        public By employerProfileEditHiringAvailabilityPTBtn = By.id("jobPostingAddPart-Time");
+        public By employerProfileEditHiringAvailabilitySeasonalBtn = By.id("jobPostingAddSeasonal");
+        public By employerProfileEditHiringAvailabilityAnythingBtn = By.id("jobPostingAddAnything");
+
+        public By employerProfileEditHiringShiftScheduleMorningsBtn = By.id("jobPostingAddCardMornings");
+        public By employerProfileEditHiringShiftScheduleMorningsSelectedBtn = By.cssSelector("div#jobPostingAddCardMornings.selected");
+
+        public By employerProfileEditHiringShiftScheduleAfternoonsBtn = By.id("jobPostingAddCardAfternoons");
+        public By employerProfileEditHiringShiftScheduleAfternoonsSelectedBtn = By.cssSelector("div#jobPostingAddCardAfternoons.selected");
+
+        public By employerProfileEditHiringShiftScheduleEveningsBtn = By.id("jobPostingAddCardEvenings");
+        public By employerProfileEditHiringShiftScheduleEveningsSelectedBtn = By.cssSelector("div#jobPostingAddCardEvenings.selected");
+
+        public By employerProfileEditHiringShiftScheduleNightsBtn = By.id("jobPostingAddCardNights");
+        public By employerProfileEditHiringShiftScheduleNightsSelectedBtn = By.cssSelector("div#jobPostingAddCardNights.selected");
+
+        public By employerProfileEditHiringSaveBtn = By.id("jobPostingAddSavePositionBtn");
+        public By employerProfileEditHiringCancelBtn = By.id("jobPostingAddCancelBtn");
+        public By employerProfileEditHiringDeleteBtn = By.id("jobPostingAddDeletePositionBtn");
+        public By employerProfileEditHiringDeleteConfirmBtn = By.id("removeBtn");
+        public By employerProfileEditHiringAddJobConfirmationToast = By.id("jobPostingAddToast");
+        public By employerProfileEditHiringAddJobConfirmationToastDismissBtn = By.id("jobPostingAddToastCloseIcon");
+
 
     }
 

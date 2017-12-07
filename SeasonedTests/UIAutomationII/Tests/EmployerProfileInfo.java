@@ -40,6 +40,8 @@ public class EmployerProfileInfo extends BaseTest {
     private String employerGuid;
     private Long employerId;
     private String employerDescription;
+    private Long employerTypeId;
+    private String employerTypeName;
     private String token;
 
     @BeforeMethod
@@ -80,10 +82,12 @@ public class EmployerProfileInfo extends BaseTest {
         employerDescription = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerDescription");
         employerGuid = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerGuid");
         employerId = (Long) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerId");
+        employerTypeId = (Long) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerTypeId");
+        employerTypeName = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerTypeName");
         token = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("token");
 
         SeasonedRestAPI api = new SeasonedRestAPI(token);
-        api.updateEmployerInfo(employerId, employerGuid, employerName, employerAddress, employerCity, employerCardState, employerZip, employerCountry, employerPhone, employerWebsite, employerDescription);
+        api.updateEmployerInfo(employerId, employerGuid, employerName, employerAddress, employerCity, employerCardState, employerZip, employerCountry, employerPhone, employerWebsite, employerDescription, employerTypeId, employerTypeName);
         System.out.println("Starting employer profile info test!");
     }
 
