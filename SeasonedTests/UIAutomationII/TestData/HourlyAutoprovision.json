@@ -1,0 +1,19 @@
+{
+  "testHSAutoProvision": {
+    "loginUsername":"1536882",
+    "loginPassword":"9893609",
+    "firstName":"Auto",
+    "lastName":"Provision",
+    "password":"12348765",
+    "hsUserId":"9876543210",
+    "termsAccepted":true,
+    "statusActive":"",
+    "statusTerminated":"terminated",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
+    "ProcessSQSQueueTask":"25362cee-66fd-5086-b6b9-b406835d1ecc",
+    "AutoRegisterUsersTask":"52642fa2-5930-5ee8-aefb-af9227f97e1b",
+    "employer":"Fuhgettaboudit",
+    "supportUsername":"supportKyle",
+    "supportPassword":"dabirdz"
+  }
+}

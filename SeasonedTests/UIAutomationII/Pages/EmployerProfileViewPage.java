@@ -1,4 +1,5 @@
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -149,7 +150,7 @@ public class EmployerProfileViewPage extends BasePage {
      * @return Whether or not the Store Management section header is displayed
     */
     public Boolean isManagementHeaderDisplayed(){
-        return elementExists(profilePageLocators.employerAboutTitleTxt);
+        return elementExists(profilePageLocators.employerManagementTitleTxt);
     }
 
     /**
@@ -317,8 +318,9 @@ public class EmployerProfileViewPage extends BasePage {
                 wait.until(invisibilityOfElementLocated(profilePageLocators.employerProfileLoadingIndicator));
             }
         } catch (NoSuchElementException e) {
-            System.out.println("Loading indicator not displayed..." + "\n");
-            e.printStackTrace();
+            System.out.println("***\n" + "Loading indicator not displayed due to NoSuchElementException..." + "\n***");
+        } catch (StaleElementReferenceException se) {
+            System.out.println("***\n" +"Loading indicator not displayed due to StaleElementReferenceException..." + "\n***");
         }
     }
 }

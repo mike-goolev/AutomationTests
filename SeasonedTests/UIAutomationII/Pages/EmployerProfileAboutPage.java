@@ -1,10 +1,11 @@
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class EmployerProfileAboutPage extends BasePage {
 
     Locators.EmployerProfileEditAboutPageLocators employerProfileEditAboutPageLocators;
-
     public EmployerProfileAboutPage(WebDriver driver) {
         super(driver);
         employerProfileEditAboutPageLocators = new Locators.EmployerProfileEditAboutPageLocators();
@@ -63,6 +64,7 @@ public class EmployerProfileAboutPage extends BasePage {
      */
     public void selectSaveBtn(){
         driver.findElement(employerProfileEditAboutPageLocators.employerProfileEditAboutSaveBtn).click();
+        wait.until(presenceOfElementLocated(employerProfileEditAboutPageLocators.employerProfileEditAboutSuccessToast));
     }
 
     /**
@@ -71,7 +73,7 @@ public class EmployerProfileAboutPage extends BasePage {
      */
     public boolean verifyEmployerAboutSuccessToast(){
         wait.until(visibilityOfElementLocated(employerProfileEditAboutPageLocators.employerProfileEditAboutSuccessToast));
-        return elementExists(employerProfileEditAboutPageLocators.employerProfileEditAboutSuccessToast);
+        return driver.findElement(employerProfileEditAboutPageLocators.employerProfileEditAboutSuccessToast).isDisplayed();
     }
 
     /**
@@ -90,5 +92,20 @@ public class EmployerProfileAboutPage extends BasePage {
     public boolean isEmployerAboutTooltipDisplayed() {
         return elementExists(employerProfileEditAboutPageLocators.employerProfileEditAboutTooltipTitle) &&
         elementExists(employerProfileEditAboutPageLocators.employerProfileEditAboutTooltipTxt);
+    }
+
+    /**
+     * Waits for the loading indicator on the view profile page
+     */
+    public void waitForLoader() {
+        try {
+            if (driver.findElement(employerProfileEditAboutPageLocators.employerProfileEditAboutSaveSpinner).isDisplayed()) {
+                wait.until(invisibilityOfElementLocated(employerProfileEditAboutPageLocators.employerProfileEditAboutSaveSpinner));
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("***\n" + "Loader not displayed due to NoSuchElementException..." + "\n***");
+        } catch (StaleElementReferenceException se) {
+            System.out.println("***\n" +"Loader not displayed due to StaleElementReferenceException..." + "\n***");
+        }
     }
 }

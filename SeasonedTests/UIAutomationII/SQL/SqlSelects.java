@@ -40,13 +40,10 @@ public class SqlSelects {
                 System.out.println("SQS Message:\n" + TestUtils.toPrettyFormat(sqsMessage));
                 }
         } catch (SQLException e) {
-            System.out.println("Query failed:\n" + sql);
-            e.printStackTrace();
+            System.out.println("Query failed with SQLException:\n" + sql);
         } catch (NullPointerException npe) {
-            System.out.println("Query failed:\n" + sql);
-            npe.printStackTrace();
+            System.out.println("Query failed with NullPointerException:\n" + sql);
         }
-
         return sqsMessage;
     }
 
@@ -96,11 +93,9 @@ public class SqlSelects {
                 System.out.println("Email: " + emailField);
             }
         } catch (SQLException e){
-            System.out.println("Query failed:\n" + sql);
-            e.printStackTrace();
+            System.out.println("Query failed with SQLException:\n" + sql);
         } catch (NullPointerException npe) {
-            System.out.println("Query failed:\n" + sql);
-            npe.printStackTrace();
+            System.out.println("Query failed with NullPointerException:\n" + sql);
         }
         return emailField;
     }
@@ -291,5 +286,36 @@ public class SqlSelects {
             e.printStackTrace();
         }
         return guids;
+    }
+
+    /**
+     * Get employer staff members
+     *
+     * @param employerGuid The guid of the employer
+     * @return List of the employer staff members
+     */
+    public List<String> getEmployerStaffMembers(String employerGuid) throws SQLException, NullPointerException {
+        List<String> staffGuids = new ArrayList<>();
+        sql = "SELECT guid "
+                + "from bf_employer_staff_member "
+                + "where employer_guid = ?";
+        try {
+            connection = dbManager.getConnection();
+            pstmt = dbManager.prepareStatement(connection, sql, ps -> ps.setString(1, employerGuid));
+            {
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    staffGuids.add(rs.getString("guid"));
+                    System.out.println("Staff guids: " + staffGuids);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Query failed due to SQLException...\n" + sql);
+            e.printStackTrace();
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed due to NullPointerException...\n" + sql);
+            npe.printStackTrace();
+        }
+        return staffGuids;
     }
 }

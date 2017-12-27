@@ -16,6 +16,7 @@ public class HourlyMyHome extends BaseTest {
     private String url;
     private String siteName;
     private String imageUrl;
+    private String imageUrlGif;
     private String title;
     private String description;
     private ArrayList labels;
@@ -33,6 +34,7 @@ public class HourlyMyHome extends BaseTest {
 
     @BeforeClass
     public void initializeTestDataAndCreateArticle() {
+        System.out.println("Initializing hourly content feed test test...");
         driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
@@ -46,6 +48,7 @@ public class HourlyMyHome extends BaseTest {
         url = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("url");
         siteName = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("siteName");
         imageUrl = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("imageUrl");
+        imageUrlGif = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("imageUrlGif");
         title = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("title");
         description = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("description");
         publisherId = (String) TestDataImporter.get("HourlyMyHome", "testHourlyHomeContentFeed").get("publisherId");
@@ -60,20 +63,12 @@ public class HourlyMyHome extends BaseTest {
 
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         articleGuid = seasonedRestAPI.postArticle(url, siteName, imageUrl, title, description, labels);
-        seasonedRestAPI.updateArticlePublishedStatus(articleGuid, url, siteName, imageUrl, title, description, publishedDate, createdDate, updatedDate, publisherId, labels);
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
-        hourlyLoginPage = new HourlyLoginPage(driver);
-        hourlyContentFeedPage = new HourlyContentFeedPage(driver);
+        seasonedRestAPI.updateArticlePublishedStatus(articleGuid, url, siteName, imageUrlGif, title, description, publishedDate, createdDate, updatedDate, publisherId, labels);
+        System.out.println("Starting hourly content feed test!");
     }
 
     @Test
     public void testHourlyMyHomeContentFeed() throws Exception {
-        System.out.println("Starting hourly content feed test!");
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
@@ -85,9 +80,8 @@ public class HourlyMyHome extends BaseTest {
         navPage.navigateToMyHomePage();
 
         /* Verify My Home header */
-        Assert.assertEquals(hourlyContentFeedPage.getMyHomeHeader(), "Hi " + firstName + ", we have some articles that we think you may like.");
-        // Explicit wait for certs to load and display until we have loading indicators
-        Thread.sleep(10000);
+        Assert.assertEquals(hourlyContentFeedPage.getMyHomeHeader(), "Hi " + firstName + ", Can we get you started with some news?");
+        hourlyContentFeedPage.waitForLoadingIndicator();
 
         /* Verify article attributes */
         Assert.assertTrue(hourlyContentFeedPage.isArticleImageDisplayed(articleIndex), "Article image should be displayed");
@@ -121,16 +115,12 @@ public class HourlyMyHome extends BaseTest {
         testUtils.switchToParentWindow(parentWindow);
     }
 
-    @AfterMethod
-    public void tearDown() {
-        System.out.println("Logging out and shutting down selenium for the hourly My Home test");
-        navPage.attemptLogout();
-        driver.quit();
-    }
-
     @AfterClass
     public void deleteArticle() {
+        System.out.println("Logging out and shutting down selenium for the hourly content feed test");
+        navPage.attemptLogout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteArticle(articleGuid);
+        driver.quit();
     }
 }

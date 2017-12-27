@@ -6,21 +6,30 @@ public class SQS {
     @SerializedName("email")
     @Expose
     private String email;
+
     @SerializedName("password")
     @Expose
     private String password;
+
     @SerializedName("firstName")
     @Expose
     private String firstName;
+
     @SerializedName("lastName")
     @Expose
     private String lastName;
+
     @SerializedName("hsUserId")
     @Expose
     private String hsUserId;
+
     @SerializedName("termsAccepted")
     @Expose
     private Boolean termsAccepted;
+
+    @SerializedName("status")
+    @Expose
+    private String status;
 
     public String getEmail() {
         return email;
@@ -68,5 +77,13 @@ public class SQS {
 
     public void setTermsAccepted(Boolean termsAccepted) {
         this.termsAccepted = termsAccepted;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

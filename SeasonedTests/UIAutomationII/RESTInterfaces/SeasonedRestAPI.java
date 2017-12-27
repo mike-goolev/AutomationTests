@@ -639,6 +639,23 @@ public class SeasonedRestAPI {
     }
 
     /**
+     * Delete a staff member
+     *
+     * @param employerGuid The employer's guid
+     * @param staffGuid The staff member's guid
+     */
+    public void deleteStaffMember(String employerGuid, String staffGuid) {
+        try {
+            /* Make a DELETE request to employer */
+            Call<Employer> call = seasonedAPI.deleteStaffMember(employerGuid, staffGuid, accessToken);
+            Response<Employer> response = call.execute();
+            System.out.println("Delete request to /employer/" + employerGuid + "/staff/" + staffGuid + " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("Delete request to /employer/" + employerGuid + "/staff/" + staffGuid + " failed with error " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
      * Create a new article
      *
      * @param url         The url of the article
@@ -742,8 +759,9 @@ public class SeasonedRestAPI {
      * @param lastName      The user's last name
      * @param hsUserId      The HotSchedules user id
      * @param termsAccepted The description of the article
+     * @param status        The user's status
      */
-    public void postSendUserToSqs(String email, String password, String firstName, String lastName, String hsUserId, Boolean termsAccepted) {
+    public void postSendUserToSqs(String email, String password, String firstName, String lastName, String hsUserId, Boolean termsAccepted, String status) {
         /* Construct SQS User Request Body */
         try {
             SQS sqs = new SQS();
@@ -754,6 +772,7 @@ public class SeasonedRestAPI {
             sqs.setLastName(lastName);
             sqs.setHsUserId(hsUserId);
             sqs.setTermsAccepted(termsAccepted);
+            sqs.setStatus(status);
 
             /* Make a POST request to test/sqs/user */
             Call<SQS> call = seasonedAPI.sendHSUserToSqs(accessToken, sqs);

@@ -46,9 +46,18 @@ public class EmployerProfileEditPage extends BasePage {
     }
 
     /**
+     * Selects the Management link from the side menu on the edit profile page
+     */
+    public void selectMenuManagementLink() {
+        wait.until(elementToBeClickable(employerProfileEditPageLocators.employerProfileEditStaffBtn));
+        driver.findElement(employerProfileEditPageLocators.employerProfileEditStaffBtn).click();
+    }
+
+    /**
      * Selects the View Profile link from the side menu on the edit profile page
      */
     public void selectMenuViewProfileLink() {
+        wait.until(elementToBeClickable(employerProfileEditPageLocators.employerProfileEditViewProfileBtn));
         driver.findElement(employerProfileEditPageLocators.employerProfileEditViewProfileBtn).click();
         employerProfileViewPage.waitForLoadingIndicator();
     }

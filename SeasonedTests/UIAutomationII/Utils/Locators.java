@@ -312,6 +312,7 @@ public class Locators {
         public By nextSuggestedConnectionImg = By.id("nextSuggestedConnectionImg");
         public By previousSuggestedConnectionBtn = By.id("previousSuggestedConnectionBtn");
         public By previousSuggestedConnectionImg = By.id("previousSuggestedConnectionImg");
+        public By articleLoadingIndicator = By.cssSelector("button#myHomeLoadMore>div.button-content.loading");
     }
 
     public static class JobSearchPageLocators {
@@ -1161,7 +1162,8 @@ public class Locators {
         public By checkEmailBtn = By.cssSelector("button.btn.btn-dark");
         public By emailSubjectLink = By.cssSelector("ul#inboxpane>li>div>div:nth-of-type(4)");
         public By iFrame = By.id("msg_body");
-        public By activationActionLink = By.cssSelector("div.float-center>a");
+        //public By activationActionLink = By.cssSelector("div.float-center>a");
+        public By activationActionLink = By.cssSelector("table:nth-of-type(2)>tbody>tr>td>a");
     }
 
     public static class AutoProvisionSignUpLocators {
@@ -1365,7 +1367,7 @@ public class Locators {
          * @return Returns a locator for the employer manager photo by index
          */
         public By findEmployerManagerPhotoByIndex(String index) {
-            return By.id("StoreMember" + index + "Avatar");
+            return By.id("storeMember" + index + "Avatar");
         }
 
         /**
@@ -1398,7 +1400,7 @@ public class Locators {
             return By.id("storeMember" + index + "DescriptionText" + index);
         }
 
-        public By employerJobTitleTxt = By.id("");
+        public By employerJobTitleTxt = By.id("jobsTitleLabel");
 
         /**
          * Locates an employer job position for a given index
@@ -1560,6 +1562,7 @@ public class Locators {
         public By employerProfileEditAboutSuccessToastDismissBtn = By.id("editStoreAboutSuccessToastCloseBtn");
         public By employerProfileEditAboutTooltipTitle = By.id("storeAboutTitleTooltip");
         public By employerProfileEditAboutTooltipTxt = By.id("storeAboutDescriptionTooltip");
+        public By employerProfileEditAboutSaveSpinner = By.id("editStoreAboutAddButtonLoader");
     }
 
     public static class EmployerProfileEditJobsPageLocators {
@@ -1621,27 +1624,115 @@ public class Locators {
         public By employerProfileEditHiringAvailabilityPTBtn = By.id("jobPostingAddPart-Time");
         public By employerProfileEditHiringAvailabilitySeasonalBtn = By.id("jobPostingAddSeasonal");
         public By employerProfileEditHiringAvailabilityAnythingBtn = By.id("jobPostingAddAnything");
-
         public By employerProfileEditHiringShiftScheduleMorningsBtn = By.id("jobPostingAddCardMornings");
         public By employerProfileEditHiringShiftScheduleMorningsSelectedBtn = By.cssSelector("div#jobPostingAddCardMornings.selected");
-
         public By employerProfileEditHiringShiftScheduleAfternoonsBtn = By.id("jobPostingAddCardAfternoons");
         public By employerProfileEditHiringShiftScheduleAfternoonsSelectedBtn = By.cssSelector("div#jobPostingAddCardAfternoons.selected");
-
         public By employerProfileEditHiringShiftScheduleEveningsBtn = By.id("jobPostingAddCardEvenings");
         public By employerProfileEditHiringShiftScheduleEveningsSelectedBtn = By.cssSelector("div#jobPostingAddCardEvenings.selected");
-
         public By employerProfileEditHiringShiftScheduleNightsBtn = By.id("jobPostingAddCardNights");
         public By employerProfileEditHiringShiftScheduleNightsSelectedBtn = By.cssSelector("div#jobPostingAddCardNights.selected");
-
         public By employerProfileEditHiringSaveBtn = By.id("jobPostingAddSavePositionBtn");
         public By employerProfileEditHiringCancelBtn = By.id("jobPostingAddCancelBtn");
         public By employerProfileEditHiringDeleteBtn = By.id("jobPostingAddDeletePositionBtn");
         public By employerProfileEditHiringDeleteConfirmBtn = By.id("removeBtn");
         public By employerProfileEditHiringAddJobConfirmationToast = By.id("jobPostingAddToast");
         public By employerProfileEditHiringAddJobConfirmationToastDismissBtn = By.id("jobPostingAddToastCloseIcon");
+    }
 
+    public static class EmployerProfileStaffPageLocators {
+        public By employerProfileEditStaffListLabelTxt = By.id("storeManagersLabelTxt");
 
+        /**
+         * Locates a staff avatar for a given index
+         *
+         * @param index The index (Starting at 0) of the staff avatar you wish to locate
+         * @return Returns a locator for the staff avatar by index
+         */
+        public By findStaffAvatarByIndex(String index) {
+            return By.id("managerListItem" + index + "OptionAvatar");
+        }
+
+        /**
+         * Locates a staff name for a given index
+         *
+         * @param index The index (Starting at 0) of the staff name you wish to locate
+         * @return Returns a locator for the staff name by index
+         */
+        public By findStaffNameByIndex(String index) {
+            return By.id("managerListItem" + index + "UserNameTxt");
+        }
+
+        /**
+         * Locates a staff added date for a given index
+         *
+         * @param index The index (Starting at 0) of the staff added date you wish to locate
+         * @return Returns a locator for the staff added date by index
+         */
+        public By findStaffAddedDateByIndex(String index) {
+            return By.id("managerListItem" + index + "SubTitleTxt");
+        }
+
+        /**
+         * Locates a staff edit button for a given index
+         *
+         * @param index The index (Starting at 0) of the staff edit button you wish to locate
+         * @return Returns a locator for the staff edit button by index
+         */
+        public By findStaffEditBtnByIndex(String index) {
+            return By.id("managerListItem" + index + "EditBtn");
+        }
+
+        public By employerProfileEditStaffAddNewStaffBtn = By.id("addManagerIcon");
+        public By employerProfileEditStaffAddNewStaffTxt = By.id("");
+        public By employerProfileEditStaffTooltipTitleTxt = By.id("manageStoreTitleTooltip");
+        public By employerProfileEditStaffTooltipTxt = By.id("manageStoreTitleTooltip");
+        public By employerProfileEditStaffMemberLabelTxt = By.id("editStoreMemberstoreMemberLabelTxt");
+        public By employerProfileEditStaffMemberAvatarImg = By.id("editStoreMemberListItemOptionAvatar");
+        public By employerProfileEditStaffMemberNameTxt = By.id("editStoreMemberListItemOptionAvatar");
+        public By employerProfileEditStaffMemberAddedDateTxt = By.id("editStoreMemberListItemSubTitleTxt");
+        public By employerProfileEditStaffMemberDescriptionTxt = By.id("editStoreMemberDescriptionTextArea");
+        public By employerProfileEditStaffMemberDisplayProfileChk = By.id("editStoreMemberCheckboxBox");
+        public By employerProfileEditStaffMemberTooltipTitleTxt = By.id("manageStoreEditTitleTooltip");
+        public By employerProfileEditStaffMemberTooltipTxt = By.id("manageStoreEditDescriptionTooltip");
+        public By employerProfileEditStaffMemberRemoveConfirmationTitleTxt = By.id("editStoreMemberTitle");
+        public By employerProfileEditStaffMemberRemoveConfirmationTxt = By.id("editStoreMemberText");
+        public By employerProfileEditStaffMemberRemoveConfirmationRemoveBtn = By.id("removeStoreMemberBtn");
+        public By employerProfileEditStaffMemberRemoveConfirmationCancelBtn = By.id("cancelRemoveStoreMemberBtn");
+        public By getEmployerProfileEditStaffMemberRemoveSuccessToast = By.id("editStoreMemberToast");
+        public By getEmployerProfileEditStaffMemberRemoveSuccessToastCloseBtn = By.id("editStoreMemberToastCloseBtn");
+        public By employerProfileEditStaffInviteStaffLabelTxt = By.id("inviteStoreManagerLabelTxt");
+        public By employerProfileEditStaffInviteStaffSearchField = By.id("inviteStoreManagerSearchUsersDropdownInput");
+
+        /**
+         * Locates a selected staff member to add for a given index
+         *
+         * @param index The index (Starting at 0) of the staff member to be added that you wish to locate
+         * @return Returns a locator for the staff member to be added by index
+         */
+        public By findInviteStaffSelectionByIndex(String index) {
+            return By.id("inviteStoreManagerSearchUsersDropdownValue" + index + "Label" + index);
+        }
+
+        /**
+         * Locates a staff member search result to add for a given index
+         *
+         * @param index The index (Starting at 1) of the staff member search result that you wish to locate
+         * @return Returns a locator for the staff member search result by index
+         */
+        public By findInviteStaffSearchResultByIndex(Integer index) {
+            return By.cssSelector("div.select-advanced-dropdown-options-wrapper>div:nth-child" + "(" + index + ")>div#undefinedOptionAvatar");
+        }
+
+        public By employerProfileEditStaffInviteStaffAddBtn = By.id("inviteStoreManagersaveButton");
+        public By employerProfileEditStaffInviteStaffSaveBtn = By.id("editStoreMemberAddButton");
+
+        public By employerProfileEditStaffInviteStaffRemoveBtn = By.id("editStoreMemberremoveButton");
+        public By employerProfileEditStaffInviteStaffAddedConfirmationTitleTxt = By.id("");
+        public By employerProfileEditStaffInviteStaffAddedConfirmationTxt = By.id("editprofileManagementLink");
+        public By employerProfileEditStaffInviteStaffAddedConfirmationBtn = By.id("inviteStoreManagerDoneButton");
+        public By employerProfileEditStaffInviteStaffSaveBtnLoader = By.id("inviteStoreManagersaveButtonLoader");
+        public By employerProfileEditStaffLoader = By.id("storeManagersLoaderIcon");
     }
 
     public static class EmployerProfileEditPageLocators {
@@ -1649,7 +1740,9 @@ public class Locators {
         public By employerProfileEditPhotosBtn = By.id("editprofilePhotosLink");
         public By employerProfileEditAboutBtn = By.id("editprofileAboutMyStoreLink");
         public By employerProfileEditJobsBtn = By.id("editprofileHiringLink");
+        public By employerProfileEditStaffBtn = By.id("editprofileManagementLink");
         public By employerProfileEditViewProfileBtn = By.id("editprofileViewProfileLink");
-
+//        public By employerProfileEditPageLoader = By.cssSelector("div.spinner.active");
+        public By employerProfileEditPageLoader = By.id("storeManagersLoaderIcon");
     }
 }

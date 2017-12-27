@@ -14,6 +14,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Gets the My Home header text
+     *
      * @return The My Home header text
      */
     public String getMyHomeHeader() {
@@ -22,9 +23,10 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Clicks the article to view in a new tab/window
+     *
      * @param index The index of the article to select
      */
-    public void viewArticle(String index) throws Exception{
+    public void viewArticle(String index) throws Exception {
         wait.until(elementToBeClickable(contentPageLocators.artcleTitleTxtByIndex(index)));
         driver.findElement(contentPageLocators.artcleTitleTxtByIndex(index)).click();
         //Waiting for article to be opened in a new tab
@@ -33,6 +35,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Verifies that the article's image is displayed
+     *
      * @param index The index (Starting at 0) of the article image you wish to locate
      * @return Whether or not the article's image is displayed
      */
@@ -42,6 +45,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Gets the article's title
+     *
      * @param index The index (Starting at 0) of the article title you wish to locate
      * @return The article's title
      */
@@ -51,6 +55,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Gets the article's site name
+     *
      * @param index The index (Starting at 0) of the article site name you wish to locate
      * @return The article's site name
      */
@@ -60,6 +65,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Verifies that the article's publisher image is displayed
+     *
      * @param index The index (Starting at 0) of the article publisher image you wish to locate
      * @return Whether or not the article's publisher image is displayed
      */
@@ -69,6 +75,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Gets the article's publisher name
+     *
      * @param index The index (Starting at 0) of the article publisher name you wish to locate
      * @return The article's publisher name
      */
@@ -78,6 +85,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Gets the article's published date
+     *
      * @param index The index (Starting at 0) of the article published date you wish to locate
      * @return The article's published date
      */
@@ -87,6 +95,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Verifies that the article's like button is displayed
+     *
      * @param index The index (Starting at 0) of the article like button you wish to locate
      * @return Whether or not the article's like button is displayed
      */
@@ -96,9 +105,10 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Clicks an article's like button
+     *
      * @param index The index of the article like button to select
      */
-    public void clickArticleLikeButton(String index){
+    public void clickArticleLikeButton(String index) {
         wait.until(elementToBeClickable(contentPageLocators.articleLikeBtnByIndex(index)));
         driver.findElement(contentPageLocators.articleLikeBtnByIndex(index)).click();
     }
@@ -106,6 +116,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Gets the article's like count
+     *
      * @param index The index (Starting at 0) of the article like count you wish to locate
      * @return The article's like count
      */
@@ -115,6 +126,7 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Verifies that the trending article header is displayed
+     *
      * @return Whether or not the trending article title is displayed
      */
     public boolean isTrendingArticleHeaderDisplayed() {
@@ -123,10 +135,20 @@ public class HourlyContentFeedPage extends BasePage {
 
     /**
      * Verifies that the trending article's image is displayed
+     *
      * @param index The index (Starting at 0) of the trending article image you wish to locate
      * @return Whether or not the trending article's image is displayed
      */
     public boolean isTrendingArticleImageDisplayed(String index) {
         return elementExists(contentPageLocators.articlePublisherImgByIndex(index));
+    }
+
+    /**
+     * Waits for the loading indicator
+     */
+    public void waitForLoadingIndicator() {
+        if (driver.findElement(contentPageLocators.articleLoadingIndicator).isDisplayed()) {
+            wait.until(invisibilityOfElementLocated(contentPageLocators.articleLoadingIndicator));
+            }
     }
 }
