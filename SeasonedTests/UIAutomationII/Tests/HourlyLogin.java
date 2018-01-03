@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 public class HourlyLogin extends BaseTest {
@@ -116,7 +117,11 @@ public class HourlyLogin extends BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the Hourly Login test");
         navPage.attemptLogout();
         driver.quit();

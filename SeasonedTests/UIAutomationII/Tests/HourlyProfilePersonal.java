@@ -1,5 +1,7 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -202,8 +204,12 @@ public class HourlyProfilePersonal extends BaseTest {
         Assert.assertEquals(hourlyProfileViewPage.getFirstAndLastName(), originalFirstName + ' ' + originalLastName);
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the personal info test");
         navPage.attemptLogout();
         driver.quit();

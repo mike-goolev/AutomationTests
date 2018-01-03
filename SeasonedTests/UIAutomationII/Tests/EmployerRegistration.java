@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import java.util.List;
 import java.sql.SQLException;
@@ -55,7 +56,7 @@ public class EmployerRegistration extends BaseTest {
         storeTypeTitle = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("storeTypeTitle");
         token = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("token");
         employerGuid = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("employerGuid");
-        photoFilePath = TestConfig.getWorkingDir() + "TestData/" + photoName;
+        photoFilePath = TestConfig.getWorkingDir() + "/" + photoName;
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.unclaimEmployer(employerGuid);
         seasonedRestAPI.deleteEmployerLogo(employerGuid);
@@ -121,7 +122,11 @@ public class EmployerRegistration extends BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the Employer Registration test");
         navPage.attemptLogout();
         driver.quit();

@@ -2,8 +2,23 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.OutputType;
+
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.sql.SQLException;
+
 
 public class EmployerProfileAbout extends BaseTest {
 
@@ -13,6 +28,7 @@ public class EmployerProfileAbout extends BaseTest {
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfileAboutPage employerProfileAboutPage;
     private EmployerProfileEditPage employerProfileEditPage;
+
 
     private String email;
     private String password;
@@ -43,6 +59,7 @@ public class EmployerProfileAbout extends BaseTest {
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         loginPage = new HourlyLoginPage(driver);
         navPage = new NavPage(driver);
+
 
         email = (String) TestDataImporter.get("EmployerProfileAbout", "EmployerProfileAbout").get("email");
         password = (String) TestDataImporter.get("EmployerProfileAbout", "EmployerProfileAbout").get("password");
@@ -120,9 +137,15 @@ public class EmployerProfileAbout extends BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the Employer Profile About test");
         navPage.attemptLogout();
         driver.quit();
     }
+
+
 }

@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.sql.SQLException;
@@ -278,7 +279,11 @@ public class HourlyJobSearch extends BaseTest {
     }
 
     @AfterMethod
-    public void methodTearDown() {
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the hourly job search test");
         navPage.attemptLogout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);

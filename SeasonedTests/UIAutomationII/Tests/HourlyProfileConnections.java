@@ -1,5 +1,7 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -87,8 +89,12 @@ public class HourlyProfileConnections extends BaseTest {
         Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionJob(connectionIndex), connectionJob);
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the hourly profile connections test");
         navPage.attemptLogout();
         driver.quit();

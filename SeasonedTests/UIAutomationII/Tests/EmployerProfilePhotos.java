@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -42,7 +43,7 @@ public class EmployerProfilePhotos extends BaseTest {
         password = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("password");
         photoName = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("photoName");
         employerGuid = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("employerGuid");
-        photoFilePath = TestConfig.getWorkingDir() + "TestData/" + photoName;
+        photoFilePath = TestConfig.getWorkingDir() + "/" + photoName;
         photoIndex = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("photoIndex");
         token = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("token");
 
@@ -118,7 +119,11 @@ public class EmployerProfilePhotos extends BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the employer profile photos test");
         navPage.attemptLogout();
         driver.quit();

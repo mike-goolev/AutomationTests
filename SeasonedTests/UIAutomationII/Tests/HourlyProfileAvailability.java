@@ -1,5 +1,7 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -119,8 +121,12 @@ public class HourlyProfileAvailability extends BaseTest {
         Assert.assertFalse(hourlyProfileViewPage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting selenium down for Availability test.");
         navPage.attemptLogout();
         driver.quit();

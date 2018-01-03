@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.util.ArrayList;
@@ -113,6 +114,17 @@ public class HourlyMyHome extends BaseTest {
 
         /* Switch back to content page */
         testUtils.switchToParentWindow(parentWindow);
+    }
+
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
+        System.out.println("Logging out and shutting down selenium for the hourly My Home test");
+        navPage.attemptLogout();
+        driver.quit();
     }
 
     @AfterClass

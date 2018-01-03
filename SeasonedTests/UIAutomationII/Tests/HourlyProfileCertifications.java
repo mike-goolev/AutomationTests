@@ -1,5 +1,7 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -96,8 +98,12 @@ public class HourlyProfileCertifications extends BaseTest {
         Assert.assertTrue(hourlyProfileViewPage.verifyNoCertifications(), "No certs should be selected");
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        screenshot = new Screenshot(driver);
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the certifications test");
         navPage.attemptLogout();
         driver.quit();
