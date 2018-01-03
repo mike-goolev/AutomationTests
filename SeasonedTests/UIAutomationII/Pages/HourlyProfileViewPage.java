@@ -6,12 +6,14 @@ public class HourlyProfileViewPage extends BasePage {
     Locators.ProfilePageLocators profilePageLocators;
     HourlyProfileSkillsPage hourlyProfileSkillsPage;
     Locators.WorkHistoryPageLocators workHistoryPageLocators;
+    Locators.EducationPageLocators educationPageLocators;
 
     public HourlyProfileViewPage(WebDriver driver) {
         super(driver);
         profilePageLocators = new Locators.ProfilePageLocators();
         hourlyProfileSkillsPage = new HourlyProfileSkillsPage(driver);
         workHistoryPageLocators = new Locators.WorkHistoryPageLocators();
+        educationPageLocators = new Locators.EducationPageLocators();
     }
 
     /*--------- Personal Info ----------*/
@@ -159,9 +161,9 @@ public class HourlyProfileViewPage extends BasePage {
     /*--------- Certifications ----------*/
 
     /**
-    * Checks to see if the Certifications header is displayed
+     * Checks to see if the Certifications header is displayed
      * @return Whether or not the certifications title is displayed
-    */
+     */
     public Boolean isCertificationsHeaderDisplayed(){
         return elementExists(profilePageLocators.certsTitleTxt);
     }
@@ -351,6 +353,52 @@ public class HourlyProfileViewPage extends BasePage {
         return driver.findElement(profilePageLocators.aboutTxtField).getText();
     }
 
+    /*---------- Education -----------*/
+
+    /**
+     * Clicks the add education button when a user has no education specified
+     */
+    public void clickAddEducationButton() {
+        wait.until(elementToBeClickable(profilePageLocators.educationAddBtn));
+        driver.findElement(profilePageLocators.educationAddBtn).click();
+    }
+
+    /**
+     * Clicks the edit education button when a user has education specified
+     */
+    public void clickEditEducationButton() {
+        wait.until(elementToBeClickable(profilePageLocators.educationEditBtn));
+        driver.findElement(profilePageLocators.educationEditBtn).click();
+    }
+
+    /**
+     * Verifies that the school at a given index is displayed
+     * @param index The index of the education
+     * @return Whether or not the school is displayed at the index
+     */
+    public boolean verifyProfileEducationSchoolAtIndex(String index) {
+        return elementExistsLongTimeout(educationPageLocators.viewEducationSchoolTxt(index));
+    }
+
+    /**
+     * Verifies that the degree at a given index is displayed
+     * @param index The index of the education
+     * @return Whether or not the degree is displayed at the index
+     */
+    public boolean verifyProfileEducationDegreeAtIndex(String index) {
+        return elementExists(educationPageLocators.viewEducationDegreeTxt(index));
+    }
+
+    /**
+     * Verifies that the year range is at a given index is displayed
+     * @param index The index of the year range
+     * @return Whether or not the year range is displayed at the index
+     */
+    public boolean verifyProfileEducationYearsAtIndex(String index) {
+        return elementExists(educationPageLocators.viewEducationYearTxt(index));
+    }
+
+
     /*---------- HourlyProfileSkills -----------*/
 
     /**
@@ -406,7 +454,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Verifies that the connections title text is displayed on the view profile page
-
      * @return Whether or not the connections title text is displayed
      */
     public boolean isConnectionsTitleTxtPresent() {
@@ -415,7 +462,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Get user's connections count
-
      * @return User's connections count
      */
     public String getConnectionsCount() {
@@ -425,7 +471,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Verifies that a connection's photo is at the given index
-
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return Whether or not a connection's photo is present at the given index
      */
@@ -435,7 +480,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Get a connection's name
-
      * @ param index The index of the connection
      * @return Connection's name
      */
@@ -445,7 +489,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Clicks a connection's view link at the given index
-
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickViewConnection(String index) {
@@ -457,7 +500,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Verifies that the suggested connections title text is displayed on the view profile page
-
      * @return Whether or not the suggested connections title text is displayed
      */
     public boolean isSuggestedConnectionsTitleTxtPresent() {
@@ -466,7 +508,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Verifies that the suggested connection's photo is at the given index
-
      * @return Whether or not the suggested connection's photo is present at the given index
      */
     public boolean isSuggestedConnectionsPhotoPresent() {
@@ -475,7 +516,6 @@ public class HourlyProfileViewPage extends BasePage {
 
     /**
      * Get a suggested connection's name
-
      * @return Suggested connection's name
      */
     public String getSuggestedConnectionsName() {

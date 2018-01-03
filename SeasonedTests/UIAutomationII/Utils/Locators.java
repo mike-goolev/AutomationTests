@@ -515,6 +515,10 @@ public class Locators {
         public By certsHACCPImg = By.id("profileCertificationHACCPCardListItemImg");
         public By certsHACCPTxt = By.id("certificationsCardListItemHACCPText");
 
+        /* Education Section */
+        public By educationAddBtn = By.id("viewProfileEducationeditBtn");
+        public By educationEditBtn = By.id("/viewProfileEducationEditLink");
+
         /* Skills Section */
         public By skillsTitleTxt = By.id("viewProfileSkillTitle");
         public By skillsEmptyTxt = By.id("viewProfileSkillProfileEmptyText");
@@ -598,6 +602,7 @@ public class Locators {
         public By editProfileWorkAvailabilityLink = By.id("editProfileAvailabilityLink");
         public By editProfileSkillsLink = By.id("editProfileSkillsLink");
         public By editProfileCertificationsLink = By.id("editProfileCertificationsLink");
+        public By editProfileEducationLink = By.id("editProfileEducationLink");
         public By editProfileAboutLink = By.id("editProfileAboutLink");
         public By editProfileViewProfileLink = By.id("editProfileViewProfileLink");
     }
@@ -807,6 +812,59 @@ public class Locators {
         public By certsTooltip = By.id("tooltip");
         public By certsTitleTooltip = By.id("certificationsTitleTooltip");
         public By certsTxtTooltip = By.id("certificationsDescriptionTooltip0");
+    }
+
+    public static class EducationPageLocators {
+        public By educationSchoolTxtField = By.id("addEducationSchoolInput");
+        public By educationDegreeTxtField = By.id("addEducationDegreeInput");
+        public By educationFromDateSelect = By.id("addEducationFromYearSelect");
+        public By educationToDateSelect = By.id("addEducationToYearSelect");
+        public By educationSaveBtn = By.id("addEducationSaveBtn");
+        public By educationCancelBtn = By.id("editEducationCancelBtn");
+        public By educationDeleteBtn = By.id("editEducationDeleteLink");
+        public By educationDeleteModalDeleteBtn = By.id("editEducationDeleteConfirmationBtn");
+        public By educationDeleteModalCancelBtn = By.id("editEducationCancelDeleteBtn");
+        public By educationEditAddBtn = By.id("viewEducationBtn");
+        public By educationSuccessToast = By.id("addEducationSuccessToast");
+        public By educationEditSuccessToast = By.id("editEducationSuccessToast");
+        public By educationSuccessToastCloseBtn = By.id("addEducationSuccessToastCloseBtn");
+        public By educationEditSuccessToastCloseBtn = By.id("editEducationSuccessToastCloseBtn");
+
+        /**
+         * Locates an edit education button by index
+         * @param index The index (Starting at 0) of the skill you wish to locate
+         * @return A locator for the edit education button at the given index
+         */
+        public By editEducationBtn(String index) {
+            return By.id("viewEducationEditBtn" + index);
+        }
+
+        /**
+         * Locates the school text at a given index on the view profile page
+         * @param index Index of the education list on the view profile page
+         * @return A locator for the school text
+         */
+        public By viewEducationSchoolTxt(String index) {
+            return By.id("viewProfileEducationInstitutionText" + index);
+        }
+
+        /**
+         * Locates the degree text at a given index on the view profile page
+         * @param index Index of the education list on the view profile page
+         * @return A locator for the degree text
+         */
+        public By viewEducationDegreeTxt(String index) {
+            return By.id("viewProfileEducationDegreeText" + index);
+        }
+
+        /**
+         * Locates the year text at a given index on the view profile page
+         * @param index Index of the education list on the view profile page
+         * @return A locator for the year text
+         */
+        public By viewEducationYearTxt(String index) {
+            return By.id("viewProfileEducationStudyingPeriodText" + index);
+        }
     }
 
     public static class SkillsPageLocators {

@@ -15,8 +15,8 @@ dependencies {
     testCompile 'com.squareup.retrofit2:converter-gson:2.2.0'
     testCompile 'com.squareup.okhttp3:okhttp:3.9.0'
     testCompile 'com.squareup.okio:okio:1.13.0'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.4.0'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.6.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.8.1'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.8.1'
     testCompile 'org.postgresql:postgresql:42.1.4'
 }
 
