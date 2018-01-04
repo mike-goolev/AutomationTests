@@ -23,6 +23,8 @@ dependencies {
 test {
     outputs.upToDateWhen { false }
     useTestNG()
+    reports.junitXml.destination = "testreports"
+    reports.html.destination = "testreports"
 }
 
 compileTestJava {
