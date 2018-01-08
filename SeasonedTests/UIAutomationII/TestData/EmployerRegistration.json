@@ -2,6 +2,7 @@
   "testEmployerSignUpByEmail": {
     "password": "12348765",
     "employerSignUpTitle":"Let's create your account",
+    "emailSignUpTitle":"Let's save your\ninformation by creating\nyour account",
     "locationTitle":"let's start by getting your store's location",
     "employerSearchTerm":"Bada Bing Arvada",
     "employerName":"Bada Bing Grill",

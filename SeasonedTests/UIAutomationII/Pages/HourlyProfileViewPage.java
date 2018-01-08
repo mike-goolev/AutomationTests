@@ -246,6 +246,78 @@ public class HourlyProfileViewPage extends BasePage {
                 !verifyHACCPCert();
     }
 
+    /*---------- Education -----------*/
+
+    /**
+     * Verifies that the education title is displayed
+     * @return Whether or not the education title is displayed
+     */
+    public boolean isEducationHeaderDisplayed() {
+        return elementExists(profilePageLocators.educationTitleTxt);
+    }
+
+    /**
+     * Gets the empty state text on the education card
+     * @return The empty state text on the education card
+     */
+    public String getEducationEmptyTxt() {
+        return driver.findElement(profilePageLocators.educationEmptyTxt).getText();
+    }
+
+    /**
+     * Clicks the add education button
+     */
+    public void clickAddEducation() {
+        wait.until(elementToBeClickable(profilePageLocators.educationAddBtn));
+        driver.findElement(profilePageLocators.educationAddBtn).click();
+    }
+
+    /**
+     * Clicks the edit education button
+     */
+    public void clickEditEducation() {
+        wait.until(elementToBeClickable(profilePageLocators.educationEditBtn));
+        driver.findElement(profilePageLocators.educationEditBtn).click();
+    }
+
+    /**
+     * Verifies that the education section on the view profile page is present
+     * @param index the index (starting at 0) of the education record you wish to locate
+     * @return Whether or not the education section is present on the view profile page
+     */
+    public boolean isEducationPresent(String index) {
+        return elementExists(profilePageLocators.findEducationSchoolByIndex(index)) &&
+                elementExists(profilePageLocators.findEducationDegreeByIndex(index)) &&
+                elementExists(profilePageLocators.findEducationDurationByIndex(index));
+    }
+
+    /**
+     * Gets the education school text on the view profile screen
+     * @param index the index (starting at 0) of the education school you wish to locate
+     * @return The education school for a given index
+     */
+    public String getEducationSchoolTxtByIndex(String index) {
+        return driver.findElement(profilePageLocators.findEducationSchoolByIndex(index)).getText();
+    }
+
+    /**
+     * Gets the education degree text on the view profile screen
+     * @param index the index (starting at 0) of the education degree you wish to locate
+     * @return The education degree for a given index
+     */
+    public String getEducationDegreeTxtByIndex(String index) {
+        return driver.findElement(profilePageLocators.findEducationDegreeByIndex(index)).getText();
+    }
+
+    /**
+     * Gets the education duration text on the view profile screen
+     * @param index the index (starting at 0) of the education duration you wish to locate
+     * @return The education duration for a given index
+     */
+    public String getEducationDurationTxtByIndex(String index) {
+        return driver.findElement(profilePageLocators.findEducationDurationByIndex(index)).getText();
+    }
+
     /*--------- Availability ----------*/
 
     /**
@@ -352,52 +424,6 @@ public class HourlyProfileViewPage extends BasePage {
     public String getAboutTxt() {
         return driver.findElement(profilePageLocators.aboutTxtField).getText();
     }
-
-    /*---------- Education -----------*/
-
-    /**
-     * Clicks the add education button when a user has no education specified
-     */
-    public void clickAddEducationButton() {
-        wait.until(elementToBeClickable(profilePageLocators.educationAddBtn));
-        driver.findElement(profilePageLocators.educationAddBtn).click();
-    }
-
-    /**
-     * Clicks the edit education button when a user has education specified
-     */
-    public void clickEditEducationButton() {
-        wait.until(elementToBeClickable(profilePageLocators.educationEditBtn));
-        driver.findElement(profilePageLocators.educationEditBtn).click();
-    }
-
-    /**
-     * Verifies that the school at a given index is displayed
-     * @param index The index of the education
-     * @return Whether or not the school is displayed at the index
-     */
-    public boolean verifyProfileEducationSchoolAtIndex(String index) {
-        return elementExistsLongTimeout(educationPageLocators.viewEducationSchoolTxt(index));
-    }
-
-    /**
-     * Verifies that the degree at a given index is displayed
-     * @param index The index of the education
-     * @return Whether or not the degree is displayed at the index
-     */
-    public boolean verifyProfileEducationDegreeAtIndex(String index) {
-        return elementExists(educationPageLocators.viewEducationDegreeTxt(index));
-    }
-
-    /**
-     * Verifies that the year range is at a given index is displayed
-     * @param index The index of the year range
-     * @return Whether or not the year range is displayed at the index
-     */
-    public boolean verifyProfileEducationYearsAtIndex(String index) {
-        return elementExists(educationPageLocators.viewEducationYearTxt(index));
-    }
-
 
     /*---------- HourlyProfileSkills -----------*/
 

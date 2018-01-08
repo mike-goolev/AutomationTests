@@ -190,7 +190,7 @@ public class HourlyProfileWorkHistory extends BaseTest {
     }
 
     @Test
-    public void testAddWorkHistoryFirstJob() throws Exception {
+    public void testAddWorkHistoryFirstJob() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

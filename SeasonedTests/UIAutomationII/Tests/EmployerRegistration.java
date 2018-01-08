@@ -11,6 +11,7 @@ public class EmployerRegistration extends BaseTest {
     private NavPage navPage;
     private HourlyRegistrationPage hourlyRegistrationPage;
     private EmployerRegistrationPage employerRegistrationPage;
+    private EmployerProfileViewPage employerProfileViewPage;
     private SqlSelects sqlSelect;
 
     private String firstName;
@@ -18,6 +19,7 @@ public class EmployerRegistration extends BaseTest {
     private String email;
     private String password;
     private String employerSignUpTitle;
+    private String emailSignUpTitle;
     private String locationTitle;
     private String employerSearchTerm;
     private String employerName;
@@ -39,6 +41,7 @@ public class EmployerRegistration extends BaseTest {
         hourlyRegistrationPage = new HourlyRegistrationPage(driver);
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
+        employerProfileViewPage = new EmployerProfileViewPage(driver);
         sqlSelect = new SqlSelects();
 
         firstName = ("ssAdminFirst" + testUtils.generateRandomUUID());
@@ -46,6 +49,7 @@ public class EmployerRegistration extends BaseTest {
         email = ("mgr" + testUtils.generateRandomUUID() + "@mailinator.com");
         password = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("password");
         employerSignUpTitle = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("employerSignUpTitle");
+        emailSignUpTitle = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("emailSignUpTitle");
         locationTitle = firstName + ", " + (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("locationTitle");
         employerSearchTerm = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("employerSearchTerm");
         employerName = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("employerName");
@@ -56,7 +60,7 @@ public class EmployerRegistration extends BaseTest {
         storeTypeTitle = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("storeTypeTitle");
         token = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("token");
         employerGuid = (String) TestDataImporter.get("EmployerRegistration", "testEmployerSignUpByEmail").get("employerGuid");
-        photoFilePath = TestConfig.getWorkingDir() + "/" + photoName;
+        photoFilePath = TestConfig.getWorkingDir() + "/" + "TestData" + "/" + photoName;
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.unclaimEmployer(employerGuid);
         seasonedRestAPI.deleteEmployerLogo(employerGuid);
@@ -67,7 +71,7 @@ public class EmployerRegistration extends BaseTest {
     }
 
     @Test
-    public void testEmployerSignUpByEmail() throws Exception {
+    public void testEmployerSignUpByEmail() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
@@ -84,7 +88,7 @@ public class EmployerRegistration extends BaseTest {
         employerRegistrationPage.signupEmail();
 
         /* Register new user */
-        employerRegistrationPage.getEmailSignupTitleTxt();
+        Assert.assertEquals(employerRegistrationPage.getEmailSignupTitleTxt(), emailSignUpTitle);
         employerRegistrationPage.registerEmail(firstName, lastName, email, password);
         employerRegistrationPage.selectSignUpEmailNextBtn();
 
@@ -114,11 +118,11 @@ public class EmployerRegistration extends BaseTest {
         employerRegistrationPage.selectStoreTypeByIndex("5");
         employerRegistrationPage.selectSignUpStoreTypeFinishBtn();
 
-        /* Verify store creation modal */
-        employerRegistrationPage.selectStoreCreatedViewProfileButton();
+        /* Verify manager lands on store profile view */
+        Assert.assertEquals(employerProfileViewPage.getEmployerProfileCreatedTxt(), firstName + ", you're 5 minutes away from having the perfect store!");
 
-        /* TO DO - Verify employer name on store profile view */
-
+        /* Verify employer name on store profile view */
+        Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
     }
 
     @AfterMethod

@@ -516,8 +516,40 @@ public class Locators {
         public By certsHACCPTxt = By.id("certificationsCardListItemHACCPText");
 
         /* Education Section */
+        public By educationTitleTxt = By.id("viewProfileEducationTitle");
+        public By educationEmptyTxt = By.id("viewProfileEducationProfileEmptyText");
         public By educationAddBtn = By.id("viewProfileEducationeditBtn");
         public By educationEditBtn = By.id("/viewProfileEducationEditLink");
+
+        /**
+         * Locates education school for a given index
+         *
+         * @param index The index (Starting at 0) of the education school you wish to locate
+         * @return Returns a locator for the education school by index
+         */
+        public By findEducationSchoolByIndex(String index) {
+            return By.id("viewProfileEducationInstitutionText" + index);
+        }
+
+        /**
+         * Locates education degree for a given index
+         *
+         * @param index The index (Starting at 0) of the education degree you wish to locate
+         * @return Returns a locator for the education degree by index
+         */
+        public By findEducationDegreeByIndex(String index) {
+            return By.id("viewProfileEducationDegreeText" + index);
+        }
+
+        /**
+         * Locates education duration for a given index
+         *
+         * @param index The index (Starting at 0) of the education duration you wish to locate
+         * @return Returns a locator for the education duration by index
+         */
+        public By findEducationDurationByIndex(String index) {
+            return By.id("viewProfileEducationStudyingPeriodText" + index);
+        }
 
         /* Skills Section */
         public By skillsTitleTxt = By.id("viewProfileSkillTitle");
@@ -814,59 +846,6 @@ public class Locators {
         public By certsTxtTooltip = By.id("certificationsDescriptionTooltip0");
     }
 
-    public static class EducationPageLocators {
-        public By educationSchoolTxtField = By.id("addEducationSchoolInput");
-        public By educationDegreeTxtField = By.id("addEducationDegreeInput");
-        public By educationFromDateSelect = By.id("addEducationFromYearSelect");
-        public By educationToDateSelect = By.id("addEducationToYearSelect");
-        public By educationSaveBtn = By.id("addEducationSaveBtn");
-        public By educationCancelBtn = By.id("editEducationCancelBtn");
-        public By educationDeleteBtn = By.id("editEducationDeleteLink");
-        public By educationDeleteModalDeleteBtn = By.id("editEducationDeleteConfirmationBtn");
-        public By educationDeleteModalCancelBtn = By.id("editEducationCancelDeleteBtn");
-        public By educationEditAddBtn = By.id("viewEducationBtn");
-        public By educationSuccessToast = By.id("addEducationSuccessToast");
-        public By educationEditSuccessToast = By.id("editEducationSuccessToast");
-        public By educationSuccessToastCloseBtn = By.id("addEducationSuccessToastCloseBtn");
-        public By educationEditSuccessToastCloseBtn = By.id("editEducationSuccessToastCloseBtn");
-
-        /**
-         * Locates an edit education button by index
-         * @param index The index (Starting at 0) of the skill you wish to locate
-         * @return A locator for the edit education button at the given index
-         */
-        public By editEducationBtn(String index) {
-            return By.id("viewEducationEditBtn" + index);
-        }
-
-        /**
-         * Locates the school text at a given index on the view profile page
-         * @param index Index of the education list on the view profile page
-         * @return A locator for the school text
-         */
-        public By viewEducationSchoolTxt(String index) {
-            return By.id("viewProfileEducationInstitutionText" + index);
-        }
-
-        /**
-         * Locates the degree text at a given index on the view profile page
-         * @param index Index of the education list on the view profile page
-         * @return A locator for the degree text
-         */
-        public By viewEducationDegreeTxt(String index) {
-            return By.id("viewProfileEducationDegreeText" + index);
-        }
-
-        /**
-         * Locates the year text at a given index on the view profile page
-         * @param index Index of the education list on the view profile page
-         * @return A locator for the year text
-         */
-        public By viewEducationYearTxt(String index) {
-            return By.id("viewProfileEducationStudyingPeriodText" + index);
-        }
-    }
-
     public static class SkillsPageLocators {
         public By skillsTitleTxt = By.id("editProfileSkillTitle");
         public By skillsTooltip = By.id("tooltip");
@@ -925,6 +904,74 @@ public class Locators {
         public By availabilityTooltip = By.id("tooltip");
         public By availabilityTitleTooltip = By.id("availabilityTitleTooltip");
         public By availabilityTxtTooltip = By.id("availabilityDescriptionTooltip");
+    }
+
+    public static class EducationPageLocators {
+        public By educationAddBtn = By.id("viewEducationBtn");
+        public By educationAddSchoolField = By.id("addEducationSchoolInput");
+        public By educationEditSchoolField = By.id("editEducationSchoolInput");
+        public By educationAddDegreeField = By.id("addEducationDegreeInput");
+        public By educationEditDegreeField = By.id("editEducationDegreeInput");
+        public By educationAddFromYearSelect = By.id("addEducationFromYearSelect");
+        public By educationEditFromYearSelect = By.id("editEducationFromYearSelect");
+        public By educationAddToYearSelect = By.id("addEducationToYearSelect");
+        public By educationEditToYearSelect = By.id("editEducationToYearSelect");
+        public By educationAddSaveBtn = By.id("addEducationSaveBtn");
+        public By educationEditSaveBtn = By.id("editEducationSaveBtn");
+        public By educationAddCancelBtn = By.id("addEducationCancelBtn");
+        public By educationEditCancelBtn = By.id("editEducationCancelBtn");
+        public By educationEditDeleteBtn = By.id("editEducationDeleteLink");
+        public By educationEditDeleteConfirmationBtn = By.id("editEducationDeleteConfirmationBtn");
+        public By educationAddTooltipTitleTxt = By.id("addEducationTitleTooltip");
+        public By educationEditTooltipTitleTxt = By.id("editEducationTitleTooltip");
+        public By educationAddTooltipP1Txt = By.id("addEducationDescriptionTooltip0");
+        public By educationEditTooltipP1Txt = By.id("editEducationDescriptionTooltip0"); //Need to fix duplicate ID
+        public By educationAddTooltipP2Txt = By.id("addEducationDescriptionTooltip1");
+        public By educationEditTooltipP2Txt = By.id("editEducationDescriptionTooltip0"); //Need to fix duplicate ID
+        public By educationAddSuccessToast = By.id("addEducationSuccessToast");
+        public By educationAddSuccessToastCloseBtn = By.id("addEducationSuccessToastCloseBtn");
+        public By educationEditSuccessToast = By.id("editEducationSuccessToast");
+        public By educationEditSuccessToastCloseBtn = By.id("editEducationSuccessToastCloseBtn");
+
+        /**
+         * Locates an education record by index
+         *
+         * @param index The index (Starting at 0) of the education record you wish to locate
+         * @return A locator for a education record at the given index
+         */
+        public By findEducationEditBtnByIndex(String index) {
+            return By.id("viewEducationEditBtn" + index);
+        }
+
+        /**
+         * Locates an education record's school by index
+         *
+         * @param index The index (Starting at 0) of the education record's school you wish to locate
+         * @return A locator for a education record's school at the given index
+         */
+        public By findEducationSchoolTxtByIndex(String index) {
+            return By.id("viewEducationInstitutionText" + index);
+        }
+
+        /**
+         * Locates an education record's degree by index
+         *
+         * @param index The index (Starting at 0) of the education record's degree you wish to locate
+         * @return A locator for a education record's degree at the given index
+         */
+        public By findEducationDegreeTxtByIndex(String index) {
+            return By.id("viewEducationDegreeText" + index);
+        }
+
+        /**
+         * Locates an education record's duration by index
+         *
+         * @param index The index (Starting at 0) of the education record's duration you wish to locate
+         * @return A locator for a education record's duration at the given index
+         */
+        public By findEducationDurationTxtByIndex(String index) {
+            return By.id("viewEducationStudyingPeriodText" + index);
+        }
     }
 
     public static class HourlyNetworkPageLocators {
@@ -1417,6 +1464,7 @@ public class Locators {
         public By employerAboutEditBtn = By.id("storeProfileAboutEditBtn");
         public By employerManagementTitleTxt = By.id("storeProfileManagementTitle");
         public By employerManagementEditBtn = By.id("storeProfileManagementEditBtn");
+        public By employerStoreCreatedTxt = By.id("addStoreDetailsReminder");
 
         /**
          * Locates an employer manager photo for a given index

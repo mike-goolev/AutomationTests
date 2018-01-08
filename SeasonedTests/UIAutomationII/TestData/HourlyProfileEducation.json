@@ -1,0 +1,15 @@
+{
+  "HourlyProfileEducation": {
+    "username":"aprofile@mailinator.com",
+    "password":"12348765",
+    "school":"South Harmon Institute of Technology",
+    "degree":"Womens Studies",
+    "duration":"2004 - 2009",
+    "emptyTxt":"It’s always good to let managers know what level of education you have.",
+    "index":"0",
+    "fromYear":"2004",
+    "toYear":"2009",
+    "userguid":"e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+  }
+}

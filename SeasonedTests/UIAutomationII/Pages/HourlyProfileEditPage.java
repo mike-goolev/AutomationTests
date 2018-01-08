@@ -59,6 +59,14 @@ public class HourlyProfileEditPage extends BasePage {
     }
 
     /**
+     * Clicks the Education link from the side menu on the edit profile page
+     */
+    public void clickSideMenuEducationLink() {
+        wait.until(elementToBeClickable(editProfilePageLocators.editProfileEducationLink));
+        driver.findElement(editProfilePageLocators.editProfileEducationLink).click();
+    }
+
+    /**
      * Clicks the View Profile link from the side menu on the edit profile page
      */
     public void clickSideMenuViewProfileLink() {

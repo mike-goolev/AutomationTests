@@ -127,6 +127,32 @@ public class SqlSelects {
     }
 
     /**
+     * Find user education by guid
+     *
+     * @param userGuid The user's guid
+     * @return User's education
+     */
+    public List<String> getUserEducationByGuid(String userGuid) throws SQLException {
+        List<String> educationGuids  = new ArrayList<>();
+        sql = "SELECT guid "
+                + "from bf_user_education "
+                + "where user_guid = ?";
+        try {
+            connection = dbManager.getConnection();
+            pstmt = dbManager.prepareStatement(connection, sql, ps -> ps.setString(1, userGuid));
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                educationGuids.add(rs.getString("guid"));
+            }
+            System.out.println("Education list: " + educationGuids);
+        } catch (SQLException e) {
+            System.out.println("Query failed:\n" + sql);
+            e.printStackTrace();
+        }
+        return educationGuids;
+    }
+
+    /**
      * Get employer photos
      *
      * @param employerGuid The owner guid of the employer photos

@@ -43,7 +43,7 @@ public class EmployerProfilePhotos extends BaseTest {
         password = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("password");
         photoName = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("photoName");
         employerGuid = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("employerGuid");
-        photoFilePath = TestConfig.getWorkingDir() + "/" + photoName;
+        photoFilePath = TestConfig.getWorkingDir() + "/" + "TestData" + "/" + photoName;
         photoIndex = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("photoIndex");
         token = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("token");
 
@@ -68,14 +68,14 @@ public class EmployerProfilePhotos extends BaseTest {
         navPage.navigateToStoreProfilePage();
 
         /* Verify employer's photo empty state */
-        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent(photoIndex));
+        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent(photoIndex), "Employer photo section should be empty");
 
         /* Navigate to edit photos page */
         employerProfileViewPage.selectManageStore();
         employerProfileEditPage.selectMenuPhotosLink();
 
         /* Verify employer photos empty state */
-        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex));
+        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex), "Employer photos should be empty");
 
         /* Add a photo */
         employerProfilePhotosPage.selectUploadPhotoBtn();
@@ -93,9 +93,7 @@ public class EmployerProfilePhotos extends BaseTest {
         employerProfileEditPage.selectMenuViewProfileLink();
 
         /* Verify employer photo added to store profile */
-//        Below line is commented out because store photos do not display consistently
-//        Assert.assertTrue(employerProfileViewPage.isEmployerPhotoPresent(photoIndex), "Employer photo should be present");
-        /* TO DO - Verify employer photo added to public store profile */
+        Assert.assertTrue(employerProfileViewPage.isEmployerPhotoPresent(photoIndex), "Employer photo should be present");
 
         /* Navigate to employer profile photos page */
         employerProfileViewPage.selectManageStore();
@@ -105,17 +103,17 @@ public class EmployerProfilePhotos extends BaseTest {
         employerProfilePhotosPage.deletePhotoByIndex(photoIndex);
 
         /* Verify delete photo success toast */
-        Assert.assertTrue(employerProfilePhotosPage.verifyEmployerPhotosSuccessToast());
+        Assert.assertTrue(employerProfilePhotosPage.verifyEmployerPhotosSuccessToast(), "Success toast should be displayed");
         employerProfilePhotosPage.dismissEmployerPhotosSuccessToast();
 
         /* Verify employer photos empty state */
-        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex));
+        Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex), "Employer photos should be empty");
 
         /* Navigate to store profile view page */
         employerProfileEditPage.selectMenuViewProfileLink();
 
         /* Verify employer's photo empty state */
-        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent(photoIndex));
+        Assert.assertFalse(employerProfileViewPage.isEmployerPhotoPresent(photoIndex), "Employer photo section should be empty");
     }
 
     @AfterMethod

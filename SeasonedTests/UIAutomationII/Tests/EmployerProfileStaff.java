@@ -1,11 +1,13 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class EmployerProfileStaff extends BaseTest {
 
@@ -25,6 +27,9 @@ public class EmployerProfileStaff extends BaseTest {
     private String staffLabel;
     private String staffDescription;
     private String staffAddedDate;
+    private String month;
+    private int year;
+    private String yearCurrent;
     private String token;
     private List<String> staffGuids;
 
@@ -48,7 +53,11 @@ public class EmployerProfileStaff extends BaseTest {
         staffName = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("staffName");
         staffLabel = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("staffLabel");
         staffDescription = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("staffDescription");
-        staffAddedDate = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("staffAddedDate");
+        Calendar now = Calendar.getInstance();
+        month = now.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+        year = now.get(Calendar.YEAR);
+        yearCurrent = String.valueOf(year);
+        staffAddedDate = "Added " + month + " " + yearCurrent;
         token = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("token");
         SeasonedRestAPI api = new SeasonedRestAPI(token);
         sqlSelect = new SqlSelects();
@@ -60,7 +69,7 @@ public class EmployerProfileStaff extends BaseTest {
     }
 
     @Test
-    public void testEmployerProfileStaff() throws Exception {
+    public void testEmployerProfileStaff() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
@@ -133,7 +142,11 @@ public class EmployerProfileStaff extends BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+            screenshot = new Screenshot(driver);
+            if (!result.isSuccess()) {
+                screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+            }
         System.out.println("Logging out and shutting down selenium for the Employer Profile Staff test");
         navPage.attemptLogout();
         driver.quit();

@@ -104,7 +104,7 @@ public class EmployerRegistrationPage extends BasePage {
      * Sets user's location
      * @param location Employer's location
      */
-    public void setEmployerLocation(String location) throws Exception {
+    public void setEmployerLocation(String location) {
         wait.until(elementToBeClickable(employerSignUpLocators.storeLocationSearchField));
         driver.findElement(employerSignUpLocators.storeLocationSearchField).click();
         driver.findElement(employerSignUpLocators.storeLocationSearchField).clear();

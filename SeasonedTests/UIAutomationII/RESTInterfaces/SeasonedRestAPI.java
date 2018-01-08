@@ -433,6 +433,23 @@ public class SeasonedRestAPI {
     }
 
     /**
+     * Deletes education for a user by guid
+     *
+     * @param userGuid the user's guid
+     * @param educationGuid the user's education guid
+     */
+    public void deleteEducationByGuid(String userGuid, String educationGuid) {
+        try {
+            /* Make a DELETE request to education */
+            Call<User> call = seasonedAPI.deleteUserEducation(userGuid, educationGuid, accessToken);
+            Response<User> response = call.execute();
+            System.out.println("DELETE request to /user/" + userGuid + "/education/" + educationGuid +  " returned a " + response.code());
+        } catch (Exception e) {
+            System.out.println("DELETE request to /user/" + userGuid + "/education/" + educationGuid + " failed with error: " + e.getLocalizedMessage());
+        }
+    }
+
+    /**
      * Posts a connection request from user a to user b
      *
      * @param fromUserGuid The guid of the user sending the connection request

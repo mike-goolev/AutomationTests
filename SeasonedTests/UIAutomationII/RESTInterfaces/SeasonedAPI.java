@@ -35,6 +35,9 @@ public interface SeasonedAPI {
     @PUT("user/{guid}/certifications")
     Call<User> clearUserCertifications(@Path("guid") String guid, @Header("Authorization") String accessToken, @Body ArrayList<Certification> certs);
 
+    @DELETE("user/{userGuid}/education/{educationGuid}")
+    Call<User> deleteUserEducation(@Path("userGuid") String userGuid, @Path("educationGuid") String educationGuid, @Header("Authorization") String accessToken);
+
     /*-------- Job Endpoints --------*/
 
     @POST("job")

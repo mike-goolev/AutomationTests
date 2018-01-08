@@ -16,6 +16,16 @@ public class EmployerProfileViewPage extends BasePage {
         testUtils = new TestUtils(driver);
     }
 
+    /*--------- Store created ----------*/
+
+    /**
+     * Get store profile created text
+     * @return The text on the store profile view after the store has been created
+     */
+    public String getEmployerProfileCreatedTxt() {
+        return driver.findElement(profilePageLocators.employerStoreCreatedTxt).getText();
+    }
+
     /*--------- Store Photos ----------*/
 
     /**
