@@ -1,0 +1,9 @@
+{
+  "HourlyMessages": {
+    "username":"aprofile@mailinator.com",
+    "password":"12348765",
+    "emptyMsg": "You don’t have any messages, why not start a conversation?",
+    "usernameReceiver": "aconnection@mailinator.com",
+    "passwordReceiver": "12348765"
+  }
+}

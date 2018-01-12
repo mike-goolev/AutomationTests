@@ -1210,22 +1210,39 @@ public class Locators {
     }
 
     public static class HourlyMessagePageLocators {
-        public By messageListSenderNameTxt0 = By.id("messageListItemSenderNameText0");
-        public By messageListSenderImg0 = By.id("messageListItemSenderImg0");
+        public By messageThreadRecipientTitle = By.xpath(".//*[@id='messageThreadWdg']/div[1]/h5");
+        public By messageComposeSelectedConnection0NameTxt = By.id("messageComposeConnectionsSelectConnection0NameTxt");
+        public By messageListRecipientName = By.id("undefinedUsernameText");
+        public By messageListRecipientImg = By.id("undefinedImg");
+        public By messageListRecipientDate = By.id("undefinedUsernameDate");
+        public By messageListMsgTxt = By.id("undefinedMessageText");
         public By messageListSenderPositionTxt0 = By.id("messageListItemSenderPositionText0");
-        public By messageListDateTxt0 = By.id("messageListItemSentDate0");
-        public By messageListDeleteBtn0 = By.id("messageListItemDeleteBtn0");
         public By messageListYearDividerTxt = By.id("messageListItemYearDivider0");
-        public By messageThreadSenderImg0 = By.id("senderMessageImg0");
-        public By messageThreadSenderTxt0 = By.id("senderMessageText0");
-        public By messageThreadSenderTimeTxt0 = By.id("senderMessageSentTimeText0");
-        public By messageThreadRecipientImg0 = By.id("recipientMessageImg0");
-        public By messageThreadRecipientTxt0 = By.id("recipientMessageText0");
+        public By messageThreadSenderImg0 = By.id("messageThreadWdgMessageAvatarImg0");
+        public By messageThreadSenderTxt0 = By.className("text-break-word");
+        public By messageThreadSenderTimeTxt0 = By.id("messageThreadWdgMessage0SentTimeText");
+        public By messageThreadRecipientImg0 = By.xpath("//div[@id[starts-with(.,\"messageThreadWdgMessageAvatar\")]]");
+        public By messageThreadRecipientTxt0 = By.id("messageThreadWdgMessage0");
         public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
         public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
-        public By messageThreadTextField = By.id("chatMessageTextArea");
-        public By messageThreadSendBtn = By.id("chatMessageSendBtn");
+        public By messageThreadWdgInput = By.id("messageThreadWdgInput");
+        public By messageThreadWdgSendBtn = By.id("messageThreadWdgSendBtn");
+        public By messageThreadWdgCloseBtn = By.id("messageThreadWdgCloseBtn");
+        public By messageThreadWdgSettingsBtn = By.id("messageThreadWdgSettingsBtn");
+        public By messageThreadWdgDeleteMenu = By.id("messageThreadWdgDeleteMenu");
         public By successToastDiv = By.id("bodySideMenuToast");
+        public By msgListModal = By.id("messagesMenu");
+        public By msgListModalTitle = By.className("header-title");
+        public By msgMenuHeaderNewMsgBtn = By.id("messagesMenuHeaderNewMessageBtn");
+        public By emptyMsg = By.className("messages-empty");
+        public By msgComposeModal = By.className("message-compose show");
+        public By msgComposeModalTitle = By.id("messageComposeTitleTxt");
+        public By msgComposeConnectionsList = By.id("messageComposeConnectionsSelect");
+        public By msgComposeConnection0 = By.id("messageComposeConnectionsSelectConnection0");
+        public By msgThreadWdg = By.id("messageThreadWdg");
+        public By msgRedBadge = By.cssSelector("a#headerMessagesLink.header-link.with-badge.undefined");
+        public By msgNoRedBadge = By.cssSelector("a#headerMessagesLink.header-link.undefined");
+
     }
 
     public static class HourlyBeSuccessfulPageLocators {

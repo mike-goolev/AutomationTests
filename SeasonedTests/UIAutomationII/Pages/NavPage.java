@@ -123,6 +123,14 @@ public class NavPage extends BasePage {
     }
 
     /**
+     * Clicks the messages link in the nav header
+     */
+     public void clickMessagesLink() {
+        wait.until(elementToBeClickable(navPageLocators.messagesBtn));
+        driver.findElement(navPageLocators.messagesBtn).click();
+    }
+
+    /**
      * Clicks on the "Okay, got it." button to dismiss the rebranding modal
      */
     public void dismissRebrandingModal() {
