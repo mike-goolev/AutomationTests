@@ -1,5 +1,4 @@
 import org.openqa.selenium.WebDriver;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
@@ -41,7 +40,7 @@ public class MessagesPage extends BasePage {
         return driver.findElement(messagesPageLocators.msgListModalTitle).getText();
     }
 
-    /*
+    /**
      * Verifies that the new message button is displayed
      *
      * @return Whether or not the new message button is displayed
@@ -66,7 +65,7 @@ public class MessagesPage extends BasePage {
         driver.findElement(messagesPageLocators.msgMenuHeaderNewMsgBtn).click();
     }
 
-    /*
+    /**
      * Verifies that the message compose modal is displayed
      *
      * @return Whether or not the message compose modal is displayed
@@ -75,7 +74,7 @@ public class MessagesPage extends BasePage {
         return elementExistsLongTimeout(messagesPageLocators.msgComposeModalTitle);
     }
 
-    /*
+    /**
      * Verifies that the my connections list is displayed in the message compose modal
      *
      * @return Whether or not my connections list is displayed in the message compose modal
@@ -84,10 +83,10 @@ public class MessagesPage extends BasePage {
         return elementExistsLongTimeout(messagesPageLocators.msgComposeConnectionsList);
     }
 
-    /*
+    /**
      * Verifies that the connection can be selected from the my connections list
      *
-     * @return Whether or not the connection can be selected from the my connections lis
+     * @return Whether or not the connection can be selected from the my connections list
      */
     public boolean verifyMsgComposeConnectionSellection() {
         wait.until(elementToBeClickable(messagesPageLocators.msgComposeConnection0));
@@ -95,16 +94,7 @@ public class MessagesPage extends BasePage {
         return elementExistsLongTimeout(messagesPageLocators.msgThreadWdg);
     }
 
-    /*
-    * Get the first name of the selected connection
-    *
-    * @return The recipient first name in the header of the message compose modal
-    */
-   /* public String getMessageComposeSelectedConnection0NameTxt() {
-        return driver.findElement(hourlyMessagePageLocators.messageComposeSelectedConnection0NameTxt).getText();
-    }
-
-    /*
+    /**
      * Verifies that the recipient first name is displayed in the header of the message compose modal
      *
      * @return Whether or not the recipient first name in the header of the message compose modal
@@ -125,6 +115,7 @@ public class MessagesPage extends BasePage {
 
     /**
      * Enter text in message input field and send message
+     *
      * @param text
      */
     public void enterMsgTxt(String text) {
@@ -143,7 +134,7 @@ public class MessagesPage extends BasePage {
         return driver.findElement(hourlyMessagePageLocators.messageListRecipientName).getText();
     }
 
-    /*
+    /**
      * Verifies that the recipient first name is displayed in the messages item
      *
      * @return Whether or not the recipient first name is displayed in the messages item
@@ -154,7 +145,7 @@ public class MessagesPage extends BasePage {
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageListRecipientName);
     }
 
-    /*
+    /**
      * Verifies that the message is displayed in the messages list
      *
      * @return Whether or not the message is displayed in the messages list
@@ -164,29 +155,25 @@ public class MessagesPage extends BasePage {
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageListMsgTxt);
     }
 
-    /*
+    /**
      * Verifies that the recipient image is displayed in the messages item
      *
      * @return Whether or not the recipient image is displayed in the messages item
      */
-
     public boolean verifyMsgListRecipientImg() {
 
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageListRecipientImg);
     }
 
-    /*
+    /**
      * Verifies that the date is displayed in the messages item
      *
      * @return Whether or not the date is displayed in the messages item
      */
-
     public boolean verifyMsgListRecipientDate() {
 
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageListRecipientDate);
     }
-
-
 
     /**
      * Select the message item from the message list
@@ -207,32 +194,28 @@ public class MessagesPage extends BasePage {
 
     /**
      * Verifies that red dot is displayed when new message
+     *
      * @return Whether or not the red dot is displayed when new message
      */
-
     public boolean verifyRedBadgeNewMsg() {
-
         return elementExists(messagesPageLocators.msgRedBadge);
     }
 
     /**
      * Verifies that red dot is not displayed when new message seen
-     * @return Whether or not the red dot is displayed when new message
+     *
+     * @return Whether or not the red dot is displayed when new message seen
      */
     public boolean verifySeenNewMsg() {
-
-        /*driver.findElement(navPageLocators.messagesBtn).click();
-        driver.findElement(hourlyMessagePageLocators.messageListRecipientName).click();
-        driver.findElement(navPageLocators.messagesBtn).click();*/
         return elementExistsLongTimeout(messagesPageLocators.msgNoRedBadge);
     }
-    /*
-         * Verifies that the message sent date is displayed in the message thread
-         *
-         * @return Whether or not the the message sent date is displayed in the message thread
-         */
-    public boolean verifyMsgThreadSentDate() {
 
+    /**
+     * Verifies that the message sent date is displayed in the message thread
+     *
+     * @return Whether or not the the message sent date is displayed in the message thread
+     */
+    public boolean verifyMsgThreadSentDate() {
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadSenderTimeTxt0);
     }
 
@@ -242,7 +225,6 @@ public class MessagesPage extends BasePage {
      * @return Whether or not the message text is displayed in the messages thread
      */
     public boolean verifyMsgThreadMsgText() {
-
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadRecipientTxt0);
     }
 
@@ -251,12 +233,7 @@ public class MessagesPage extends BasePage {
      *
      * @return Whether or not the recipient image is displayed in the messages item
      */
-
     public boolean verifyMsgThreadRecipientImg() {
-
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadRecipientImg0);
     }
-
-
-
 }

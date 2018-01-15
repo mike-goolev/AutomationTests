@@ -47,7 +47,7 @@ public class HourlyMessages extends BaseTest {
         /* Verify messages list modal is displayed */
         Assert.assertTrue(messagesPage.verifyMsgListModal(),"Messages list modal should be displayed when click Messages link in the nav header");
 
-         /* Verify messages list modal title is Messages */
+        /* Verify messages list modal title is Messages */
         Assert.assertEquals(messagesPage.getMsgListModalTitle(), "Messages");
 
         /* Verify the new message button is displayed */
@@ -68,11 +68,10 @@ public class HourlyMessages extends BaseTest {
         /* Verify the connection can be selected to compose message */
         Assert.assertTrue(messagesPage.verifyMsgComposeConnectionSellection(),"Message Thread should be displayed when select some connection");
 
-
         /* Verify the recipient first name is displayed in the header of the message compose modal */
         Assert.assertTrue(messagesPage.verifyRecipientNameText(),"The recipient first name should be displayed in the header of of the message compose modal");
 
-       /* Verify receiver nameText in the header of the message compose modal*/
+        /* Verify receiver nameText in the header of the message compose modal */
         Assert.assertEquals(messagesPage.getMessageThreadRecipientNameText(), "A");
 
         messagesPage.enterMsgTxt("Hello test");
@@ -102,21 +101,21 @@ public class HourlyMessages extends BaseTest {
         /* Verify the message text is displayed in the message thread */
         Assert.assertTrue(messagesPage.verifyMsgThreadMsgText(),"The message text should be displayed in the message thread");
 
-        messagesPage.deleteMsgThread();
-
-        navPage.clickMessagesLink();
-
         /* Verify that message thread is deleted from the messages list */
+        messagesPage.deleteMsgThread();
+        navPage.clickMessagesLink();
         Assert.assertEquals(messagesPage.getEmptyMsgTxt(), emptyMsg);
+
         navPage.logout();
+
+        /* Login under another user and verify new mesage */
         navPage.clickLoginBtn();
         loginPage.loginWithEmail(usernameReceiver, passwordReceiver);
-        /*navPage.clickMessagesLink();*/
         Thread.sleep(1000);
         Assert.assertTrue(messagesPage.verifyRedBadgeNewMsg(),"Red Badge should be displayed");
 
-        navPage.clickMessagesLink();
         /* Verify correct sender nameText is dispayed in the messages list*/
+        navPage.clickMessagesLink();
         Assert.assertEquals(messagesPage.getMsgListRecipientNameText(), "Auto Profile");
 
         /* Verify the recipient image is displayed in the message item */

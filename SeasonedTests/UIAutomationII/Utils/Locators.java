@@ -1210,12 +1210,12 @@ public class Locators {
     }
 
     public static class HourlyMessagePageLocators {
-        public By messageThreadRecipientTitle = By.xpath(".//*[@id='messageThreadWdg']/div[1]/h5");
+        public By messageThreadRecipientTitle = By.id("messageThreadTitle");
         public By messageComposeSelectedConnection0NameTxt = By.id("messageComposeConnectionsSelectConnection0NameTxt");
-        public By messageListRecipientName = By.id("undefinedUsernameText");
-        public By messageListRecipientImg = By.id("undefinedImg");
-        public By messageListRecipientDate = By.id("undefinedUsernameDate");
-        public By messageListMsgTxt = By.id("undefinedMessageText");
+        public By messageListRecipientName = By.id("messageListItem0UsernameText");
+        public By messageListRecipientImg = By.id("messageListItem0ImgIcon");
+        public By messageListRecipientDate = By.id("messageListItem0UsernameDate");
+        public By messageListMsgTxt = By.id("messageListItem0MessageText");
         public By messageListSenderPositionTxt0 = By.id("messageListItemSenderPositionText0");
         public By messageListYearDividerTxt = By.id("messageListItemYearDivider0");
         public By messageThreadSenderImg0 = By.id("messageThreadWdgMessageAvatarImg0");
@@ -1232,7 +1232,7 @@ public class Locators {
         public By messageThreadWdgDeleteMenu = By.id("messageThreadWdgDeleteMenu");
         public By successToastDiv = By.id("bodySideMenuToast");
         public By msgListModal = By.id("messagesMenu");
-        public By msgListModalTitle = By.className("header-title");
+        public By msgListModalTitle = By.id("messagesListTitle");
         public By msgMenuHeaderNewMsgBtn = By.id("messagesMenuHeaderNewMessageBtn");
         public By emptyMsg = By.className("messages-empty");
         public By msgComposeModal = By.className("message-compose show");
@@ -1240,9 +1240,8 @@ public class Locators {
         public By msgComposeConnectionsList = By.id("messageComposeConnectionsSelect");
         public By msgComposeConnection0 = By.id("messageComposeConnectionsSelectConnection0");
         public By msgThreadWdg = By.id("messageThreadWdg");
-        public By msgRedBadge = By.cssSelector("a#headerMessagesLink.header-link.with-badge.undefined");
-        public By msgNoRedBadge = By.cssSelector("a#headerMessagesLink.header-link.undefined");
-
+        public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-badge");
+        public By msgNoRedBadge = By.cssSelector("#headerMessagesLink");
     }
 
     public static class HourlyBeSuccessfulPageLocators {
