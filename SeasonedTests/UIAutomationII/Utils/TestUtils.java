@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 
 public class TestUtils {
 
-    WebDriver driver;
+    protected WebDriver driver;
     NavPage navPage;
     Locators.MailinatorLocators mailinatorLocators;
     Actions actions;

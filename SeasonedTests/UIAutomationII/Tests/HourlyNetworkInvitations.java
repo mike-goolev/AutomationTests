@@ -1,17 +1,12 @@
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class HourlyNetworkInvitations extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage hourlyLoginPage;
     private HourlyNetworkInvitationsPage hourlyNetworkInvitationsPage;
     private HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
@@ -32,12 +27,10 @@ public class HourlyNetworkInvitations extends BaseTest {
     private String toUserGuid;
     private String token;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing hourly network invitations test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyNetworkInvitationsPage = new HourlyNetworkInvitationsPage(driver);
         hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
@@ -123,7 +116,6 @@ public class HourlyNetworkInvitations extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

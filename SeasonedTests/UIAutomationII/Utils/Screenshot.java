@@ -11,17 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Screenshot {
-    WebDriver driver;
-    NavPage navPage;
-    Locators.MailinatorLocators mailinatorLocators;
-    Actions actions;
-
-    public Screenshot(WebDriver d) {
-        driver = d;
-        navPage = new NavPage(driver);
-        mailinatorLocators = new Locators.MailinatorLocators();
-        actions = new Actions(driver);
-    }
 
     public void takeScreenShot(String fileName, WebDriver driver) {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");

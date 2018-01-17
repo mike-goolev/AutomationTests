@@ -9,9 +9,6 @@ import java.util.List;
 
 public class EmployerProfilePhotos extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
-    private SqlSelects select;
     private HourlyLoginPage loginPage;
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfilePhotosPage employerProfilePhotosPage;
@@ -29,15 +26,11 @@ public class EmployerProfilePhotos extends BaseTest {
     @BeforeMethod
     public void setUp() throws SQLException {
         System.out.println("Initializing Employer profile photos test...");
-        driver = BrowserFactory.getDriver("firefox");
 
         employerProfileViewPage = new EmployerProfileViewPage(driver);
         employerProfilePhotosPage = new EmployerProfilePhotosPage(driver);
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         loginPage = new HourlyLoginPage(driver);
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
-        select = new SqlSelects();
 
         email = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("email");
         password = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("password");
@@ -48,7 +41,7 @@ public class EmployerProfilePhotos extends BaseTest {
         token = (String) TestDataImporter.get("EmployerProfilePhotos", "EmployerProfilePhotos").get("token");
 
         SeasonedRestAPI api = new SeasonedRestAPI(token);
-        employerPhotos = select.getPhotosByEmployer(employerGuid);
+        employerPhotos = sqlSelect.getPhotosByEmployer(employerGuid);
         for (String guid : employerPhotos)
             api.deleteEmployerPhotos(employerGuid, guid);
         System.out.println("Starting employer profile photos test!");
@@ -118,7 +111,6 @@ public class EmployerProfilePhotos extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

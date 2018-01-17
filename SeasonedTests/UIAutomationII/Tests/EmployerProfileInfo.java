@@ -2,14 +2,13 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 
 public class EmployerProfileInfo extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage loginPage;
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfileEditPage employerProfileEditPage;
@@ -48,14 +47,11 @@ public class EmployerProfileInfo extends BaseTest {
     @BeforeMethod
     public void setUp() throws SQLException {
         System.out.println("Initializing Employer Profile Info test...");
-        driver = BrowserFactory.getDriver("firefox");
 
         employerProfileViewPage = new EmployerProfileViewPage(driver);
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         employerProfileInfoPage = new EmployerProfileInfoPage(driver);
         loginPage = new HourlyLoginPage(driver);
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
 
         email = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("email");
         password = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("password");
@@ -211,7 +207,6 @@ public class EmployerProfileInfo extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

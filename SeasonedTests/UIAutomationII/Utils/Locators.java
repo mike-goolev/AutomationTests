@@ -1235,6 +1235,7 @@ public class Locators {
         public By msgListModalTitle = By.id("messagesListTitle");
         public By msgMenuHeaderNewMsgBtn = By.id("messagesMenuHeaderNewMessageBtn");
         public By emptyMsg = By.className("messages-empty");
+        public By emptyMsgH4 = By.xpath("//div[@class='messages-empty']/h4");
         public By msgComposeModal = By.className("message-compose show");
         public By msgComposeModalTitle = By.id("messageComposeTitleTxt");
         public By msgComposeConnectionsList = By.id("messageComposeConnectionsSelect");

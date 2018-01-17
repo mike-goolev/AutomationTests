@@ -1,14 +1,9 @@
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class HourlyProfilePersonal extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage hourlyLoginPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyProfilePersonalInfoPage hourlyProfilePersonalInfoPage;
@@ -50,12 +45,10 @@ public class HourlyProfilePersonal extends BaseTest {
     private String phoneTxtTooltip;
     private String birthdateTxtTooltip;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing hourly personal info test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyProfilePersonalInfoPage = new HourlyProfilePersonalInfoPage(driver);
@@ -206,7 +199,6 @@ public class HourlyProfilePersonal extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

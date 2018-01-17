@@ -9,11 +9,8 @@ import java.util.List;
 
 public class EmployerProfileView extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage loginPage;
     private EmployerProfileViewPage employerProfileViewPage;
-    private SqlSelects sqlSelect;
 
     private String email;
     private String password;
@@ -52,14 +49,9 @@ public class EmployerProfileView extends BaseTest {
     @BeforeMethod
     public void setUp() throws SQLException {
         System.out.println("Initializing employer profile view test...");
-        driver = BrowserFactory.getDriver("firefox");
 
         employerProfileViewPage = new EmployerProfileViewPage(driver);
-
         loginPage = new HourlyLoginPage(driver);
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
-        sqlSelect = new SqlSelects();
 
         email = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("email");
         password = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("password");
@@ -95,7 +87,6 @@ public class EmployerProfileView extends BaseTest {
 
         SeasonedRestAPI api = new SeasonedRestAPI(token);
         api.updateEmployerInfo(employerId, employerGuid, employerName, employerAddress, employerCity, employerState, employerZip, employerCountry, employerPhone, employerWebsite, employerDescription, employerTypeId, employerTypeName);
-        sqlSelect = new SqlSelects();
         jobGuids = sqlSelect.getJobsByEmployer(employerGuid);
         for (String guid : jobGuids)
             api.deleteJob(guid);
@@ -149,7 +140,6 @@ public class EmployerProfileView extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

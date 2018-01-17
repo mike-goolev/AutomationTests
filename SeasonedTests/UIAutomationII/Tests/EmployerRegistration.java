@@ -7,12 +7,9 @@ import java.sql.SQLException;
 
 public class EmployerRegistration extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyRegistrationPage hourlyRegistrationPage;
     private EmployerRegistrationPage employerRegistrationPage;
     private EmployerProfileViewPage employerProfileViewPage;
-    private SqlSelects sqlSelect;
 
     private String firstName;
     private String lastName;
@@ -33,16 +30,12 @@ public class EmployerRegistration extends BaseTest {
     private List<String> employerPhotos;
     private String token;
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing Employer Registration test...");
-        driver = BrowserFactory.getDriver("firefox");
         employerRegistrationPage = new EmployerRegistrationPage(driver);
         hourlyRegistrationPage = new HourlyRegistrationPage(driver);
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
         employerProfileViewPage = new EmployerProfileViewPage(driver);
-        sqlSelect = new SqlSelects();
 
         firstName = ("ssAdminFirst" + testUtils.generateRandomUUID());
         lastName = ("ssAdminLast" + testUtils.generateRandomUUID());
@@ -127,7 +120,6 @@ public class EmployerRegistration extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

@@ -2,6 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.annotations.Parameters;
 import org.testng.ITestResult;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
@@ -22,13 +23,10 @@ import java.sql.SQLException;
 
 public class EmployerProfileAbout extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage loginPage;
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfileAboutPage employerProfileAboutPage;
     private EmployerProfileEditPage employerProfileEditPage;
-
 
     private String email;
     private String password;
@@ -51,15 +49,11 @@ public class EmployerProfileAbout extends BaseTest {
     @BeforeMethod
     public void setUp() throws SQLException {
         System.out.println("Initializing employer profile About test...");
-        driver = BrowserFactory.getDriver("firefox");
 
-        testUtils = new TestUtils(driver);
         employerProfileViewPage = new EmployerProfileViewPage(driver);
         employerProfileAboutPage = new EmployerProfileAboutPage(driver);
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         loginPage = new HourlyLoginPage(driver);
-        navPage = new NavPage(driver);
-
 
         email = (String) TestDataImporter.get("EmployerProfileAbout", "EmployerProfileAbout").get("email");
         password = (String) TestDataImporter.get("EmployerProfileAbout", "EmployerProfileAbout").get("password");
@@ -138,7 +132,6 @@ public class EmployerProfileAbout extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

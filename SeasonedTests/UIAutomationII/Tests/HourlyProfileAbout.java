@@ -1,14 +1,9 @@
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class HourlyProfileAbout extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage hourlyLoginPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyProfileAboutPage hourlyProfileAboutPage;
@@ -23,12 +18,10 @@ public class HourlyProfileAbout extends BaseTest {
     private String token;
     private String aboutMeTxt;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing hourly profile About test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyProfileAboutPage = new HourlyProfileAboutPage(driver);
@@ -91,7 +84,6 @@ public class HourlyProfileAbout extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

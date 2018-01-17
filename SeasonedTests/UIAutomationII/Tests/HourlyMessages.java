@@ -1,12 +1,9 @@
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 
 public class HourlyMessages extends BaseTest {
 
-    TestUtils testUtils;
-    NavPage navPage;
     HourlyLoginPage loginPage;
     MessagesPage messagesPage;
 
@@ -16,12 +13,9 @@ public class HourlyMessages extends BaseTest {
     String usernameReceiver;
     String passwordReceiver;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing hourly messages test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
         messagesPage = new MessagesPage(driver);
         loginPage = new HourlyLoginPage(driver);
 
@@ -148,8 +142,11 @@ public class HourlyMessages extends BaseTest {
         Assert.assertEquals(messagesPage.getEmptyMsgTxt(), emptyMsg);
 
     }
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the messages test");
         navPage.attemptLogout();
         driver.quit();

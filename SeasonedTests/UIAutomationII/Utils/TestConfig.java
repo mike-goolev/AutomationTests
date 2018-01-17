@@ -1,8 +1,12 @@
+import org.testng.annotations.Parameters;
+
 public class TestConfig {
 
     private static String workingDir = System.getProperty("user.dir") + "/SeasonedTests/UIAutomationII/";
-    private static String baseUrl = "https://qa-www.seasoned.co/services/webapp/";
-    private static String baseAPIUrl = "http://qa-brushfire.seasoned.co/services/";
+   // private static String baseUrl = "https://qa-www.seasoned.co/services/webapp/";
+   private static String baseUrl;
+    //private static String baseAPIUrl = "http://qa-brushfire.seasoned.co/services/";
+    private static String baseAPIUrl;
     private static String searchRelativeUrl = "jobs";
     private static String networkSuggestedRelativeUrl = "community/suggested";
     private static String beSuccessfulRelativeUrl = "besuccessful";
@@ -10,7 +14,8 @@ public class TestConfig {
     private static String chromedriverBinary = "/usr/local/bin/chromedriver";
     private static String horariosCalientesLoginUrl = "http://216.166.0.49/hs/login.jsp";
     private static String mailinatorHomepageUrl = "http://www.mailinator.com";
-    private static String qaDatabaseUrl = "jdbc:postgresql://qa-db.seasoned.co/bf_qa";
+    //private static String qaDatabaseUrl = "jdbc:postgresql://qa-db.seasoned.co/bf_qa";
+    private static String qaDatabaseUrl;
     private static String qaDatabaseUser = "brushfire";
     private static String qaDatabasePassword = "brushfire";
 
@@ -26,8 +31,17 @@ public class TestConfig {
      * Gets path to base URL
      * @return The base URL
      */
+
     public static String getBaseUrl() {
         return baseUrl;
+    }
+
+    /**
+     * Sets main url string
+     */
+    public static void setBaseUrl(String baseURL) {
+
+        baseUrl = baseURL;
     }
 
     /**
@@ -39,11 +53,27 @@ public class TestConfig {
     }
 
     /**
+     * Sets API url string
+     */
+    public static void setBaseApiUrl(String baseAPIURL) {
+
+        baseAPIUrl = baseAPIURL;
+    }
+
+    /**
      * Gets url for qa-db
      * @return The qa-db url
      */
     public static String getQaDatabaseUrl() {
         return qaDatabaseUrl;
+    }
+
+    /**
+     * Sets DB connection string
+     */
+    public static void setDbUrl(String dbURL) {
+
+        qaDatabaseUrl = dbURL;
     }
 
     /**

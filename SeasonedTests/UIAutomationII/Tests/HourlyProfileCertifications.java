@@ -1,14 +1,9 @@
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class HourlyProfileCertifications extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage hourlyLoginPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyProfileCertificationsPage hourlyProfileCertificationsPage;
@@ -22,12 +17,10 @@ public class HourlyProfileCertifications extends BaseTest {
     private String certsTitleTooltip;
     private String certsTxtTooltip;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing certifications test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyProfileCertificationsPage = new HourlyProfileCertificationsPage(driver);
@@ -100,7 +93,6 @@ public class HourlyProfileCertifications extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

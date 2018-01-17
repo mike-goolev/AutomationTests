@@ -1,9 +1,46 @@
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
+import org.testng.annotations.*;
 
 public class BaseTest extends TestNG {
 
-    WebDriver driver;
-    Screenshot screenshot;
+    public WebDriver driver;
+    public Screenshot screenshot = new Screenshot();
+    public NavPage navPage ;
+    public TestUtils testUtils ;
+    public SqlSelects sqlSelect = new SqlSelects();
+
+
+    @Parameters({  "browser" , "url", "urlAPI", "dbURL"})
+    @BeforeMethod
+    public void setUpMain(@Optional String browser, @Optional String url, @Optional String urlAPI, @Optional String dbURL) throws Exception {
+        /**
+         * Introducing browser, baseURL, APIUrl and dbURL as parameter in TesnNG config file,
+         * which will diversify the type of browsers the tests can run
+         */
+    if(browser== null){
+    browser = "firefox";
+    }
+    if(url == null)
+    {
+        url = "https://qa-www.seasoned.co/services/webapp/";
+    }
+        if(urlAPI == null)
+        {
+            urlAPI = "http://qa-brushfire.seasoned.co/services/";
+        }
+        if(dbURL == null)
+        {
+            dbURL = "jdbc:postgresql://qa-db.seasoned.co/bf_qa";
+        }
+
+        driver = BrowserFactory.getDriver(browser);
+        navPage = new NavPage(driver);
+        testUtils = new TestUtils(driver);
+        TestConfig.setBaseUrl(url);
+        TestConfig.setBaseApiUrl(urlAPI);
+        TestConfig.setDbUrl(dbURL);
+    }
+
 
 }

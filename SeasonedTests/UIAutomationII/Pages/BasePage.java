@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
-    WebDriver driver;
+    public WebDriver driver;
     WebDriverWait wait;
 
     public BasePage(WebDriver d) {

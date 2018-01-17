@@ -55,7 +55,8 @@ public class MessagesPage extends BasePage {
      * @return The empty message text
      */
     public String getEmptyMsgTxt() {
-        return driver.findElement(messagesPageLocators.emptyMsg).getText();
+        elementExistsLongTimeout(messagesPageLocators.emptyMsgH4);
+        return driver.findElement(messagesPageLocators.emptyMsgH4).getText();
     }
 
     /**

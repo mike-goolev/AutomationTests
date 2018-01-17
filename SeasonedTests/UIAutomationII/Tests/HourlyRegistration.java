@@ -6,8 +6,7 @@ import org.testng.annotations.Test;
 
 public class HourlyRegistration extends BaseTest {
 
-    TestUtils testUtils;
-    NavPage navPage;
+
     HourlyRegistrationPage hourlyRegistrationPage;
     HourlyJobSearchPage hourlyJobSearchPage;
     HourlyContentFeedPage hourlyContentFeedPage;
@@ -27,12 +26,10 @@ public class HourlyRegistration extends BaseTest {
     String availabilityStatusEmployed;
     String employerSignUpTitle;
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing Hourly Registration test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyRegistrationPage = new HourlyRegistrationPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
@@ -238,7 +235,6 @@ public class HourlyRegistration extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

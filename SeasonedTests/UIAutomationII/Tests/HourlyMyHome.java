@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class HourlyMyHome extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage hourlyLoginPage;
     private HourlyContentFeedPage hourlyContentFeedPage;
 
@@ -33,12 +31,10 @@ public class HourlyMyHome extends BaseTest {
     private String articleLikeCount1;
     private String parentWindow;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void initializeTestDataAndCreateArticle() {
         System.out.println("Initializing hourly content feed test test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyContentFeedPage = new HourlyContentFeedPage(driver);
 
@@ -118,7 +114,6 @@ public class HourlyMyHome extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

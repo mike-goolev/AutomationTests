@@ -4,26 +4,31 @@ import org.testng.annotations.*;
 
 public class HourlyLogin extends BaseTest {
 
-    TestUtils testUtils;
-    NavPage navPage;
-    HourlyLoginPage hourlyLoginPage;
-    HourlyJobSearchPage hourlyJobSearchPage;
-    HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
-    HourlyNetworkPage hourlyNetworkPage;
-    HourlyBeSuccessfulPage hourlyBeSuccessfulPage;
-    Locators.NavPageLocators navPageLocators;
+    protected HourlyLoginPage hourlyLoginPage;
+    protected HourlyJobSearchPage hourlyJobSearchPage;
+    protected HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
+    protected HourlyNetworkPage hourlyNetworkPage;
+    protected HourlyBeSuccessfulPage hourlyBeSuccessfulPage;
+    protected Locators.NavPageLocators navPageLocators;
 
-    String usernameEmail;
-    String passwordEmail;
-    String usernameFB;
-    String passwordFB;
+    protected String usernameEmail;
+    protected String passwordEmail;
+    protected String usernameFB;
+    protected String passwordFB;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         System.out.println("Initializing Hourly Login test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
+        usernameEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("username");
+        passwordEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("password");
+        usernameFB = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginFB").get("username");
+        passwordFB = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginFB").get("password");
+        System.out.println("Starting test run!");
+    }
+
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
+    public void setUpTest(){
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);
         hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
@@ -31,11 +36,6 @@ public class HourlyLogin extends BaseTest {
         hourlyBeSuccessfulPage = new HourlyBeSuccessfulPage(driver);
         navPageLocators = new Locators.NavPageLocators();
 
-        usernameEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("username");
-        passwordEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("password");
-        usernameFB = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginFB").get("username");
-        passwordFB = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginFB").get("password");
-        System.out.println("Starting test run!");
     }
 
     @Test
@@ -118,7 +118,6 @@ public class HourlyLogin extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

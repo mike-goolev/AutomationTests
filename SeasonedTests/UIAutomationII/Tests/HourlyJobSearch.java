@@ -7,12 +7,9 @@ import java.util.List;
 
 public class HourlyJobSearch extends BaseTest {
 
-    TestUtils testUtils;
-    NavPage navPage;
     HourlyLoginPage hourlyLoginPage;
     HourlyJobSearchPage hourlyJobSearchPage;
     SeasonedRestAPI api;
-    SqlSelects sqlSelects;
 
     String usernameEmail;
     String passwordEmail;
@@ -80,17 +77,14 @@ public class HourlyJobSearch extends BaseTest {
         System.out.println("Finished initializing test data...");
     }
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException{
         System.out.println("Starting job search tests...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);
-        sqlSelects = new SqlSelects();
         api = new SeasonedRestAPI(token);
-        jobGuids = sqlSelects.getJobsByEmployer(employerGuid);
+        jobGuids = sqlSelect.getJobsByEmployer(employerGuid);
         for (String guid : jobGuids)
             api.deleteJob(guid);
         jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobWageType, jobDescription, jobStatus);
@@ -280,7 +274,6 @@ public class HourlyJobSearch extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

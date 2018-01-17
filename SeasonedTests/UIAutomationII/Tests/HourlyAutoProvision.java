@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.sql.SQLException;
@@ -8,9 +9,6 @@ public class HourlyAutoProvision extends BaseTest {
     private HorariosCalientesPage horariosCalientesPage;
     private HourlyAutoprovisionSignupPage hourlyAutoprovisionSignupPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
-    private NavPage navPage;
-    private TestUtils testUtils;
-    private SqlSelects sqlSelects;
 
     private String loginUsername;
     private String loginPassword;
@@ -31,16 +29,12 @@ public class HourlyAutoProvision extends BaseTest {
     private String employer;
     private String employeeId;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setup() throws SQLException, InterruptedException, NullPointerException {
         System.out.println("Initializing horarios calientes auto provision test...");
-        driver = BrowserFactory.getDriver("firefoxProfile");
         horariosCalientesPage = new HorariosCalientesPage(driver);
         hourlyAutoprovisionSignupPage = new HourlyAutoprovisionSignupPage(driver);
-        navPage = new NavPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
-        testUtils = new TestUtils(driver);
-        sqlSelects = new SqlSelects();
 
         loginUsername = (String) TestDataImporter.get("HourlyAutoProvision", "testHSAutoProvision").get("loginUsername");
         loginPassword = (String) TestDataImporter.get("HourlyAutoProvision", "testHSAutoProvision").get("loginPassword");
@@ -102,7 +96,7 @@ public class HourlyAutoProvision extends BaseTest {
         Assert.assertTrue(horariosCalientesPage.hasHsUserBeenProcessed(email));
 
         /* Verify the user has been created and the email has been sent */
-        Assert.assertEquals(sqlSelects.getUserAccountState(email), "5");
+        Assert.assertEquals(sqlSelect.getUserAccountState(email), "5");
 
         /* Open welcome email and register */
         testUtils.openHSAutoProvisionRegisterAction(email);
@@ -154,7 +148,7 @@ public class HourlyAutoProvision extends BaseTest {
         Assert.assertTrue(horariosCalientesPage.hasHsUserBeenProcessed(email));
 
         /* Verify the user has been created and the email has been sent */
-        Assert.assertEquals(sqlSelects.getUserAccountState(email), "5");
+        Assert.assertEquals(sqlSelect.getUserAccountState(email), "5");
 
         /* Open welcome email and register */
         testUtils.openHSAutoProvisionRegisterAction(email);
@@ -167,8 +161,11 @@ public class HourlyAutoProvision extends BaseTest {
         navPage.attemptLogout();
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Shutting down selenium for the horarios calientes auto provision test");
         driver.quit();
     }

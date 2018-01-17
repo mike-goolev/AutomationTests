@@ -11,13 +11,10 @@ import java.util.Locale;
 
 public class EmployerProfileStaff extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage loginPage;
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfileStaffPage employerProfileStaffPage;
     private EmployerProfileEditPage employerProfileEditPage;
-    private SqlSelects sqlSelect;
 
     private String email;
     private String password;
@@ -36,15 +33,10 @@ public class EmployerProfileStaff extends BaseTest {
     @BeforeMethod
     public void setUp() throws SQLException {
         System.out.println("Initializing employer profile Staff test...");
-        driver = BrowserFactory.getDriver("firefox");
-
-        testUtils = new TestUtils(driver);
         employerProfileViewPage = new EmployerProfileViewPage(driver);
         employerProfileStaffPage = new EmployerProfileStaffPage(driver);
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         loginPage = new HourlyLoginPage(driver);
-        navPage = new NavPage(driver);
-        sqlSelect = new SqlSelects();
 
         email = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("email");
         password = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("password");
@@ -60,7 +52,6 @@ public class EmployerProfileStaff extends BaseTest {
         staffAddedDate = "Added " + month + " " + yearCurrent;
         token = (String) TestDataImporter.get("EmployerProfileStaff", "EmployerProfileStaff").get("token");
         SeasonedRestAPI api = new SeasonedRestAPI(token);
-        sqlSelect = new SqlSelects();
         staffGuids = sqlSelect.getEmployerStaffMembers(employerGuid);
         for (String guid : staffGuids)
             api.deleteStaffMember(employerGuid, guid);
@@ -143,10 +134,9 @@ public class EmployerProfileStaff extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-            screenshot = new Screenshot(driver);
-            if (!result.isSuccess()) {
-                screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
-            }
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
         System.out.println("Logging out and shutting down selenium for the Employer Profile Staff test");
         navPage.attemptLogout();
         driver.quit();

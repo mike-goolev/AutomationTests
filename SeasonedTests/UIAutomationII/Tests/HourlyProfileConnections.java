@@ -1,14 +1,9 @@
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class HourlyProfileConnections extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
     private HourlyLoginPage hourlyLoginPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyNetworkMyConnectionsPage hourlyNetworkMyConnectionsPage;
@@ -23,12 +18,10 @@ public class HourlyProfileConnections extends BaseTest {
     private String toUserGuid;
     private String token;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing hourly profile Connections test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyNetworkMyConnectionsPage = new HourlyNetworkMyConnectionsPage(driver);
@@ -91,7 +84,6 @@ public class HourlyProfileConnections extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

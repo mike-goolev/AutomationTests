@@ -1,14 +1,10 @@
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class HourlyProfileAvailability extends BaseTest {
 
-    private TestUtils testUtils;
-    private NavPage navPage;
+
     private HourlyLoginPage hourlyLoginPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyProfileAvailabilityPage hourlyProfileAvailabilityPage;
@@ -27,12 +23,10 @@ public class HourlyProfileAvailability extends BaseTest {
     private String availabilityTitleTooltip;
     private String availabilityTxtTooltip;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() {
         System.out.println("Initializing hourly profile Availability test...");
-        driver = BrowserFactory.getDriver("firefox");
-        testUtils = new TestUtils(driver);
-        navPage = new NavPage(driver);
+
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyProfileAvailabilityPage = new HourlyProfileAvailabilityPage(driver);
@@ -123,7 +117,6 @@ public class HourlyProfileAvailability extends BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        screenshot = new Screenshot(driver);
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }
