@@ -16,13 +16,17 @@ public class Locators {
         public By loginBtn = By.id("headerLoginLink");
         public By signUpBtn = By.id("headerJoinBtn");
 
-        /* Auth'd Nav Header Locators */
+        /* Auth'd Nav Header Locators - Hourly */
         public By contentFeedBtn = By.id("headerFeedLink");
         public By messagesBtn = By.id("headerMessagesLink");
         public By userNameBtn = By.id("headerMenuToggleBtn");
         public By userNameTxt = By.id("usernameText");
         public By userPhotoImg = By.id("profilePictureImg");
         public By userAvatarImg = By.id("profilePictureImg");
+
+        /* Auth'd Nav Header Locators - Manager */
+        public By dashBtn = By.id("headerDashboardLink");
+
 
         public By menuProfileBtn = By.id("headerMenuProfileLink");
         public By menuStoreProfileBtn = By.id("headerMenuStoreProfileLink");
@@ -1257,6 +1261,8 @@ public class Locators {
         public By loginPasswordField = By.id("loginpassword");
         public By loginBtn = By.id("loginBtn");
         public By pendingTasksCancelBtn = By.id("cancelButton");
+        public By appDropdownBtn = By.id("hs-logo");
+        public By bfSsoBtn = By.id("bfEntry");
         public By staffTabBtn = By.cssSelector("ul#new_ui_menu>li:nth-of-type(4)");
         public By staffTabAddEmployeeBtn = By.cssSelector("div#addOrImportEmployeeButtonDiv>a");
         public By addEmployeeFirstNameField = By.id("first-name");
@@ -1865,7 +1871,362 @@ public class Locators {
         public By employerProfileEditJobsBtn = By.id("editprofileHiringLink");
         public By employerProfileEditStaffBtn = By.id("editprofileManagementLink");
         public By employerProfileEditViewProfileBtn = By.id("editprofileViewProfileLink");
-//        public By employerProfileEditPageLoader = By.cssSelector("div.spinner.active");
         public By employerProfileEditPageLoader = By.id("storeManagersLoaderIcon");
     }
+
+    public static class EmployerDashPageLocators {
+        public By employerDashTitleTxt = By.id("dashboardWelcomeText");
+        public By employerDashLoader = By.id("managerDashboardLoader");
+        public By employerDashApplicantsTitleTxt = By.id("applicantsTitleTxt");
+        public By employerDashApplicantsLink = By.id("managerDashboardApplicantsLink");
+        public By employerDashApplicantCardEmptyTitleTxt = By.id("emptyApplicantsCardTitleTxt");
+        public By employerDashApplicantCardEmptyTxt = By.id("emptyApplicantsCardBodyTxt");
+        public By employerDashApplicantCardEditStoreProfileBtn = By.id("managerDashboardEditProfileBtn");
+        public By employerDashApplicantNextBtn = By.id("applicantNextBtn");
+
+        /**
+         * Locates an applicant card for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant you wish to locate
+         * @return Returns a locator for the applicant by index
+         */
+        public By findEmployerDashApplicantCardByIndex(String index) {
+            return By.id("Applicant" + index + "Card");
+        }
+
+        /**
+         * Locates an applicant card's photo for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's photo you wish to locate
+         * @return Returns a locator for the applicant's photo by index
+         */
+        public By findEmployerDashApplicantCardPhotoByIndex(String index) {
+            return By.id("Applicant" + index + "CardPlaceholderIcon");
+        }
+
+        /**
+         * Locates an applicant card's name for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's name you wish to locate
+         * @return Returns a locator for the applicant's name by index
+         */
+        public By findEmployerDashApplicantCardNameByIndex(String index) {
+            return By.id("Applicant" + index + "CardUserName");
+        }
+
+        /**
+         * Locates an applicant card's position for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's position you wish to locate
+         * @return Returns a locator for the applicant's position by index
+         */
+        public By findEmployerDashApplicantCardPositionByIndex(String index) {
+            return By.id("Applicant" + index + "CardUserPosition");
+        }
+
+        /**
+         * Locates an applicant card's time for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's time you wish to locate
+         * @return Returns a locator for the applicant's time by index
+         */
+        public By findEmployerDashApplicantCardTimeByIndex(String index) {
+            return By.id("Applicant" + index + "CardUserTimeAppliedAgo");
+        }
+
+        /**
+         * Locates an applicant card's shared connections for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's shared connections you wish to locate
+         * @return Returns a locator for the applicant's shared connections by index
+         */
+        public By findEmployerDashApplicantCardSharedConnectionsByIndex(String index) {
+            return By.id("Applicant" + index + "CardUserSharedConnections");
+        }
+
+        /**
+         * Locates an applicant card's view profile button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's view profile button you wish to locate
+         * @return Returns a locator for the applicant's view profile button by index
+         */
+        public By findEmployerDashApplicantCardViewProfileBtnByIndex(String index) {
+            return By.id("Applicant" + index + "ViewProfileBtn");
+        }
+
+        /**
+         * Locates an applicant card's action button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's action button you wish to locate
+         * @return Returns a locator for the applicant's action button by index
+         */
+        public By findEmployerDashApplicantCardActionsBtnByIndex(String index) {
+            return By.id("Applicant" + index + "ConnectBtn");
+        }
+
+        /**
+         * Locates an applicant card's interview button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's interview button you wish to locate
+         * @return Returns a locator for the applicant's interview button by index
+         */
+        public By findEmployerDashApplicantCardActionsInterviewByIndex(String index) {
+            return By.id("Applicant" + index + "InterviewApplicantBtn");
+        }
+
+        /**
+         * Locates an applicant card's good fit button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's good fit button you wish to locate
+         * @return Returns a locator for the applicant's good fit button by index
+         */
+        public By findEmployerDashApplicantCardActionsGoodFitByIndex(String index) {
+            return By.id("Applicant" + index + "GoodFitBtn");
+        }
+
+        /**
+         * Locates an applicant card's !good fit button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's !good fit button you wish to locate
+         * @return Returns a locator for the applicant's !good fit button by index
+         */
+        public By findEmployerDashApplicantCardActionsBadFitByIndex(String index) {
+            return By.id("Applicant" + index + "NotAFitBtn");
+        }
+
+        /**
+         * Locates an applicant card's message button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's message button you wish to locate
+         * @return Returns a locator for the applicant's message button by index
+         */
+        public By findEmployerDashApplicantCardActionsMessageByIndex(String index) {
+            return By.id("Applicant" +index + "MessageBtn");
+        }
+
+        /**
+         * Locates an applicant success toast for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant success toast
+         * @return Returns a locator for the applicant success toast
+         */
+        public By findEmployerDashApplicantSuccessToastByIndex(String index) {
+            return By.id("Applicant" +index + "Toast");
+        }
+
+        /**
+         * Locates an applicant success toast close button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant success toast close button
+         * @return Returns a locator for the applicant success toast close button
+         */
+        public By findEmployerDashApplicantSuccessToastCloseBtnByIndex(String index) {
+            return By.id("Applicant" +index + "ToastCloseBtn");
+        }
+
+        public By employerDashTalentTitleTxt = By.id("talentTitleTxt");
+        public By employerDashTalentLink = By.id("managerDashboardFindTalentLink");
+        public By employerDashTalentCardEmptyTitleTxt = By.id("emptyTalentCardTitleTxt");
+        public By employerDashTalentCardEmptyTxt = By.id("emptyTalentCardBodyTxt");
+        public By employerDashTalentCardPostJobBtn = By.id("managerDashboardPostJobBtn");
+        public By employerDashTalentNextBtn = By.id("talentNextBtn");
+
+        /**
+         * Locates a talent card for a given index
+         *
+         * @param index The index (Starting at 0) of the talent you wish to locate
+         * @return Returns a locator for the talent by index
+         */
+        public By findEmployerDashTalentCardByIndex(String index) {
+            return By.id("Talent" + index + "Card");
+        }
+
+        /**
+         * Locates a talent card's photo for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's photo you wish to locate
+         * @return Returns a locator for the talent's photo by index
+         */
+        public By findEmployerDashTalentCardPhotoByIndex(String index) {
+            return By.id("Talent" + index + "CardPlaceholderIcon");
+        }
+
+        /**
+         * Locates a talent card's name for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's name you wish to locate
+         * @return Returns a locator for the talent's name by index
+         */
+        public By findEmployerDashTalentCardNameByIndex(String index) {
+            return By.id("Talent" + index + "CardUserName");
+        }
+
+        /**
+         * Locates a talent card's position for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's position you wish to locate
+         * @return Returns a locator for the talent's position by index
+         */
+        public By findEmployerDashTalentCardPositionByIndex(String index) {
+            return By.id("Talent" + index + "CardUserPosition");
+        }
+
+        /**
+         * Locates an talent card's view profile button for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's view profile button you wish to locate
+         * @return Returns a locator for the talent's view profile button by index
+         */
+        public By findEmployerDashTalentCardViewProfileByIndex(String index) {
+            return By.id("Talent" + index + "ViewProfileBtn");
+        }
+
+        /**
+         * Locates an talent card's action button for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's action button you wish to locate
+         * @return Returns a locator for the talent's action button by index
+         */
+        public By findEmployerDashTalentCardActionsByIndex(String index) {
+            return By.id("Talent" + index + "ConnectBtn");
+        }
+
+        /**
+         * Locates an talent card's invite button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's invite button you wish to locate
+         * @return Returns a locator for the applicant's invite button by index
+         */
+        public By findEmployerDashTalentCardActionsInviteByIndex(String index) {
+            return By.id("Talent" + index + "InviteToApplyBtn");
+        }
+
+        /**
+         * Locates an talent card's good fit button for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's good fit button you wish to locate
+         * @return Returns a locator for the talent's good fit button by index
+         */
+        public By findEmployerDashTalentCardActionsGoodFitByIndex(String index) {
+            return By.id("Talent" + index + "GoodFitBtn");
+        }
+
+        /**
+         * Locates an talent card's !good fit button for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's !good fit button you wish to locate
+         * @return Returns a locator for the talent's !good fit button by index
+         */
+        public By findEmployerDashTalentCardActionsBadFitByIndex(String index) {
+            return By.id("Talent" + index + "NotAFitBtn");
+        }
+
+        /**
+         * Locates an talent success toast for a given index
+         *
+         * @param index The index (Starting at 0) of the talent success toast
+         * @return Returns a locator for the talent success toast
+         */
+        public By findEmployerDashTalentSuccessToastByIndex(String index) {
+            return By.id("Talent" +index + "Toast");
+        }
+
+        /**
+         * Locates an applicant success toast close button for a given index
+         *
+         * @param index The index (Starting at 0) of the talent success toast close button
+         * @return Returns a locator for the talent success toast close button
+         */
+        public By findEmployerDashTalentSuccessToastCloseBtnByIndex(String index) {
+            return By.id("Talent" +index + "ToastCloseBtn");
+        }
+
+        public By employerJobsTitleTxt = By.id("jobsTitleTxt");
+        public By employerDashJobsViewLink = By.id("managerDashboardJobsLink");
+        public By employerDashJobsCardEmptyTitleTxt = By.id("emptyJobCardTitleTxt");
+        public By employerDashJobsCardEmptyTxt = By.id("emptyJobCardBodyTxt");
+        public By employerDashJobsCardPostJobBtn = By.id("managerDashboardCreateJobBtn");
+        public By employerDashJobsNextBtn = By.id("jobPositionNextBtn");
+
+        /**
+         * Locates an employer job position for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job position you wish to locate
+         * @return Returns a locator for the employer job position by index
+         */
+        public By findEmployerJobCardPositionByIndex(String index) {
+            return By.id("searchResultJobNameTextJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job wage for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job wage you wish to locate
+         * @return Returns a locator for the employer job wage by index
+         */
+        public By findEmployerJobCardWageByIndex(String index) {
+            return By.id("searchResultWageTextJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job availability for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job availability you wish to locate
+         * @return Returns a locator for the employer job availability by index
+         */
+        public By findEmployerJobCardAvailabilityByIndex(String index) {
+            return By.id("searchResultAvailabilityTextJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job view button for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job view button you wish to locate
+         * @return Returns a locator for the employer job view button by index
+         */
+        public By findEmployerJobCardViewBtnByIndex(String index) {
+            return By.id("searchResultViewBtnJobCard" + index);
+        }
+
+        /**
+         * Locates an employer job edit button for a given index
+         *
+         * @param index The index (Starting at 0) of the employer job edit button you wish to locate
+         * @return Returns a locator for the employer job edit button by index
+         */
+        public By findEmployerJobCardEditBtnByIndex(String index) {
+            return By.id("searchResultApplyBtnJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer logo for a given index
+         *
+         * @param index The index (Starting at 0) of the job's employer logo you wish to locate
+         * @return Returns a locator for the job's employer logo by index
+         */
+        public By findEmployerJobCardLogoByIndex(String index) {
+            return By.id("searchResultEmployerPhotoJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer name for a given index
+         *
+         * @param index The index (Starting at 0) of the job's employer name you wish to locate
+         * @return Returns a locator for the job's employer name by index
+         */
+        public By findEmployerJobCardNameByIndex(String index) {
+            return By.id("searchResultEmployerNameTextJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer address for a given index
+         *
+         * @param index The index (Starting at 0) of the job's employer address you wish to locate
+         * @return Returns a locator for the job's employer address by index
+         */
+        public By findEmployerJobCardAddressByIndex(String index) {
+            return By.id("searchResultAddressTextJobCard" + index);
+        }
+    }
+
 }

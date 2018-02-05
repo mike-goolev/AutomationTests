@@ -79,6 +79,7 @@ public class HourlyNetworkInvitations extends BaseTest {
         hourlyNetworkPage.clickNetworkMyConnections();
 
         /* Verify invitation is displayed on My Connections Invitations section */
+        driver.navigate().refresh();
         Assert.assertEquals(hourlyNetworkPage.getInvitationCount(), invitationCount);
         Assert.assertTrue(hourlyNetworkPage.isInvitationPhotoDisplayed(invitationIndex));
         Assert.assertEquals(hourlyNetworkPage.getInvitationName(invitationIndex), invitationName);

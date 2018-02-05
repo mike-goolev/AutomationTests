@@ -34,6 +34,8 @@ public class HourlyJobSearch extends BaseTest {
     String updatedBy;
     String jobType;
     String jobWage;
+    String jobMinWage;
+    String jobMaxWage;
     String jobWageType;
     String jobDescription;
     String jobStatus;
@@ -55,6 +57,8 @@ public class HourlyJobSearch extends BaseTest {
         updatedBy = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("updatedByGuid");
         jobType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobTypeGuid");
         jobWage = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobWage");
+        jobMinWage = jobWage;
+        jobMaxWage = jobWage;
         jobWageType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobWageType");
         jobDescription = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDescription");
         jobStatus = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobStatus");
@@ -87,7 +91,7 @@ public class HourlyJobSearch extends BaseTest {
         jobGuids = sqlSelect.getJobsByEmployer(employerGuid);
         for (String guid : jobGuids)
             api.deleteJob(guid);
-        jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobWageType, jobDescription, jobStatus);
+        jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobMinWage, jobMaxWage, jobWageType, jobDescription, jobStatus);
         api.unfollowEmployer(employerGuid, userGuid);
         System.out.println("Created job with guid: " + jobGuid);
     }
@@ -106,7 +110,6 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Verify search result elements on job card at index 0 */
         hourlyJobSearchPage.waitForSearchResults("0");
-        //Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
@@ -127,9 +130,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        // Employer types are not being displayed in hourly job details
-        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
@@ -139,7 +140,6 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Verify search results match original search query on job card at index 0 */
         hourlyJobSearchPage.waitForSearchResults("0");
-        //Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
@@ -167,8 +167,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
@@ -178,7 +177,6 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Verify search results match original search query on job card at index 0 and job is marked as 'Applied' */
         hourlyJobSearchPage.waitForSearchResults("0");
-        //Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
@@ -200,7 +198,6 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Verify search result elements on job card at index 0 */
         hourlyJobSearchPage.waitForSearchResults("0");
-        //Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
@@ -221,8 +218,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerPPA(), jobDetailsEmployerPPA);
-        //Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click the follow button for a given employer */
@@ -238,7 +234,6 @@ public class HourlyJobSearch extends BaseTest {
 
         /* Verify search results match original search query on job card at index 0 */
         hourlyJobSearchPage.waitForSearchResults("0");
-        //Assert.assertEquals(hourlyJobSearchPage.getSearchResultsCount(), searchResultsCount);
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);

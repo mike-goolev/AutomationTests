@@ -31,6 +31,16 @@ public class Job {
     @SerializedName("wage")
     @Expose
     private String wage;
+
+
+    @SerializedName("minWage")
+    @Expose
+    private String minWage;
+
+    @SerializedName("maxWage")
+    @Expose
+    private String maxWage;
+
     @SerializedName("wageType")
     @Expose
     private String wageType;
@@ -189,6 +199,22 @@ public class Job {
 
     public void setWage(String wage) {
         this.wage = wage;
+    }
+
+    public String getMinWage() {
+        return minWage;
+    }
+
+    public void setMinWage(String minWage) {
+        this.minWage = minWage;
+    }
+
+    public String getMaxWage() {
+        return maxWage;
+    }
+
+    public void setMaxWage(String maxWage) {
+        this.maxWage = maxWage;
     }
 
     public String getWageType() {

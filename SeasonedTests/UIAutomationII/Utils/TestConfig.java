@@ -1,5 +1,3 @@
-import org.testng.annotations.Parameters;
-
 public class TestConfig {
 
     private static String workingDir = System.getProperty("user.dir") + "/SeasonedTests/UIAutomationII/";
@@ -12,8 +10,8 @@ public class TestConfig {
     private static String beSuccessfulRelativeUrl = "besuccessful";
     private static String firefoxProfile = getWorkingDir() + "/Library/Application\\ Support/Firefox/Profiles/7jzcee9i.web_automation";
     private static String chromedriverBinary = "/usr/local/bin/chromedriver";
-    private static String horariosCalientesLoginUrl = "http://216.166.0.49/hs/login.jsp";
-    private static String mailinatorHomepageUrl = "http://www.mailinator.com";
+    private static String horariosCalientesUrl;
+    private static String mailinatorHomepageUrl;
     //private static String qaDatabaseUrl = "jdbc:postgresql://qa-db.seasoned.co/bf_qa";
     private static String qaDatabaseUrl;
     private static String qaDatabaseUser = "brushfire";
@@ -133,11 +131,26 @@ public class TestConfig {
     }
 
     /**
+     * Gets path to horarios calientes URL
+     * @return The horarios calientes URL
+     */
+    public static String getHsUrl() {
+        return horariosCalientesUrl;
+    }
+
+    /**
+     * Gets path to horarios calientes URL
+     */
+    public static void setHsUrl(String hsUrl) {
+        horariosCalientesUrl = hsUrl;
+    }
+
+    /**
      * Gets path to horarios calientes login URL
      * @return The horarios calientes login URL
      */
-    public static String getHorariosCalientesLoginUrl() {
-        return horariosCalientesLoginUrl;
+    public static String getHsLoginUrl() {
+        return horariosCalientesUrl + "login.jsp";
     }
 
     /**
@@ -147,4 +160,12 @@ public class TestConfig {
     public static String getMailinatorHomepageUrl() {
         return mailinatorHomepageUrl;
     }
+
+    /**
+     * Sets path to mailinator homepage URL
+     */
+    public static void setMailinatorHomepageUrl(String mailinatorUrl) {
+        mailinatorHomepageUrl = mailinatorUrl;
+    }
+
 }

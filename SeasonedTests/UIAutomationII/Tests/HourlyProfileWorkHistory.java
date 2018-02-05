@@ -48,20 +48,13 @@ public class HourlyProfileWorkHistory extends BaseTest {
 
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setup() throws SQLException {
-
-        System.out.println("Starting work history tests...");
-
-        api = new SeasonedRestAPI(token);
-        whGuids = sqlSelect.getUserWorkHistoryByGuid(userGuid);
-        for (String guid : whGuids)
-            api.deleteWorkHistoryByGuid(guid);
+        System.out.println("Initializing work history test...");
 
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         hourlyProfileWorkHistoryPage = new HourlyProfileWorkHistoryPage(driver);
         hourlyProfileEditPage = new HourlyProfileEditPage(driver);
-        api = new SeasonedRestAPI(token);
 
         username = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("username");
         password = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("password");
@@ -87,8 +80,12 @@ public class HourlyProfileWorkHistory extends BaseTest {
         timePeriodPast = shortDatePast + " - " + shortDateCurrent + "  ";
         durationPresent = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("durationPresent");
         durationPast = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("durationPast");
-    }
 
+        api = new SeasonedRestAPI(token);
+        whGuids = sqlSelect.getUserWorkHistoryByGuid(userGuid);
+        for (String guid : whGuids)
+            api.deleteWorkHistoryByGuid(guid);
+    }
 
     @Test
     public void testAddWorkHistory() throws Exception {

@@ -46,8 +46,8 @@ public class EmployerProfileAbout extends BaseTest {
     private String newEmployerDescription;
     private String token;
 
-    @BeforeMethod
-    public void setUp() throws SQLException {
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
+    public void setUp() {
         System.out.println("Initializing employer profile About test...");
 
         employerProfileViewPage = new EmployerProfileViewPage(driver);

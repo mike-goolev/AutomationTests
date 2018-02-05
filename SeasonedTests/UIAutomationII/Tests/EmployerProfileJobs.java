@@ -52,7 +52,7 @@ public class EmployerProfileJobs extends BaseTest {
     private List<String> jobGuids;
     private String token;
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing employer profile jobs test...");
 

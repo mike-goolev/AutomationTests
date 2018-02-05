@@ -62,6 +62,7 @@ public class HourlyNetworkMyConnections extends BaseTest {
         /* Create and accept a connection request */
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.postConnectionRequest(fromUserGuid, toUserGuid);
+        Thread.sleep(2000);
         seasonedRestAPI.updateConnectionRequest(fromUserGuid, toUserGuid);
 
         /* Navigate to My Connections */

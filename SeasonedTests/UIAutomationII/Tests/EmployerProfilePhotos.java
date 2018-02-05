@@ -23,7 +23,7 @@ public class EmployerProfilePhotos extends BaseTest {
     private List<String> employerPhotos;
     private String photoIndex;
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing Employer profile photos test...");
 

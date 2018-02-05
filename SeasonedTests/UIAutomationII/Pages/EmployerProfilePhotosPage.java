@@ -23,6 +23,7 @@ public class EmployerProfilePhotosPage extends BasePage {
      * @param index The index (Starting at 0) of the employer photo you wish to locate
      */
     public void selectPhotoByIndex(String index){
+        wait.until(elementToBeClickable(employerProfileEditPhotosPageLocators.findEmployerPhotoByIndex(index)));
         driver.findElement(employerProfileEditPhotosPageLocators.findEmployerPhotoByIndex(index)).click();
     }
 
@@ -40,6 +41,7 @@ public class EmployerProfilePhotosPage extends BasePage {
      * @param index The index (Starting at 0) of the employer photo you wish to locate
      */
     public void deletePhotoByIndex(String index){
+        wait.until(visibilityOfElementLocated(employerProfileEditPhotosPageLocators.employerProfileEditPhotosDeletePhotosBtn));
         selectPhotoByIndex(index);
         driver.findElement(employerProfileEditPhotosPageLocators.employerProfileEditPhotosDeletePhotosBtn).click();
         deletePhotoConfirmDelete();

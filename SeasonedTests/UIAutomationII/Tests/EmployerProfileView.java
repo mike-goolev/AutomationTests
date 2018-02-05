@@ -31,6 +31,8 @@ public class EmployerProfileView extends BaseTest {
     private String jobPosition;
     private String jobType;
     private String jobWage;
+    private String jobMinWage;
+    private String jobMaxWage;
     private String jobWageType;
     private String jobDescription;
     private String jobStatus;
@@ -46,7 +48,7 @@ public class EmployerProfileView extends BaseTest {
     private String staffDescription;
     private String token;
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing employer profile view test...");
 
@@ -74,6 +76,8 @@ public class EmployerProfileView extends BaseTest {
         jobPosition = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("jobPosition");
         jobType = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("jobType");
         jobWage = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("jobWage");
+        jobMinWage = jobWage;
+        jobMaxWage = jobWage;
         jobWageType = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("jobWageType");
         jobDescription = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("jobDescription");
         jobStatus = (String) TestDataImporter.get("EmployerProfileView", "EmployerProfileView").get("jobStatus");
@@ -90,7 +94,7 @@ public class EmployerProfileView extends BaseTest {
         jobGuids = sqlSelect.getJobsByEmployer(employerGuid);
         for (String guid : jobGuids)
             api.deleteJob(guid);
-        jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobWageType, jobDescription, jobStatus);
+        jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobMinWage, jobMaxWage, jobWageType, jobDescription, jobStatus);
         System.out.println("Starting employer profile view test!");
     }
 

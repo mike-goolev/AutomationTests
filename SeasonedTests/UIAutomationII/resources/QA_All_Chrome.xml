@@ -6,6 +6,8 @@
         <parameter name="url" value="https://qa-www.seasoned.co/services/webapp/"></parameter>
         <parameter name="urlAPI" value="http://qa-brushfire.seasoned.co/services/"></parameter>
         <parameter name="dbURL" value="jdbc:postgresql://qa-db.seasoned.co/bf_qa"></parameter>
+        <parameter name="hsUrl" value="http://qamaster.eng.hotschedules.com/hs/"></parameter>
+        <parameter name="mailinatorUrl" value="http://www.mailinator.com"></parameter>
 	<classes>
 		<class name="EmployerProfileAbout"/>
 	    <class name="EmployerProfileInfo"/>

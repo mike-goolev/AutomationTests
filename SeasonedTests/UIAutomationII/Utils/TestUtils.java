@@ -128,7 +128,7 @@ public class TestUtils {
      * Navigate to the horarios calientes login page
      */
     public void loadHorariosCalientesLogin() {
-        driver.get(TestConfig.getHorariosCalientesLoginUrl());
+        driver.get(TestConfig.getHsLoginUrl());
     }
 
     /**

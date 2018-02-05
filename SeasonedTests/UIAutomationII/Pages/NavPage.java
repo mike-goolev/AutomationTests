@@ -41,6 +41,7 @@ public class NavPage extends BasePage {
      * @return Whether or not the user avatar is displayed in the menu
      */
     public boolean isNavMenuAvatarDisplayed() {
+
         return elementExists(navPageLocators.userAvatarImg);
     }
 
@@ -49,6 +50,7 @@ public class NavPage extends BasePage {
      * @return Whether or not the user photo is displayed in the menu
      */
     public boolean isNavMenuPhotoDisplayed() {
+
         return elementExists(navPageLocators.userPhotoImg);
     }
 
@@ -57,6 +59,7 @@ public class NavPage extends BasePage {
      * @return User's first name and last name initial
      */
     public String getUserFirstNameLastInitial() {
+
         return driver.findElement(navPageLocators.userNameTxt).getText();
     }
 
@@ -168,11 +171,20 @@ public class NavPage extends BasePage {
     /**
      * Takes the user to the store profile page via nav header and clicking store profile
      */
-    public void navigateToStoreProfilePage() {
+    public void navigateToStoreProfilePage() throws Exception {
         wait.until(elementToBeClickable(navPageLocators.userNameBtn));
         driver.findElement(navPageLocators.userNameBtn).click();
         wait.until(elementToBeClickable(navPageLocators.menuStoreProfileBtn));
         driver.findElement(navPageLocators.menuStoreProfileBtn).click();
+        Thread.sleep(4000);
+    }
+
+    /**
+     * Takes the user to the store Dashboard
+     */
+    public void navigateToDashPage() {
+        wait.until(elementToBeClickable(navPageLocators.dashBtn));
+        driver.findElement(navPageLocators.dashBtn).click();
     }
 
     /**

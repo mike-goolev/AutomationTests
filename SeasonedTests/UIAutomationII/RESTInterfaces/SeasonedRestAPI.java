@@ -1,5 +1,7 @@
 import okhttp3.OkHttpClient;
-
+import okhttp3.Request;
+import okhttp3.HttpUrl;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,23 +16,33 @@ public class SeasonedRestAPI {
     Retrofit retrofit;
     SeasonedAPI seasonedAPI;
     String accessToken;
-    OkHttpClient httpClient;
 
     public SeasonedRestAPI(String accessToken) {
+        // Create logging interceptor
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+
         // Create http client
-        httpClient = new OkHttpClient.Builder()
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                 .readTimeout(20, TimeUnit.SECONDS)
                 .connectTimeout(20, TimeUnit.SECONDS)
-                .build();
+                .addNetworkInterceptor(logging);
+//              .addInterceptor(new LoggingInterceptor());
         // Create retrofit instance
         retrofit = new Retrofit.Builder()
-                .baseUrl(TestConfig.getBaseApiUrl() + "services/rest/")
+                .baseUrl(TestConfig.getBaseApiUrl())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
+                .client(httpClient.build())
                 .build();
 
         seasonedAPI = retrofit.create(SeasonedAPI.class);
         this.accessToken = accessToken;
+    }
+
+    private String getRequestUrl(Request request) {
+        HttpUrl requestUrl = request.url();
+        System.out.println(requestUrl);
+        return requestUrl.toString();
     }
 
     /**
@@ -79,12 +91,13 @@ public class SeasonedRestAPI {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    System.out.println("PUT request to user/guid/eligibility returned with code: " + response.code());
+                    ;
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
                 }
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
-                    System.out.println("PUT request to user/guid/eligibility failed with error: " + t.getLocalizedMessage());
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
                 }
             });
         } catch (Exception e) {
@@ -156,12 +169,12 @@ public class SeasonedRestAPI {
             call.enqueue(new Callback<Availability>() {
                 @Override
                 public void onResponse(Call<Availability> call, Response<Availability> response) {
-                    System.out.println("PUT request to user/guid/Availability returned with code: " + response.code());
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
                 }
 
                 @Override
                 public void onFailure(Call<Availability> call, Throwable t) {
-                    System.out.println("PUT request to user/guid/Availability failed with error: " + t.getLocalizedMessage());
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
                 }
             });
         } catch (Exception e) {
@@ -172,7 +185,7 @@ public class SeasonedRestAPI {
     /**
      * Posts a job to a given employer
      */
-    public String postJob(String updatedByGuid, String createdByGuid, String jobTypeGuid, String employerGuid, String jobName, String jobWage, String jobWageType, String jobDescription, String jobStatus) {
+    public String postJob(String updatedByGuid, String createdByGuid, String jobTypeGuid, String employerGuid, String jobName, String jobWage, String minWage, String maxWage, String jobWageType, String jobDescription, String jobStatus) {
         /* Construct Job Request Body */
         String jobGuid = "";
         try {
@@ -192,6 +205,8 @@ public class SeasonedRestAPI {
             job.setJobType(jobType);
             job.setJobName(jobName);
             job.setWage(jobWage);
+            job.setMinWage(minWage);
+            job.setMaxWage(maxWage);
             job.setWageType(jobWageType);
             job.setDescription(jobDescription);
             job.setStatus(jobStatus);
@@ -199,10 +214,10 @@ public class SeasonedRestAPI {
             /* Make a POST request to job */
             Call<Job> call = seasonedAPI.postJob(accessToken, job);
             Response<Job> response = call.execute();
-            System.out.println("POST request to /job returned a " + response.code());
+            System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
             jobGuid = response.body().getGuid();
         } catch (Exception e) {
-            System.out.println("POST request to /job failed with error: " + e.getLocalizedMessage());
+            System.out.println("POST request to /job" + " failed with error: \n" + e.getLocalizedMessage());
         }
         return jobGuid;
     }
@@ -216,10 +231,51 @@ public class SeasonedRestAPI {
         try {
             /* Make a DELETE request to job */
             Call<Job> call = seasonedAPI.deleteJob(guid, accessToken);
-            Response<Job> response = call.execute();
-            System.out.println("DELETE request to /job/" + guid + " returned a " + response.code());
+            call.enqueue(new Callback<Job>() {
+                @Override
+                public void onResponse(Call<Job> call, Response<Job> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Job> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Submits an application to an active job posting
+     *
+     * @param userId   the id for the user
+     * @param userGuid the guid for the user
+     * @param jobGuid  the guid for the job application
+     */
+    public void postApplication(String userId, String userGuid, String jobGuid) {
+        /* Construct User Request Body */
+        try {
+            User user = new User();
+            user.setId(userId);
+            user.setGuid(userGuid);
+
+            /* Make a POST request to /job/jobGuid/hireme */
+            Call<User> call = seasonedAPI.postApplication(jobGuid, user, accessToken);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -262,10 +318,19 @@ public class SeasonedRestAPI {
 
             /* Make a PUT request to user */
             Call<User> call = seasonedAPI.updateUserNameEmailPhoneBday(accessToken, user);
-            Response<User> response = call.execute();
-            System.out.println("PUT request to /user returned a " + response.code());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -297,10 +362,19 @@ public class SeasonedRestAPI {
 
             /* Make a POST request to primaryLocation */
             Call<Location_> call = seasonedAPI.postUserLocation(guid, accessToken, location);
-            Response<Location_> response = call.execute();
-            System.out.println("POST request to /primaryLocation returned a " + response.code());
+            call.enqueue(new Callback<Location_>() {
+                @Override
+                public void onResponse(Call<Location_> call, Response<Location_> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Location_> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -320,7 +394,6 @@ public class SeasonedRestAPI {
         /* Construct User Request Body */
         try {
             User user = new User();
-
             user.setId(id);
             user.setGuid(guid);
             user.setFirstname(firstname);
@@ -333,17 +406,27 @@ public class SeasonedRestAPI {
 
             /* Make a PUT request to user */
             Call<User> call = seasonedAPI.setAvailabilityStatus(accessToken, user);
-            Response<User> response = call.execute();
-            System.out.println("PUT request to /user returned a " + response.code());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
     /**
      * Updates a user's about section by calling the /user endpoint
-     * @param id the db id for the user
-     * @param guid the guid for the user to update
+     *
+     * @param id        the db id for the user
+     * @param guid      the guid for the user to update
      * @param firstname user's firstname
      * @param lastname  user's lastname
      * @param email     user's email
@@ -353,7 +436,6 @@ public class SeasonedRestAPI {
         /* Construct User Request Body */
         try {
             User user = new User();
-
             user.setId(id);
             user.setGuid(guid);
             user.setFirstname(firstname);
@@ -364,55 +446,80 @@ public class SeasonedRestAPI {
 
             /* Make a PUT request to /user */
             Call<User> call = seasonedAPI.updateUserAbout(accessToken, user);
-            Response<User> response = call.execute();
-            System.out.println("PUT request to /user returned a: " + response.code());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
     /**
      * Clears any skills from the user
-     * @param id the db id for the user
-     * @param guid the guid for the user to update
+     *
+     * @param id        the db id for the user
+     * @param guid      the guid for the user to update
      * @param firstname user's firstname
-     * @param lastname user's lastname
-     * @param email user's email
+     * @param lastname  user's lastname
+     * @param email     user's email
      */
     public void clearUserSkills(String id, String guid, String firstname, String lastname, String email) {
         try {
             User user = new User();
-
             user.setId(id);
             user.setGuid(guid);
             user.setFirstname(firstname);
             user.setLastname(lastname);
             user.setEmail(email);
             user.setAccountState("normal");
-            user.setSkills(new ArrayList<Skill>());
+            user.setSkills(new ArrayList<>());
 
             Call<User> call = seasonedAPI.clearUserSkills(accessToken, user);
-            Response<User> response = call.execute();
-            System.out.println("PUT request to /user returned a: " + response.code());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
 
-        }
-        catch(Exception e) {
-            System.out.println("PUT request to /user failed with error: " + e.getLocalizedMessage());
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
     /**
      * Clears out a user's certifications
+     *
      * @param guid the guid for the user
      */
     public void clearUserCertifications(String guid) {
         try {
             Call<User> call = seasonedAPI.clearUserCertifications(guid, accessToken, new ArrayList<Certification>());
-            Response<User> response = call.execute();
-            System.out.println("PUT request to /user/" + guid + "/certifications" + " returned a: " + response.code());
-        }
-        catch(Exception e) {
-            System.out.println("PUT request to /user/" + guid + "/certifications" + "failed with error: " + e.getLocalizedMessage());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -425,27 +532,45 @@ public class SeasonedRestAPI {
         try {
             /* Make a DELETE request to work history */
             Call<PrimaryWorkHistory> call = seasonedAPI.deleteWorkHistory(workHistoryGuid, accessToken);
-            Response<PrimaryWorkHistory> response = call.execute();
-            System.out.println("DELETE request to /workhistory/placeWorked/" + workHistoryGuid + " returned a " + response.code());
+            call.enqueue(new Callback<PrimaryWorkHistory>() {
+                @Override
+                public void onResponse(Call<PrimaryWorkHistory> call, Response<PrimaryWorkHistory> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<PrimaryWorkHistory> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("DELETE request to /workhistory/placeWorked/" + workHistoryGuid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
     /**
      * Deletes education for a user by guid
      *
-     * @param userGuid the user's guid
+     * @param userGuid      the user's guid
      * @param educationGuid the user's education guid
      */
     public void deleteEducationByGuid(String userGuid, String educationGuid) {
         try {
             /* Make a DELETE request to education */
             Call<User> call = seasonedAPI.deleteUserEducation(userGuid, educationGuid, accessToken);
-            Response<User> response = call.execute();
-            System.out.println("DELETE request to /user/" + userGuid + "/education/" + educationGuid +  " returned a " + response.code());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("DELETE request to /user/" + userGuid + "/education/" + educationGuid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -459,16 +584,24 @@ public class SeasonedRestAPI {
         /* Construct Network Request Body */
         try {
             Network network = new Network();
-
             network.setFromUserGuid(fromUserGuid);
             network.setToUserGuid(toUserGuid);
 
             /* Make a POST request to network */
             Call<Network> call = seasonedAPI.postNetworkConnection(accessToken, network);
-            Response<Network> response = call.execute();
-            System.out.println("POST request to /network returned a " + response.code());
+            call.enqueue(new Callback<Network>() {
+                @Override
+                public void onResponse(Call<Network> call, Response<Network> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Network> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -482,16 +615,24 @@ public class SeasonedRestAPI {
         /* Construct Network Request Body */
         try {
             Network network = new Network();
-
             network.setFromUserGuid(fromUserGuid);
             network.setToUserGuid(toUserGuid);
 
             /* Make a PUT request to network */
             Call<Network> call = seasonedAPI.updateNetworkConnection(accessToken, network);
-            Response<Network> response = call.execute();
-            System.out.println("PUT request to /network/accept returned a " + response.code());
+            call.enqueue(new Callback<Network>() {
+                @Override
+                public void onResponse(Call<Network> call, Response<Network> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Network> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -505,16 +646,24 @@ public class SeasonedRestAPI {
         /* Construct Network Request Body */
         try {
             Network network = new Network();
-
             network.setFromUserGuid(fromUserGuid);
             network.setToUserGuid(toUserGuid);
 
             /* Make a DELETE request to network */
             Call<Network> call = seasonedAPI.deleteNetworkConnection(accessToken, fromUserGuid, toUserGuid);
-            Response<Network> response = call.execute();
-            System.out.println("Delete request to /network/between/{guid}/{guid} returned a " + response.code());
+            call.enqueue(new Callback<Network>() {
+                @Override
+                public void onResponse(Call<Network> call, Response<Network> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Network> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Delete request to /network/between/{guid}/{guid} failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -527,10 +676,19 @@ public class SeasonedRestAPI {
         try {
             /* Make a POST request to unclaim an employer */
             Call<Employer> call = seasonedAPI.unclaimEmployer(employerGuid, accessToken);
-            Response<Employer> response = call.execute();
-            System.out.println("POST request to /employer/" + employerGuid + "/unclaim" +  " returned a " + response.code());
+            call.enqueue(new Callback<Employer>() {
+                @Override
+                public void onResponse(Call<Employer> call, Response<Employer> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Employer> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println( "POST request to /employer/" + employerGuid + "/unclaim" + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -543,10 +701,19 @@ public class SeasonedRestAPI {
         try {
             /* Make a DELETE request to remove an employer's logo */
             Call<Employer> call = seasonedAPI.deleteEmployerLogo(employerGuid, accessToken);
-            Response<Employer> response = call.execute();
-            System.out.println("DELETE request to /employer/logo/" + employerGuid +  " returned a " + response.code());
+            call.enqueue(new Callback<Employer>() {
+                @Override
+                public void onResponse(Call<Employer> call, Response<Employer> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Employer> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println( "DELETE request to /employer/logo/" + employerGuid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -554,16 +721,25 @@ public class SeasonedRestAPI {
      * Deletes an employer's photos
      *
      * @param employerGuid The guid of the employer photo to remove
-     * @param photoGuid The guid of the photo to remove
+     * @param photoGuid    The guid of the photo to remove
      */
     public void deleteEmployerPhotos(String employerGuid, String photoGuid) {
         try {
             /* Make a DELETE request to remove an employer's photos */
-            Call<Employer> call = seasonedAPI.deleteEmployerPhotos(employerGuid, photoGuid,  accessToken);
-            Response<Employer> response = call.execute();
-            System.out.println("DELETE request to /employer/photos/" + employerGuid + "/" + photoGuid + " returned a " + response.code());
+            Call<Employer> call = seasonedAPI.deleteEmployerPhotos(employerGuid, photoGuid, accessToken);
+            call.enqueue(new Callback<Employer>() {
+                @Override
+                public void onResponse(Call<Employer> call, Response<Employer> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Employer> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println( "DELETE request to /employer/photos/" + employerGuid + "/" + photoGuid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -577,15 +753,23 @@ public class SeasonedRestAPI {
         /* Construct User Request Body */
         try {
             User user = new User();
-
             user.setGuid(userGuid);
 
             /* Make a POST request to unfollow an employer */
             Call<User> call = seasonedAPI.unFollowEmployer(employerGuid, accessToken, user);
-            Response<User> response = call.execute();
-            System.out.println("POST request to /employer/{guid/unfollow returned a " + response.code());
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -593,33 +777,42 @@ public class SeasonedRestAPI {
      * Delete an admin
      *
      * @param employerGuid The employer's guid
-     * @param adminGuid The admin's guid
+     * @param adminGuid    The admin's guid
      */
     public void deleteAdmin(String employerGuid, String adminGuid) {
         try {
             /* Make a DELETE request to employer admins */
             Call<Employer> call = seasonedAPI.deleteAdmin(accessToken, employerGuid, adminGuid);
-            Response<Employer> response = call.execute();
-            System.out.println("Delete request to /employer/" +employerGuid + "/admins/" + adminGuid + " returned a " + response.code());
+            call.enqueue(new Callback<Employer>() {
+                @Override
+                public void onResponse(Call<Employer> call, Response<Employer> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Employer> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Delete request to /employer/" +employerGuid + "/admins/" + adminGuid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
     /**
      * Updates an employer's info section
-     * @param id the db id for the employer
-     * @param guid the guid for the employer to update
-     * @param name employer's name
-     * @param address1 employer's street address
-     * @param city employer's city
-     * @param state employer's state
-     * @param zip employer's zip
-     * @param country employer's country
-     * @param phone employer's phone
-     * @param url employer's website
-     * @param about employer's description
      *
+     * @param id       the db id for the employer
+     * @param guid     the guid for the employer to update
+     * @param name     employer's name
+     * @param address1 employer's street address
+     * @param city     employer's city
+     * @param state    employer's state
+     * @param zip      employer's zip
+     * @param country  employer's country
+     * @param phone    employer's phone
+     * @param url      employer's website
+     * @param about    employer's description
      */
     public void updateEmployerInfo(Long id, String guid, String name, String address1, String city, String state, String zip, String country, String phone, String url, String about, Long employerTypeId, String employerTypeName) {
         /* Construct User Request Body */
@@ -646,12 +839,21 @@ public class SeasonedRestAPI {
             employer.setAbout(about);
             employer.setEmployerType(employerType);
 
-            /* Make a PUT request to /user */
+            /* Make a PUT request to /employer */
             Call<Employer> call = seasonedAPI.updateEmployerInfo(guid, accessToken, employer);
-            Response<Employer> response = call.execute();
-            System.out.println("PUT request to /employer/" + guid +  " returned a: " + response.code());
+            call.enqueue(new Callback<Employer>() {
+                @Override
+                public void onResponse(Call<Employer> call, Response<Employer> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Employer> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println( "PUT request to /employer/" + guid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -659,16 +861,25 @@ public class SeasonedRestAPI {
      * Delete a staff member
      *
      * @param employerGuid The employer's guid
-     * @param staffGuid The staff member's guid
+     * @param staffGuid    The staff member's guid
      */
     public void deleteStaffMember(String employerGuid, String staffGuid) {
         try {
             /* Make a DELETE request to employer */
             Call<Employer> call = seasonedAPI.deleteStaffMember(employerGuid, staffGuid, accessToken);
-            Response<Employer> response = call.execute();
-            System.out.println("Delete request to /employer/" + employerGuid + "/staff/" + staffGuid + " returned a " + response.code());
+            call.enqueue(new Callback<Employer>() {
+                @Override
+                public void onResponse(Call<Employer> call, Response<Employer> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Employer> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Delete request to /employer/" + employerGuid + "/staff/" + staffGuid + " failed with error " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -698,11 +909,10 @@ public class SeasonedRestAPI {
             /* Make a POST request to content */
             Call<Content> call = seasonedAPI.postArticle(accessToken, content);
             Response<Content> response = call.execute();
-            System.out.println("POST request to /content/article returned a " + response.code());
             articleGuid = response.body().getGuid();
-            System.out.println("Article guid: " + articleGuid);
+            System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println("POST request to /content/article" + " failed with error: \n" + e.getLocalizedMessage());
         }
         return articleGuid;
     }
@@ -744,10 +954,19 @@ public class SeasonedRestAPI {
 
             /* Make a PUT request to content */
             Call<Content> call = seasonedAPI.updateArticlePublishedStatus(accessToken, content);
-            Response<Content> response = call.execute();
-            System.out.println("PUT request to /content/article returned a " + response.code());
+            call.enqueue(new Callback<Content>() {
+                @Override
+                public void onResponse(Call<Content> call, Response<Content> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Content> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Call failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -760,10 +979,19 @@ public class SeasonedRestAPI {
         try {
             /* Make a DELETE request to network */
             Call<Content> call = seasonedAPI.deleteArticle(articleGuid, accessToken);
-            Response<Content> response = call.execute();
-            System.out.println("Delete request to /content/article/" + articleGuid + " returned a " + response.code());
+            call.enqueue(new Callback<Content>() {
+                @Override
+                public void onResponse(Call<Content> call, Response<Content> response) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Content> call, Throwable t) {
+                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Delete request to /content/article/" + articleGuid + " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -793,10 +1021,19 @@ public class SeasonedRestAPI {
 
             /* Make a POST request to test/sqs/user */
             Call<SQS> call = seasonedAPI.sendHSUserToSqs(accessToken, sqs);
-            Response<SQS> response = call.execute();
-            System.out.println("POST request to /test/sqs/user returned a " + response.code());
+            call.enqueue(new Callback<SQS>() {
+                @Override
+                public void onResponse(Call<SQS> call, Response<SQS> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<SQS> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Task to send user to SQS queue failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -807,12 +1044,21 @@ public class SeasonedRestAPI {
      */
     public void postRunTask(String guid) {
         try {
-        /* Make a POST request to task runner */
+            /* Make a POST request to task runner */
             Call<SQS> call = seasonedAPI.runTask(guid, accessToken);
-            Response<SQS> response = call.execute();
-            System.out.println("POST request to /schedule/runner/" + guid + " returned a " + response.code());
+            call.enqueue(new Callback<SQS>() {
+                @Override
+                public void onResponse(Call<SQS> call, Response<SQS> response) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<SQS> call, Throwable t) {
+                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
         } catch (Exception e) {
-            System.out.println("Task " + guid +  " failed with error: " + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
     }
 }

@@ -39,6 +39,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return User's primary job text
      */
     public String getSummaryPrimaryJob() {
+
         return driver.findElement(profilePageLocators.findPrimaryJobTxt).getText();
     }
 
@@ -47,6 +48,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return User's skills
      */
     public String getSummarySkills() {
+
         return driver.findElement(profilePageLocators.personalInfoSkillsTxt).getText();
     }
 
@@ -55,6 +57,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the disconnect button is present on the personal info section
      */
     public boolean isDisconnectButtonPresent(){
+
         return elementExists(profilePageLocators.personalInfoActionsMenuBtn);
     }
 
@@ -75,6 +78,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the work history title is present on the work history card
      */
     public boolean isExperienceHeaderDisplayed() {
+
         return elementExists(profilePageLocators.workHistoryTitleTxt);
     }
 
@@ -165,6 +169,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the certifications title is displayed
      */
     public Boolean isCertificationsHeaderDisplayed(){
+
         return elementExists(profilePageLocators.certsTitleTxt);
     }
 
@@ -197,6 +202,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the Alcohol Seller Cert is on the cert card
      */
     public boolean verifyAlcoholCert() {
+
         return elementExists(profilePageLocators.certsAlcoholImg);
     }
 
@@ -205,6 +211,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the Food Handler Seller Cert is on the cert card
      */
     public boolean verifyFoodHandlerCert() {
+
         return elementExists(profilePageLocators.certsFoodHandlerImg);
     }
 
@@ -221,6 +228,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the HACCP Cert is on the cert card
      */
     public boolean verifyHACCPCert() {
+
         return elementExists(profilePageLocators.certsHACCPImg);
     }
 
@@ -253,6 +261,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the education title is displayed
      */
     public boolean isEducationHeaderDisplayed() {
+
         return elementExists(profilePageLocators.educationTitleTxt);
     }
 
@@ -261,6 +270,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return The empty state text on the education card
      */
     public String getEducationEmptyTxt() {
+
         return driver.findElement(profilePageLocators.educationEmptyTxt).getText();
     }
 
@@ -325,6 +335,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the availability title is displayed
      */
     public boolean isAvailabilityHeaderDisplayed() {
+
         return elementExists(profilePageLocators.availabilityTitleTxt);
     }
 
@@ -390,6 +401,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the about title is displayed
      */
     public boolean isAboutHeaderDisplayed() {
+
         return elementExists(profilePageLocators.aboutTitleTxt);
     }
 
@@ -398,6 +410,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return The empty state text on the about card
      */
     public String getAboutEmptyTxt() {
+
         return driver.findElement(profilePageLocators.aboutEmptyTxt).getText();
     }
 
@@ -414,6 +427,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the about section is present on the view profile page
      */
     public boolean isAboutSectionPresent() {
+
         return elementExists(profilePageLocators.aboutTxtField);
     }
 
@@ -422,6 +436,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return The about text
      */
     public String getAboutTxt() {
+
         return driver.findElement(profilePageLocators.aboutTxtField).getText();
     }
 
@@ -432,6 +447,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the skills title is displayed
      */
     public Boolean isSkillsHeaderDisplayed(){
+
         return elementExists(profilePageLocators.skillsTitleTxt);
     }
 
@@ -440,6 +456,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return The empty state text on the skills card
      */
     public String getSkillsEmptyTxt() {
+
         return driver.findElement(profilePageLocators.skillsEmptyTxt).getText();
     }
 
@@ -483,6 +500,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the connections title text is displayed
      */
     public boolean isConnectionsTitleTxtPresent() {
+
         return elementExists(profilePageLocators.connectionsTitleTxt);
     }
 
@@ -599,6 +617,7 @@ public class HourlyProfileViewPage extends BasePage {
      * Click the back button to go to the view profile page
      */
     public void clickBackBtn() {
+
         driver.findElement(profilePageLocators.profileBackBtn).click();
     }
 

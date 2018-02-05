@@ -30,7 +30,7 @@ public class EmployerProfileStaff extends BaseTest {
     private String token;
     private List<String> staffGuids;
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing employer profile Staff test...");
         employerProfileViewPage = new EmployerProfileViewPage(driver);
@@ -60,7 +60,7 @@ public class EmployerProfileStaff extends BaseTest {
     }
 
     @Test
-    public void testEmployerProfileStaff() {
+    public void testEmployerProfileStaff() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

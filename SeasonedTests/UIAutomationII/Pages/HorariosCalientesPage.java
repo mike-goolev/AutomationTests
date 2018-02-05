@@ -45,6 +45,30 @@ public class HorariosCalientesPage extends BasePage {
     }
 
     /**
+     * Clicks the SSO dropdown
+     */
+    public void clickSsoDropdown() {
+        wait.until(elementToBeClickable(horariosCalientesLocators.appDropdownBtn));
+        driver.findElement(horariosCalientesLocators.appDropdownBtn).click();
+    }
+
+    /**
+     * Clicks the BF SSO link
+     */
+    public void clickBfSsoBtn() {
+        wait.until(elementToBeClickable(horariosCalientesLocators.bfSsoBtn));
+        driver.findElement(horariosCalientesLocators.bfSsoBtn).click();
+    }
+
+    /**
+     * Select BF SSO
+     */
+    public void selectBfSso() {
+        clickSsoDropdown();
+        clickBfSsoBtn();
+    }
+
+    /**
      * Clicks the staff tab
      */
     public void clickStaffTab() {
