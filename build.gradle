@@ -22,13 +22,21 @@ dependencies {
 }
 
 test {
-    outputs.upToDateWhen { false }
-    useTestNG()
-    reports.junitXml.destination = "testreports"
-    reports.html.destination = "testreports"
+    dependsOn(clean)
+    useTestNG{
+        if (project.hasProperty('QA_Chrome')) { suites 'src/test/resources/QA_All_Chrome.xml' }
+        if (project.hasProperty('QA_Firefox')) { suites 'src/test/resources/QA_All_Firefox.xml' }
+        }
 }
 
-compileTestJava {
+compileJava {
     destinationDir = file("build/classes/test")
-    source = file("SeasonedTests/UIAutomationII")
+    sourceSets {
+        test{
+            java{
+                srcDir 'src/test/java/tests'
+        }
+    }
+    }
+
 }

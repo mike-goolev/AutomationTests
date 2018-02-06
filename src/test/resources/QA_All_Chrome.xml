@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="QA_ALL" verbose="1" thread-count="3" parallel="none">
+	<test name="QA_environment" preserve-order="true">
+        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="url" value="https://qa-www.seasoned.co/services/webapp/"></parameter>
+        <parameter name="urlAPI" value="http://qa-brushfire.seasoned.co/services/"></parameter>
+        <parameter name="dbURL" value="jdbc:postgresql://qa-db.seasoned.co/bf_qa"></parameter>
+        <parameter name="hsUrl" value="http://qamaster.eng.hotschedules.com/hs/"></parameter>
+        <parameter name="mailinatorUrl" value="http://www.mailinator.com"></parameter>
+	<classes>
+		<class name="tests.EmployerProfileAbout"/>
+	    <class name="tests.EmployerProfileInfo"/>
+        <class name="tests.EmployerProfileJobs"/>
+        <class name="tests.EmployerProfilePhotos"/>
+        <class name="tests.EmployerProfileStaff"/>
+        <class name="tests.EmployerProfileView"/>
+        <class name="tests.EmployerRegistration"/>
+        <class name="tests.HourlyAutoProvision"/>
+        <class name="tests.HourlyJobSearch"/>
+        <class name="tests.HourlyLogin"/>
+        <class name="tests.HourlyMessages"/>
+        <class name="tests.HourlyMyHome"/>
+        <class name="tests.HourlyNetworkInvitations"/>
+        <class name="tests.HourlyNetworkMyConnections"/>
+        <class name="tests.HourlyNetworkSuggestions"/>
+        <class name="tests.HourlyProfileAbout"/>
+        <class name="tests.HourlyProfileAvailability"/>
+        <class name="tests.HourlyProfileCertifications"/>
+        <class name="tests.HourlyProfileConnections"/>
+        <class name="tests.HourlyProfilePersonal"/>
+        <class name="tests.HourlyProfileSkills"/>
+        <class name="tests.HourlyProfileWorkHistory"/>
+        <class name="tests.HourlyRegistration"/>
+	</classes>
+	</test> 
+</suite> 
