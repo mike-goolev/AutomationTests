@@ -808,7 +808,7 @@ public class Locators {
         public By deleteWorkHistoryCancelBtn = By.id("editWorkHistoryCancelDeleteBtn");
         public By deleteWorkHistorySuccessToast = By.id("deleteWorkHistorySuccessToast");
         public By deleteWorkHistorySuccessToastCloseBtn = By.id("deleteWorkHistorySuccessToastCloseBtn");
-        public By googlePlacesMyStoreBtns = By.cssSelector("div.pac-container>div");
+        public By googlePlacesMyStoreBtns = By.cssSelector("div.pac-container>div.pac-item");
 
         /**
          * Locates a edit work history button for a given index

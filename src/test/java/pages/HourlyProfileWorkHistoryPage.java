@@ -38,6 +38,7 @@ public class HourlyProfileWorkHistoryPage extends BasePage {
         Thread.sleep(500);
         driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(Keys.ARROW_DOWN);
         Thread.sleep(500);
+        driver.findElement(workHistoryPageLocators.employerLocationTxtField).sendKeys(Keys.ENTER);
     }
 
     /**

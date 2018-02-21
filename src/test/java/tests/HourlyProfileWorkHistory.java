@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
 import pages.*;
 import utils.TestDataImporter;
 import utils.TestConfig;
@@ -115,10 +116,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
 
         /* Enter an employer */
         hourlyProfileWorkHistoryPage.enterWhereHaveYouWorkedText(employer1 + " Occidental");
-
-        /* Grab the list of google places results */
-        ArrayList<WebElement> stores = (ArrayList<WebElement>) hourlyProfileWorkHistoryPage.getGooglePlacesElements();
-        stores.get(0).click();
 
         /* Set work history from dates */
         hourlyProfileWorkHistoryPage.selectMonthFromDate(month);
@@ -268,10 +265,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
         /* Enter an employer */
         hourlyProfileWorkHistoryPage.enterWhereHaveYouWorkedText(employer1 + " Occidental");
 
-        /* Grab the list of google places results */
-        ArrayList<WebElement> stores1 = (ArrayList<WebElement>) hourlyProfileWorkHistoryPage.getGooglePlacesElements();
-        stores1.get(0).click();
-
         /* Set work history from dates */
         hourlyProfileWorkHistoryPage.selectMonthFromDate(month);
         hourlyProfileWorkHistoryPage.selectYearFromDate(yearCurrent);
@@ -327,10 +320,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
 
         /* Enter an employer */
         hourlyProfileWorkHistoryPage.enterWhereHaveYouWorkedText(employer2 + " Nova");
-
-        /* Grab the list of google places results */
-        ArrayList<WebElement> stores2 = (ArrayList<WebElement>) hourlyProfileWorkHistoryPage.getGooglePlacesElements();
-        stores2.get(0).click();
 
         /* Set work history from dates */
         hourlyProfileWorkHistoryPage.selectMonthFromDate(month);

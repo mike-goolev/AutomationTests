@@ -102,7 +102,7 @@ public class HourlyProfileViewPage extends BasePage {
     public void clickAddExperience() {
         wait.until(elementToBeClickable(profilePageLocators.workHistoryAddBtn));
         driver.findElement(profilePageLocators.workHistoryAddBtn).click();
-        wait.until(presenceOfElementLocated(workHistoryPageLocators.firstJobChk));
+        wait.until(visibilityOfElementLocated(workHistoryPageLocators.firstJobChk));
     }
 
     /**

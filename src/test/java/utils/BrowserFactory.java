@@ -24,6 +24,7 @@ public class BrowserFactory {
             switch (browser.toLowerCase()) {
                 case "firefox":
                     driver = new FirefoxDriver();
+                    driver.manage().window().maximize();
                     break;
 
                 case "firefoxProfile":
