@@ -15,6 +15,7 @@ public class SqlSelects {
     private String sql;
     private String sqsMessage;
     private String emailField;
+    private String guid;
     private String employer_guid;
     private String admin_guid;
     private String accountState;
@@ -341,5 +342,32 @@ public class SqlSelects {
             npe.printStackTrace();
         }
         return staffGuids;
+    }
+
+
+    /**
+     * Find user by email
+     *
+     * @param email The user's email
+     * @return User's guid
+     */
+    public String getUserGUIDByEmail(String email) throws SQLException, NullPointerException {
+        sql = "SELECT guid "
+                + "from bf_user "
+                + "where email = ?";
+        try {
+            connection = dbManager.getConnection();
+            pstmt = dbManager.prepareStatement(connection, sql, ps -> ps.setString(1, email));
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                guid = rs.getString("guid");
+                System.out.println("USER GUID: " + guid);
+            }
+        } catch (SQLException e){
+            System.out.println("Query failed with SQLException:\n" + sql);
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed with NullPointerException:\n" + sql);
+        }
+        return guid;
     }
 }

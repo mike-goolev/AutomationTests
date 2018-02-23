@@ -30,7 +30,7 @@ public class BaseTest extends TestNG {
     }
     if(url == null)
     {
-        url = "https://qa-www.seasoned.co/services/webapp/";
+        url = "https://qa-www.seasoned.co/";
     }
         if(urlAPI == null)
         {

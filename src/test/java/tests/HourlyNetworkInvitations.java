@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
+import sql.SqlSelects;
 import utils.TestDataImporter;
 import restInterfaces.*;
 
@@ -53,9 +54,16 @@ public class HourlyNetworkInvitations extends BaseTest {
         connectionJob = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("connectionJob");
         invitationsEmptyTitle = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("invitationsEmptyTitle");
         invitationsEmptyTxt = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("invitationsEmptyTxt");
-        fromUserGuid = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("fromUserGuid");
-        toUserGuid = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("toUserGuid");
+
+        SqlSelects sqlNew = new SqlSelects();
+        fromUserGuid = sqlNew.getUserGUIDByEmail((String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("fromUserEmail"));
+        // fromUserGuid = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("fromUserGuid");
+        toUserGuid = sqlNew.getUserGUIDByEmail((String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("username"));
+       // toUserGuid = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("toUserGuid");
+
         token = (String) TestDataImporter.get("HourlyNetworkInvitations", "HourlyNetworkInvitations").get("token");
+        System.out.println(fromUserGuid);
+        System.out.println(toUserGuid);
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteConnection(fromUserGuid, toUserGuid);
         System.out.println("Starting hourly network Invitations test!");
@@ -63,6 +71,8 @@ public class HourlyNetworkInvitations extends BaseTest {
 
     @Test
     public void testHourlyNetworkInvitations() throws Exception {
+        System.out.println(fromUserGuid);
+        System.out.println(toUserGuid);
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

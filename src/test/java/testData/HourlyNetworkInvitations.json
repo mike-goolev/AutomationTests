@@ -11,8 +11,7 @@
     "connectionJob":"Team Member @ Tommy Want Wingy",
     "invitationsEmptyTitle":"Ah, no invitations…",
     "invitationsEmptyTxt":"You can always come back later. Otherwise, why don’t you go ahead and search our community?",
-    "fromUserGuid":"0c741788-9827-4c1c-9f8b-e6c40ecfb320",
-    "toUserGuid":"e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
-    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
+    "fromUserEmail": "aconnection@mailinator.com"
   }
 }
