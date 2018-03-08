@@ -370,4 +370,37 @@ public class SqlSelects {
         }
         return guid;
     }
+
+    /**
+     * Find email by user first and last name
+     *
+     * @param firstName The user's first name
+     * @param lastName The user's last name
+     * @return the user's email address
+     */
+    public String getEmailByName(String firstName, String lastName) throws SQLException, NullPointerException {
+        String email = null;
+        sql = "SELECT email "
+                + "from bf_user "
+                + "where firstname = ? "
+                + "and lastname = ?";
+        try {
+            connection = dbManager.getConnection();
+            pstmt = connection.prepareStatement(sql);
+            {
+                pstmt.setString(1, firstName);
+                pstmt.setString(2, lastName);
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    email = rs.getString("email");
+                    System.out.println("Email: " + email);
+                }
+            }
+        } catch (SQLException e){
+            System.out.println("Query failed with SQLException:\n" + sql);
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed with NullPointerException:\n" + sql);
+        }
+        return email;
+    }
 }

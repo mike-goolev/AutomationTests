@@ -9,13 +9,16 @@ import pages.*;
 import utils.TestDataImporter;
 import restInterfaces.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class HourlyAutoProvision extends BaseTest {
 
-    private HorariosCalientesPage horariosCalientesPage;
     private HourlyAutoprovisionSignupPage hourlyAutoprovisionSignupPage;
     private HourlyProfileViewPage hourlyProfileViewPage;
+    private HorariosCalientesPage horariosCalientesPage;
+    private EmailsPage emailsPage;
 
     private String loginUsername;
     private String loginPassword;
@@ -37,11 +40,12 @@ public class HourlyAutoProvision extends BaseTest {
     private String employeeId;
 
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
-    public void setup() throws SQLException, InterruptedException, NullPointerException {
+    public void setup() throws SQLException, InterruptedException, NullPointerException, FileNotFoundException, IOException {
         System.out.println("Initializing horarios calientes auto provision test...");
         horariosCalientesPage = new HorariosCalientesPage(driver);
         hourlyAutoprovisionSignupPage = new HourlyAutoprovisionSignupPage(driver);
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
+        emailsPage = new EmailsPage(driver);
 
         loginUsername = (String) TestDataImporter.get("HourlyAutoProvision", "testHSAutoProvision").get("loginUsername");
         loginPassword = (String) TestDataImporter.get("HourlyAutoProvision", "testHSAutoProvision").get("loginPassword");
@@ -69,7 +73,7 @@ public class HourlyAutoProvision extends BaseTest {
         System.out.println("Starting active users horarios calientes test!");
 
         /* Start test on the be login page */
-        testUtils.loadHorariosCalientesLogin();
+        horariosCalientesPage.loadHorariosCalientesLogin();
 
         /* Log in */
         horariosCalientesPage.loginWithUsername(loginUsername, loginPassword);
@@ -106,7 +110,8 @@ public class HourlyAutoProvision extends BaseTest {
         Assert.assertEquals(sqlSelect.getUserAccountState(email), "5");
 
         /* Open welcome email and register */
-        testUtils.openHSAutoProvisionRegisterAction(email);
+        emailsPage.openInboxMessageByEmailAddress(email);
+        emailsPage.selectEmailActivationAction();
 
         /* Verify user lands on 1-time update email/password form */
         navPage.dismissRebrandingModal();
@@ -121,7 +126,7 @@ public class HourlyAutoProvision extends BaseTest {
         System.out.println("Starting terminated users horarios calientes test!");
 
         /* Start test on the be login page */
-        testUtils.loadHorariosCalientesLogin();
+        horariosCalientesPage.loadHorariosCalientesLogin();
 
         /* Log in */
         horariosCalientesPage.loginWithUsername(loginUsername, loginPassword);
@@ -158,7 +163,8 @@ public class HourlyAutoProvision extends BaseTest {
         Assert.assertEquals(sqlSelect.getUserAccountState(email), "5");
 
         /* Open welcome email and register */
-        testUtils.openHSAutoProvisionRegisterAction(email);
+        emailsPage.openInboxMessageByEmailAddress(email);
+        emailsPage.selectEmailActivationAction();
 
         /* Verify user lands on 1-time update email/password form */
         navPage.dismissRebrandingModal();

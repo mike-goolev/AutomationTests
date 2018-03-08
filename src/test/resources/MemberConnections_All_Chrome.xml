@@ -9,29 +9,31 @@
         <parameter name="hsUrl" value="http://qamaster.eng.hotschedules.com/hs/"></parameter>
         <parameter name="mailinatorUrl" value="http://www.mailinator.com"></parameter>
 	<classes>
+        <class name="tests.EmployerDash"/>
         <class name="tests.EmployerProfileAbout"/>
-	    <class name="tests.EmployerProfileInfo"/>
+	      <class name="tests.EmployerProfileInfo"/>
         <class name="tests.EmployerProfileJobs"/>
         <class name="tests.EmployerProfilePhotos"/>
         <class name="tests.EmployerProfileStaff"/>
         <class name="tests.EmployerProfileView"/>
         <class name="tests.EmployerRegistration"/>
+        <class name="tests.EmployerTalent"/>
         <class name="tests.HourlyAutoProvision"/>
         <class name="tests.HourlyJobSearch"/>
         <class name="tests.HourlyLogin"/>
         <class name="tests.HourlyMessages"/>
         <class name="tests.HourlyMyHome"/>
         <class name="tests.HourlyNetworkInvitations"/>
-         <class name="tests.HourlyNetworkMyConnections"/>
-         <class name="tests.HourlyNetworkSuggestions"/>
-         <class name="tests.HourlyProfileAbout"/>
-         <class name="tests.HourlyProfileAvailability"/>
-         <class name="tests.HourlyProfileCertifications"/>
-         <class name="tests.HourlyProfileConnections"/>
-         <class name="tests.HourlyProfilePersonal"/>
-         <class name="tests.HourlyProfileSkills"/>
-         <class name="tests.HourlyProfileWorkHistory"/>
-         <class name="tests.HourlyRegistration"/>
+        <class name="tests.HourlyNetworkMyConnections"/>
+        <class name="tests.HourlyNetworkSuggestions"/>
+        <class name="tests.HourlyProfileAbout"/>
+        <class name="tests.HourlyProfileAvailability"/>
+        <class name="tests.HourlyProfileCertifications"/>
+        <class name="tests.HourlyProfileConnections"/>
+        <class name="tests.HourlyProfilePersonal"/>
+        <class name="tests.HourlyProfileSkills"/>
+        <class name="tests.HourlyProfileWorkHistory"/>
+        <class name="tests.HourlyRegistration"/>
 	</classes>
 	</test> 
 </suite> 

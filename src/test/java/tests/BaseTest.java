@@ -20,13 +20,13 @@ public class BaseTest extends TestNG {
 
     @Parameters({  "browser" , "url", "urlAPI", "dbURL", "hsUrl", "mailinatorUrl"})
     @BeforeMethod
-    public void setUpMain(@Optional String browser, @Optional String url, @Optional String urlAPI, @Optional String dbURL, @Optional String hsUrl, @Optional String mailinatorUrl) throws Exception {
+    public void setUpMain(@Optional String browser, @Optional String url, @Optional String urlAPI, @Optional String dbURL, @Optional String hsUrl, @Optional String mailinatorUrl) {
         /**
-         * Introducing browser, baseURL, APIUrl and dbURL as parameter in TesnNG config file,
+         * Introducing browser, baseUrl, APIUrl and dbUrl, hsUrl and mailinatorUrl as parameters in TesnNG config file,
          * which will diversify the type of browsers the tests can run
          */
     if(browser== null){
-    browser = "firefox";
+    browser = "firefox"; // Browser options: "firefox", "ie", "safari", "chrome", "chromeHeadless" --> See Utils/BrowserFactory
     }
     if(url == null)
     {
@@ -58,6 +58,4 @@ public class BaseTest extends TestNG {
         TestConfig.setHsUrl(hsUrl);
         TestConfig.setMailinatorHomepageUrl(mailinatorUrl);
     }
-
-
 }

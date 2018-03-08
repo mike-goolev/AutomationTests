@@ -503,9 +503,9 @@ public class EmployerDashPage extends BasePage {
                 wait.until(invisibilityOfElementLocated(dashPageLocators.employerDashLoader));
             }
         } catch (NoSuchElementException e) {
-            System.out.println("***\n" + "Loading indicator not displayed due to NoSuchElementException..." + "\n***");
+            System.out.println("\n" + "Loading indicator not displayed due to NoSuchElementException..." + "\n");
         } catch (StaleElementReferenceException se) {
-            System.out.println("***\n" +"Loading indicator not displayed due to StaleElementReferenceException..." + "\n***");
+            System.out.println("\n" +"Loading indicator not displayed due to StaleElementReferenceException..." + "\n");
         }
     }
 }

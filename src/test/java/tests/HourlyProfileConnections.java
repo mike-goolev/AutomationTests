@@ -21,6 +21,7 @@ public class HourlyProfileConnections extends BaseTest {
     private String connectionCount;
     private String connectionName;
     private String connectionJob;
+    private String connectionCity;
     private String fromUserGuid;
     private String toUserGuid;
     private String token;
@@ -39,6 +40,7 @@ public class HourlyProfileConnections extends BaseTest {
         connectionCount = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionCount");
         connectionName = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionName");
         connectionJob = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionJob");
+        connectionCity = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionCity");
         fromUserGuid = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("fromUserGuid");
         toUserGuid = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("toUserGuid");
         token = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("token");
@@ -86,7 +88,7 @@ public class HourlyProfileConnections extends BaseTest {
 
         /* Verify connection's card is displayed */
         Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex), "The connection's photo should be displayed");
-        Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionName(connectionIndex), connectionName);
+        Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionName(connectionIndex), connectionName + ", " + connectionCity);
         Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionJob(connectionIndex), connectionJob);
     }
 

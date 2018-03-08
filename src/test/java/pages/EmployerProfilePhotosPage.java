@@ -3,9 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import utils.Locators;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class EmployerProfilePhotosPage extends BasePage {
 
@@ -84,11 +82,10 @@ public class EmployerProfilePhotosPage extends BasePage {
      */
     public void addEmployerPhoto(String fileName) throws Exception{
         selectUploadPhotoBtn();
+        wait.until(presenceOfElementLocated(employerProfileEditPhotosPageLocators.employerProfileEditPhotosFileInput));
         driver.findElement(employerProfileEditPhotosPageLocators.employerProfileEditPhotosFileInput).sendKeys(fileName);
         waitForPhotoUploadLoadingIndicator();
     }
-
-
 
     /**
      * Selects the confirm delete button

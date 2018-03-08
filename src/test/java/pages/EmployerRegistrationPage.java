@@ -6,6 +6,7 @@ import utils.Locators;
 import utils.TestUtils;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class EmployerRegistrationPage extends BasePage {
 
@@ -188,6 +189,7 @@ public class EmployerRegistrationPage extends BasePage {
      */
     public void setLogo(String fileName) {
         selectUploadPhotoBtn();
+        wait.until(presenceOfElementLocated(employerSignUpLocators.storeLogoFileInput));
         driver.findElement(employerSignUpLocators.storeLogoFileInput).sendKeys(fileName);
         selectLogoPreviewSaveBtn();
     }

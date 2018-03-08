@@ -60,7 +60,7 @@ public class HourlyLogin extends BaseTest {
         hourlyJobSearchPage.verifyPositionDropdown();
     }
 
-    @Test(enabled = false)
+    @Test
     public void testHourlyLoginFromJobSearchPageByFacebook() throws Exception {
         /* Start test on the job search page */
         testUtils.loadJobSearchPageNoTerms();
@@ -86,7 +86,7 @@ public class HourlyLogin extends BaseTest {
         Assert.assertTrue(hourlyNetworkPage.isUserSearchFieldPresent());
     }
 
-    @Test(enabled = false)
+    @Test
     public void testHourlyLoginFromConnectionsByFacebook() throws Exception {
         /* Start test on the connections page */
         testUtils.loadConnectionsPage();
@@ -112,7 +112,7 @@ public class HourlyLogin extends BaseTest {
         Assert.assertTrue(hourlyBeSuccessfulPage.isHeaderDisplayed());
     }
 
-    @Test(enabled = false)
+    @Test
     public void testHourlyLoginFromBeSuccessfulByFacebook() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();

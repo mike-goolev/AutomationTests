@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,6 +20,7 @@ public class EmployerDash extends BaseTest {
     private HourlyProfileViewPage hourlyProfileViewPage;
     private HourlyJobSearchPage jobSearchPage;
     private EmployerProfileJobsPage employerProfileJobsPage;
+    private EmployerFindTalentPage findTalentPage;
 
     private String email;
     private String password;
@@ -54,7 +56,6 @@ public class EmployerDash extends BaseTest {
     private String jobAvailability;
     private List<String> jobGuids;
     String jobGuid;
-    private String jobIndex;
     private String jobsEmptyTitleTxt;
     private String jobsEmptyTxt;
     private String userId;
@@ -72,6 +73,7 @@ public class EmployerDash extends BaseTest {
         hourlyProfileViewPage = new HourlyProfileViewPage(driver);
         jobSearchPage = new HourlyJobSearchPage(driver);
         employerProfileJobsPage = new EmployerProfileJobsPage(driver);
+        findTalentPage = new EmployerFindTalentPage(driver);
 
         email = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("email");
         password = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("password");
@@ -105,7 +107,6 @@ public class EmployerDash extends BaseTest {
         jobDescription = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobDescription");
         jobStatus = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobStatus");
         jobAvailability = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobAvailability");
-        jobIndex = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobIndex");
         jobsEmptyTitleTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobsEmptyTitleTxt");
         jobsEmptyTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobsEmptyTxt");
         userId = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("userId");
@@ -123,6 +124,76 @@ public class EmployerDash extends BaseTest {
 
     @Test
     public void testEmployerDashViewCards() throws Exception {
+        /* Start test on the be successful page */
+        testUtils.loadBeSuccessfulPage();
+
+        /* Log in */
+        navPage.clickLoginBtn();
+        loginPage.loginWithEmail(email, password);
+
+        /* Navigate to store dashboard page */
+        navPage.switchToEmployerView();
+        navPage.navigateToDashPage();
+        employerDashPage.waitForLoadingIndicator();
+
+        /* Verify Dash title */
+        Assert.assertEquals(employerDashPage.getEmployerDashTitleTxt(), dashTitle);
+
+        /* View applicant profile */
+        employerDashPage.selectApplicantViewProfileBtn(cardIndex);
+//      Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
+        Thread.sleep(2000);
+        hourlyProfileViewPage.isUserProfilePhotoPresent();
+        Assert.assertEquals(hourlyProfileViewPage.getFirstAndLastName(), applicantName);
+
+        /* Return to Dash */
+        navPage.navigateToDashPage();
+        employerDashPage.waitForLoadingIndicator();
+
+        /* Verify talent card */
+        Assert.assertTrue(employerDashPage.isTalentTitleDisplayed());
+        Assert.assertTrue(employerDashPage.isTalentCardDisplayed(cardIndex), "The talent card should be displayed");
+        Assert.assertTrue(employerDashPage.isTalentCardPhotoDisplayed(cardIndex), "The talent card's photo should be displayed");
+
+        /* View talent's profile */
+        employerDashPage.selectTalentViewProfileBtn(cardIndex);
+//      Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
+        Thread.sleep(2000);
+        Assert.assertTrue(hourlyProfileViewPage.isUserProfilePhotoPresent(), "The user's profile photo should be displayed");
+
+        /* Return to Dash */
+        navPage.navigateToDashPage();
+        employerDashPage.waitForLoadingIndicator();
+
+        /* Verify active job postings */
+        Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
+        Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
+        Assert.assertEquals(employerDashPage.getJobCardEmployerName(cardIndex), employerName);
+        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
+        Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
+        Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
+//        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
+
+        /* View job details */
+        employerDashPage.selectJobViewBtn(cardIndex);
+        Assert.assertEquals(jobSearchPage.getJobDetailsEmployerName(), employerName);
+        Assert.assertEquals(jobSearchPage.getJobDetailsPosition(), jobPosition);
+
+        /* Return to Dash */
+        navPage.navigateToDashPage();
+        employerDashPage.waitForLoadingIndicator();
+
+        /* Edit job details */
+        employerDashPage.selectJobEditBtn(cardIndex);
+        Assert.assertEquals(employerProfileJobsPage.getJobPositionTxt(), jobPosition);
+
+        /* Return to Dash */
+        navPage.navigateToDashPage();
+        employerDashPage.waitForLoadingIndicator();
+    }
+
+    @Test(priority = 0)
+    public void testEmployerDashApplicants() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
@@ -159,7 +230,7 @@ public class EmployerDash extends BaseTest {
         employerDashPage.waitForLoadingIndicator();
 
         /* Verify talent card */
-        Assert.assertTrue(employerDashPage.isTalentTitleDisplayed());
+        Assert.assertTrue(employerDashPage.isTalentTitleDisplayed(), "The talent title should be displayed");
         Assert.assertTrue(employerDashPage.isTalentCardDisplayed(cardIndex), "The talent card should be displayed");
         Assert.assertTrue(employerDashPage.isTalentCardPhotoDisplayed(cardIndex), "The talent card's photo should be displayed");
 
@@ -180,7 +251,7 @@ public class EmployerDash extends BaseTest {
         Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
         Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
-        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
+//        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
 
         /* View job details */
         employerDashPage.selectJobViewBtn(cardIndex);
@@ -198,7 +269,6 @@ public class EmployerDash extends BaseTest {
         /* Return to Dash */
         navPage.navigateToDashPage();
         employerDashPage.waitForLoadingIndicator();
-
     }
 
     @Test
@@ -272,7 +342,6 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isApplicantCardPhotoDisplayed(cardIndex), "Applicant's photo should be displayed");
         Assert.assertEquals(employerDashPage.getApplicantName(cardIndex), applicantName);
         Assert.assertEquals(employerDashPage.getApplicantPosition(cardIndex), applicantPosition);
-        Assert.assertEquals(employerDashPage.getApplicantTime(cardIndex), applicantTime);
         Assert.assertEquals(employerDashPage.getApplicantSharedConnections(cardIndex), applicantSharedConnections);
 
         /* Set applicant as a 'Good fit' */
@@ -282,7 +351,7 @@ public class EmployerDash extends BaseTest {
         employerDashPage.dismissApplicantSuccessToast(cardIndex);
 
         /* Verify talent card */
-        Assert.assertTrue(employerDashPage.isTalentTitleDisplayed());
+        Assert.assertTrue(employerDashPage.isTalentTitleDisplayed(), "The talent title should be displayed");
         Assert.assertTrue(employerDashPage.isTalentCardDisplayed(cardIndex), "The talent card should be displayed");
         Assert.assertTrue(employerDashPage.isTalentCardPhotoDisplayed(cardIndex), "The talent card's photo should be displayed");
 
@@ -293,7 +362,7 @@ public class EmployerDash extends BaseTest {
         employerDashPage.dismissTalentSuccessToast(cardIndex);
     }
 
-    @Test(enabled = false)
+    @Test
     public void testEmployerDashBadFit() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -316,7 +385,6 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isApplicantCardPhotoDisplayed(cardIndex), "Applicant's photo should be displayed");
         Assert.assertEquals(employerDashPage.getApplicantName(cardIndex), applicantName);
         Assert.assertEquals(employerDashPage.getApplicantPosition(cardIndex), applicantPosition);
-        Assert.assertEquals(employerDashPage.getApplicantTime(cardIndex), applicantTime);
         Assert.assertEquals(employerDashPage.getApplicantSharedConnections(cardIndex), applicantSharedConnections);
 
         /* Set applicant as 'Not a good fit' */
@@ -340,12 +408,15 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.verifyTalentSuccessToast(cardIndex), "The talent success toast should be displayed");
         employerDashPage.dismissTalentSuccessToast(cardIndex);
 
-        /* Reset applicant to 'Good fit' status */
-        //Implmenent status reset on find talent page
+        /* Reset talent to 'Good fit' status */
+        navPage.navigateToTalentPage();
+        findTalentPage.selectTalentBadTab();
+        findTalentPage.selectTalentActionsBtn(cardIndex);
+        findTalentPage.selectTalentActionsGoodFitBtn(cardIndex);
     }
 
     @AfterMethod
-    public void tearDown(ITestResult result) {
+    public void tesTearDown(ITestResult result) throws SQLException {
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }
@@ -353,6 +424,12 @@ public class EmployerDash extends BaseTest {
         navPage.attemptLogout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteJob(jobGuid);
-        driver.quit();
+        driver.close();
+    }
+
+    @AfterClass
+    public void suiteTearDown(){
+        if (driver != null)
+            driver.quit();
     }
 }

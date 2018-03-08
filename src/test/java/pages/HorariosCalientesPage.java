@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import utils.Locators;
+import utils.TestConfig;
 import utils.TestUtils;
 import sql.SqlSelects;
 
@@ -23,6 +24,13 @@ public class HorariosCalientesPage extends BasePage {
         navPage = new NavPage(driver);
         testUtils = new TestUtils(driver);
         postreSQLSelects = new SqlSelects();
+    }
+
+    /**
+     * Navigate to the horarios calientes login page
+     */
+    public void loadHorariosCalientesLogin() {
+        driver.get(TestConfig.getHsLoginUrl());
     }
 
     /**
@@ -138,7 +146,7 @@ public class HorariosCalientesPage extends BasePage {
      * @return The user's employeeId
      */
     public String getEmployeeId(String supportUsername, String supportPassword, String employer, String username) throws Exception {
-        testUtils.loadHorariosCalientesLogin();
+        loadHorariosCalientesLogin();
         loginWithUsername(supportUsername, supportPassword);
         waitForLoadingSpinnerIndicator();
         driver.findElement(horariosCalientesLocators.supportInfoSearchBtn).click();

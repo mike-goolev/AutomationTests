@@ -22,9 +22,6 @@ public class TestUtils {
     Locators.MailinatorLocators mailinatorLocators;
     Actions actions;
 
-
-    private String parentWindow;
-
     public TestUtils(WebDriver d) {
         driver = d;
         navPage = new NavPage(driver);
@@ -127,38 +124,6 @@ public class TestUtils {
     }
 
     /**
-     * Navigate to the horarios calientes login page
-     */
-    public void loadHorariosCalientesLogin() {
-        driver.get(TestConfig.getHsLoginUrl());
-    }
-
-    /**
-     * Navigate to the mailinator homepage
-     */
-    public void loadMailinatorHomePage() {
-        driver.get(TestConfig.getMailinatorHomepageUrl());
-    }
-
-    /**
-     * Navigate to the horarios calientes login page
-     * @param email The user's email
-     */
-    public void openHSAutoProvisionRegisterAction(String email) throws Exception {
-        loadMailinatorHomePage();
-        driver.findElement(mailinatorLocators.inboxField).sendKeys(email);
-        driver.findElement(mailinatorLocators.checkEmailBtn).click();
-        driver.findElement(mailinatorLocators.emailSubjectLink).click();
-        Thread.sleep(2000);
-        parentWindow = driver.getWindowHandle();
-        WebElement iframe = driver.findElement(mailinatorLocators.iFrame);
-        driver.switchTo().frame(iframe);
-        driver.findElement(mailinatorLocators.activationActionLink).click();
-        driver.switchTo().defaultContent();
-        switchToNewWindow(parentWindow);
-    }
-
-    /**
      * Executes a js statement for given web element
      * @param script The javascript to execute
      * @param element The web element where the javascript will be executed against
@@ -171,7 +136,7 @@ public class TestUtils {
     /**
      * Convert a JSON string to pretty print version
      * @param jsonString
-     * @return
+     * @return the json string in pretty format
      */
     public static String toPrettyFormat(String jsonString){
         JsonParser parser = new JsonParser();
@@ -185,11 +150,37 @@ public class TestUtils {
 
     /**
      * Executes a js statement for given web element
-     * @param element The webelement to drag and drop
+     * @param element The web element to drag and drop
      * @param xOffset The # of pixels to move horizontally
      * @param yOffset The # of pixels to move vertically
      */
     public void dragAndDropElement (WebElement element, int xOffset, int yOffset){
         actions.dragAndDropBy(element, xOffset, yOffset).build().perform();
+    }
+
+    /**
+     * Gets the first word of a string
+     * @param text the string to extract the first word from
+     * @return the first word of the string
+     */
+    public String getStringFirstWord(String text) {
+        if (text.indexOf(' ') > -1) {
+            return (text.substring(0, text.indexOf(' '))).trim();
+        } else {
+            return text;
+        }
+    }
+
+    /**
+     * Gets the last word of a string
+     * @param text the string to extract the last word from
+     * @return the last word of the string
+     */
+    public String getStringLastWord(String text) {
+        if (text.indexOf(' ') > -1) {
+            return (text.substring(text.lastIndexOf(' '), text.length())).trim();
+        } else {
+            return text;
+        }
     }
 }

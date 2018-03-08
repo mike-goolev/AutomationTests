@@ -9,13 +9,15 @@
         <parameter name="hsUrl" value="http://qamaster.eng.hotschedules.com/hs/"></parameter>
         <parameter name="mailinatorUrl" value="http://www.mailinator.com"></parameter>
 	<classes>
-		<class name="tests.EmployerProfileAbout"/>
+        <class name="tests.EmployerDash"/>
+        <class name="tests.EmployerProfileAbout"/>
 	    <class name="tests.EmployerProfileInfo"/>
         <class name="tests.EmployerProfileJobs"/>
         <class name="tests.EmployerProfilePhotos"/>
         <class name="tests.EmployerProfileStaff"/>
         <class name="tests.EmployerProfileView"/>
         <class name="tests.EmployerRegistration"/>
+        <class name="tests.EmployerTalent"/>
         <class name="tests.HourlyAutoProvision"/>
         <class name="tests.HourlyJobSearch"/>
         <class name="tests.HourlyLogin"/>

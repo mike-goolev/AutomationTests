@@ -34,7 +34,7 @@ public class HourlyMessages extends BaseTest {
     }
 
     @Test
-    public void testMessages() throws Exception {
+    public void testHourlyMessages() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

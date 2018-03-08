@@ -24,6 +24,10 @@ public class SeasonedRestAPI {
     public SeasonedRestAPI(String accessToken) {
         // Create logging interceptor
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // NONE -> No logs
+        // BASIC -> Logs request and response lines.
+        // BODY -> Logs request and response lines and their respective headers and bodies (if present).
+        // HEADERS -> Logs request and response lines and their respective headers.
         logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
         // Create http client
@@ -31,7 +35,7 @@ public class SeasonedRestAPI {
                 .readTimeout(20, TimeUnit.SECONDS)
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .addNetworkInterceptor(logging);
-//              .addInterceptor(new LoggingInterceptor());
+//                .addInterceptor(new LoggingInterceptor());
         // Create retrofit instance
         retrofit = new Retrofit.Builder()
                 .baseUrl(TestConfig.getBaseApiUrl())

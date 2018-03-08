@@ -48,7 +48,6 @@ public class HourlyJobSearch extends BaseTest {
     String userGuid;
     String token;
 
-
     @BeforeClass
     public void intializeTestDataAndCreateJob() {
         System.out.println("Initializing Hourly Job Search test...");
@@ -128,7 +127,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+//        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
@@ -165,7 +164,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+//        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
@@ -216,7 +215,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+//        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);

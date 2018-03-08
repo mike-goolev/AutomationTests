@@ -191,6 +191,14 @@ public class NavPage extends BasePage {
     }
 
     /**
+     * Takes the user to Find Talent
+     */
+    public void navigateToTalentPage() {
+        wait.until(elementToBeClickable(navPageLocators.talentBtn));
+        driver.findElement(navPageLocators.talentBtn).click();
+    }
+
+    /**
      * Switches from member view to manager view
      */
     public void switchToEmployerView() {
