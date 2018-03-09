@@ -55,6 +55,7 @@ public class EmployerTalent extends BaseTest {
     private String talentApplicantsTitle;
     private String talentBadTitle;
     private String invitedModalTitle;
+    private String talentGoodStatus;
     private String employerName;
     private String employerCity;
     private String employerGuid;
@@ -69,6 +70,7 @@ public class EmployerTalent extends BaseTest {
     private String jobDescription;
     private String jobStatus;
     private List<String> jobGuids;
+    private List<String> talentGuids;
     String jobGuid;
     private String userId;
     private String userGuid;
@@ -107,6 +109,7 @@ public class EmployerTalent extends BaseTest {
         talentApplicantsTitle = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentApplicantsTitle");
         talentBadTitle = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentBadTitle");
         invitedModalTitle = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("invitedModalTitle");
+        talentGoodStatus = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentGoodStatus");
         updatedBy = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("updatedBy");
         createdBy = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("createdBy");
         employerGuid = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("employerGuid");
@@ -129,14 +132,13 @@ public class EmployerTalent extends BaseTest {
         for (String guid : jobGuids)
                 api.deleteJob(guid);
         jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobMinWage, jobMaxWage, jobWageType, jobDescription, jobStatus);
-
-
-
-
+        talentGuids = sqlSelect.getTalentByEmployer(employerGuid);
+        for (String guid : talentGuids)
+            api.updateTalentStatus(createdBy, employerGuid, guid, talentGoodStatus);
         System.out.println("Starting employer talent test!");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void testEmployerTalentInvite() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -203,7 +205,7 @@ public class EmployerTalent extends BaseTest {
         Assert.assertEquals(jobSearchPage.getJobDetailsPosition(), jobPosition);
     }
 
-    @Test(priority = 0)
+    @Test(priority = 1)
     public void testEmployerTalentApplicants() throws Exception {
         /* Create applicant */
         SeasonedRestAPI api = new SeasonedRestAPI(token);
@@ -262,7 +264,7 @@ public class EmployerTalent extends BaseTest {
         navPage.attemptLogout();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void testEmployerTalentGoodFit() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -306,7 +308,7 @@ public class EmployerTalent extends BaseTest {
         Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void testEmployerTalentBadFit() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -408,8 +410,8 @@ public class EmployerTalent extends BaseTest {
         }
         System.out.println("Logging out and shutting down selenium for the Employer Find Talent test");
         navPage.attemptLogout();
-        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-        seasonedRestAPI.deleteJob(jobGuid);
+        SeasonedRestAPI api = new SeasonedRestAPI(token);
+        api.deleteJob(jobGuid);
         driver.quit();
     }
 }

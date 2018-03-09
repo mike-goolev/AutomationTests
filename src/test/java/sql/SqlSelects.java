@@ -344,7 +344,6 @@ public class SqlSelects {
         return staffGuids;
     }
 
-
     /**
      * Find user by email
      *
@@ -402,5 +401,36 @@ public class SqlSelects {
             System.out.println("Query failed with NullPointerException:\n" + sql);
         }
         return email;
+    }
+
+    /**
+     * Find talent by employer
+     *
+     * @param employerGuid The employer's guid
+     * @return the employer's talent
+     */
+    public List<String> getTalentByEmployer(String employerGuid) throws SQLException, NullPointerException {
+        List<String> talentGuids = new ArrayList<>();
+        sql = "SELECT talent_guid "
+                + "from bf_employer_user_talent "
+                + "where employer_guid = ?";
+        try {
+            connection = dbManager.getConnection();
+            pstmt = dbManager.prepareStatement(connection, sql, ps -> ps.setString(1, employerGuid));
+            {
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    talentGuids.add(rs.getString("talent_guid"));
+                    System.out.println("Talent guids: " + talentGuids);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Query failed due to SQLException...\n" + sql);
+            e.printStackTrace();
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed due to NullPointerException...\n" + sql);
+            npe.printStackTrace();
+        }
+        return talentGuids;
     }
 }

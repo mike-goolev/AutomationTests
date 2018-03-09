@@ -38,6 +38,7 @@ public class EmployerDash extends BaseTest {
     private String talentTitle;
     private String talentEmptyTitleTxt;
     private String talentEmptyTxt;
+    private String talentGoodStatus;
     private String employerName;
     private String employerAddress;
     private String employerCity;
@@ -55,6 +56,7 @@ public class EmployerDash extends BaseTest {
     private String jobStatus;
     private String jobAvailability;
     private List<String> jobGuids;
+    private List<String> talentGuids;
     String jobGuid;
     private String jobsEmptyTitleTxt;
     private String jobsEmptyTxt;
@@ -91,6 +93,7 @@ public class EmployerDash extends BaseTest {
         talentEmptyTitleTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("talentEmptyTitleTxt");
         talentEmptyTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("talentEmptyTxt");
         talentTitle = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("talentTitle");
+        talentGoodStatus = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("talentGoodStatus");
         updatedBy = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("updatedBy");
         createdBy = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("createdBy");
         employerGuid = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerGuid");
@@ -119,10 +122,15 @@ public class EmployerDash extends BaseTest {
                 api.deleteJob(guid);
         jobGuid = api.postJob(updatedBy, createdBy, jobType, employerGuid, jobPosition, jobWage, jobMinWage, jobMaxWage, jobWageType, jobDescription, jobStatus);
         api.postApplication(userId, userGuid, jobGuid);
+
+        talentGuids = sqlSelect.getTalentByEmployer(employerGuid);
+        for (String guid : talentGuids)
+            api.updateTalentStatus(createdBy, employerGuid, guid, talentGoodStatus);
+
         System.out.println("Starting employer dashboard test!");
     }
 
-    @Test
+    @Test(priority = 1)
     public void testEmployerDashViewCards() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -169,7 +177,7 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
         Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
         Assert.assertEquals(employerDashPage.getJobCardEmployerName(cardIndex), employerName);
-        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
+//        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
         Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
 //        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
@@ -248,7 +256,7 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
         Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
         Assert.assertEquals(employerDashPage.getJobCardEmployerName(cardIndex), employerName);
-        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
+//        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
         Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
 //        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
@@ -319,7 +327,7 @@ public class EmployerDash extends BaseTest {
         employerDashPage.waitForLoadingIndicator();
     }
 
-    @Test
+    @Test(priority = 2)
     public void testEmployerDashGoodFit() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -416,7 +424,7 @@ public class EmployerDash extends BaseTest {
     }
 
     @AfterMethod
-    public void tesTearDown(ITestResult result) throws SQLException {
+    public void tearDown(ITestResult result) throws SQLException {
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }
@@ -424,12 +432,6 @@ public class EmployerDash extends BaseTest {
         navPage.attemptLogout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteJob(jobGuid);
-        driver.close();
-    }
-
-    @AfterClass
-    public void suiteTearDown(){
-        if (driver != null)
-            driver.quit();
+        driver.quit();
     }
 }

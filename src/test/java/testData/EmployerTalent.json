@@ -19,6 +19,7 @@
     "talentApplicantsEmptyTxt":"You should reach out to some applicants.",
     "talentBadEmptyTitleTxt":"Hey, nobody ruled out yet!",
     "talentBadEmptyTxt":"It’s not a bad thing. You just have some decisions to make.",
+    "talentGoodStatus":"GOOD_FIT",
     "invitedModalTitle":"Invite successfully sent",
     "applicantName":"Lucky Luciano",
     "applicantPosition":"Applied for Payaso",

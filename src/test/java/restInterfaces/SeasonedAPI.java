@@ -110,4 +110,8 @@ public interface SeasonedAPI {
     /*-------- Work History Endpoints --------*/
     @DELETE("workhistory/placeWorked/{workHistoryGuid}")
     Call<PrimaryWorkHistory> deleteWorkHistory(@Path("workHistoryGuid") String workHistoryGuid, @Header("Authorization") String accessToken);
+
+    /*-------- Talent Endpoints --------*/
+    @PUT("employer/{guid}/talent")
+    Call<Talent> updateTalentStatus(@Path("guid") String employerGuid, @Body Talent talent, @Header("Authorization") String accessToken);
 }

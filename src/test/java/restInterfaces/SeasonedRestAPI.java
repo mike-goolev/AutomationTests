@@ -239,19 +239,11 @@ public class SeasonedRestAPI {
         try {
             /* Make a DELETE request to job */
             Call<Job> call = seasonedAPI.deleteJob(guid, accessToken);
-            call.enqueue(new Callback<Job>() {
-                @Override
-                public void onResponse(Call<Job> call, Response<Job> response) {
-                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
-                }
+            Response<Job> response = call.execute();
 
-                @Override
-                public void onFailure(Call<Job> call, Throwable t) {
-                    System.out.println("DELETE request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
-                }
-            });
+            System.out.println("DELETE request to /job " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("DELETE request to /job" + " failed with error: \n" + e.getLocalizedMessage());
         }
     }
 
@@ -1063,6 +1055,43 @@ public class SeasonedRestAPI {
                 @Override
                 public void onFailure(Call<SQS> call, Throwable t) {
                     System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * Update talent status
+     *
+     * @param adminUserGuid  the admin's user guid
+     * @param employerGuid   the employer's guid
+     * @param talentUserGuid the talent's user guid
+     * @param talentStatus   the talent's status
+     */
+    public void updateTalentStatus(String adminUserGuid, String employerGuid, String talentUserGuid, String talentStatus) {
+        /* Construct Talent Request Body */
+        try {
+            AdminEmployer adminEmployer = new AdminEmployer();
+            adminEmployer.setGuid(adminUserGuid);
+
+            Talent talent = new Talent();
+            talent.setAdmin(adminEmployer);
+            talent.setUserGuid(talentUserGuid);
+            talent.setStatus(talentStatus);
+
+            /* Make a PUT request to update employer talent */
+            Call<Talent> call = seasonedAPI.updateTalentStatus(employerGuid, talent, accessToken);
+            call.enqueue(new Callback<Talent>() {
+                @Override
+                public void onResponse(Call<Talent> call, Response<Talent> response) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<Talent> call, Throwable t) {
+                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
                 }
             });
         } catch (Exception e) {
