@@ -9,8 +9,6 @@ import pages.*;
 import utils.TestDataImporter;
 import restInterfaces.*;
 
-import java.sql.SQLException;
-
 public class EmployerProfileInfo extends BaseTest {
 
     private HourlyLoginPage loginPage;
@@ -216,6 +214,8 @@ public class EmployerProfileInfo extends BaseTest {
         }
         System.out.println("Logging out and shutting down selenium for the Employer Profile Info test");
         navPage.attemptLogout();
+        SeasonedRestAPI api = new SeasonedRestAPI(token);
+        api.updateEmployerInfo(employerId, employerGuid, employerName, employerAddress, employerCity, employerCardState, employerZip, employerCountry, employerPhone, employerWebsite, employerDescription, employerTypeId, employerTypeName);
         driver.quit();
     }
 }

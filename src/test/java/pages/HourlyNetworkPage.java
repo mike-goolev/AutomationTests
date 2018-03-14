@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import utils.Locators;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class HourlyNetworkPage extends BasePage {
 
@@ -27,13 +28,23 @@ public class HourlyNetworkPage extends BasePage {
     /**
      * Submits a user search by name
      * @param name The name to be used in the search query
+     * @param index The index of the member search result to select
      */
-    public void submitUserSearchByName(String name) throws Exception {
+    public void submitUserSearchByName(String name, String index) throws Exception {
         wait.until(elementToBeClickable(hourlyNetworkPageLocators.userSearchTextField));
         driver.findElement(hourlyNetworkPageLocators.userSearchTextField).sendKeys(name);
-        Thread.sleep(1000);
-        driver.findElement(hourlyNetworkPageLocators.userSearchListResultTxt).sendKeys(Keys.ENTER);
     }
+
+    /**
+     * Selects a member search result by index
+     * @param index the index (starting at 0) of the member search result to select
+     */
+    public void selectMemberSearchResult(String index){
+        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findMemberSearchResultByIndex(index)));
+        driver.findElement(hourlyNetworkPageLocators.findMemberSearchResultByIndex(index)).click();
+//        driver.findElement(hourlyNetworkPageLocators.findMemberSearchResultByIndex(index)).sendKeys(Keys.ENTER);
+    }
+
 
     /**
      * Clicks My Connections tab

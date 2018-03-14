@@ -46,7 +46,7 @@ public class HourlyProfileCertifications extends BaseTest {
     }
 
     @Test
-    public void testCerts() throws Exception {
+    public void testHourlyProfileCertifications() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

@@ -100,12 +100,12 @@ public class HourlyProfilePersonal extends BaseTest {
 
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.updateUserLocation(userGuid, originalCity, originalState, originalZip, country, originalLatitude, originalLongitude);
-        seasonedRestAPI.updateUserNameEmailPhoneBday(id, userGuid, originalFirstName, originalLastName, email, phone, dob, accountState, roleGuid, roleName);
+        seasonedRestAPI.updateUserNameEmailPhoneBday(id, userGuid, originalFirstName, originalLastName, email, phone, dob, accountState, roleGuid, roleName, false);
         System.out.println("Starting hourly personal info test!");
     }
 
     @Test
-    public void testPersonalInfo() throws Exception {
+    public void testHourlyProfilePersonalInfo() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

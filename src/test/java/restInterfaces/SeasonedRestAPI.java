@@ -292,8 +292,9 @@ public class SeasonedRestAPI {
      * @param accountState The user's account state
      * @param roleGuid     The guid of the user's role
      * @param roleName     The name of the user's role
+     * @param firstJob     Whether or not the user is searching for their first job
      */
-    public void updateUserNameEmailPhoneBday(String id, String userGuid, String firstName, String lastName, String email, String phone, String dob, String accountState, String roleGuid, String roleName) {
+    public void updateUserNameEmailPhoneBday(String id, String userGuid, String firstName, String lastName, String email, String phone, String dob, String accountState, String roleGuid, String roleName, Boolean firstJob) {
         /* Construct User Request Body */
         try {
             ArrayList<Role> roles = new ArrayList<Role>();
@@ -315,6 +316,7 @@ public class SeasonedRestAPI {
             user.setDob(dob);
             user.setAccountState(accountState);
             user.setRoles(roles);
+            user.setFirstJobSearch(firstJob);
 
             /* Make a PUT request to user */
             Call<User> call = seasonedAPI.updateUserNameEmailPhoneBday(accessToken, user);

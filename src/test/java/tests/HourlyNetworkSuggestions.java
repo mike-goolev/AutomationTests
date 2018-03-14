@@ -65,7 +65,8 @@ public class HourlyNetworkSuggestions extends BaseTest {
         Assert.assertNotEquals(hourlyNetworkSuggestionsPage.getSuggestedConnectionsName(suggestionIndex), suggestionName);
 
         /* Search for user and view profile */
-        hourlyNetworkPage.submitUserSearchByName(suggestionName);
+        hourlyNetworkPage.submitUserSearchByName(suggestionName, "0");
+        hourlyNetworkPage.selectMemberSearchResult("0");
 
         /* Cancel pending connection request */
         hourlyProfileViewPage.clickCancelConnectionRequestBtn();

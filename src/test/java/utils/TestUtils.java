@@ -11,13 +11,14 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 import pages.NavPage;
 
 
 public class TestUtils {
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
     NavPage navPage;
     Locators.MailinatorLocators mailinatorLocators;
     Actions actions;
@@ -123,12 +124,18 @@ public class TestUtils {
         return shortDate;
     }
 
+    public static String getCurrentDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        return formatter.format(date);
+    }
+
     /**
      * Executes a js statement for given web element
      * @param script The javascript to execute
      * @param element The web element where the javascript will be executed against
      */
-    public void jsExecutorElement (String script, WebElement element){
+    public static void jsExecutorElement (String script, WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript(script, element);
     }

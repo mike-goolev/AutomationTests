@@ -11,7 +11,7 @@
 	<classes>
         <class name="tests.EmployerDash"/>
         <class name="tests.EmployerProfileAbout"/>
-	      <class name="tests.EmployerProfileInfo"/>
+        <class name="tests.EmployerProfileInfo"/>
         <class name="tests.EmployerProfileJobs"/>
         <class name="tests.EmployerProfilePhotos"/>
         <class name="tests.EmployerProfileStaff"/>

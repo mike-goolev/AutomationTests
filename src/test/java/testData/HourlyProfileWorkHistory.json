@@ -1,6 +1,8 @@
 {
   "HourlyProfileWorkHistory": {
     "username":"aprofile@mailinator.com",
+    "firstName":"Auto",
+    "lastName":"Profile",
     "password":"12348765",
     "employer1":"Seattle Seahawks",
     "employer2":"Philadelphia Eagles",
@@ -12,6 +14,12 @@
     "durationPast":"• 1 yr ",
     "jobDescription1":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma",
     "jobDescription2":"Fly Eagles Fly, On The Road To Victory. Fight Eagles Fight, Score A Touchdown 1-2-3. Hit ‘Em Low. Hit ‘Em High. And We’ll Watch Our Eagles Fly. Fly Eagles Fly, On The Road To Victory. E-A-G-L-E-S, EAGLES!!!",
+    "id":"68786",
+    "email":"aprofile@mailinator.com",
+    "phone":"",
+    "accountState":"normal",
+    "roleGuid":"925f5aa2-a9b9-4dab-a441-d8e48a893f89",
+    "roleName":"user",
     "userToken":"Bearer c8357440-da5b-47c1-909c-ea37c4c179db",
     "userGuid":"e5761d5f-32c4-4a21-8358-c0bd967eb6d9"
   }

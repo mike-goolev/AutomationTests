@@ -76,8 +76,6 @@ public class EmployerProfilePhotos extends BaseTest {
         Assert.assertFalse(employerProfilePhotosPage.isPhotoPresent(photoIndex), "Employer photos should be empty");
 
         /* Add a photo */
-        employerProfilePhotosPage.selectUploadPhotoBtn();
-        System.out.println(photoFilePath);
         employerProfilePhotosPage.addEmployerPhoto(photoFilePath);
 
         /* Verify photo upload success toast */

@@ -1,6 +1,7 @@
 {
   "HourlyProfileConnections": {
     "username":"aprofile@mailinator.com",
+    "usernameEmptyState":"aloser@mailinator.com",
     "password":"12348765",
     "connectionIndex":"0",
     "connectionCount":"1",

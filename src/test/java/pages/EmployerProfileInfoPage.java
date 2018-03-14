@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import utils.Locators;
 import utils.TestUtils;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class EmployerProfileInfoPage extends BasePage {
 

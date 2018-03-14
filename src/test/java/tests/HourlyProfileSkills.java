@@ -61,7 +61,7 @@ public class HourlyProfileSkills extends BaseTest {
     }
 
     @Test
-    public void testSkills() throws Exception {
+    public void testHourlyProfileSkills() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

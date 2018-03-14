@@ -68,7 +68,7 @@ public class HourlyProfileEducation extends BaseTest {
     }
 
     @Test
-    public void testAddEducation() {
+    public void testHourlyProfileEducation() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 

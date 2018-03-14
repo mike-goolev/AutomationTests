@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -9,14 +8,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 import pages.*;
 import utils.TestDataImporter;
-import utils.TestConfig;
 import restInterfaces.*;
 
 public class HourlyProfileWorkHistory extends BaseTest {
@@ -50,6 +47,15 @@ public class HourlyProfileWorkHistory extends BaseTest {
     String jobDescription2Formatted;
     private List<String> whGuids;
     String userGuid;
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String dob;
+    private String email;
+    private String phone;
+    private String accountState;
+    private String roleGuid;
+    private String roleName;
     String token;
 
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
@@ -73,6 +79,14 @@ public class HourlyProfileWorkHistory extends BaseTest {
         jobDescription1 = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("jobDescription1");
         jobDescription2 = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("jobDescription2");
         userGuid = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("userGuid");
+        id = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("id");
+        firstName = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("firstName");
+        lastName = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("lastName");
+        email = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("email");
+        phone = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("phone");
+        accountState = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("accountState");
+        roleGuid = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("roleGuid");
+        roleName = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("roleName");
         token = (String) TestDataImporter.get("HourlyProfileWorkHistory", "HourlyProfileWorkHistory").get("userToken");
         jobDescription2Formatted = jobDescription2.substring(0, jobDescription2.length() - 66);
         Calendar now = Calendar.getInstance();
@@ -91,6 +105,7 @@ public class HourlyProfileWorkHistory extends BaseTest {
         whGuids = sqlSelect.getUserWorkHistoryByGuid(userGuid);
         for (String guid : whGuids)
             api.deleteWorkHistoryByGuid(guid);
+        api.updateUserNameEmailPhoneBday(id, userGuid, firstName, lastName, email, phone, dob, accountState, roleGuid, roleName, false);
     }
 
     @Test

@@ -441,7 +441,7 @@ public class Locators {
         public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
         /* Work History Section */
-        public By workHistoryTitleTxt = By.id("profileExperienceTitle");
+        public By workHistoryTitleTxt = By.id("workHistoryCardListItemprofileExperienceTitle");
         public By workHistoryEmptyTxt = By.id("workHistoryCardListItemProfileEmptyText");
         public By workHistoryAddBtn = By.id("workHistoryCardListItemeditBtn");
         public By workHistoryEditBtn = By.id("workHistoryCardListItemEditLink");
@@ -985,7 +985,18 @@ public class Locators {
         public By connectionsGetConnectedBtn = By.id("communityGetConnectedLinkTab");
         public By connectionsMyConnectionsBtn = By.id("communityMyConnectionsLinkTab");
         public By connectionsInvitationsBtn = By.id("communityInvitationsLinkTab");
-        public By userSearchTextField = By.id("memberSearchInput");
+        public By userSearchTextField = By.id("communitySearchInput");
+
+        /**
+         * Locates a member search result by index
+         *
+         * @param index The index (Starting at 0) of the member search result you wish to locate
+         * @return A locator for a member search result at the given index
+         */
+        public By findMemberSearchResultByIndex(String index) {
+            return By.id("memberSearchListItem" + index);
+        }
+
         public By userSearchListResultTxt = By.id("memberSearchListItem");
         public By invitationsTitleTxt = By.id("invitationsBlockHeaderTxt");
         public By invitationsCountTxt = By.id("invitationsBlockConnectionsCountTxt");
@@ -1656,6 +1667,7 @@ public class Locators {
         public By employerProfileEditInfoPhoneField = By.id("storeLocationFormPhoneNumber");
         public By employerProfileEditInfoWebsiteField = By.id("storeLocationFormWebsite");
         public By employerProfileEditInfoSaveBtn = By.id("storeLocationFormSaveBtn");
+        public By employerProfileEditInfoSaveBtnLoader = By.id("storeLocationFormSaveBtnLoader");
         public By employerProfileInfoSuccessToast = By.id("storeLocationFormToast");
         public By employerProfileInfoSuccessToastCloseBtn = By.id("storeLocationFormToastCloseIcon");
         public By employerProfileEditInfoTooltipTitle = By.id("storeInfoTitleTooltip");

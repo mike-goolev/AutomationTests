@@ -6,6 +6,8 @@ import org.testng.annotations.*;
 import pages.*;
 import utils.TestDataImporter;
 import restInterfaces.*;
+import utils.TestUtils;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -49,7 +51,7 @@ public class HourlyJobSearch extends BaseTest {
     String token;
 
     @BeforeClass
-    public void intializeTestDataAndCreateJob() {
+    public void setup() {
         System.out.println("Initializing Hourly Job Search test...");
         usernameEmail = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("username");
         passwordEmail = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("password");
@@ -77,7 +79,7 @@ public class HourlyJobSearch extends BaseTest {
         jobDetailsEmployerPPA = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerPPA");
         jobDetailsEmployerType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerType");
         jobDetailsEmployerDistance = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerDistance");
-        jobPosition = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobPosition");
+        jobPosition = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobPosition") + " " + TestUtils.getCurrentDate();
         employerGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerGuid");
         userGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("userGuid");
         token = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("token");
@@ -87,7 +89,6 @@ public class HourlyJobSearch extends BaseTest {
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException{
         System.out.println("Starting job search tests...");
-
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);
         api = new SeasonedRestAPI(token);
@@ -126,7 +127,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(hourlyJobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobPosition);
 //        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
@@ -163,7 +164,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertFalse(hourlyJobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be disabled");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobPosition);
 //        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
@@ -214,7 +215,7 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(hourlyJobSearchPage.isJobDetailsApplyButtonEnabled(), "Apply button should be enabled");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobDetailsPosition);
+        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobPosition);
 //        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);

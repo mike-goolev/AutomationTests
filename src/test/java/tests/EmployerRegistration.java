@@ -107,7 +107,8 @@ public class EmployerRegistration extends BaseTest {
 
         /* Select a store logo */
         Assert.assertEquals(employerRegistrationPage.getLogoTitleTxt(), logoTitle);
-        employerRegistrationPage.setLogo(photoFilePath);
+        // Bug in Geckodriver causing photo uploads to fail (https://github.com/mozilla/geckodriver/issues/1184)
+//        employerRegistrationPage.setLogo(photoFilePath);
         employerRegistrationPage.selectSignUpLogoNextBtn();
 
         /* Select store photos */
