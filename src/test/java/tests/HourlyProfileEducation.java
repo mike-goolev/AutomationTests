@@ -1,9 +1,7 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.*;
 import utils.TestDataImporter;
 import restInterfaces.*;
@@ -38,7 +36,7 @@ public class HourlyProfileEducation extends BaseTest {
     private String token;
     private List<String> educationGuids;
 
-    @BeforeClass
+    @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing hourly profile Education test...");
         driver = BrowserFactory.getDriver("firefox");
@@ -112,7 +110,7 @@ public class HourlyProfileEducation extends BaseTest {
         Assert.assertEquals(hourlyProfileViewPage.getEducationEmptyTxt(), emptyTxt);
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         System.out.println("Logging out and shutting down selenium for the hourly profile education test");
         navPage.attemptLogout();

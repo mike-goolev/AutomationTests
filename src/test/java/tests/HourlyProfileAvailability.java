@@ -86,9 +86,8 @@ public class HourlyProfileAvailability extends BaseTest {
 
         /* Verify that no availability has been selected, then select all availability and save. A success toast should appear. */
         Assert.assertTrue(hourlyProfileAvailabilityPage.noAvailabilitySelected(), "The user should have no availability selected");
-        Assert.assertFalse(hourlyProfileAvailabilityPage.isGigsSelected(), "The user should not have gigs selected");
         hourlyProfileAvailabilityPage.clickAllAvailabilityBoxes();
-        hourlyProfileAvailabilityPage.clickGigsCheckbox();
+        //hourlyProfileAvailabilityPage.clickGigsCheckbox();
         hourlyProfileAvailabilityPage.selectAvailabilityStatus("LOOKING");
         hourlyProfileAvailabilityPage.clickAvailabilityTypeFullTime();
         hourlyProfileAvailabilityPage.clickSaveButton();
@@ -109,7 +108,6 @@ public class HourlyProfileAvailability extends BaseTest {
         hourlyProfileAvailabilityPage.clickAllAvailabilityBoxes();
         hourlyProfileAvailabilityPage.selectAvailabilityStatus("OPEN");
         hourlyProfileAvailabilityPage.clickAvailabilityTypeAnything();
-        hourlyProfileAvailabilityPage.clickGigsCheckbox();
         hourlyProfileAvailabilityPage.clickSaveButton();
 
         /* Verify that a success toast appears and that all availability has been removed */
