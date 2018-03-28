@@ -290,9 +290,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
         /* Enter job description */
         hourlyProfileWorkHistoryPage.enterAddJobDescriptionTxt(jobDescription1);
 
-        /* Verify primary job check is selected */
-        Assert.assertTrue(hourlyProfileWorkHistoryPage.isAddPrimaryJobChkSelected(), "Primary job checkbox should be selected");
-
         /* Verify first job check is deselected */
         Assert.assertFalse(hourlyProfileWorkHistoryPage.isFirstJobChkSelected(), "First job checkbox should be deselected");
 
@@ -347,12 +344,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
         /* Enter job description */
         hourlyProfileWorkHistoryPage.enterAddJobDescriptionTxt(jobDescription2);
 
-        /* Verify primary job check is selected */
-        Assert.assertFalse(hourlyProfileWorkHistoryPage.isAddPrimaryJobChkSelected(), "Primary job checkbox should be deselected");
-
-        /* Set work history as primary */
-        hourlyProfileWorkHistoryPage.clickAddPrimaryJobChk();
-
         /* Save add work history form */
         hourlyProfileWorkHistoryPage.clickAddWorkHistorySaveBtn();
 
@@ -371,7 +362,7 @@ public class HourlyProfileWorkHistory extends BaseTest {
         hourlyProfileEditPage.clickSideMenuViewProfileLink();
 
         /* Verify the user's primary job and job location displayed in profile summary section */
-        Assert.assertEquals(hourlyProfileViewPage.getSummaryPrimaryJob(), jobPosition2 + " @ " + employer2Formatted);
+        Assert.assertEquals(hourlyProfileViewPage.getSummaryPrimaryJob(), jobPosition1 + " @ " + employer1);
 
         /* Verify that the work history card on profile view is now showing the new entry */
         Assert.assertTrue(hourlyProfileViewPage.isEmployerLogoPresent("1"), "Employer logo should be present");
@@ -386,7 +377,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
 
         /* View and delete the first work history entry */
         hourlyProfileWorkHistoryPage.clickEditWorkHistory("0");
-        Assert.assertFalse(hourlyProfileWorkHistoryPage.isEditPrimaryJobChkSelected());
         hourlyProfileWorkHistoryPage.clickEditWorkHistoryDeleteBtn();
 
         /* Accept modal confirmation */
@@ -398,7 +388,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
 
         /* View and delete the first work history entry */
         hourlyProfileWorkHistoryPage.clickEditWorkHistory("0");
-        Assert.assertTrue(hourlyProfileWorkHistoryPage.isEditPrimaryJobChkSelected());
         hourlyProfileWorkHistoryPage.clickEditWorkHistoryDeleteBtn();
 
         /* Accept modal confirmation */
@@ -407,9 +396,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
         /* Verify success toast */
         Assert.assertTrue(hourlyProfileWorkHistoryPage.verifyDeleteExperienceSuccessToast());
         hourlyProfileWorkHistoryPage.dismissDeleteExperienceSuccessToast();
-
-         /* Verify primary job check is selected */
-        Assert.assertTrue(hourlyProfileWorkHistoryPage.isAddPrimaryJobChkSelected(), "Primary job checkbox should be selected");
 
         /* Navigate to the profile page */
         hourlyProfileEditPage.clickSideMenuViewProfileLink();

@@ -160,38 +160,6 @@ public class HourlyProfileWorkHistoryPage extends BasePage {
     }
 
     /**
-     * Toggles primary job selection on/off when adding a job
-     */
-    public void clickAddPrimaryJobChk() {
-        wait.until(elementToBeClickable(workHistoryPageLocators.addWorkHistoryPrimaryJobChk));
-        driver.findElement(workHistoryPageLocators.addWorkHistoryPrimaryJobChk).click();
-    }
-
-    /**
-     * Toggles primary job selection on/off when editing a job
-     */
-    public void clickEditPrimaryJobChk() {
-        wait.until(elementToBeClickable(workHistoryPageLocators.editWorkHistoryPrimaryJobChk));
-        driver.findElement(workHistoryPageLocators.editWorkHistoryPrimaryJobChk).click();
-    }
-
-    /**
-     * Checks to see if the primary job checkbox is selected when adding work history
-     * @return Whether or not the primary job checkbox is selected
-     */
-    public boolean isAddPrimaryJobChkSelected() {
-        return isCheckboxSelected(driver.findElement(workHistoryPageLocators.addWorkHistoryPrimaryJobChk));
-    }
-
-    /**
-     * Checks to see if the primary job checkbox is selected when adding work history
-     * @return Whether or not the primary job checkbox is selected
-     */
-    public boolean isEditPrimaryJobChkSelected() {
-        return isCheckboxSelected(driver.findElement(workHistoryPageLocators.editWorkHistoryPrimaryJobChk));
-    }
-
-    /**
      * Clicks on the edit work history button for a given index
      * @param index The index (Starting at 0) of the work history edit button you wish to locate
      */

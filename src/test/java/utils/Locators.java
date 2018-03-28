@@ -684,8 +684,6 @@ public class Locators {
         public By firstJobChkLbl = By.id("addWorkHistoryFirstJobCheckboxLabel");
 
         public By workHistoryTooltip = By.id("tooltip");
-        public By addWorkHistoryPrimaryJobChk = By.id("addWorkHistoryPrimaryExperienceCheckboxBox");
-        public By editWorkHistoryPrimaryJobChk = By.id("editWorkHistoryPrimaryExperienceCheckboxBox");
 
         /**
          * Locates a work history entry's employer logo by index
