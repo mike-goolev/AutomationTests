@@ -9,6 +9,12 @@ import java.util.List;
 
 public interface SeasonedAPI {
 
+    /*-------- OAuth --------*/
+    @FormUrlEncoded
+    @POST("oauth/token")
+    Call<OAuthToken> getToken(@Header("Authorization") String auth, @Header("Content-Type") String content_type, @Field("grant_type") String grant_type, @Field("username") String username, @Field("password") String password);
+
+
     /*-------- User Endpoints --------*/
 
     @PUT("user")

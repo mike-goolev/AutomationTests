@@ -44,7 +44,7 @@ public class HourlyNetworkSuggestions extends BaseTest {
         hourlyLoginPage.loginWithEmail(username, password);
 
         /* Navigate to Get Connected page */
-        navPage.navigateToNetworkSuggestedConnectionsPage();
+        navPage.navigateToGetConnectedPage();
 
         /* Verify suggested connection card */
         Assert.assertTrue(hourlyNetworkSuggestionsPage.isSuggestedConnectionsPhotoDisplayed(suggestionIndex), "Suggested connection's photo should be displayed");
@@ -52,10 +52,10 @@ public class HourlyNetworkSuggestions extends BaseTest {
         System.out.println("Suggestion name: " + suggestionName);
 
         /* View suggested connection at specified index */
-        hourlyNetworkSuggestionsPage.clickSuggestedConnectionsViewButton(suggestionIndex);
+        hourlyNetworkSuggestionsPage.clickSuggestedConnectionsBox(suggestionIndex);
 
         /* Navigate to Get Connected page */
-        navPage.navigateToNetworkSuggestedConnectionsPage();
+        navPage.navigateToGetConnectedPage();
 
         /* Send suggested connection at specified index a connection request */
         hourlyNetworkSuggestionsPage.clickSuggestedConnectionsConnectButton(suggestionIndex);
@@ -69,10 +69,11 @@ public class HourlyNetworkSuggestions extends BaseTest {
         hourlyNetworkPage.selectMemberSearchResult("0");
 
         /* Cancel pending connection request */
+        //Will fail until the "Connect" issue is solver - network improvements FBR
         hourlyProfileViewPage.clickCancelConnectionRequestBtn();
 
         /* Return to suggested connections */
-        navPage.navigateToNetworkSuggestedConnectionsPage();
+        navPage.navigateToGetConnectedPage();
 
     }
 

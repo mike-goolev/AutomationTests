@@ -95,10 +95,11 @@ public class NavPage extends BasePage {
     /**
      * Takes the user to the network connections page via nav header and clicking my
      */
+    @Deprecated
     public void navigateToNetworkMyConnectionsPage() {
         wait.until(elementToBeClickable(navPageLocators.networkBtn));
         driver.findElement(navPageLocators.networkBtn).click();
-        hourlyNetworkPage.clickNetworkMyConnections();
+         hourlyNetworkPage.clickNetworkMyConnections();
     }
 
     /**
@@ -107,18 +108,16 @@ public class NavPage extends BasePage {
     public void navigateToNetworkSuggestedConnectionsPage() {
         wait.until(elementToBeClickable(navPageLocators.networkBtn));
         driver.findElement(navPageLocators.networkBtn).click();
-        hourlyNetworkPage.clickNetworkSuggestions();
+        //hourlyNetworkPage.clickNetworkSuggestions();
     }
 
     /**
-     * Takes the user to the network connections page via nav header and clicking my
+     * Takes the user to the network connections page - Get Connected
      */
-    public void navigateToNetworkInvitationsPage() {
+    public void navigateToGetConnectedPage() {
         wait.until(elementToBeClickable(navPageLocators.networkBtn));
         driver.findElement(navPageLocators.networkBtn).click();
-        hourlyNetworkPage.clickNetworkInvitations();
     }
-
     /**
      * Takes the user to the settings page via nav header and clicking settings
      */

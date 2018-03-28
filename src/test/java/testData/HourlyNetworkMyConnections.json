@@ -5,9 +5,8 @@
     "connectionIndex":"0",
     "connectionCount":"1",
     "connectionName":"A Connection",
-    "connectionJob":"Team Member @ Tommy Want Wingy",
-    "fromUserGuid":"e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
-    "toUserGuid":"0c741788-9827-4c1c-9f8b-e6c40ecfb320",
-    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+    "connectionJob":"Team Member at Tommy Want Wingy",
+    "fromUserEmail": "aconnection@mailinator.com",
+    "fromUserPassword": "12348765"
   }
 }

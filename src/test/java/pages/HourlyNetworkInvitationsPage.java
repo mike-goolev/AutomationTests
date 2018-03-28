@@ -57,39 +57,4 @@ public class HourlyNetworkInvitationsPage extends BasePage {
         driver.findElement(hourlyNetworkPageLocators.findInvitationCardIgnoreBtnByIndex(index)).click();
     }
 
-    /**
-     * Clicks an invitation's connect button
-
-     * @param index The index (Starting at 0) of the invitation you wish to locate
-     */
-    public void clickInvitationConnectButton(String index) {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findInvitationCardConnectBtnByIndex(index)));
-        driver.findElement(hourlyNetworkPageLocators.findInvitationCardConnectBtnByIndex(index)).click();
-    }
-
-    /**
-     * Get invitation empty title text
-
-     * @return The invitation title text
-     */
-    public String getInvitationEmptyTitleText() {
-        return driver.findElement(hourlyNetworkPageLocators.invitationEmptyTitleTxt).getText();
-    }
-
-    /**
-     * Get invitation empty text
-
-     * @return The invitation empty text
-     */
-    public String getInvitationEmptyText() {
-        return driver.findElement(hourlyNetworkPageLocators.invitationEmptyTxt).getText();
-    }
-
-    /**
-     * Clicks empty invitation's suggested connections button
-     */
-    public void clickSuggestionsButton() {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.invitationEmptySuggestionsBtn));
-        driver.findElement(hourlyNetworkPageLocators.invitationEmptySuggestionsBtn).click();
-    }
 }

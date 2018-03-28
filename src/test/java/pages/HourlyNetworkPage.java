@@ -1,8 +1,10 @@
 package pages;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import utils.Locators;
+
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
@@ -31,8 +33,14 @@ public class HourlyNetworkPage extends BasePage {
      * @param index The index of the member search result to select
      */
     public void submitUserSearchByName(String name, String index) throws Exception {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.userSearchTextField));
-        driver.findElement(hourlyNetworkPageLocators.userSearchTextField).sendKeys(name);
+       // wait.until(elementToBeClickable(hourlyNetworkPageLocators.userSearchTextField));
+        List<WebElement> x = driver.findElements(By.id("communitySearchInput"));
+        System.out.println(x.size());
+        Actions action = new Actions(driver);
+        action.moveToElement( x.get(1)).doubleClick().build().perform();
+        Thread.sleep(3000);
+        x.get(1).sendKeys(name);
+        //driver.findElement(hourlyNetworkPageLocators.userSearchTextField).sendKeys(name);
     }
 
     /**
@@ -51,7 +59,13 @@ public class HourlyNetworkPage extends BasePage {
      */
     public void clickNetworkMyConnections(){
         wait.until(elementToBeClickable(hourlyNetworkPageLocators.connectionsMyConnectionsBtn));
+       //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(hourlyNetworkPageLocators.connectionsMyConnectionsBtn));
         driver.findElement(hourlyNetworkPageLocators.connectionsMyConnectionsBtn).click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -78,14 +92,24 @@ public class HourlyNetworkPage extends BasePage {
     public String getInvitationTitle() {
         return driver.findElement(hourlyNetworkPageLocators.invitationsTitleTxt).getText();
     }
+    /**
+     *
+     * @return
+     */
+    public Boolean getNoInvitations() {
+        return elementExists(hourlyNetworkPageLocators.invitationNoList);
+
+    }
 
     /**
-     * Get invitation count
+     * Get invitations count
 
-     * @return The invitation count
+     * @return The invitations count
      */
-    public String getInvitationCount() {
-        return driver.findElement(hourlyNetworkPageLocators.invitationsCountTxt).getText();
+    public String getInvitationsCount() {
+              List<WebElement> elements =  driver.findElement(hourlyNetworkPageLocators.invitationList).findElements(hourlyNetworkPageLocators.invitationListElement);
+        return Integer.toString(elements.size());
+
     }
 
     /**
@@ -95,7 +119,7 @@ public class HourlyNetworkPage extends BasePage {
      * @return Whether or not the invitation's photo is displayed
      */
     public boolean isInvitationPhotoDisplayed(String index) {
-        return elementExists(hourlyNetworkPageLocators.findInvitationImgByIndex(index));
+        return elementExists(hourlyNetworkPageLocators.findInvitationCardImgByIndex(index));
     }
 
     /**
@@ -105,7 +129,7 @@ public class HourlyNetworkPage extends BasePage {
      * @return The invitation's name
      */
     public String getInvitationName(String index) {
-        return driver.findElement(hourlyNetworkPageLocators.findInvitationNameTxtByIndex(index)).getText();
+        return driver.findElement(hourlyNetworkPageLocators.findInvitationCardNameTxtByIndex(index)).getText();
     }
 
     /**
@@ -115,7 +139,7 @@ public class HourlyNetworkPage extends BasePage {
      * @return The connection's primary job
      */
     public String getInvitationJob(String index) {
-        return driver.findElement(hourlyNetworkPageLocators.findInvitationJobTxtByIndex(index)).getText();
+        return driver.findElement(hourlyNetworkPageLocators.findInvitationCardJobTxtByIndex(index)).getText();
     }
 
     /**
@@ -124,8 +148,8 @@ public class HourlyNetworkPage extends BasePage {
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickInvitationIgnoreBtn(String index) {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findInvitationIgnoreBtnByIndex(index)));
-        driver.findElement(hourlyNetworkPageLocators.findInvitationIgnoreBtnByIndex(index)).click();
+        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findInvitationCardIgnoreBtnByIndex(index)));
+        driver.findElement(hourlyNetworkPageLocators.findInvitationCardIgnoreBtnByIndex(index)).click();
     }
 
     /**
@@ -134,7 +158,9 @@ public class HourlyNetworkPage extends BasePage {
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickInvitationConnectBtn(String index) {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findInvitationConnectBtnByIndex(index)));
-        driver.findElement(hourlyNetworkPageLocators.findInvitationConnectBtnByIndex(index)).click();
+        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findInvitationCardConnectBtnByIndex(index)));
+        driver.findElement(hourlyNetworkPageLocators.findInvitationCardConnectBtnByIndex(index)).click();
     }
+
+
 }

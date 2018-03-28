@@ -5,13 +5,13 @@
     "invitationIndex":"0",
     "invitationCount":"1",
     "invitationName":"A Connection",
-    "invitationJob":"Team Member @ Tommy Want Wingy",
+    "invitationJob":"Team Member at Tommy Want Wingy",
     "connectionIndex":"0",
     "connectionName":"A Connection",
-    "connectionJob":"Team Member @ Tommy Want Wingy",
+    "connectionJob":"Team Member at Tommy Want Wingy",
     "invitationsEmptyTitle":"Ah, no invitations…",
     "invitationsEmptyTxt":"You can always come back later. Otherwise, why don’t you go ahead and search our community?",
-    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001",
-    "fromUserEmail": "aconnection@mailinator.com"
+    "fromUserEmail": "aconnection@mailinator.com",
+    "fromUserPassword": "12348765"
   }
 }

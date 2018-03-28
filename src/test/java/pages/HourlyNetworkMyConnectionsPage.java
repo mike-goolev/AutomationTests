@@ -42,7 +42,7 @@ public class HourlyNetworkMyConnectionsPage extends BasePage {
      * @return The connection's name
      */
     public String getConnectionName(String index) {
-        return driver.findElement(hourlyNetworkPageLocators.findConnectionCardNameTxtByIndex(index)).getText();
+        return  driver.findElement(hourlyNetworkPageLocators.findConnectionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findConnectionCardNameTxtByIndex).getText();
     }
 
     /**
@@ -52,17 +52,7 @@ public class HourlyNetworkMyConnectionsPage extends BasePage {
      * @return The connection's primary job
      */
     public String getConnectionJob(String index) {
-        return driver.findElement(hourlyNetworkPageLocators.findConnectionCardWorkTxtByIndex(index)).getText();
-    }
-
-    /**
-     * Clicks a connection's view button
-
-     * @param index The index (Starting at 0) of the connection you wish to locate
-     */
-    public void clickConnectionViewButton(String index) {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findConnectionCardViewBtnByIndex(index)));
-        driver.findElement(hourlyNetworkPageLocators.findConnectionCardViewBtnByIndex(index)).click();
+        return driver.findElement(hourlyNetworkPageLocators.findConnectionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findConnectionCardWorkTxtByIndex).getText();
     }
 
     /**
@@ -71,7 +61,7 @@ public class HourlyNetworkMyConnectionsPage extends BasePage {
      * @param index The index (Starting at 0) of the connection you wish to locate
      */
     public void clickConnectionMessageButton(String index) {
-        wait.until(elementToBeClickable(hourlyNetworkPageLocators.findConnectionCardMessageBtnByIndex(index)));
-        driver.findElement(hourlyNetworkPageLocators.findConnectionCardMessageBtnByIndex(index)).click();
+        //wait.until(elementToBeClickable(hourlyNetworkPageLocators.findConnectionCardMessageBtnByIndex));
+        driver.findElement(hourlyNetworkPageLocators.findConnectionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findConnectionCardMessageBtnByIndex).click();
     }
 }

@@ -21,6 +21,30 @@ public class SeasonedRestAPI {
     SeasonedAPI seasonedAPI;
     String accessToken;
 
+    /**
+     * Constructor with oauth url
+     */
+    public SeasonedRestAPI() {
+        // Create logging interceptor
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+
+        // Create http client
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .readTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .addNetworkInterceptor(logging);
+//              .addInterceptor(new LoggingInterceptor());
+        // Create retrofit instance
+        retrofit = new Retrofit.Builder()
+                .baseUrl(TestConfig.getBaseApiUrl().replace("rest/", ""))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+        seasonedAPI = retrofit.create(SeasonedAPI.class);
+
+    }
+
     public SeasonedRestAPI(String accessToken) {
         // Create logging interceptor
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -1099,5 +1123,28 @@ public class SeasonedRestAPI {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    /**
+     *
+     * @param email
+     * @param password
+     * @return
+     */
+    public String getToken(String email, String password){
+        String token = "";
+        System.out.println(email);
+        System.out.println(password);
+        try {
+            /* Make a POST request to oauth/token */
+            Call<OAuthToken> call = seasonedAPI.getToken("Basic OTlmYTRhMTMtZDhiNC00MzJjLWIwY2ItNjI3YjI5MDVhMWYyOjY1ZTNiZDVjLWY0YTEtNDI1NC05Nzk3LTQ1MzVhY2U5ZjNhZQ==", "application/x-www-form-urlencoded", "password", email, password);
+            Response<OAuthToken> response = call.execute();
+            token = response.body().getAccess_token();
+            System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+        } catch (Exception e) {
+            System.out.println("POST request to oauth" + "failed with error: \n" + e.getLocalizedMessage());
+        }
+        System.out.println(token);
+        return token ;
     }
 }

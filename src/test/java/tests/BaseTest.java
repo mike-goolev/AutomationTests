@@ -19,7 +19,7 @@ public class BaseTest extends TestNG {
 
 
     @Parameters({  "browser" , "url", "urlAPI", "dbURL", "hsUrl", "mailinatorUrl"})
-    @BeforeMethod
+    @BeforeMethod(groups = { "smoketests" })
     public void setUpMain(@Optional String browser, @Optional String url, @Optional String urlAPI, @Optional String dbURL, @Optional String hsUrl, @Optional String mailinatorUrl) {
         /**
          * Introducing browser, baseUrl, APIUrl and dbUrl, hsUrl and mailinatorUrl as parameters in TesnNG config file,
