@@ -1,0 +1,33 @@
+{
+  "testHourlyApplyNowFullProfile": {
+    "usernametoApply":"seas0329@mailinator.com",
+    "passwordtoApply":"password",
+    "userGuidtoApply":"a545523f-fd88-49be-8bfc-14037892ea38",
+    "searchPosition":"Payaso",
+    "searchLocation":"19145",
+    "searchResultsCount":"1 Job",
+    "createdByGuid":"48e90677-467e-437e-9f3c-8abb3f07d8ba",
+    "updatedByGuid":"48e90677-467e-437e-9f3c-8abb3f07d8ba",
+    "employerGuid":"75ced677-4368-4026-9f57-34ba6246c3cb",
+    "jobTypeGuid":"231382da-ab91-41fd-aeba-1477620546d1",
+    "jobPosition":"Payaso",
+    "jobWage":"1.99",
+    "jobWageType":"HOURLY",
+    "jobDescription":"$1.99 are you outta yo mind?",
+    "jobStatus":"POSTED",
+    "employerName":"Cacia's Bakery",
+    "employerDistance":"1.47 mi 19145",
+    "employerLocation":"1526 W Ritner St, Philadelphia, PA",
+    "jobDetailsPosition":"Payaso",
+    "jobDetailsWage":"$1.99/ hour",
+    "jobDetailsJobDescription":"$1.99 are you outta yo mind?",
+    "jobDetailsEmployerName":"Cacia's Bakery",
+    "jobDetailsEmployerDescription":"Cacia's has been a South Philadelphia tradition for over 60 years. Cacia's is still family owned and operated, (we are into the 4th generation), and we have one of the last brick oven bakeries left in Philadelphia. You will always find a member of the Cacia family at each location, just ask for a Cacia.",
+    "jobDetailsEmployerAddress":"1526 W Ritner St Philadelphia, PA 19145",
+    "jobDetailsEmployerPPA":"$",
+    "jobDetailsEmployerType":"Escuela de Payasos",
+    "jobDetailsEmployerDistance":"1437.60 miles away",
+    "userGuid":"f792e084-37a9-4c8d-8396-8208dba75047",
+    "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"
+  }
+}

@@ -186,21 +186,6 @@ public class HourlyJobSearchPage extends BasePage {
         return driver.findElement(jobSearchPageLocators.findSearchResultEmployerLocationTxtByIndex(index)).getText();
     }
 
-    /**
-     * Waits for the apply success toast to be visible
-     */
-    public void waitForApplySuccessToast(){
-        wait.until(presenceOfElementLocated(jobSearchPageLocators.applySuccessToastTxt));
-    }
-
-    /**
-     * Clicks the 'X' to dismiss the apply success toast
-     */
-    public void dismissApplySuccessToast(){
-        wait.until(elementToBeClickable(jobSearchPageLocators.applySuccessToastDismissBtn));
-        driver.findElement(jobSearchPageLocators.applySuccessToastDismissBtn).click();
-        wait.until(invisibilityOfElementLocated(jobSearchPageLocators.applySuccessToastTxt));
-    }
 
     /*--------- Job Details ----------*/
 

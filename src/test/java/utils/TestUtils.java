@@ -50,6 +50,16 @@ public class TestUtils {
     }
 
     /**
+     * Navigate to the job search page as a starting point for tests
+     *
+     * @param searchLocation The search location to enter in the search location field
+     */
+    public void loadJobSearchPage(String searchLocation) {
+        driver.get(TestConfig.getBaseUrl() + TestConfig.getJobSearchRelativeUrl() + "/" + searchLocation);
+        navPage.dismissRebrandingModal();
+    }
+
+    /**
      * Navigate to the network page
      */
     public void loadConnectionsPage() {

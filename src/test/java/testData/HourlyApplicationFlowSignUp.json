@@ -1,0 +1,20 @@
+{
+  "testHourlyApplyNowSignUp": {
+    "experienceRestaurant":"Pizza Hut, Austin",
+    "experienceSelected":"Pizza Hut",
+    "experienceJobIndex":"6",
+    "experienceJobName":"Chef",
+    "fromMonthExperienceIndex": "March",
+    "fromYearExperience": "2017",
+    "toMonthExperienceIndex": "January",
+    "toYearExperience": "2018",
+    "timeInterval":"Mar 2017 - Jan 2018",
+    "skillAbilityToWorkFast": "0",
+    "skillCleanliness": "6",
+    "skillCreativity": "9",
+    "skillAbilityToWorkFastText": "Ability to Work Fast",
+    "skillCleanlinessText": "Cleanliness",
+    "skillCreativityText": "Creativity"
+
+  }
+}

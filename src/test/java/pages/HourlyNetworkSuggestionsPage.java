@@ -48,7 +48,6 @@ public class HourlyNetworkSuggestionsPage extends BasePage {
      * @param index The index (Starting at 0) of the connection you wish to locate
      * @return The suggested connection's reason
      */
-    //TODO
     public String getSuggestedConnectionReason(String index) {
         return driver.findElement(hourlyNetworkPageLocators.findSuggestionCardReasonTxtByIndex(index)).getText();
     }
@@ -82,7 +81,7 @@ public class HourlyNetworkSuggestionsPage extends BasePage {
       // elem.get(Integer.valueOf(index)).click();
         driver.findElement(hourlyNetworkPageLocators.findSuggestionCardImgByIndex(index)).click();
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -403,8 +403,6 @@ public class Locators {
         public By searchResultsCountTxt = By.id("jobSearchJobCount");
         public By emptySearchTextTitle = By.id("emptySearchTextTitle");
         public By searchResultsEmptyMessageTxt = By.id("emptySearchTextContent");
-        public By applySuccessToastTxt = By.id("applyForJobToast");
-        public By applySuccessToastDismissBtn = By.id("applyForJobToastCloseBtn");
 
         /* Job Details - Auth'd */
         public By jobDetailsPositionTxt = By.id("jobNameTxt");
@@ -428,6 +426,74 @@ public class Locators {
         public By jobDetailsEmployerFollowToastDismissBtn = By.id("jobDetailsToastCloseBtn");
     }
 
+    public static class ApplicationFlowModal {
+
+        /* Sign Up - Join Using Email button */
+        public By joinUsingEmailBtn = By.id("button");
+        /* Sign Up - Enter Name,email,password */
+        public By firstNameTxt = By.id("joinWithEmailDialogUserFirstname");
+        public By lastNameTxt = By.id("joinWithEmailDialogUserLastname");
+        public By emailTxt  = By.id("joinWithEmailDialogEmailInput");
+        public By passwordTxt = By.id("joinWithEmailDialogPasswordInput");
+        public By continueSignUpBtn = By.id("joinWithEmailDialogContinueBtn");
+
+        /* Confirm to continue to add more info modal */
+        public By continueToApplciationFlowBtn = By.id("promptBtn");
+
+        /* Experience modal */
+        public By restaurantInputDropdown = By.id("addWorkHistoryLocationInput");
+        public By jobtitleInputDropdown = By.id("addWorkHistoryJobsSelectBoxMultiSelect");
+
+        /**
+         * Get Job Type by Index
+         * @param index
+         * @return
+         */
+        public By getJobByIndex(String index){
+            return By.id("addWorkHistoryJobsSelectBoxOption" + index);
+        }
+        public By fromMonthSelectBox = By.id("addWorkHistoryStartMonthSelectBox");
+        public By fromYearSelectBox = By.id("addWorkHistoryStartYearSelectBox");
+        public By toMonthSelectBox = By.id("addWorkHistoryEndMonthSelectBox");
+        public By toYearSelectBox = By.id("addWorkHistoryEndYearSelectBox");
+        public By currentWorkToggle = By.id("addWorkHistoryToggleEndDateBtn");
+        public By currentworkToggleOff = By.id("addWorkHistoryToggleEndDateBtnOff");
+        public By currentworkToggleOn = By.id("addWorkHistoryToggleEndDateBtnOn");
+        public By responsabilitiesTxt = By.id("addWorkHistoryDescriptionTxt");
+        public By firstJobCheckbox = By.id("addWorkHistoryFirstJobCheckboxBox");
+        public By continueExperienceBtn = By.id("addWorkHistorySaveBtn");
+        public By cancelExperienceBtn = By.id("overlayPageCloseBtn");
+
+        /* Availability Modal */
+        public By anythingCardBtn = By.id("editAvailabilityCardAnything");
+        public By fullTimeCardBtn = By.id("editAvailabilityCardFull-Time");
+        public By partTimeCardBtn = By.id("editAvailabilityCardPart-Time");
+        public By seasonalCardBtn = By.id("editAvailabilityCardSeasonal");
+
+        public By morningsCardBtn = By.id("editAvailabilityCardMornings");
+        public By afternoonsCardBtn = By.id("editAvailabilityCardAfternoons");
+        public By eveningsCardBtn = By.id("editAvailabilityCardEvenings");
+        public By nightsCardBtn = By.id("editAvailabilityCardNights");
+
+        public By continueAvailabilityBtn = By.id("editAvailabilitySaveBtn");
+        public By backAvailabilityBtn = By.id("EditAvailablityBackBtn");
+
+        /**
+         * Get Skill by Index
+         * @param index
+         * @return
+         */
+        public By getSkillsbyIndex(String index){
+           return By.id("editProfileSkillLabel" + index);
+        }
+
+        public By skillsSubmitBtn = By.id("editProfileSkillSaveBtn");
+        public By skillsBackBtn = By.id("editProfileSkillBackBtn");
+
+        public By successDoneBtn = By.id("doneBtn");
+        public By successViewProfileBtn = By.id("viewProfiletBtn");
+
+    }
     public static class ProfilePageLocators {
         /* Global profile page locators */
         public By profileEditBtn = By.id("editProfileBtn");
