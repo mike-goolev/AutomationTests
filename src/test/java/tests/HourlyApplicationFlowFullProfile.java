@@ -118,21 +118,6 @@ public class HourlyApplicationFlowFullProfile extends BaseTest{
         /* Verify search result elements on job card at index 0 */
         hourlyJobSearchPage.waitForSearchResults("0");
 
-        //TODO workaround to white form - not working
-        /* View job search result at index 0 */
-       // hourlyJobSearchPage.clickJobPostingViewBtn("0");
-
-        /* Verify job details of selected job */
-       // Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(), jobPosition);
-
-        /* Click 'Find Jobs' to return to search results */
-       // navPage.navigateToJobsPage();
-        /* Have to commit a new search here because we are not preserving the user's previous search query when navigating back to search results */
-       // hourlyJobSearchPage.searchForJobs("15", searchLocation);
-
-        /* Verify search results match original search query on job card at index 0 */
-       // hourlyJobSearchPage.waitForSearchResults("0");
-
         /* Apply for Job */
         hourlyJobSearchPage.clickJobPostingApplyBtn("0");
 
@@ -166,7 +151,6 @@ public class HourlyApplicationFlowFullProfile extends BaseTest{
         hourlyJobSearchPage.waitForSearchResults("0");
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
         Assert.assertFalse(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
     }

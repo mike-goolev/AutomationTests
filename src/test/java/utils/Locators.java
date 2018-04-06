@@ -323,8 +323,8 @@ public class Locators {
 
     public static class JobSearchPageLocators {
 
-        public By searchPositionDropdown = By.id("searchJobTypeDropDown");
-        public By searchPositionDropdownLbl = By.id("searchJobTypeDropDownLabel");
+        public By searchPositionDropdown = By.id("jobSearchLocationInput");
+        public By searchPositionDropdownLbl = By.id("jobSearchLocationInput");
 
         /**
          * Locates a job search position in the dropdown for a given index
@@ -336,7 +336,7 @@ public class Locators {
             return By.id("searchJobTypeDropDownOption" + index);
         }
 
-        public By searchLocationField = By.id("searchLocationTextField");
+        public By searchLocationField = By.id("jobSearchLocationInput");
 
         /* Search Results */
 
@@ -347,7 +347,7 @@ public class Locators {
          * @return Returns a locator for a job search result employer logo by index
          */
         public By findSearchResultEmployerImgByIndex(String index) {
-            return By.id("searchResultEmployerPhoto" + index);
+            return By.id("articleImg" + index + "ContainerImg");
         }
 
         /**
@@ -357,7 +357,7 @@ public class Locators {
          * @return Returns a locator for a job search result position by index
          */
         public By findSearchResultPositionTxtByIndex(String index) {
-            return By.id("searchResultJobNameText" + index);
+            return By.id("jobCardJobNameText" + index);
         }
 
         /**
@@ -367,7 +367,7 @@ public class Locators {
          * @return Returns a locator for a job search result employer name by index
          */
         public By findSearchResultEmployerNameTxtByIndex(String index) {
-            return By.id("searchResultEmployerNameText" + index);
+            return By.id("jobCardEmployerNameText" + index);
         }
 
         /**
@@ -377,7 +377,7 @@ public class Locators {
          * @return Returns a locator for a job search result location by index
          */
         public By findSearchResultEmployerLocationTxtByIndex(String index) {
-            return By.id("searchResultAddressText" + index);
+            return By.id("jobCardEmployerNameAndLocationText" + index);
         }
 
         /**
@@ -387,7 +387,7 @@ public class Locators {
          * @return Returns a locator for a job search result view button by index
          */
         public By findSearchResultViewBtnByIndex(String index) {
-            return By.id("searchResultViewBtn" + index);
+            return By.id("jobCardViewBtn" + index);
         }
 
         /**
@@ -397,7 +397,7 @@ public class Locators {
          * @return Returns a locator for a job search result apply button by index
          */
         public By findSearchResultApplyBtnByIndex(String index) {
-            return By.id("searchResultApplyBtn" + index);
+            return By.id("jobCardApplyBtn" + index);
         }
 
         public By searchResultsCountTxt = By.id("jobSearchJobCount");

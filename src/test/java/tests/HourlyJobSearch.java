@@ -118,7 +118,6 @@ public class HourlyJobSearch extends BaseTest {
         hourlyJobSearchPage.waitForSearchResults("0");
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation("0"), employerLocation); //Bug: Locator returns distance + zip
         Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
@@ -139,7 +138,6 @@ public class HourlyJobSearch extends BaseTest {
         hourlyJobSearchPage.waitForSearchResults("0");
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation("0"), employerLocation); //Bug: Locator returns distance + zip
         Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
@@ -169,7 +167,6 @@ public class HourlyJobSearch extends BaseTest {
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobPosition);
-//        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
@@ -197,7 +194,6 @@ public class HourlyJobSearch extends BaseTest {
         hourlyJobSearchPage.waitForSearchResults("0");
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
         Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 
@@ -233,7 +229,6 @@ public class HourlyJobSearch extends BaseTest {
         hourlyJobSearchPage.waitForSearchResults("0");
         Assert.assertTrue(hourlyJobSearchPage.verifyEmployerLogo("0"), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobPosition("0"), jobPosition);
-        Assert.assertEquals(hourlyJobSearchPage.getEmployerName("0"), employerName);
         Assert.assertEquals(hourlyJobSearchPage.getEmployerLocation( "0"), employerLocation); //Bug: Locator returns distance + zip
         Assert.assertTrue(hourlyJobSearchPage.isApplyButtonEnabled("0"), "Apply button should be enabled");
 

@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utils.Locators;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
@@ -69,7 +71,7 @@ public class HourlyJobSearchPage extends BasePage {
      * @param location The location text to enter in the field
      */
     public void searchForJobs(String index, String location) throws Exception {
-        clickJobPositionToSearch(index);
+        //clickJobPositionToSearch(index);
         enterSearchLocationText(location);
     }
 
@@ -125,10 +127,20 @@ public class HourlyJobSearchPage extends BasePage {
     }
 
     /**
+     * Hover over Job Box at given position
+     * @param index
+     */
+    public void hoverOverJobAtPosition(String index){
+        Actions action = new Actions(driver);
+        WebElement logo = driver.findElement(jobSearchPageLocators.findSearchResultEmployerImgByIndex(index));
+        action.moveToElement(logo).build().perform();
+    }
+    /**
      * Clicks the view button for a posted job
      * @param index The index (Starting at 0) of the search result view button you wish to locate
      */
     public void clickJobPostingViewBtn(String index) {
+            hoverOverJobAtPosition(index);
             driver.findElement(jobSearchPageLocators.findSearchResultViewBtnByIndex(index)).click();
             wait.until(visibilityOfElementLocated(jobSearchPageLocators.jobDetailsApplyBtn));
         }
@@ -147,6 +159,7 @@ public class HourlyJobSearchPage extends BasePage {
      * @return Whether or not the apply button is enabled
      */
     public boolean isApplyButtonEnabled(String index){
+        hoverOverJobAtPosition(index);
         return (driver.findElement(jobSearchPageLocators.findSearchResultApplyBtnByIndex(index)).isEnabled());
     }
 
