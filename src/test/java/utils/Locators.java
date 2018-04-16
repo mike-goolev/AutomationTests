@@ -1585,7 +1585,7 @@ public class Locators {
          * @return Returns a locator for the employer job position by index
          */
         public By findEmployerJobCardPositionByIndex(String index) {
-            return By.id("searchResultJobNameTextJobCard" + index);
+            return By.id("jobCardJobNameTextJobCard" + index);
         }
 
         /**
@@ -1615,7 +1615,7 @@ public class Locators {
          * @return Returns a locator for the employer job view button by index
          */
         public By findEmployerJobCardViewBtnByIndex(String index) {
-            return By.id("searchResultViewBtnJobCard" + index);
+            return By.id("jobCardViewBtnJobCard" + index);
         }
 
         /**
@@ -1625,7 +1625,7 @@ public class Locators {
          * @return Returns a locator for the employer job edit button by index
          */
         public By findEmployerJobCardEditBtnByIndex(String index) {
-            return By.id("searchResultApplyBtnJobCard" + index);
+            return By.id("jobCardEditBtnJobCard" + index);
         }
 
         /**
@@ -1645,7 +1645,7 @@ public class Locators {
          * @return Returns a locator for the job's employer logo by index
          */
         public By findEmployerJobCardLogoByIndex(String index) {
-            return By.id("searchResultEmployerPhotoJobCard" + index);
+            return By.id("articleImgJobCard" + index + "ContainerImg");
         }
 
         /**
@@ -1654,19 +1654,10 @@ public class Locators {
          * @param index The index (Starting at 0) of the job's employer name you wish to locate
          * @return Returns a locator for the job's employer name by index
          */
-        public By findEmployerJobCardNameByIndex(String index) {
-            return By.id("searchResultEmployerNameTextJobCard" + index);
+        public By findEmployerJobCardNameAndAddressByIndex(String index) {
+            return By.id("jobCardEmployerNameAndLocationTextJobCard" + index);
         }
 
-        /**
-         * Locates a job's employer address for a given index
-         *
-         * @param index The index (Starting at 0) of the job's employer address you wish to locate
-         * @return Returns a locator for the job's employer address by index
-         */
-        public By findEmployerJobCardAddressByIndex(String index) {
-            return By.id("searchResultAddressTextJobCard" + index);
-        }
     }
 
     public static class EmployerProfileEditInfoPageLocators {
@@ -2203,7 +2194,7 @@ public class Locators {
          * @return Returns a locator for the employer job position by index
          */
         public By findEmployerJobCardPositionByIndex(String index) {
-            return By.id("searchResultJobNameTextJobCard" + index);
+            return By.id("jobCardJobNameTextJobCard" + index);
         }
 
         /**
@@ -2233,7 +2224,7 @@ public class Locators {
          * @return Returns a locator for the employer job view button by index
          */
         public By findEmployerJobCardViewBtnByIndex(String index) {
-            return By.id("searchResultViewBtnJobCard" + index);
+            return By.id("jobCardViewBtnJobCard" + index);
         }
 
         /**
@@ -2243,7 +2234,7 @@ public class Locators {
          * @return Returns a locator for the employer job edit button by index
          */
         public By findEmployerJobCardEditBtnByIndex(String index) {
-            return By.id("searchResultApplyBtnJobCard" + index);
+            return By.id("jobCardEditBtnJobCard" + index);
         }
 
         /**
@@ -2253,7 +2244,7 @@ public class Locators {
          * @return Returns a locator for the job's employer logo by index
          */
         public By findEmployerJobCardLogoByIndex(String index) {
-            return By.id("searchResultEmployerPhotoJobCard" + index);
+            return By.id("articleImgJobCard" + index + "ContainerImg");
         }
 
         /**
@@ -2262,18 +2253,8 @@ public class Locators {
          * @param index The index (Starting at 0) of the job's employer name you wish to locate
          * @return Returns a locator for the job's employer name by index
          */
-        public By findEmployerJobCardNameByIndex(String index) {
-            return By.id("searchResultEmployerNameTextJobCard" + index);
-        }
-
-        /**
-         * Locates a job's employer address for a given index
-         *
-         * @param index The index (Starting at 0) of the job's employer address you wish to locate
-         * @return Returns a locator for the job's employer address by index
-         */
-        public By findEmployerJobCardAddressByIndex(String index) {
-            return By.id("searchResultAddressTextJobCard" + index);
+        public By findEmployerJobCardNameAndAddressByIndex(String index) {
+            return By.id("jobCardEmployerNameAndLocationTextJobCard" + index);
         }
     }
 

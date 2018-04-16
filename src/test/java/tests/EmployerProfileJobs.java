@@ -42,6 +42,7 @@ public class EmployerProfileJobs extends BaseTest {
     private String jobIndex;
     private String employerName;
     private String employerAddress;
+    private String employerNameAndAddress;
     private String employerCity;
     private String employerState;
     private String employerZip;
@@ -89,6 +90,7 @@ public class EmployerProfileJobs extends BaseTest {
         jobAvailabilityFulltime = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("jobAvailabilityFulltime");
         employerName = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("employerName");
         employerAddress = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("employerAddress");
+        employerNameAndAddress = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("employerNameAndAddress");
         employerCity = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("employerCity");
         employerState = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("employerState");
         employerZip = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("employerZip");
@@ -191,11 +193,11 @@ public class EmployerProfileJobs extends BaseTest {
 
         /* Verify job card */
         employerProfileViewPage.scrollToJobCard(jobIndex);
-        Assert.assertTrue(employerProfileViewPage.isJobCardEmployerLogoPresent(), "The employer logo should be displayed on the job card");
-        Assert.assertEquals(employerProfileViewPage.getJobCardEmployerName(jobIndex), employerName);
-        Assert.assertEquals(employerProfileViewPage.getJobCardEmployerAddress(jobIndex), employerAddress + ", " + employerCity + ", " + employerState);
+        Assert.assertTrue(employerProfileViewPage.isJobCardEmployerLogoPresent(jobIndex), "The employer logo should be displayed on the job card");
+        Assert.assertEquals(employerProfileViewPage.getJobCardEmployerNameAndAddress(jobIndex), employerNameAndAddress);
+       // Assert.assertEquals(employerProfileViewPage.getJobCardEmployerAddress(jobIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerProfileViewPage.getJobPosition(jobIndex), jobCustomName);
-        Assert.assertEquals(employerProfileViewPage.getJobAvailability(jobIndex), jobAvailabilityFulltime);
+       // Assert.assertEquals(employerProfileViewPage.getJobAvailability(jobIndex), jobAvailabilityFulltime);
 //        Assert.assertEquals(employerProfileViewPage.getJobWage(jobIndex), jobWage);
 
         /* Select to edit job */

@@ -40,6 +40,7 @@ public class EmployerDash extends BaseTest {
     private String talentGoodStatus;
     private String employerName;
     private String employerAddress;
+    private String employerNameAndAddress;
     private String employerCity;
     private String employerState;
     private String employerGuid;
@@ -95,6 +96,8 @@ public class EmployerDash extends BaseTest {
         employerGuid = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerGuid");
         employerName = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerName");
         employerAddress = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerAddress");
+        employerNameAndAddress = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerNameAndAddress");
+
         employerCity = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerCity");
         employerState = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("employerState");
         jobPosition = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobPosition");
@@ -126,7 +129,7 @@ public class EmployerDash extends BaseTest {
         System.out.println("Starting employer dashboard test!");
     }
 
-    @Test(priority = 1)
+    @Test
     public void testEmployerDashViewCards() throws Exception {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
@@ -172,10 +175,10 @@ public class EmployerDash extends BaseTest {
         /* Verify active job postings */
         Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
         Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
-        Assert.assertEquals(employerDashPage.getJobCardEmployerName(cardIndex), employerName);
+        Assert.assertEquals(employerDashPage.getJobCardEmployerNameAndAddress(cardIndex), employerNameAndAddress);
 //        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
-        Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
+       // Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
 //        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
 
         /* View job details */
@@ -251,10 +254,10 @@ public class EmployerDash extends BaseTest {
         /* Verify active job postings */
         Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
         Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
-        Assert.assertEquals(employerDashPage.getJobCardEmployerName(cardIndex), employerName);
+        Assert.assertEquals(employerDashPage.getJobCardEmployerNameAndAddress(cardIndex), employerNameAndAddress);
 //        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
-        Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
+       // Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
 //        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
 
         /* View job details */
@@ -323,7 +326,7 @@ public class EmployerDash extends BaseTest {
         employerDashPage.waitForLoadingIndicator();
     }
 
-    @Test(priority = 2)
+    @Test
     public void testEmployerDashGoodFit() {
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();

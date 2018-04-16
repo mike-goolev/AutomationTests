@@ -5,6 +5,8 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+
+import org.openqa.selenium.interactions.Actions;
 import utils.Locators;
 import utils.TestUtils;
 
@@ -454,6 +456,7 @@ public class EmployerDashPage extends BasePage {
      * @param index The index of the job card's view button (starting at 0)
      */
     public void selectJobViewBtn(String index){
+        hoverOverJobAtPosition(index);
         driver.findElement(dashPageLocators.findEmployerJobCardViewBtnByIndex(index)).click();
     }
 
@@ -462,6 +465,7 @@ public class EmployerDashPage extends BasePage {
      * @param index The index of the job card's edit button (starting at 0)
      */
     public void selectJobEditBtn(String index){
+        hoverOverJobAtPosition(index);
         driver.findElement(dashPageLocators.findEmployerJobCardEditBtnByIndex(index)).click();
     }
 
@@ -479,20 +483,23 @@ public class EmployerDashPage extends BasePage {
      * @param index The index of the job card's employer name (starting at 0)
      * @return The job card's employer name
      */
-    public String getJobCardEmployerName(String index){
-        return driver.findElement(dashPageLocators.findEmployerJobCardNameByIndex(index)).getText();
-    }
-
-    /**
-     * Gets the job card employer address
-     * @param index The index of the job card's employer address (starting at 0)
-     * @return The job card's employer address
-     */
-    public String getJobCardEmployerAddress(String index){
-        return driver.findElement(dashPageLocators.findEmployerJobCardAddressByIndex(index)).getText();
+    public String getJobCardEmployerNameAndAddress(String index){
+        return driver.findElement(dashPageLocators.findEmployerJobCardNameAndAddressByIndex(index)).getText();
     }
 
     /*---------- Utility Methods ----------*/
+
+    /**
+     * Hover over Job Box at given position
+     * @param index
+     */
+    public void hoverOverJobAtPosition(String index){
+        WebElement jobsCard = driver.findElement(dashPageLocators.findEmployerJobCardLogoByIndex(index));
+        testUtils.jsExecutorElement("arguments[0].scrollIntoView(true);", jobsCard);
+        Actions action = new Actions(driver);
+        WebElement logo = driver.findElement(dashPageLocators.findEmployerJobCardLogoByIndex(index));
+        action.moveToElement(logo).build().perform();
+    }
 
     /**
      * Waits for the loading indicator on the Dash page
