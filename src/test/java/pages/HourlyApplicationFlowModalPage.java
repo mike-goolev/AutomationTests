@@ -1,9 +1,13 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.Locators;
+import utils.TestUtils;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
@@ -12,11 +16,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class HourlyApplicationFlowModalPage extends BasePage{
     Locators.JobSearchPageLocators jobSearchPageLocators;
     Locators.ApplicationFlowModal applicationFlowModal ;
+    TestUtils testUtils;
 
     public HourlyApplicationFlowModalPage(WebDriver driver) {
         super(driver);
         jobSearchPageLocators = new Locators.JobSearchPageLocators();
         applicationFlowModal = new Locators.ApplicationFlowModal();
+        testUtils = new TestUtils(driver);
     }
 
     /* Click Join using Email button */
@@ -26,13 +32,17 @@ public class HourlyApplicationFlowModalPage extends BasePage{
 
     /* Enter First Name */
     public void enterFirstName(String firstName){
-        driver.findElement(applicationFlowModal.firstNameTxt).click();
+        ((JavascriptExecutor)driver).executeScript("window.focus();");
+        new Actions(driver).moveToElement(driver.findElement(applicationFlowModal.firstNameTxt)).click().perform();
         driver.findElement(applicationFlowModal.firstNameTxt).sendKeys(firstName);
     }
 
     /* Enter Last Name */
     public void enterLastName(String lastName){
+        driver.findElement(applicationFlowModal.firstNameTxt).sendKeys(Keys.TAB);
         driver.findElement(applicationFlowModal.lastNameTxt).click();
+       //
+        //driver.findElement(applicationFlowModal.lastNameLabel).click();
         driver.findElement(applicationFlowModal.lastNameTxt).sendKeys(lastName);
     }
 

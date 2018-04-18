@@ -432,6 +432,7 @@ public class Locators {
         public By joinUsingEmailBtn = By.id("button");
         /* Sign Up - Enter Name,email,password */
         public By firstNameTxt = By.id("joinWithEmailDialogUserFirstname");
+        public By firstNameWrapper = By.id("joinWithEmailDialogUserFirstnameWrapper");
         public By lastNameTxt = By.id("joinWithEmailDialogUserLastname");
         public By emailTxt  = By.id("joinWithEmailDialogEmailInput");
         public By passwordTxt = By.id("joinWithEmailDialogPasswordInput");
@@ -1048,7 +1049,7 @@ public class Locators {
         /* Global connections page locators */
         public By connectionsGetConnectedBtn = By.id("communityGetConnectedLinkTab");
        // public By connectionsMyConnectionsBtn = By.xpath("//a[@id='MyConnectionsBlockViewConnectionsBtn' and @title='View Connections']");
-        public By connectionsMyConnectionsBtn = By.id("MyConnectionsBlockViewConnectionsBtn");
+        public By connectionsMyConnectionsBtn = By.id("myConnectionsBlockViewConnectionsBtn");
         public By connectionsInvitationsBtn = By.id("communityInvitationsLinkTab");
         public By userSearchTextField = By.id("communitySearchInput");
 
@@ -1059,7 +1060,7 @@ public class Locators {
          * @return A locator for a member search result at the given index
          */
         public By findMemberSearchResultByIndex(String index) {
-            return By.id("memberSearchListItem" + index);
+            return By.id("suggestedConnectionsMemberSearchListItem" + index + "NameText" + index);
         }
 
         public By userSearchListResultTxt = By.id("memberSearchListItem");
@@ -1103,13 +1104,13 @@ public class Locators {
         /**
          * Locates a connection's name for a given index
          */
-       public  By findConnectionCardNameTxtByIndex = By.id("myConnectionsFullName");
+       public  By findConnectionCardNameTxtByIndex(String index){return By.id("myConnectionsNameTxt" + index);}
 
 
         /**
          * Locates a connection's work history for a given index
          */
-        public By findConnectionCardWorkTxtByIndex = By.id("myConnectionsJobPosition");
+        public By findConnectionCardWorkTxtByIndex(String index) {return By.id("myConnectionsPositionTxt" + index);};
 
 
         /**
@@ -1165,7 +1166,7 @@ public class Locators {
         /**
          * Locates a suggested connection's name for a given index
          */
-        public By findSuggestionCardNameTxtByIndex = By.id("getConnectedFullName");
+        public By findSuggestionCardNameTxtByIndex(String index) { return By.id("getConnectedNameTxt" + index);};
 
         /**
          * Locates a suggested connection's reason for a given index
@@ -1185,7 +1186,7 @@ public class Locators {
         /**
          * Locates a suggested connection's connect button for a given index
          */
-        public By findSuggestionCardConnectBtnByIndex =  By.id("getConnectedConnectBtn");
+        public By findSuggestionCardConnectBtnByIndex(String index){ return  By.id("getConnectedConnectBtn" + index);};
 
 
         public By suggestionsPage1Btn = By.id("suggestedConnectionsPage1Btn");
@@ -1212,7 +1213,7 @@ public class Locators {
          * @return Returns a locator for the user card's image by index
          */
         public By findInvitationCardImgByIndex(String index) {
-            return By.id("invitationRequestCarouselCard" + index + "ImgIcon");
+            return By.id("invitationRequestsCarouselCardImg" + index + "Icon");
         }
 
         /**
@@ -1222,7 +1223,7 @@ public class Locators {
          * @return Returns a locator for the user card's name by index
          */
         public By findInvitationCardNameTxtByIndex(String index) {
-            return By.id("invitationRequestCarouselCard" + index + "FullNameTxt");
+            return By.id("invitationRequestsCarouselCardFullNameTxt" + index);
         }
 
         /**
@@ -1232,7 +1233,7 @@ public class Locators {
          * @return Returns a locator for the user card's work history by index
          */
         public By findInvitationCardJobTxtByIndex(String index) {
-            return By.id("invitationRequestCarouselCard" + index + "PositionTxt");
+            return By.id("invitationRequestsCarouselCardPositionTxt" + index);
         }
 
         /**
@@ -1242,7 +1243,7 @@ public class Locators {
          * @return Returns a locator for the user card's ignore button by index
          */
         public By findInvitationCardIgnoreBtnByIndex(String index) {
-            return By.id("invitationRequestCarouselCard" + index + "RejectBtn");
+            return By.id("invitationRequestsCarouselCardRejectBtn" + index);
         }
 
         /**
@@ -1252,7 +1253,7 @@ public class Locators {
          * @return Returns a locator for the user card's connect button by index
          */
         public By findInvitationCardConnectBtnByIndex(String index) {
-            return By.id("invitationRequestCarouselCard" + index + "AcceptBtn");
+            return By.id("invitationRequestsCarouselCardAcceptBtn" + index);
         }
     }
 

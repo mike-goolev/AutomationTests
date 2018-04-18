@@ -42,7 +42,7 @@ public class HourlyNetworkMyConnectionsPage extends BasePage {
      * @return The connection's name
      */
     public String getConnectionName(String index) {
-        return  driver.findElement(hourlyNetworkPageLocators.findConnectionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findConnectionCardNameTxtByIndex).getText();
+        return  driver.findElement(hourlyNetworkPageLocators.findConnectionCardNameTxtByIndex(index)).getText();
     }
 
     /**
@@ -52,7 +52,7 @@ public class HourlyNetworkMyConnectionsPage extends BasePage {
      * @return The connection's primary job
      */
     public String getConnectionJob(String index) {
-        return driver.findElement(hourlyNetworkPageLocators.findConnectionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findConnectionCardWorkTxtByIndex).getText();
+        return driver.findElement(hourlyNetworkPageLocators.findConnectionCardWorkTxtByIndex(index)).getText();
     }
 
     /**

@@ -89,6 +89,7 @@ public class HourlyApplicationFlowSignUp extends BaseTest{
         hourlyApplicationFlowModalPage.enterFirstName(firstName);
         hourlyApplicationFlowModalPage.enterLastName(lastName);
         hourlyApplicationFlowModalPage.enterEmail(email);
+
         hourlyApplicationFlowModalPage.enterPassword(password);
         hourlyApplicationFlowModalPage.clickContinueBtn();
 

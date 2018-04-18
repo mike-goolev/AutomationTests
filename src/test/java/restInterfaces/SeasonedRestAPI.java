@@ -646,17 +646,7 @@ public class SeasonedRestAPI {
 
             /* Make a PUT request to network */
             Call<Network> call = seasonedAPI.updateNetworkConnection(accessToken, network);
-            call.enqueue(new Callback<Network>() {
-                @Override
-                public void onResponse(Call<Network> call, Response<Network> response) {
-                    System.out.println("PUT request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
-                }
-
-                @Override
-                public void onFailure(Call<Network> call, Throwable t) {
-                    System.out.println("PUT request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
-                }
-            });
+            call.execute() ;
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }

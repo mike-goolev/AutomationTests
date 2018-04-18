@@ -33,14 +33,9 @@ public class HourlyNetworkPage extends BasePage {
      * @param index The index of the member search result to select
      */
     public void submitUserSearchByName(String name, String index) throws Exception {
-       // wait.until(elementToBeClickable(hourlyNetworkPageLocators.userSearchTextField));
-        List<WebElement> x = driver.findElements(By.id("communitySearchInput"));
-        System.out.println(x.size());
-        Actions action = new Actions(driver);
-        action.moveToElement( x.get(1)).doubleClick().build().perform();
+        driver.findElement(By.id("suggestedConnectionsMemberSearchInputDesktopView")).click();
         Thread.sleep(3000);
-        x.get(1).sendKeys(name);
-        //driver.findElement(hourlyNetworkPageLocators.userSearchTextField).sendKeys(name);
+        driver.findElement(By.id("suggestedConnectionsMemberSearchInputDesktopView")).sendKeys(name);
     }
 
     /**

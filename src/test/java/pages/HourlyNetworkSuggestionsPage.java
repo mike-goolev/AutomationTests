@@ -40,7 +40,7 @@ public class HourlyNetworkSuggestionsPage extends BasePage {
      * @return The suggested connection's name
      */
     public String getSuggestedConnectionsName(String index) {
-        return driver.findElement(hourlyNetworkPageLocators.findSuggestionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findSuggestionCardNameTxtByIndex).getText();
+        return driver.findElement(hourlyNetworkPageLocators.findSuggestionCardNameTxtByIndex(index)).getText();
     }
 
     /**
@@ -68,7 +68,7 @@ public class HourlyNetworkSuggestionsPage extends BasePage {
      */
     public void clickSuggestedConnectionsConnectButton(String index) {
         wait.until(elementToBeClickable(hourlyNetworkPageLocators.findSuggestionCardLinkbyIndex(index)));
-        driver.findElement(hourlyNetworkPageLocators.findSuggestionCardLinkbyIndex(index)).findElement(hourlyNetworkPageLocators.findSuggestionCardConnectBtnByIndex).click();
+        driver.findElement(hourlyNetworkPageLocators.findSuggestionCardConnectBtnByIndex(index)).click();
     }
 
     /**
