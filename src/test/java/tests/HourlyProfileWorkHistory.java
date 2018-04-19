@@ -411,10 +411,6 @@ public class HourlyProfileWorkHistory extends BaseTest {
         }
         System.out.println("Logging out for the work history test");
         navPage.attemptLogout();
-    }
-
-    @AfterClass
-    public void classTearDown() {
         driver.quit();
     }
 }

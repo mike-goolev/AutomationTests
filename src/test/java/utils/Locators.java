@@ -1051,7 +1051,7 @@ public class Locators {
        // public By connectionsMyConnectionsBtn = By.xpath("//a[@id='MyConnectionsBlockViewConnectionsBtn' and @title='View Connections']");
         public By connectionsMyConnectionsBtn = By.id("myConnectionsBlockViewConnectionsBtn");
         public By connectionsInvitationsBtn = By.id("communityInvitationsLinkTab");
-        public By userSearchTextField = By.id("communitySearchInput");
+        public By userSearchTextField = By.id("suggestedConnectionsMemberSearchInputDesktopView");
 
         /**
          * Locates a member search result by index

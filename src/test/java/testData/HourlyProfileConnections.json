@@ -1,12 +1,12 @@
 {
   "HourlyProfileConnections": {
-    "username":"aprofile@mailinator.com",
+    "username":"seasauto@mailinator.com",
     "usernameEmptyState":"aloser@mailinator.com",
     "password":"12348765",
     "connectionIndex":"0",
-    "connectionCount":"1",
-    "connectionName":"A Connection",
-    "connectionJob":"Team Member @ Tommy Want Wingy",
+    "connectionCount":"2",
+    "connectionName":"Emma Watson",
+    "connectionJob":"Chef @ Wholy Bagel!",
     "connectionCity":"Austin, TX",
     "fromUserGuid":"e5761d5f-32c4-4a21-8358-c0bd967eb6d9",
     "toUserGuid":"0c741788-9827-4c1c-9f8b-e6c40ecfb320",

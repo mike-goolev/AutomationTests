@@ -42,14 +42,7 @@ public class HourlyProfileConnections extends BaseTest {
         connectionName = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionName");
         connectionJob = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionJob");
         connectionCity = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("connectionCity");
-        fromUserGuid = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("fromUserGuid");
-        toUserGuid = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("toUserGuid");
-        token = (String) TestDataImporter.get("HourlyProfileConnections", "HourlyProfileConnections").get("token");
-        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
-        seasonedRestAPI.deleteConnection(fromUserGuid, toUserGuid);
-        seasonedRestAPI.postConnectionRequest(fromUserGuid, toUserGuid);
-        Thread.sleep(3000);
-        seasonedRestAPI.updateConnectionRequest(fromUserGuid, toUserGuid);
+
         System.out.println("Starting hourly profile Connections test!");
     }
 
@@ -74,7 +67,7 @@ public class HourlyProfileConnections extends BaseTest {
         hourlyProfileViewPage.clickViewAllConnections();
 
         /* Verify connection's card is displayed */
-//        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex), "The connection's photo should be displayed");
+        Assert.assertTrue(hourlyNetworkMyConnectionsPage.isConnectionPhotoDisplayed(connectionIndex), "The connection's photo should be displayed");
 //        Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionName(connectionIndex), connectionName + ", " + connectionCity);
 //        Assert.assertEquals(hourlyNetworkMyConnectionsPage.getConnectionJob(connectionIndex), connectionJob);
     }
