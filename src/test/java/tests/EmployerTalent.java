@@ -29,6 +29,7 @@ public class EmployerTalent extends BaseTest {
     private String talentLastName;
     private String talentLocation;
     private String talentJob;
+    private String talentJobLocation;
     private String talentSharedConnections;
     private String talentInvitePosition;
     private String talentEmail;
@@ -118,6 +119,7 @@ public class EmployerTalent extends BaseTest {
         jobPosition = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobPosition");
         jobType = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobType");
         jobWage = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobWage");
+        talentJobLocation = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentJobLocation");
         jobMinWage = jobWage;
         jobMaxWage = jobWage;
         jobWageType = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobWageType");
@@ -187,10 +189,10 @@ public class EmployerTalent extends BaseTest {
         Assert.assertEquals(talentPage.getEmployerTalentInvitedTitleTxt(), talentInvitedTitle);
 
         /* Verify talent card on 'Invited' tab */
-        Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName);
-        Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation);
-        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob);
-        Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections);
+        Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName, "Applicant's name should be displayed on the card");
+        Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation, "Applicant's location should be displayed on the card");
+        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob + talentJobLocation, "Card should have the job position and address");
+        Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections, "Card should have the number of mutual connections");
 
         /* Log out */
         navPage.attemptLogout();
@@ -302,10 +304,10 @@ public class EmployerTalent extends BaseTest {
         Assert.assertEquals(talentPage.getEmployerTalentGoodTitleTxt(), talentGoodTitle);
 
         /* Verify talent card on 'Good fit' tab */
-        Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName);
-        Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation);
-        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob);
-        Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections);
+        Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName, "Applicant's name should be displayed on the card");
+        Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation, "Applicant's location should be displayed on the card");
+        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob + talentJobLocation, "Card should have the job position and address");
+        Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections, "Card should have the number of mutual connections");
     }
 
     @Test
@@ -346,10 +348,10 @@ public class EmployerTalent extends BaseTest {
         Assert.assertEquals(talentPage.getEmployerTalentBadTitleTxt(), talentBadTitle);
 
         /* Verify talent card on 'Not a fit' tab */
-        Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName);
-        Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation);
-        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob);
-        Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections);
+        Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName, "Applicant's name should be displayed on the card");
+        Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation, "Applicant's location should be displayed on the card");
+        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob + talentJobLocation, "Card should have the job position and address");
+        Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections, "Card should have the number of mutual connections");
 
         /* Reset applicant to 'Good fit' status */
         talentPage.selectTalentActionsBtn(cardIndex);

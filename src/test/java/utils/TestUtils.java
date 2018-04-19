@@ -35,7 +35,6 @@ public class TestUtils {
      */
     public void loadJobSearchPageNoTerms() {
         driver.get(TestConfig.getBaseUrl() + TestConfig.getJobSearchRelativeUrl());
-        navPage.dismissRebrandingModal();
     }
 
     /**
@@ -46,7 +45,6 @@ public class TestUtils {
      */
     public void loadJobSearchPage(String searchLocation, String searchPosition) {
         driver.get(TestConfig.getBaseUrl() + TestConfig.getJobSearchRelativeUrl() + "/" + searchLocation + "/" + searchPosition);
-        navPage.dismissRebrandingModal();
     }
 
     /**
@@ -56,7 +54,6 @@ public class TestUtils {
      */
     public void loadJobSearchPage(String searchLocation) {
         driver.get(TestConfig.getBaseUrl() + TestConfig.getJobSearchRelativeUrl() + "/" + searchLocation);
-        navPage.dismissRebrandingModal();
     }
 
     /**
@@ -64,7 +61,6 @@ public class TestUtils {
      */
     public void loadConnectionsPage() {
         driver.get(TestConfig.getBaseUrl() + TestConfig.getNetworkRelativeUrl());
-        navPage.dismissRebrandingModal();
     }
 
     /**
@@ -72,7 +68,6 @@ public class TestUtils {
      */
     public void loadBeSuccessfulPage() {
         driver.get(TestConfig.getBaseUrl() + TestConfig.getSuccessRelativeUrl());
-        navPage.dismissRebrandingModal();
     }
 
     /**

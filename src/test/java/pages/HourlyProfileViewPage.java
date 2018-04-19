@@ -506,8 +506,7 @@ public class HourlyProfileViewPage extends BasePage {
      * @return Whether or not the connections title text is displayed
      */
     public boolean isConnectionsTitleTxtPresent() {
-
-        return elementExists(profilePageLocators.connectionsTitleTxt);
+        return elementExistsLongTimeout(profilePageLocators.connectionsTitleTxt);
     }
 
     /**
