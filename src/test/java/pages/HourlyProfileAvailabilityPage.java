@@ -36,6 +36,14 @@ public class HourlyProfileAvailabilityPage extends BasePage {
     }
 
     /**
+     * Checks to see if the save availability button is enabled
+     * @return Whether or not the save button is enabled
+     */
+    public boolean isSavedButtonEnabled() {
+        return driver.findElement(availabilityPageLocators.saveBtn).isEnabled();
+    }
+
+    /**
      * Clicks the Gigs checkbox on the edit availability page
      */
     public void clickGigsCheckbox() {

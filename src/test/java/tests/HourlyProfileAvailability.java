@@ -107,16 +107,22 @@ public class HourlyProfileAvailability extends BaseTest {
         hourlyProfileAvailabilityPage.clickAllAvailabilityBoxes();
         hourlyProfileAvailabilityPage.selectAvailabilityStatus("OPEN");
         hourlyProfileAvailabilityPage.clickAvailabilityTypeAnything();
+
+        /* Verify that the save button is not enabled */
+        Assert.assertFalse(hourlyProfileAvailabilityPage.isSavedButtonEnabled(), "The save button should be disabled since no changes were made");
+
+        /* Select an availability day part since it is required */
+        hourlyProfileAvailabilityPage.clickAllAvailabilityBoxes();
         hourlyProfileAvailabilityPage.clickSaveButton();
 
         /* Verify that a success toast appears and that all availability has been removed */
         Assert.assertTrue(hourlyProfileAvailabilityPage.verifyAvailabilitySuccessBanner(), "The profile saved successfully toast is displayed");
         hourlyProfileAvailabilityPage.clickCloseAvailabilityBannerBtn();
-        Assert.assertTrue(hourlyProfileAvailabilityPage.noAvailabilitySelected(), "No availability is selected");
+        Assert.assertTrue(hourlyProfileAvailabilityPage.allAvailabilitySelected(), "All availability is selected");
 
         /* Verify that the availability card is in an empty state on the view profile page */
         hourlyProfileEditPage.clickSideMenuViewProfileLink();
-        Assert.assertFalse(hourlyProfileViewPage.verifyAllAvailabilitySelected(), "No availability should be on the view profile page");
+        Assert.assertTrue(hourlyProfileViewPage.verifyAllAvailabilitySelected(), "All availability should be on the view profile page");
     }
 
     @AfterMethod
