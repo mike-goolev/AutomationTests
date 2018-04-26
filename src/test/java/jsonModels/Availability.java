@@ -3,6 +3,8 @@ package jsonModels;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigInteger;
+
 public class Availability {
 
     @SerializedName("id")
@@ -16,10 +18,10 @@ public class Availability {
     private String version;
     @SerializedName("created")
     @Expose
-    private Integer created;
+    private BigInteger created;
     @SerializedName("updated")
     @Expose
-    private Integer updated;
+    private BigInteger updated;
     @SerializedName("user")
     @Expose
     private Object user;
@@ -72,19 +74,19 @@ public class Availability {
         this.version = version;
     }
 
-    public Integer getCreated() {
+    public BigInteger getCreated() {
         return created;
     }
 
-    public void setCreated(Integer created) {
+    public void setCreated(BigInteger created) {
         this.created = created;
     }
 
-    public Integer getUpdated() {
+    public BigInteger getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Integer updated) {
+    public void setUpdated(BigInteger updated) {
         this.updated = updated;
     }
 
