@@ -425,7 +425,13 @@ public class Locators {
         public By jobDetailsEmployerFollowToastTxt = By.id("jobDetailsToast");
         public By jobDetailsEmployerFollowToastDismissBtn = By.id("jobDetailsToastCloseBtn");
     }
-
+    public static class AttributionModal {
+        public By attributionModal = By.className("ReactModalPortal");
+        public By attributionCloseBtn = By.id("overlayPageCloseBtn");
+        public By attributionDropdown = By.id("attributionModalDropDown");
+        public By getAttrigutionByIndex(String index){return By.id("attributionModalDropDownOption" + index);}
+        public By attributionDoneBtn = By.id("promptBtn");
+    }
     public static class ApplicationFlowModal {
 
         /* Sign Up - Join Using Email button */
@@ -1270,7 +1276,7 @@ public class Locators {
         public By messageThreadSenderTxt0 = By.className("text-break-word");
         public By messageThreadSenderTimeTxt0 = By.id("messageThreadWdgMessage0SentTimeText");
         public By messageThreadRecipientImg0 = By.xpath("//div[@id[starts-with(.,\"messageThreadWdgMessageAvatar\")]]");
-        public By messageThreadRecipientTxt0 = By.id("messageThreadWdgMessage0");
+        public By messageThreadRecipientTxt0 = By.id("messageThreadWdgMessageText0");
         public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
         public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
         public By messageThreadWdgInput = By.id("messageThreadWdgInput");
@@ -1286,10 +1292,13 @@ public class Locators {
         public By emptyMsgH4 = By.xpath("//div[@class='messages-empty']/h4");
         public By msgComposeModal = By.className("message-compose show");
         public By msgComposeModalTitle = By.id("messageComposeTitleTxt");
+        public By textboxMsgComposeModalSearchConnections = By.id("messageComposeConnectionsSelectInput");
+        public By labelMsgComposeModalNoConnection = By.id("messageComposeNoConnectionsTxt");
+        public By buttonGetConnected = By.id("messageComposeGetConnectedBtn");
         public By msgComposeConnectionsList = By.id("messageComposeConnectionsSelect");
         public By msgComposeConnection0 = By.id("messageComposeConnectionsSelectConnection0");
         public By msgThreadWdg = By.id("messageThreadWdg");
-        public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-badge");
+        public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-msgs-badge");
         public By msgNoRedBadge = By.cssSelector("#headerMessagesLink");
     }
 

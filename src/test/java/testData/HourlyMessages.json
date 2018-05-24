@@ -1,9 +1,12 @@
 {
   "HourlyMessages": {
-    "username":"aprofile@mailinator.com",
-    "password":"12348765",
+    "password": "password",
+    "ipLocation":"Austin, TX",
+    "userLocation":"Philadelphia, PA",
     "emptyMsg": "You don’t have any messages, why not start a conversation?",
-    "usernameReceiver": "aconnection@mailinator.com",
-    "passwordReceiver": "12348765"
+    "searchPlaceholder": "Search connections...",
+    "labelNoConnections": "You don’t have any connections to send a message to.",
+    "usernameReceiver": "messconnection@mailinator.com",
+    "passwordReceiver": "password"
   }
 }

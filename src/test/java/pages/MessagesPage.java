@@ -78,6 +78,32 @@ public class MessagesPage extends BasePage {
     }
 
     /**
+     * Get Placeholder Value
+     *
+     * @return Placeholder Value
+     */
+    public String getPlaceholderSearchInputBox(){
+        return driver.findElement(messagesPageLocators.textboxMsgComposeModalSearchConnections).getAttribute("placeholder");
+
+    }
+
+    /**
+     *  Get No Connections Label
+     * @return No Connections label
+     */
+    public String getNoConnectionsLabel(){
+        return driver.findElement(messagesPageLocators.labelMsgComposeModalNoConnection).getText();
+
+    }
+
+    /**
+     * Clicks Get Connected Button
+     */
+    public void clickGetConnectedBtn(){
+        driver.findElement(messagesPageLocators.buttonGetConnected).click();
+    }
+
+    /**
      * Verifies that the my connections list is displayed in the message compose modal
      *
      * @return Whether or not my connections list is displayed in the message compose modal
@@ -204,6 +230,14 @@ public class MessagesPage extends BasePage {
         return elementExists(messagesPageLocators.msgRedBadge);
     }
 
+    /**
+     * Gets the numeric value from the red dot
+     *
+     * @return Whether or not the red dot is displayed when new message
+     */
+    public String getRedBadgeNewMsgCount() {
+        return driver.findElement(messagesPageLocators.msgRedBadge).getAttribute("data-msg-count");
+    }
     /**
      * Verifies that red dot is not displayed when new message seen
      *

@@ -9,11 +9,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfEl
 public class HourlyRegistrationPage extends BasePage {
 
     Locators.SignUpPageLocators signUpPageLocators;
+    AttributesPage attributionPage;
     TestUtils testUtils;
 
     public HourlyRegistrationPage(WebDriver driver) {
         super(driver);
         signUpPageLocators = new Locators.SignUpPageLocators();
+        attributionPage = new AttributesPage(driver);
         testUtils = new TestUtils(driver);
     }
 
@@ -246,6 +248,11 @@ public class HourlyRegistrationPage extends BasePage {
         driver.findElement(signUpPageLocators.passwordField).sendKeys(password);
         driver.findElement(signUpPageLocators.emailSignupNextBtn).click();
         wait.until(invisibilityOfElementLocated(signUpPageLocators.emailSignUpNextLoadingBtn));
+        try{
+            if(attributionPage.attributionModalExists())
+                {attributionPage.closeAttribtionModal();}
+        } catch(Exception e){};
+
     }
 
     /**

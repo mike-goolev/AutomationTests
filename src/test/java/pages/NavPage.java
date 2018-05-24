@@ -216,4 +216,12 @@ public class NavPage extends BasePage {
         driver.findElement(navPageLocators.menuMemberBtn).click();
     }
 
+    /**
+     * Get Page Title  Selected
+     * @return
+     */
+    public String getPageTitleSelected(){
+        return driver.getTitle();
+
+    }
 }
