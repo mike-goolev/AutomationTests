@@ -262,7 +262,7 @@ public class HourlyJobSearchPage extends BasePage {
      * @return The job details employer name text
      */
     public String getJobDetailsEmployerName() {
-        return driver.findElement(jobSearchPageLocators.jobDetailsEmployerNameTxt).getText();
+        return driver.findElement(jobSearchPageLocators.jobDetailsEmployerNameTxt).getText().split(",")[0];
     }
 
     /**

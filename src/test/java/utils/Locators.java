@@ -405,23 +405,23 @@ public class Locators {
         public By searchResultsEmptyMessageTxt = By.id("emptySearchTextContent");
 
         /* Job Details - Auth'd */
-        public By jobDetailsPositionTxt = By.id("jobNameTxt");
+        public By jobDetailsPositionTxt = By.id("jobDetailsJobNameTxt");
         public By jobDetailsWageTxt = By.id("jobWageTxt");
-        public By jobDetailsApplyBtn = By.id("jobApplyBtn");
+        public By jobDetailsApplyBtn = By.id("jobDetailsjobApplyBtn");
         public By jobDetailsApplySuccessToastTxt = By.id("applyForJobToast");
         public By jobDetailsApplySuccessToastDismissBtn = By.id("applyForJobToastCloseBtn");
-        public By jobDetailsJobDescriptionTitleTxt = By.id("jobDescriptionTitleTxt");
-        public By jobDetailsJobDescriptionTxt = By.id("jobDescriptionTxt");
-        public By jobDetailsEmployerLogoImg = By.id("jobEmployerPhotoImg");
-        public By jobDetailsEmployerNameTxt = By.id("employerNameTxt");
+        public By jobDetailsJobDescriptionTitleTxt = By.xpath("//div[@id='ExpandableContentWrapper']/section/h2");
+        public By jobDetailsJobDescriptionTxt = By.xpath("//div[@id='ExpandableContentWrapper']/section/div/p");
+        public By jobDetailsEmployerLogoImg = By.id("jobDetailsStoreLogoImg");
+        public By jobDetailsEmployerNameTxt = By.id("jobDetailsAddressTxt");
         public By jobDetailsEmployerDescriptionTitleTxt = By.id("employerDescriptionTitleTxt");
         public By jobDetailsEmployerDescriptionTxt = By.id("employerDescriptionTxt");
-        public By jobDetailsEmployerAddressTxt = By.id("employerAddressTxt");
+        public By jobDetailsEmployerAddressTxt = By.id("jobDetailsAddressText");
         public By jobDetailsEmployerPPATxt = By.id("employerPPATypeTxt");
         public By jobDetailsEmployerTypeTxt = By.id("employerTypeTxt");
-        public By jobDetailsEmployerDistanceTxt = By.id("employerDistanceTxt");
-        public By jobDetailsEmployerFollowBtn = By.xpath("//button[@id='employerFollowBtn']/div/span[contains(text(), 'Follow')]");
-        public By jobDetailsEmployerFollowingBtn = By.xpath("//button[@id='employerFollowBtn']/div/span[contains(text(), 'Following')]");
+        public By jobDetailsEmployerDistanceTxt = By.id("jobDetailsDistanceText");
+        public By jobDetailsEmployerFollowBtn = By.xpath("//span[@id='jobDetailsemployerFollowLink'][contains(text(), 'Follow Store')]");
+        public By jobDetailsEmployerFollowingBtn = By.xpath("//span[@id='jobDetailsemployerFollowLink'][contains(text(), 'Unfollow Store')]");
         public By jobDetailsEmployerFollowToastTxt = By.id("jobDetailsToast");
         public By jobDetailsEmployerFollowToastDismissBtn = By.id("jobDetailsToastCloseBtn");
     }

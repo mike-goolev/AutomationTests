@@ -133,13 +133,10 @@ public class HourlyApplicationFlowFullProfile extends BaseTest{
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsFollowButton(), "Follow button is present");
         Assert.assertTrue(hourlyJobSearchPage.verifyJobDetailsEmployerLogo(), "Employer logo is present");
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsPosition(),jobPosition);
-//        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
+        // Assert.assertEquals(hourlyJobSearchPage.getJobDetailsWage(), jobDetailsWage);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsJobDescription(), jobDetailsJobDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerName(), jobDetailsEmployerName);
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescriptionTitle(), "About " + employerName);
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDescription(), jobDetailsEmployerDescription);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerAddress(), jobDetailsEmployerAddress);
-        Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerType(), jobDetailsEmployerType);
         Assert.assertEquals(hourlyJobSearchPage.getJobDetailsEmployerDistance(), jobDetailsEmployerDistance);
 
         /* Click 'Find Jobs' to return to search results */
