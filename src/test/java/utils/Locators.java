@@ -436,6 +436,7 @@ public class Locators {
 
         /* Sign Up - Join Using Email button */
         public By joinUsingEmailBtn = By.id("button");
+
         /* Sign Up - Enter Name,email,password */
         public By firstNameTxt = By.id("joinWithEmailDialogUserFirstname");
         public By firstNameWrapper = By.id("joinWithEmailDialogUserFirstnameWrapper");
@@ -445,7 +446,7 @@ public class Locators {
         public By continueSignUpBtn = By.id("joinWithEmailDialogContinueBtn");
 
         /* Confirm to continue to add more info modal */
-        public By continueToApplciationFlowBtn = By.id("promptBtn");
+        public By continueToApplicationFlowBtn = By.id("promptBtn");
 
         /* Experience modal */
         public By restaurantInputDropdown = By.id("addWorkHistoryLocationInput");

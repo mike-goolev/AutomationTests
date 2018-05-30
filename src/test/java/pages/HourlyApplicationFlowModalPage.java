@@ -84,8 +84,8 @@ public class HourlyApplicationFlowModalPage extends BasePage{
      * Click the Continue button to access the forms to enter Profile Info: Experience, Availability, Skills
      */
     public void clickContinueToAddProfileInfo(){
-        wait.until(elementToBeClickable(applicationFlowModal.continueToApplciationFlowBtn));
-        driver.findElement(applicationFlowModal.continueToApplciationFlowBtn).click();
+        wait.until(elementToBeClickable(applicationFlowModal.continueToApplicationFlowBtn));
+        driver.findElement(applicationFlowModal.continueToApplicationFlowBtn).click();
     }
 
     /**
