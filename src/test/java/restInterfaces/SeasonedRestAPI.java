@@ -276,19 +276,10 @@ public class SeasonedRestAPI {
 
             /* Make a POST request to /job/jobGuid/hireme */
             Call<User> call = seasonedAPI.postApplication(jobGuid, user, accessToken);
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
-                }
-            });
+            Response<User> response = call.execute();
+            System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("POST request to job/" + jobGuid + "/hireme failed with error: \n" + e.getLocalizedMessage());
         }
     }
 
@@ -593,19 +584,10 @@ public class SeasonedRestAPI {
         try {
             /* Make a POST request to unclaim an employer */
             Call<Employer> call = seasonedAPI.unclaimEmployer(employerGuid, accessToken);
-            call.enqueue(new Callback<Employer>() {
-                @Override
-                public void onResponse(Call<Employer> call, Response<Employer> response) {
-                    System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
-                }
-
-                @Override
-                public void onFailure(Call<Employer> call, Throwable t) {
-                    System.out.println("POST request to " + getRequestUrl(call.request()) + " failed with error: \n" + t.getLocalizedMessage());
-                }
-            });
+            Response<Employer> response = call.execute();
+            System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("POST request to employer/" + employerGuid + "/unclaim failed with error: \n" + e.getLocalizedMessage());
         }
     }
 

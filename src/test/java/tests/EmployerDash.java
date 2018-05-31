@@ -148,7 +148,7 @@ public class EmployerDash extends BaseTest {
 
         /* View applicant profile */
         employerDashPage.selectApplicantViewProfileBtn(cardIndex);
-//      Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
+        //Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
         Thread.sleep(2000);
         hourlyProfileViewPage.isUserProfilePhotoPresent();
         Assert.assertEquals(hourlyProfileViewPage.getFirstAndLastName(), applicantName);
@@ -164,7 +164,7 @@ public class EmployerDash extends BaseTest {
 
         /* View talent's profile */
         employerDashPage.selectTalentViewProfileBtn(cardIndex);
-//      Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
+        //Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
         Thread.sleep(2000);
         Assert.assertTrue(hourlyProfileViewPage.isUserProfilePhotoPresent(), "The user's profile photo should be displayed");
 
@@ -176,10 +176,10 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
         Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
         Assert.assertEquals(employerDashPage.getJobCardEmployerNameAndAddress(cardIndex), employerNameAndAddress);
-//        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
+        //Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
-       // Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
-//        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
+        //Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
+        //Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
 
         /* View job details */
         employerDashPage.selectJobViewBtn(cardIndex);
@@ -222,12 +222,12 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isApplicantCardPhotoDisplayed(cardIndex), "Applicant's photo should be displayed");
         Assert.assertEquals(employerDashPage.getApplicantName(cardIndex), applicantName);
         Assert.assertEquals(employerDashPage.getApplicantPosition(cardIndex), applicantPosition);
-//        Assert.assertEquals(employerDashPage.getApplicantTime(cardIndex), applicantTime);
+        //Assert.assertEquals(employerDashPage.getApplicantTime(cardIndex), applicantTime);
         Assert.assertEquals(employerDashPage.getApplicantSharedConnections(cardIndex), applicantSharedConnections);
 
         /* View applicant profile */
         employerDashPage.selectApplicantViewProfileBtn(cardIndex);
-//      Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
+        //Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
         Thread.sleep(2000);
         hourlyProfileViewPage.isUserProfilePhotoPresent();
         Assert.assertEquals(hourlyProfileViewPage.getFirstAndLastName(), applicantName);
@@ -243,7 +243,7 @@ public class EmployerDash extends BaseTest {
 
         /* View talent's profile */
         employerDashPage.selectTalentViewProfileBtn(cardIndex);
-//      Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
+        //Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
         Thread.sleep(2000);
         Assert.assertTrue(hourlyProfileViewPage.isUserProfilePhotoPresent());
 
@@ -255,10 +255,10 @@ public class EmployerDash extends BaseTest {
         Assert.assertTrue(employerDashPage.isJobsTitleTextDisplayed(), "The jobs section title text should be displayed");
         Assert.assertTrue(employerDashPage.isJobCardEmployerLogoPresent(cardIndex), "The employer logo should be displayed on the job card");
         Assert.assertEquals(employerDashPage.getJobCardEmployerNameAndAddress(cardIndex), employerNameAndAddress);
-//        Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
+        //Assert.assertEquals(employerDashPage.getJobCardEmployerAddress(cardIndex), employerAddress + ", " + employerCity + ", " + employerState);
         Assert.assertEquals(employerDashPage.getJobPosition(cardIndex), jobPosition);
-       // Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
-//        Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
+        //Assert.assertEquals(employerDashPage.getJobAvailability(cardIndex), jobAvailability);
+        //Assert.assertEquals(employerDashPage.getJobWage(cardIndex), "$ " + jobWage + " / hour");
 
         /* View job details */
         employerDashPage.selectJobViewBtn(cardIndex);
