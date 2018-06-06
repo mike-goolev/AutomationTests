@@ -37,6 +37,7 @@
         <class name="tests.HourlyProfileSkills"/>
         <class name="tests.HourlyProfileWorkHistory"/>
         <class name="tests.HourlyRegistration"/>
+        <class name="tests.HourlyAttribution"/>
 	</classes>
 	</test> 
 </suite> 

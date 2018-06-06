@@ -19,6 +19,7 @@ public class EmployerRegistration extends BaseTest {
     private HourlyRegistrationPage hourlyRegistrationPage;
     private EmployerRegistrationPage employerRegistrationPage;
     private EmployerProfileViewPage employerProfileViewPage;
+    private AttributionPage attributionPage;
 
     private String firstName;
     private String lastName;
@@ -45,6 +46,7 @@ public class EmployerRegistration extends BaseTest {
         employerRegistrationPage = new EmployerRegistrationPage(driver);
         hourlyRegistrationPage = new HourlyRegistrationPage(driver);
         employerProfileViewPage = new EmployerProfileViewPage(driver);
+        attributionPage = new AttributionPage(driver);
 
         firstName = ("ssAdminFirst" + testUtils.generateRandomUUID());
         lastName = ("ssAdminLast" + testUtils.generateRandomUUID());
@@ -73,7 +75,7 @@ public class EmployerRegistration extends BaseTest {
     }
 
     @Test
-    public void testEmployerSignUpByEmail() {
+    public void testEmployerSignUpByEmail() throws Exception{
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
@@ -93,9 +95,13 @@ public class EmployerRegistration extends BaseTest {
         Assert.assertEquals(employerRegistrationPage.getEmailSignupTitleTxt(), emailSignUpTitle);
         employerRegistrationPage.registerEmail(firstName, lastName, email, password);
         employerRegistrationPage.selectSignUpEmailNextBtn();
+        Thread.sleep(3000);
+        attributionPage.dismissAttributionModal();
 
         /* Search for store location */
         Assert.assertEquals(employerRegistrationPage.getLocationTitleTxt(), locationTitle);
+
+
         employerRegistrationPage.setEmployerLocation(employerSearchTerm);
 
         /* Select a store location from the search results */

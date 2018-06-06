@@ -9,13 +9,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfEl
 public class HourlyRegistrationPage extends BasePage {
 
     Locators.SignUpPageLocators signUpPageLocators;
-    AttributesPage attributionPage;
+    AttributionPage attributionPage;
     TestUtils testUtils;
 
     public HourlyRegistrationPage(WebDriver driver) {
         super(driver);
         signUpPageLocators = new Locators.SignUpPageLocators();
-        attributionPage = new AttributesPage(driver);
+        attributionPage = new AttributionPage(driver);
         testUtils = new TestUtils(driver);
     }
 
@@ -250,11 +250,37 @@ public class HourlyRegistrationPage extends BasePage {
         wait.until(invisibilityOfElementLocated(signUpPageLocators.emailSignUpNextLoadingBtn));
         try{
             if(attributionPage.attributionModalExists())
-                {attributionPage.closeAttribtionModal();}
+            {attributionPage.closeAttributionModal();}
         } catch(Exception e){};
 
     }
 
+    /**
+     * Register user with an email and password
+     * @param firstName User's first name
+     * @param lastName User's last name
+     * @param email    User's email
+     * @param password User's password
+     * @param attributionIndex Attribution index for the value is intended to be selected
+     */
+    public void registerEmail(String firstName, String lastName, String email, String password, String attributionIndex) {
+        wait.until(elementToBeClickable(signUpPageLocators.firstNameField));
+        driver.findElement(signUpPageLocators.firstNameField).click();
+        driver.findElement(signUpPageLocators.firstNameField).sendKeys(firstName);
+        driver.findElement(signUpPageLocators.lastNameField).sendKeys(lastName);
+        driver.findElement(signUpPageLocators.emailField).sendKeys(email);
+        driver.findElement(signUpPageLocators.passwordField).sendKeys(password);
+        driver.findElement(signUpPageLocators.emailSignupNextBtn).click();
+        wait.until(invisibilityOfElementLocated(signUpPageLocators.emailSignUpNextLoadingBtn));
+
+        if(attributionPage.attributionModalExists())
+            {
+                attributionPage.selectAttributionByIndex(attributionIndex);
+                attributionPage.clickDoneBtn();
+            }
+
+
+    }
     /**
      * Register user with Facebook credentials
      * @param email    User's Facebook email

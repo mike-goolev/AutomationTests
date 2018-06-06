@@ -19,6 +19,7 @@ public class SqlSelects {
     private String employer_guid;
     private String admin_guid;
     private String accountState;
+    private String attribution;
 
     /**
      * Get the most recently created user from the SQS queue
@@ -369,6 +370,32 @@ public class SqlSelects {
             System.out.println("Query failed with NullPointerException:\n" + sql);
         }
         return guid;
+    }
+
+    /**
+     * Get the Attribution value by email
+     *
+     * @param email The user's email
+     * @return User's attribution filled in attribution modal
+     */
+    public String getUserAttributionValueByEmail(String email) throws SQLException, NullPointerException {
+        sql = "SELECT attribution_type "
+                + "from bf_user "
+                + "where email = ?";
+        try {
+            connection = dbManager.getConnection();
+            pstmt = dbManager.prepareStatement(connection, sql, ps -> ps.setString(1, email));
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                attribution = rs.getString("attribution_type");
+                System.out.println("USER Attribution: " + attribution);
+            }
+        } catch (SQLException e){
+            System.out.println("Query failed with SQLException:\n" + sql);
+        } catch (NullPointerException npe) {
+            System.out.println("Query failed with NullPointerException:\n" + sql);
+        }
+        return attribution;
     }
 
     /**
