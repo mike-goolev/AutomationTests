@@ -110,6 +110,7 @@ public class EmployerRegistrationPage extends BasePage {
      * @param location Employer's location
      */
     public void setEmployerLocation(String location) {
+        driver.manage().window().maximize();
         wait.until(elementToBeClickable(employerSignUpLocators.storeLocationSearchField));
         driver.findElement(employerSignUpLocators.storeLocationSearchField).click();
         driver.findElement(employerSignUpLocators.storeLocationSearchField).clear();

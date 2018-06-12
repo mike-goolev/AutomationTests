@@ -54,4 +54,13 @@ public class AttributionPage extends BasePage {
             closeAttributionModal();
         }
     }
+
+    public void selectAttributionOption(String index){
+        if(attributionModalExists())
+        {
+           selectAttributionByIndex(index);
+            clickDoneBtn();
+        }
+
+    }
 }

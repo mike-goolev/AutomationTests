@@ -96,7 +96,8 @@ public class EmployerRegistration extends BaseTest {
         employerRegistrationPage.registerEmail(firstName, lastName, email, password);
         employerRegistrationPage.selectSignUpEmailNextBtn();
         Thread.sleep(3000);
-        attributionPage.dismissAttributionModal();
+        //attributionPage.dismissAttributionModal();
+        attributionPage.selectAttributionOption("0");
 
         /* Search for store location */
         Assert.assertEquals(employerRegistrationPage.getLocationTitleTxt(), locationTitle);
