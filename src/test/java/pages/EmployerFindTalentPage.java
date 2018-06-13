@@ -166,6 +166,7 @@ public class EmployerFindTalentPage extends BasePage {
      * @return The talent's name
      */
     public String getTalentName(String index){
+        wait.until(elementToBeClickable(talentPageLocators.findEmployerTalentCardNameByIndex(index)));
         return driver.findElement(talentPageLocators.findEmployerTalentCardNameByIndex(index)).getText();
     }
 

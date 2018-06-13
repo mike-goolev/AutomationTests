@@ -8,7 +8,6 @@ import utils.TestDataImporter;
 import restInterfaces.*;
 import utils.TestUtils;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class HourlyJobSearch extends BaseTest {
@@ -80,7 +79,7 @@ public class HourlyJobSearch extends BaseTest {
         jobDetailsEmployerPPA = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerPPA");
         jobDetailsEmployerType = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerType");
         jobDetailsEmployerDistance = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobDetailsEmployerDistance");
-        jobPosition = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobPosition") + " " + TestUtils.getCurrentDate();
+        jobPosition = TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("jobPosition") + " " + TestUtils.getCurrentDate();
         employerGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("employerGuid");
         userGuid = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("userGuid");
         token = (String) TestDataImporter.get("HourlyJobSearch", "testHourlyJobSearchCommitSearchAndViewJobDetails").get("token");
@@ -88,7 +87,7 @@ public class HourlyJobSearch extends BaseTest {
     }
 
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
-    public void setUp() throws SQLException, Exception{
+    public void setUp() throws Exception{
         System.out.println("Starting job search tests...");
         hourlyLoginPage = new HourlyLoginPage(driver);
         hourlyJobSearchPage = new HourlyJobSearchPage(driver);

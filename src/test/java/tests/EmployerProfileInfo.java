@@ -107,7 +107,7 @@ public class EmployerProfileInfo extends BaseTest {
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), employerAddress + ", " + employerCity + ", " + employerCardState);
         //Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), employerCity);
-        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerCardState);
+        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerCardState + " " + employerZip);
         //Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), employerDistance);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), employerCardWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), employerPhone);
@@ -160,7 +160,7 @@ public class EmployerProfileInfo extends BaseTest {
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), newEmployerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), newEmployerAddress + ", " + newEmployerCity + ", " + newEmployerCardState);
         //Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), newEmployerCity);
-        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), newEmployerAddress + ", " + newEmployerCity + ", " + newEmployerCardState);
+        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), newEmployerAddress + ", " + newEmployerCity + ", " + newEmployerCardState + " " + newEmployerZip);
         //Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), newEmployerDistance);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), newEmployerCardWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), newEmployerPhone);
@@ -201,7 +201,7 @@ public class EmployerProfileInfo extends BaseTest {
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), employerAddress + ", " + employerCity + ", " + employerCardState);
         //Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), employerCity);
-        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerCardState);
+        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerCardState + " " + employerZip);
         //Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), employerDistance);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), employerCardWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), employerPhone);

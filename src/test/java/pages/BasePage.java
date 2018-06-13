@@ -32,7 +32,7 @@ public class BasePage {
         catch(NoSuchElementException e) {
             return false;
         }
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         return true;
     }
@@ -50,7 +50,7 @@ public class BasePage {
         catch(NoSuchElementException e) {
             return false;
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         return true;
     }

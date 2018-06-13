@@ -122,7 +122,7 @@ public class EmployerProfileView extends BaseTest {
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), employerAddress + ", " + employerCity + ", " + employerState);
 //        Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), employerCity);
-        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerState);
+        Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerState + " " + employerZip);
 //        Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), employerDistance);
 //        Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), employerWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), employerPhone);

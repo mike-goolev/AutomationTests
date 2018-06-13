@@ -31,7 +31,7 @@ public class HourlyNetworkSuggestionsPage extends BasePage {
      * @return Whether or not the suggested connection's photo is displayed
      */
     public boolean isSuggestedConnectionsPhotoDisplayed(String index) {
-        return elementExists(hourlyNetworkPageLocators.findSuggestionCardImgByIndex(index));
+        return elementExistsLongTimeout(hourlyNetworkPageLocators.findSuggestionCardImgByIndex(index));
     }
 
     /**

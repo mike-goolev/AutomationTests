@@ -251,8 +251,9 @@ public class HourlyRegistrationPage extends BasePage {
         try{
             if(attributionPage.attributionModalExists())
             {attributionPage.closeAttributionModal();}
-        } catch(Exception e){};
-
+        } catch(Exception e) {
+            System.out.println("Error with attribution modal. SAD!");
+        }
     }
 
     /**
@@ -278,8 +279,6 @@ public class HourlyRegistrationPage extends BasePage {
                 attributionPage.selectAttributionByIndex(attributionIndex);
                 attributionPage.clickDoneBtn();
             }
-
-
     }
     /**
      * Register user with Facebook credentials
