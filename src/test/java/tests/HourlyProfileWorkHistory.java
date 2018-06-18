@@ -331,7 +331,7 @@ public class HourlyProfileWorkHistory extends BaseTest {
         hourlyProfileWorkHistoryPage.clickJobPosition("14");
 
         /* Enter an employer */
-        hourlyProfileWorkHistoryPage.enterWhereHaveYouWorkedText(employer2 + " Nova");
+        hourlyProfileWorkHistoryPage.enterWhereHaveYouWorkedText(employer2);
 
         /* Set work history from dates */
         hourlyProfileWorkHistoryPage.selectMonthFromDate(month);
