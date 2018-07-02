@@ -985,4 +985,34 @@ public class SeasonedRestAPI {
         System.out.println(token);
         return token ;
     }
+
+    /**
+     * Signs up a new Member
+     *
+     * @param firstName
+     * @param lastName
+     * @param emailAddress
+     * @param password
+     */
+    public void signUpMember(String firstName, String lastName, String emailAddress, String password) {
+
+        Employee employee = new Employee();
+
+        employee.setFirstname(firstName);
+        employee.setLastname(lastName);
+        employee.setEmail(emailAddress);
+        employee.setPassword(password);
+        employee.setAcceptedTerms("true");
+
+        try {
+            /* Make a POST request to oauth/token */
+            Call<Employee> call = seasonedAPI.signUpMember("application/json", employee);
+            Response<Employee> response = call.execute();
+            System.out.println("POST request to " + getRequestUrl(call.request()) + "\nStatus code: " + response.code());
+        } catch (Exception e) {
+            System.out.println("POST request to signUp member" + "failed with error: \n" + e.getLocalizedMessage());
+        }
+    }
+
+
 }

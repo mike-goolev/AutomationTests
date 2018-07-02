@@ -1267,6 +1267,18 @@ public class Locators {
     public static class HourlyMessagePageLocators {
         public By messageThreadRecipientTitle = By.id("messageThreadTitle");
         public By messageComposeSelectedConnection0NameTxt = By.id("messageComposeConnectionsSelectConnection0NameTxt");
+        public By messageListItem = By.xpath("//div[contains(@id, 'messageListItem')]");
+
+        /**
+         * Find the message list item by index
+         * @param index
+         * @return
+         */
+
+        public By messagesListItemByIndex(String index) {
+            return By.id("messageListItem" + index);
+        }
+        public By messageDeleteTrashIcon = By.id("deleteMessageTrashIcon");
         public By messageListRecipientName = By.id("messageListItem0UsernameText");
         public By messageListRecipientImg = By.id("messageListItem0ImgIcon");
         public By messageListRecipientDate = By.id("messageListItem0UsernameDate");

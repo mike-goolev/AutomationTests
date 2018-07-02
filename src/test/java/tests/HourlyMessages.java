@@ -56,30 +56,17 @@ public class HourlyMessages extends BaseTest {
         emptyMsg = (String) TestDataImporter.get("HourlyMessages", "HourlyMessages").get("emptyMsg");
 
         System.out.println("Credentials used: " + firstName + ", " + lastName + ", " + email);
+
+        /* Sign Up new member through API */
+        SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(tokenFrom);
+        seasonedRestAPI.signUpMember(firstName, lastName, email, password);
+
         /* Start test on the be successful page */
         testUtils.loadBeSuccessfulPage();
 
         /* Log in */
-        navPage.clickJoinBtn();
-
-        /* Select registration type */
-        hourlyRegistrationPage.clickCareerExperience();
-
-        /* Confirm location */
-        hourlyRegistrationPage.waitForLocation();
-        hourlyRegistrationPage.setUserLocation(userLocation);
-        Assert.assertEquals(hourlyRegistrationPage.getLocationTxt(), userLocation);
-        hourlyRegistrationPage.clickLocationNextBtn();
-
-        /* Select topics */
-        hourlyRegistrationPage.selectTopicsByIndex("0");
-        hourlyRegistrationPage.clickTopicsNextBtn();
-
-        /* Select sign up method */
-        hourlyRegistrationPage.signupEmail();
-
-        /* Sign up by email */
-        hourlyRegistrationPage.registerEmail(firstName, lastName, email, password);
+        navPage.clickLoginBtn();
+        loginPage.loginWithEmail(email, password);
 
         /* Click Messages link */
         navPage.clickMessagesLink();
@@ -246,11 +233,24 @@ public class HourlyMessages extends BaseTest {
         loginPage.loginWithEmail(usernameReceiver, passwordReceiver);
         Thread.sleep(1000);
         Assert.assertTrue(messagesPage.verifyRedBadgeNewMsg(),"Red Badge should be displayed");
-        Assert.assertEquals(messagesPage.getRedBadgeNewMsgCount(), "1");
 
         /* Verify correct sender nameText is dispayed in the messages list*/
         navPage.clickMessagesLink();
-
+        int messageCount = messagesPage.getItemlist()/4;
+        if(messagesPage.getItemlist()/4 == 1)
+        {
+            Assert.assertEquals(messagesPage.getRedBadgeNewMsgCount(), "1");
+        }
+        else
+            {
+                int i=0;
+                for(i = 1; i< messageCount; i++)
+                {
+                    messagesPage.hoverOverMessageItem("1");
+                    messagesPage.clickMessageDeleteTrachIcon("1");
+                }
+                Assert.assertEquals(messagesPage.getRedBadgeNewMsgCount(), "1");
+            }
         Assert.assertEquals(messagesPage.getMsgListRecipientNameText(), firstName + " " + lastName);
 
         /* Verify the recipient image is displayed in the message item */

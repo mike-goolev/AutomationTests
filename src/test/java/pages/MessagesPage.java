@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import utils.Locators;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import org.openqa.selenium.interactions.Actions;
 
 public class MessagesPage extends BasePage {
 
@@ -152,8 +153,27 @@ public class MessagesPage extends BasePage {
         driver.findElement(hourlyMessagePageLocators.messageThreadWdgSendBtn).click();
     }
 
+    public void hoverOverMessageItem(String index){
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(hourlyMessagePageLocators.messagesListItemByIndex(index))).build().perform();
+    }
+    /**
+     * Get the number of messages displayed in Top Message modal
+     * @return number of messages threads
+     */
+    public int getItemlist(){
+        return driver.findElements(hourlyMessagePageLocators.messageListItem).size();
+    }
 
-
+    /**
+     * Click delete message from Top Messages Modal
+     * @param index
+     */
+    public void clickMessageDeleteTrachIcon(String index){
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(hourlyMessagePageLocators.messagesListItemByIndex(index))).build().perform();
+        driver.findElement(hourlyMessagePageLocators.messagesListItemByIndex(index)).findElement(hourlyMessagePageLocators.messageDeleteTrashIcon).click();
+    }
     /**
      * Get the recipient first name in the messages list
      *

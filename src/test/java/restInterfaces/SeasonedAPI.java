@@ -14,6 +14,10 @@ public interface SeasonedAPI {
     @POST("oauth/token")
     Call<OAuthToken> getToken(@Header("Authorization") String auth, @Header("Content-Type") String content_type, @Field("grant_type") String grant_type, @Field("username") String username, @Field("password") String password);
 
+    /*--------- Registration ------*/
+
+    @POST("registration/employee")
+    Call<Employee> signUpMember(@Header("Content-Type") String content_type , @Body Employee employee);
 
     /*-------- User Endpoints --------*/
 
