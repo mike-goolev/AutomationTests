@@ -59,7 +59,7 @@ public class EmployerDash extends BaseTest {
     private List<String> talentGuids;
     String jobGuid;
     private String jobsEmptyTitleTxt;
-    private String jobsEmptyTxt;
+    private String jobsEmptyBtnTxt;
     private String userId;
     private String userGuid;
     private String token;
@@ -110,7 +110,7 @@ public class EmployerDash extends BaseTest {
         jobStatus = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobStatus");
         jobAvailability = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobAvailability");
         jobsEmptyTitleTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobsEmptyTitleTxt");
-        jobsEmptyTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobsEmptyTxt");
+        jobsEmptyBtnTxt = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("jobsEmptyBtnTxt");
         userId = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("userId");
         userGuid = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("userGuid");
         token = (String) TestDataImporter.get("EmployerDash", "EmployerDash").get("token");
@@ -316,7 +316,6 @@ public class EmployerDash extends BaseTest {
 
         /* Verify empty job card */
         Assert.assertEquals(employerDashPage.getEmployerDashJobsEmptyTitleTxt(), jobsEmptyTitleTxt);
-        Assert.assertEquals(employerDashPage.getEmployerDashJobsEmptyTxt(), jobsEmptyTxt);
 
         /* Select empty jobs CTA */
         employerDashPage.selectCreateJobLink();

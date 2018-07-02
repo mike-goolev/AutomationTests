@@ -55,6 +55,7 @@ public class EmployerDashPage extends BasePage {
         return driver.findElement(dashPageLocators.employerDashApplicantCardEmptyTxt).getText();
     }
 
+
     /**
      * Selects the edit store profile link from empty applicants card
      */
@@ -357,13 +358,6 @@ public class EmployerDashPage extends BasePage {
         return driver.findElement(dashPageLocators.employerDashJobsCardEmptyTitleTxt).getText();
     }
 
-    /**
-     * Gets the employer Dashboard jobs empty text
-     * @return The employer Dashboard jobs empty text
-     */
-    public String getEmployerDashJobsEmptyTxt(){
-        return driver.findElement(dashPageLocators.employerDashJobsCardEmptyTxt).getText();
-    }
 
     /**
      * Selects the create job link from empty jobs card
@@ -457,7 +451,7 @@ public class EmployerDashPage extends BasePage {
      */
     public void selectJobViewBtn(String index){
         hoverOverJobAtPosition(index);
-        driver.findElement(dashPageLocators.findEmployerJobCardViewBtnByIndex(index)).click();
+        driver.findElement(dashPageLocators.findEmployerJobCardPositionByIndex(index)).click();
     }
 
     /**

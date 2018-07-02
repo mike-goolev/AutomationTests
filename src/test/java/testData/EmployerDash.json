@@ -32,8 +32,8 @@
     "jobDescription":"Yo soy payaso guey!!!",
     "jobStatus":"POSTED",
     "jobAvailability":"full-time, part-time, seasonal",
-    "jobsEmptyTitleTxt":"Are you not hiring?",
-    "jobsEmptyTxt":"No big deal. You can always get in front of the problem by creating the positions you'll inevitably need. Just toggle them \"off\" until the time comes.",
+    "jobsEmptyTitleTxt":"Give the people what they want! This is why we're all here, after all.",
+    "jobsEmptyBtnTxt":"Turn on jobs",
     "userId":"4192",
     "userGuid":"e00d203d-88e4-45a2-ac0d-b3922b293ce4",
     "token":"Bearer 821127bb-5e37-4376-afe5-e29a601e9001"

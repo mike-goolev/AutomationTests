@@ -1943,6 +1943,7 @@ public class Locators {
         public By employerDashApplicantsLink = By.id("managerDashboardApplicantsLink");
         public By employerDashApplicantCardEmptyTitleTxt = By.id("emptyApplicantsCardTitleTxt");
         public By employerDashApplicantCardEmptyTxt = By.id("emptyApplicantsCardBodyTxt");
+        public By employerDashApplicantCardEmptyJobsBtn = By.id("managerDashboardCreateJobBtn");
         public By employerDashApplicantCardEditStoreProfileBtn = By.id("managerDashboardEditProfileBtn");
         public By employerDashApplicantNextBtn = By.id("applicantNextBtn");
 
@@ -2205,8 +2206,8 @@ public class Locators {
 
         public By employerJobsTitleTxt = By.id("jobsTitleTxt");
         public By employerDashJobsViewLink = By.id("managerDashboardJobsLink");
-        public By employerDashJobsCardEmptyTitleTxt = By.id("emptyJobCardTitleTxt");
-        public By employerDashJobsCardEmptyTxt = By.id("emptyJobCardBodyTxt");
+        public By employerDashJobsCardEmptyTitleTxt = By.id("emptyJobCardBodyTxt");
+        //public By employerDashJobsCardEmptyTxt = By.id("emptyJobCardBodyTxt");
         public By employerDashJobsCardPostJobBtn = By.id("managerDashboardCreateJobBtn");
         public By employerDashJobsNextBtn = By.id("jobPositionNextBtn");
 
@@ -2257,7 +2258,7 @@ public class Locators {
          * @return Returns a locator for the employer job edit button by index
          */
         public By findEmployerJobCardEditBtnByIndex(String index) {
-            return By.id("jobCardEditBtnJobCard" + index);
+            return By.id("managerDashboardEditBtn" + index);
         }
 
         /**
