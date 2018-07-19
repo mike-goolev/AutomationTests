@@ -1289,7 +1289,7 @@ public class Locators {
         public By messageThreadSenderTxt0 = By.className("text-break-word");
         public By messageThreadSenderTimeTxt0 = By.id("messageThreadWdgMessage0SentTimeText");
         public By messageThreadRecipientImg0 = By.xpath("//div[@id[starts-with(.,\"messageThreadWdgMessageAvatar\")]]");
-        public By messageThreadRecipientTxt0 = By.id("messageThreadWdgMessageText0");
+        public By messageThreadTxt0 = By.id("messageThreadWdgMessage0");
         public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
         public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
         public By messageThreadWdgInput = By.id("messageThreadWdgInput");
@@ -1313,6 +1313,9 @@ public class Locators {
         public By msgThreadWdg = By.id("messageThreadWdg");
         public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-msgs-badge");
         public By msgNoRedBadge = By.cssSelector("#headerMessagesLink");
+        public By messageThreadMessageWrapper0 = By.cssSelector("#messageThreadWdgMessageWrapper0");
+
+
     }
 
     public static class HourlyBeSuccessfulPageLocators {
@@ -1608,7 +1611,7 @@ public class Locators {
          * @return Returns a locator for the employer job position by index
          */
         public By findEmployerJobCardPositionByIndex(String index) {
-            return By.id("jobCardJobNameTextJobCard" + index);
+            return By.id("searchResultJobNameTextJobCard" + index);
         }
 
         /**
@@ -2294,6 +2297,7 @@ public class Locators {
         public By employerTalentInviteBtn = By.id("inviteToApplyTab");
         public By employerTalentAppliantsBtn = By.id("applicantTab");
         public By employerTalentBadBtn = By.id("archivedTab");
+        public By employerTalentInterrviewsBtn = By.id("interviewScheduledTab");
 
         /* Talent availability filter */
         public By employerTalentAvailabilityDropdownBtn = By.id("filterAvailabilityDropDown");
@@ -2581,6 +2585,16 @@ public class Locators {
         }
 
         /**
+         * Locates an applicant card's schedule interview button for a given index
+         *
+         * @param index The index (Starting at 0) of the applicant's schedule interview button you wish to locate
+         * @return Returns a locator for the applicant's schedule interview button by index
+         */
+        public By findEmployerApplicantCardActionsScheduleInterviewByIndex(String index) {
+            return By.id("Applicant" + index + "InterviewApplicantBtn");
+        }
+
+        /**
          * Locates an applicant card's shared connections for a given index
          *
          * @param index The index (Starting at 0) of the applicant's shared connections you wish to locate
@@ -2609,5 +2623,134 @@ public class Locators {
         public By findEmployerApplicantSuccessToastCloseBtnByIndex(String index) {
             return By.id("Applicant" +index + "ToastCloseBtn");
         }
+
+        public By employerAddAvailabilityBtn = By.id("availabilityBtnIcon");
+        public By employerAddAvailabilityModal = By.id("interviewSchedulerAvailabilityDialogBasicDialog");
+        public By calendarTodayBtn = By.id("todayBtn");
+        public By calendarBackBtn = By.id("calendarToolbarBackBtn");
+        public By calendarNextBtn = By.id("calendarToolbarNextBtn");
+        public By calendarWeekRangeTxt = By.id("weekRangeTxt");
+        public By dayOfMonthTxt = By.id("day0OfMonthTxt");
+        /* https://stackoverflow.com/questions/13133738/multiple-buttons-with-same-type-and-id?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa */
+        public By availabilityDialogTitle = By.id("interviewSchedulerAvailabilityDialogTitle");
+        public By availabilityDialogTxt = By.id("interviewSchedulerAvailabilityDialogText");
+        public By interviewSchedulercurrentDate = By.id("interviewSchedulercurrentDate");
+        public By interviewSchedulercurrentMonthTxt = By.id("availabilityModalToolbarCurrentMonthTxt");
+        public By day0OfWeekTxt = By.id("availabilityModalToolbarDay0OfWeekTxt");
+        public By day1OfWeekTxt = By.id("availabilityModalToolbarDay1OfWeekTxt");
+        public By day2OfWeekTxt = By.id("availabilityModalToolbarDay2OfWeekTxt");
+        public By day3OfWeekTxt = By.id("availabilityModalToolbarDay3OfWeekTxt");
+        public By day4OfWeekTxt = By.id("availabilityModalToolbarDay4OfWeekTxt");
+        public By day5OfWeekTxt = By.id("availabilityModalToolbarDay5OfWeekTxt");
+        public By day6OfWeekTxt = By.id("availabilityModalToolbarDay6OfWeekTxt");
+        public By interviewScheduledHint = By.id("interviewScheduledHint");
+        public By saveScheduleBtn = By.id("primaryBtn");
+        public By cancelScheduleBtn = By.id("secondaryBtn");
+        public By availabilityDialogCloseBtn = By.id("interviewSchedulerAvailabilityDialogDialogCloseBtn");
+        public By availabilityDialogTimeSlot1 = By.id("availabilityModalTimeSlot15");
+        public By availabilityDialogTimeSlot2 = By.id("availabilityModalTimeSlot16");
+        public By updatedAvailabilitySuccessDialog = By.id("UpdatedAvailabilitySuccessDialogBasicDialog");
+        public By successDialogSuccessIcon = By.id("UpdatedAvailabilitySuccessDialogSuccessIcon");
+        public By successDialogTitle = By.id("UpdatedAvailabilitySuccessDialogTitle");
+        public By successDialogTxt = By.id("UpdatedAvailabilitySuccessDialogText");
+        public By dismissAvailabilitySuccessDialogBtn = By.id("dismissBtn");
+        public By successDialogCloseBtn = By.id("UpdatedAvailabilitySuccessDialogDialogCloseBtn");
+        public By calendarCellEmptyTimeSlot = By.xpath("//div[@class='rbc-time-slot day-6-timeslot-17']");
+        public By calendarCellFilledTimeSlot = By.xpath("//div[contains(@class,\"available\")]");
+        public By calendarCellUpdatedFilledTimeSlot = By.xpath("//div[contains(@class,\"available\")]");
+        public By cancelAvailabilityChangesDialog = By.id("cancelAvailabilityChangesDialogBasicDialog");
+        public By cancelAvailabilityChangesTitleDialog = By.id("cancelAvailabilityChangesDialogTitle");
+        public By cancelAvailabilityChangesTxtDialog = By.id("cancelAvailabilityChangesDialogText");
+        public By cancelAvailabilityChangesBackBtn = By.id("backBtn");
+        public By cancelAvailabilityChangesDiscardBtn = By.id("discardBtn");
+        public By inviteToInterviewMessageTextArea = By.id("inviteToInterviewMessageTextArea");
+        public By sendInviteToInterviewBtn = By.id("primaryBtn");
+        public By cancelInviteToInterviewBtn = By.id("secondaryBtn");
+        public By inviteToInterviewSuccessDialog = By.id("inviteToInterviewSuccessDialogBasicDialog");
+        public By dismissInviteToInterviewSuccessDialogBtn = By.id("dismissBtn");
+        public By messageScheduleInterviewStatus = By.xpath("//p [contains(@class,\"interview-status-message\")]");
+        public By messageScheduleInterviewMesssageThread = By.xpath("//div [contains(@class,\"messages-item-text\")]");
+        public By messageThreadScheduleInterviewCard = By.xpath("//*[contains(@id,\"messageThreadWdgMessageScheduleInterview\")]");
+        public By messageThreadScheduleInterviewContentMsg = By.xpath("//div[contains(@class,\"message-content action-button-displayed\")]/div");
+        //public By messageThreadScheduleInterviewBtn = By.xpath("//*[contains(@id,\"chatCardActionScheduleInterviewBtn\") and not(@disabled)]");
+        public By messageThreadScheduleInterviewBtn = By.xpath("//*[contains(@id,\"chatCardActionScheduleInterviewBtn\")]");
+        public By messageThreadChooseNewTimeBtn = By.xpath("//*[contains(@id,\"chatCardActionChooseNewTimeBtn\")]");
+        public By inviteToInterviewAvailabilityDialogTitle = By.id("inviteToInterviewAvailabilityDialogTitle");
+        public By inviteToInterviewcurrentDate = By.id("inviteToInterviewcurrentDate");
+        public By availabilityModalToolbarToolbarPrevBtn = By.id("availabilityModalToolbarToolbarPrevBtn");
+        public By availabilityModalToolbarToolbarNextBtn = By.id("availabilityModalToolbarToolbarNextBtn");
+        public By inviteToInterviewAvailabilityDialogSelectedDay = By.xpath("//div[@class='day-selector d-flex flex-column align-items-center selected']/span[1]");
+        public By availabilityModalToolbarCurrentMonthTxt = By.id("availabilityModalToolbarCurrentMonthTxt");
+        public By availableTimesHintTxt = By.id("availableTimesHintTxt");
+        public By notAvailableHintTxt = By.id("notAvailableHintTxt");
+        public By confirmInterviewBtn = By.id("primaryBtn");
+        public By requestNewTimesBtn = By.id("secondaryBtn");
+        public By inviteToInterviewInviteSuccessDialogSuccessIcon = By.id("inviteToInterviewInviteSuccessDialogSuccessIcon");
+        public By inviteToInterviewInviteSuccessDialogBasicDialog = By.id("inviteToInterviewInviteSuccessDialogBasicDialog");
+        public By inviteToInterviewInviteSuccessDialogTitle = By.id("inviteToInterviewInviteSuccessDialogTitle");
+        public By inviteToInterviewInviteSuccessDialogText = By.id("inviteToInterviewInviteSuccessDialogText");
+        public By viewDetailsBtn = By.id("viewDetailsBtn");
+        public By messageThreadInterviewReminderEmployerDialog = By.id("messageThreadWdgMessageInterviewReminderEmployerInterviewDialogBasicDialog");
+        public By messageThreadInterviewReminderEmployerDialogTitle = By.id("messageThreadWdgMessageInterviewReminderEmployerInterviewDialogTitle");
+        public By messageThreadInterviewReminderEmployerNameTxt = By.id("messageThreadWdgMessageInterviewReminderEmployerNameTxt");
+        public By messageThreadWdgInterviewReminderLogo = By.id("messageThreadWdgMessageInterviewReminderLogo");
+        public By messageThreadInterviewReminderEmployerTypeTxt = By.id("messageThreadWdgMessageInterviewReminderEmployerTypeTxt");
+        public By messageThreadInterviewReminderLocationTxt = By.id("messageThreadWdgMessageInterviewReminderLocationTxt");
+        public By messageThreadInterviewReminderLocationPin = By.id("messageThreadWdgMessageInterviewReminderGoogleMapsLink");
+        public By messageThreadInterviewReminderDateTxt = By.id("messageThreadWdgMessageInterviewReminderdateTxt");
+        public By inviteToInterviewDetailsDialog = By.id("inviteToInterviewEmployerInterviewDialogBasicDialog");
+        public By inviteToInterviewDetailsDialogTitle = By.id("inviteToInterviewEmployerInterviewDialogTitle");
+        public By inviteToInterviewDetailsEmployerNameTxt = By.id("inviteToInterviewEmployerNameTxt");
+        public By inviteToInterviewDetailsLogo = By.id("inviteToInterviewLogo");
+        public By inviteToInterviewDetailsEmployerTypeTxt = By.id("inviteToInterviewEmployerTypeTxt");
+        public By inviteToInterviewDetailsLocationTxt = By.id("inviteToInterviewLocationTxt");
+        public By inviteToInterviewDetailsLocationPin = By.id("inviteToInterviewGoogleMapsLink");
+        public By inviteToInterviewDetailsDateTxt = By.id("inviteToInterviewdateTxt");
+        public By inviteToInterviewDetailsCloseBtnDialog = By.id("inviteToInterviewEmployerInterviewDialogDialogCloseBtn");
+        public By rescheduleInterviewBtn = By.id("rescheduleBtn");
+        public By cancelInterviewBtn = By.id("cancelBtn");
+        public By messageThreadWdgMessageInterviewReminder = By.xpath("//div [contains(@id,\"messageThreadWdgMessageInterviewReminder\")]");
+        public By calendarInterviewCard = By.xpath("//div [contains(@class,\"wrapper interview\")]");
+        public By calendarPendingInterviewCard = By.xpath("//div [contains(@class,\"wrapper interview pending\")]");
+        public By applicantNameTxt = By.id("applicantNameTxt");
+        public By applicantPositionTxt = By.id("applicantPositionTxt");
+        public By applicantImg = By.id("applicantImg");
+        public By messageThreadInterviewReminderDialogCloseBtn = By.id("messageThreadWdgMessageInterviewReminderEmployerInterviewDialogDialogCloseBtn");
+        public By messageThreadInterviewReminderEmployerInterviewDialog= By.id("messageThreadWdgMessageInterviewReminderinterviewDialogBasicDialog");
+        public By messageThreadInterviewReminderEmployerInterviewDialogTitle = By.id("messageThreadWdgMessageInterviewReminderinterviewDialogTitle");
+        public By messageThreadWdgMessageInterviewReminderApplicantTxt = By.id("messageThreadWdgMessageInterviewReminderApplicantTxt");
+        public By messageThreadWdgMessageInterviewReminderApplicantPosition = By.id("messageThreadWdgMessageInterviewReminderCurrentPositionTxt");
+        public By messageThreadWdgMessageInterviewReminderavatarIcon = By.id("messageThreadWdgMessageInterviewReminderavatar");
+        public By messageThreadWdgMessageInterviewReminderDateTxt = By.id("messageThreadWdgMessageInterviewReminderdateTxt");
+        public By messageThreadInterviewReminderViewProfileBtn = By.id("viewProfileBtn");
+        public By messageThreadInterviewReminderActionBtn = By.id("actionBtn");
+        public By messageThreadWdgInterviewReminderDialogCloseBtn = By.id("messageThreadWdgMessageInterviewReminderinterviewDialogDialogCloseBtn");
+        public By interviewSchedulerinterviewDialogBasicDialog = By.id("interviewSchedulerinterviewDialogBasicDialog");
+        public By interviewSchedulerCalendariInterviewDialogTitle = By.id("interviewSchedulerinterviewDialogTitle");
+        public By interviewSchedulerCalendarApplicantTxt = By.id("interviewSchedulerApplicantTxt");
+        public By interviewSchedulerCalendarApplicantPosition = By.id("interviewSchedulerCurrentPositionTxt");
+        public By interviewSchedulerCalendarAvatar = By.id("interviewScheduleravatar");
+        public By interviewSchedulerCalendarDateTxt = By.id("interviewSchedulerdateTxt");
+        public By interviewSchedulerCalendarViewProfileBtn = By.id("viewProfileBtn");
+        public By interviewSchedulerCalendarActionBtn = By.id("actionBtn");
+        public By interviewSchedulerApplicantProfileMessageBtn = By.id("messageBtn");
+        public By messageThreadInterviewReminderRescheduleBtn = By.id("undefinedRescheduleBtn");
+        public By messageThreadInterviewReminderMessageBtn = By.id("undefinedMessageBtn");
+        public By messageThreadInterviewReminderCancelInterviewBtn = By.id("undefinedCancelBtn");
+        public By messageThreadInterviewRescheduleAvailabilityDialog = By.id("messageThreadWdgMessageInterviewReminderAvailabilityDialogBasicDialog");
+        public By messageThreadInterviewRescheduleAvailabilityDialogTitle = By.id("messageThreadWdgMessageInterviewReminderAvailabilityDialogTitle");
+        public By messageThreadInterviewRescheduleAvailabilityDialogText = By.id("messageThreadWdgMessageInterviewReminderAvailabilityDialogText");
+        public By messageThreadInterviewRescheduleAvailabilityDialogMessageText = By.id("messageThreadWdgMessageInterviewReminderMessageTextArea");
+        public By messageThreadInterviewRescheduleAvailabilityDialogRescheduleBtn = By.id("primaryBtn");
+        public By messageThreadInterviewRescheduleAvailabilityDialogCanceleBtn = By.id("secondaryBtn");
+        public By interviewRescheduleAvailabilityDialog = By.id("inviteToInterviewAvailabilityDialogBasicDialog");
+        public By interviewRescheduleAvailabilityDialogConfirmInterviewBtn = By.id("primaryBtn");
+        public By interviewRescheduleAvailabilityDialogRequestNewTimesBtn = By.id("secondaryBtn");
+        public By messageThreadRescheduleSuccessDialog = By.id("messageThreadWdgMessageInterviewReminderRescheduleSuccessDialogBasicDialog");
+        public By messageThreadRescheduleSuccessDialogTitle = By.id("messageThreadWdgMessageInterviewReminderRescheduleSuccessDialogTitle");
+        public By messageThreadRescheduleSuccessDialogText = By.id("messageThreadWdgMessageInterviewReminderRescheduleSuccessDialogText");
+        public By messageThreadRescheduleSuccessDialogDismissBtn = By.id("dismissBtn");
+        public By messageThreadRescheduleSuccessDialogCloseBtn = By.id("inviteToInterviewInviteSuccessDialogDialogCloseBtn");
+        public By referralsBannerCloseBtn = By.id("referralsBannerCloseBtn");
     }
 }

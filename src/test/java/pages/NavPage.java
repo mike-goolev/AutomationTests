@@ -130,9 +130,11 @@ public class NavPage extends BasePage {
     /**
      * Clicks the messages link in the nav header
      */
-     public void clickMessagesLink() {
+     public void clickMessagesLink() throws InterruptedException {
         wait.until(elementToBeClickable(navPageLocators.messagesBtn));
         driver.findElement(navPageLocators.messagesBtn).click();
+       // Thread.sleep(5000);
+
     }
 
     /**

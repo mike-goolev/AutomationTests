@@ -63,6 +63,15 @@ public class MessagesPage extends BasePage {
     }
 
     /**
+     * Get the message text in the message list
+     *
+     * @return The message text in the message list
+     */
+    public String getMsgListText() {
+        return driver.findElement(hourlyMessagePageLocators.messageListMsgTxt).getText();
+    }
+
+    /**
      * Click the new message button
      */
     public void clickNewMsgbtn() {
@@ -118,6 +127,7 @@ public class MessagesPage extends BasePage {
      *
      * @return Whether or not the connection can be selected from the my connections list
      */
+
     public boolean verifyMsgComposeConnectionSellection() {
         wait.until(elementToBeClickable(messagesPageLocators.msgComposeConnection0));
         driver.findElement(messagesPageLocators.msgComposeConnection0).click();
@@ -180,6 +190,7 @@ public class MessagesPage extends BasePage {
      * @return The recipient first name in the messages list
      */
     public String getMsgListRecipientNameText() {
+        wait.until(elementToBeClickable(messagesPageLocators.messageListRecipientName));
         return driver.findElement(hourlyMessagePageLocators.messageListRecipientName).getText();
     }
 
@@ -282,7 +293,7 @@ public class MessagesPage extends BasePage {
      * @return Whether or not the message text is displayed in the messages thread
      */
     public boolean verifyMsgThreadMsgText() {
-        return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadRecipientTxt0);
+        return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadTxt0);
     }
 
     /*
@@ -293,4 +304,13 @@ public class MessagesPage extends BasePage {
     public boolean verifyMsgThreadRecipientImg() {
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadRecipientImg0);
     }
+
+    /**
+     * Select the message thread close button
+     */
+    public void clickMsgThreadCloseBtn() {
+        wait.until(elementToBeClickable(hourlyMessagePageLocators.messageThreadWdgCloseBtn));
+        driver.findElement(hourlyMessagePageLocators.messageThreadWdgCloseBtn).click();
+    }
 }
+
