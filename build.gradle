@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    compile 'org.slf4j:slf4j-simple:1.7.5'
     testCompile group: 'org.testng', name: 'testng', version: '6.11'
     testCompile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     testCompile 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -16,17 +17,24 @@ dependencies {
     testCompile 'com.squareup.okhttp3:okhttp:3.9.0'
     testCompile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     testCompile 'com.squareup.okio:okio:1.13.0'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.8.1'
-    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.8.1'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.13.0'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.13.0'
     testCompile 'org.postgresql:postgresql:42.1.4'
+
+    // For downloading browser-specific drivers that browsers like Chrome and IE require
+    testCompile("io.github.bonigarcia:webdrivermanager:2.2.4") {
+        exclude group: 'org.seleniumhq.selenium'
+    }
 }
 
 test {
+    testLogging.exceptionFormat = 'full'
     dependsOn(clean)
-    useTestNG{
-        if (project.hasProperty('QA_Chrome')) { suites 'src/test/resources/QA_All_Chrome.xml' }
-        if (project.hasProperty('QA_Firefox')) { suites 'src/test/resources/QA_All_Firefox.xml' }
-        }
+    systemProperty "headless", System.getProperty("headless")
+    systemProperty "browser", System.getProperty("browser")
+    useTestNG {
+        suites 'src/test/resources/QA_Suite.xml'
+    }
 }
 
 compileJava {

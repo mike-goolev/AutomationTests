@@ -1,19 +1,17 @@
 # UIAutomationII
 Java based UI automation using the selenium webdriver framework
 
-MacOS/Linux Setup
+MacOS/Linux/Windows Setup
 
-1. Check out the project to the directory of your choice.
-2. Take the chromedriver and geckodriver (these "drive" the actions in the browser) binaries from the SeasonedTests directory and put them on your path.
-3. On mac, i just copied them to /usr/local/bin.
-4. On linux, you can modify your .bash_profile to point to the location of the drivers.
-5. On windows, go buy a mac or install linux.
+1. Just run them :-)
 
 Running via gradle
 
 1. cd to the project directory
 2. run gradle build
 3. run gradle build test
+Also it's possible to run tests in Chrome or Firefox. Pass `-Dbrowser=chrome` or `firefox`.
+For running headless add `-Dheadless=true` parameter
 
 Running via Idea IDE
 

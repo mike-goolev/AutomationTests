@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="QA_ALL" verbose="1" thread-count="3" parallel="none">
 	<test name="QA_environment" preserve-order="true">
-        <parameter name="browser" value="chrome"></parameter>
         <parameter name="url" value="https://qa-www.seasoned.co/services/webapp/"></parameter>
         <parameter name="urlAPI" value="http://qa-brushfire.seasoned.co/services/services/rest/"></parameter>
         <parameter name="dbURL" value="jdbc:postgresql://qa-db.seasoned.co/bf_qa"></parameter>

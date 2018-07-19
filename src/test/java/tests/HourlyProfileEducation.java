@@ -39,7 +39,6 @@ public class HourlyProfileEducation extends BaseTest {
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
     public void setUp() throws SQLException {
         System.out.println("Initializing hourly profile Education test...");
-        driver = BrowserFactory.getDriver("firefox");
         testUtils = new TestUtils(driver);
         navPage = new NavPage(driver);
         hourlyLoginPage = new HourlyLoginPage(driver);
