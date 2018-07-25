@@ -31,6 +31,13 @@ public class TestUtils {
     }
 
     /**
+     * Navigate to the home page
+     */
+    public void loadHomePage() {
+        driver.get(TestConfig.getBaseUrl());
+    }
+
+    /**
      * Navigate to the search page with no terms
      */
     public void loadJobSearchPageNoTerms() {

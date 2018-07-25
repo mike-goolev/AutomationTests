@@ -1,0 +1,69 @@
+package tests;
+
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import pages.HomePage;
+import pages.HourlyLoginPage;
+
+import utils.TestDataImporter;
+
+public class HourlyHomePage extends BaseTest {
+
+    protected HomePage homePage;
+    protected HourlyLoginPage hourlyLoginPage;
+
+    protected String username;
+    protected String password;
+    protected String navMenuName;
+
+    @BeforeClass
+    public void setUp() {
+        System.out.println("Initializing Hourly Home Page test...");
+
+        username = (String) TestDataImporter.get("HomePage", "testHomePage").get("username");
+        password = (String) TestDataImporter.get("HomePage", "testHomePage").get("password");
+        navMenuName = (String) TestDataImporter.get("HomePage", "testHomePage").get("navMenuName");
+        System.out.println("Starting test run!");
+    }
+
+    @BeforeMethod
+    public void initializePageObjects() {
+        homePage = new HomePage(driver);
+        hourlyLoginPage = new HourlyLoginPage(driver);
+    }
+
+
+    @Test
+    public void testLoginFromHomePage() {
+
+        /* Launch home page */
+        testUtils.loadHomePage();
+
+        /* Sign in */
+        homePage.clickSignInLink();
+
+        /* Login with email*/
+        hourlyLoginPage.loginWithEmail(username, password);
+
+        /* Verify that the user's name is in the nav bar*/
+        Assert.assertTrue(navPage.isUserNameDisplayed(), "User name should be displayed in the nav bar");
+    }
+
+    @AfterMethod
+    public void tearDown(ITestResult result) {
+        if (!result.isSuccess()) {
+            screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
+        }
+        System.out.println("Logging out and shutting down selenium for the Hourly Home Page test");
+        navPage.attemptLogout();
+        driver.quit();
+    }
+
+
+
+}

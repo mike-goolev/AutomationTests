@@ -58,6 +58,16 @@ public class NavPage extends BasePage {
     }
 
     /**
+     * Checks to see if the user's name is displayed in the nav bar
+     * @return Whether or not the user's name is displayed in the nav bar
+     */
+    public boolean isUserNameDisplayed() {
+
+        return elementExists(navPageLocators.userNameTxt);
+    }
+
+
+    /**
      * Get user's first name and last name initial from the menu text
      * @return User's first name and last name initial
      */
