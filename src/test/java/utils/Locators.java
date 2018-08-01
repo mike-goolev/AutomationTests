@@ -1611,7 +1611,7 @@ public class Locators {
          * @return Returns a locator for the employer job position by index
          */
         public By findEmployerJobCardPositionByIndex(String index) {
-            return By.id("searchResultJobNameTextJobCard" + index);
+            return By.id("jobCardJobNameTextJobCard" + index);
         }
 
         /**

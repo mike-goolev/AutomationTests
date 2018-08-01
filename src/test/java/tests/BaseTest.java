@@ -9,8 +9,6 @@ import utils.*;
 import pages.NavPage;
 import sql.SqlSelects;
 
-import java.util.logging.Logger;
-
 public class BaseTest extends TestNG {
 
     public WebDriver driver;

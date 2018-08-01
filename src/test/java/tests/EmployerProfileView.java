@@ -121,10 +121,7 @@ public class EmployerProfileView extends BaseTest {
         /* Verify employer's name, address, city, state, zip, phone and website */
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), employerAddress + ", " + employerCity + ", " + employerState);
-//        Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), employerCity);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerState + " " + employerZip);
-//        Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), employerDistance);
-//        Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), employerWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), employerPhone);
 
         /* Verify employer about */
@@ -144,8 +141,6 @@ public class EmployerProfileView extends BaseTest {
         Assert.assertTrue(employerProfileViewPage.isJobCardEmployerLogoPresent(jobIndex), "The employer logo should be displayed on the job card");
         Assert.assertEquals(employerProfileViewPage.getJobCardEmployerNameAndAddress(jobIndex), employerNameAndAddress);
         Assert.assertEquals(employerProfileViewPage.getJobPosition(jobIndex), jobPosition);
-//        Assert.assertEquals(employerProfileViewPage.getJobAvailability(jobIndex), jobAvailability);
-//        Assert.assertEquals(employerProfileViewPage.getJobWage(jobIndex), jobWage);
     }
 
     @AfterMethod
