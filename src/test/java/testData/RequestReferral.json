@@ -1,0 +1,24 @@
+{
+  "testRequestReferral": {
+    "email":"seasreferral@mailinator.com",
+    "password":"password",
+    "referralModalTitlepart1": "Referral request for your open ",
+    "referralModalTitlepart2": " position",
+    "referralModalDescription": "Add the Seasoned names or email addresses with a custom message to send a trackable link to all the people you'd like referrals from.",
+    "referralModalReferralsInputboxLabel": "Names or Email addresses",
+    "referralModalMessagePlaceholderpart1": "Use the custom link below to share this open ",
+    "referralModalMessagePlaceholderpart2": " position with someone you think would be a great fit!",
+    "experienceRestaurant":"Pizza Hut, Austin",
+    "experienceSelected":"Pizza Hut",
+    "experienceJobIndex":"6",
+    "experienceJobName":"Chef",
+    "fromMonthExperienceIndex": "March",
+    "fromYearExperience": "2017",
+    "toMonthExperienceIndex": "January",
+    "toYearExperience": "2018",
+    "timeInterval":"Mar 2017 - Jan 2018",
+    "skillAbilityToWorkFast": "0",
+    "skillCleanliness": "6",
+    "skillCreativity": "9"
+  }
+}

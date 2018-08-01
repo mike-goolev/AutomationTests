@@ -179,7 +179,7 @@ public class MessagesPage extends BasePage {
      * Click delete message from Top Messages Modal
      * @param index
      */
-    public void clickMessageDeleteTrachIcon(String index){
+    public void clickMessageDeleteTrashIcon(String index){
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(hourlyMessagePageLocators.messagesListItemByIndex(index))).build().perform();
         driver.findElement(hourlyMessagePageLocators.messagesListItemByIndex(index)).findElement(hourlyMessagePageLocators.messageDeleteTrashIcon).click();
@@ -190,7 +190,7 @@ public class MessagesPage extends BasePage {
      * @return The recipient first name in the messages list
      */
     public String getMsgListRecipientNameText() {
-        wait.until(elementToBeClickable(messagesPageLocators.messageListRecipientName));
+        wait.until(elementToBeClickable(hourlyMessagePageLocators.messageListRecipientName));
         return driver.findElement(hourlyMessagePageLocators.messageListRecipientName).getText();
     }
 
@@ -305,6 +305,25 @@ public class MessagesPage extends BasePage {
         return elementExistsLongTimeout(hourlyMessagePageLocators.messageThreadRecipientImg0);
     }
 
+    /**
+
+     * Gets the Message sent along with the referral Tiny URL from Message Thread
+     * @param index
+     * @return
+     */
+    public String getReferralMessageText(String index){
+        return driver.findElement(hourlyMessagePageLocators.msgItemInThread(index)).findElement(hourlyMessagePageLocators.msgReferralTextItem()).getText();
+    }
+
+    /**
+     * Gets the Tiny URL from Message Thread
+     * @param index
+     * @return
+     */
+    public String getReferralTinyURL(String index){
+        return driver.findElement(hourlyMessagePageLocators.msgItemInThread(index)).findElement(hourlyMessagePageLocators.msgReferralTinyURLItem()).getText();
+    }
+  
     /**
      * Select the message thread close button
      */

@@ -368,4 +368,18 @@ public class HourlyJobSearchPage extends BasePage {
         driver.findElement(jobSearchPageLocators.jobDetailsEmployerFollowToastDismissBtn).click();
         wait.until(invisibilityOfElementLocated(jobSearchPageLocators.jobDetailsEmployerFollowToastTxt));
     }
+
+    /**
+     * Clicks Apply Now button from Job Details page
+     */
+    public void clickJobDetailsApplyNowBtn(){
+        driver.findElement(jobSearchPageLocators.jobDetailsApplyBtn).click();
+    }
+
+    /**
+     * Clicks View My Profile from Job Details page after applying to job
+     */
+    public void clickViewMyProfileBtnFromJobPage(){
+        driver.findElement(jobSearchPageLocators.jobDetailsViewMyProfileBtn).click();
+    }
 }

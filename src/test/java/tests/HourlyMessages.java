@@ -246,7 +246,7 @@ public class HourlyMessages extends BaseTest {
                 for(i = 1; i< messageCount; i++)
                 {
                     messagesPage.hoverOverMessageItem("1");
-                    messagesPage.clickMessageDeleteTrachIcon("1");
+                    messagesPage.clickMessageDeleteTrashIcon("1");
                 }
                 Assert.assertEquals(messagesPage.getRedBadgeNewMsgCount(), "1");
             }

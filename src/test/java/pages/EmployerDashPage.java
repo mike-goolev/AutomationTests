@@ -464,6 +464,14 @@ public class EmployerDashPage extends BasePage {
     }
 
     /**
+     * Select Get Referrals button
+     * @param index
+     */
+    public void selectGetReferralsBtn(String index){
+        driver.findElement(dashPageLocators.findEmployerJobCardGetReferralsBtnByIndex(index)).click();
+    }
+
+    /**
      * Checks to see if the employer's logo is on the job card
      * @param index The index of the job card's logo (starting at 0)
      * @return Whether or not the employer's logo is on the job card
@@ -480,6 +488,17 @@ public class EmployerDashPage extends BasePage {
     public String getJobCardEmployerNameAndAddress(String index){
         return driver.findElement(dashPageLocators.findEmployerJobCardNameAndAddressByIndex(index)).getText();
     }
+
+    /**
+     * Gets the job card's job name
+     * @param index
+     * @return The job card's job name
+     */
+    public String getJobCardJobName(String index){
+        return driver.findElement(dashPageLocators.findEmployerJobCardJobNameByIndex(index)).getText();
+    }
+
+
 
     /*---------- Utility Methods ----------*/
 

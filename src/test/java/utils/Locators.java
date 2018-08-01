@@ -408,6 +408,7 @@ public class Locators {
         public By jobDetailsPositionTxt = By.id("jobDetailsJobNameTxt");
         public By jobDetailsWageTxt = By.id("jobWageTxt");
         public By jobDetailsApplyBtn = By.id("jobDetailsjobApplyBtn");
+        public By jobDetailsViewMyProfileBtn = By.id("viewProfiletBtn");
         public By jobDetailsApplySuccessToastTxt = By.id("applyForJobToast");
         public By jobDetailsApplySuccessToastDismissBtn = By.id("applyForJobToastCloseBtn");
         public By jobDetailsJobDescriptionTitleTxt = By.xpath("//div[@id='ExpandableContentWrapper']/section/h2");
@@ -425,6 +426,8 @@ public class Locators {
         public By jobDetailsEmployerFollowToastTxt = By.id("jobDetailsToast");
         public By jobDetailsEmployerFollowToastDismissBtn = By.id("jobDetailsToastCloseBtn");
     }
+
+
     public static class AttributionModal {
         public By attributionModal = By.className("ReactModalPortal");
         public By attributionCloseBtn = By.id("overlayPageCloseBtn");
@@ -1313,8 +1316,20 @@ public class Locators {
         public By msgThreadWdg = By.id("messageThreadWdg");
         public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-msgs-badge");
         public By msgNoRedBadge = By.cssSelector("#headerMessagesLink");
-        public By messageThreadMessageWrapper0 = By.cssSelector("#messageThreadWdgMessageWrapper0");
 
+        public By msgItemInThread(String index){
+            return By.id("messageThreadWdgMessageText" + index);
+        }
+
+        public By msgReferralTextItem(){
+            return By.xpath(".//div[@class='messages-item-text']");
+        }
+
+        public By msgReferralTinyURLItem(){
+            return By.xpath(".//div[@class='messages-item-tinyurl']");
+        }
+      
+        public By messageThreadMessageWrapper0 = By.cssSelector("#messageThreadWdgMessageWrapper0");
 
     }
 
@@ -1651,7 +1666,7 @@ public class Locators {
          * @return Returns a locator for the employer job edit button by index
          */
         public By findEmployerJobCardEditBtnByIndex(String index) {
-            return By.id("jobCardEditBtnJobCard" + index);
+            return By.id("jobOpeningEditBtn" + index);
         }
 
         /**
@@ -2250,8 +2265,8 @@ public class Locators {
          * @param index The index (Starting at 0) of the employer job view button you wish to locate
          * @return Returns a locator for the employer job view button by index
          */
-        public By findEmployerJobCardViewBtnByIndex(String index) {
-            return By.id("jobCardViewBtnJobCard" + index);
+        public By findEmployerJobCardGetReferralsBtnByIndex(String index) {
+            return By.id("managerDashboardRequestReferralBtn" + index);
         }
 
         /**
@@ -2282,6 +2297,15 @@ public class Locators {
          */
         public By findEmployerJobCardNameAndAddressByIndex(String index) {
             return By.id("jobCardEmployerNameAndLocationTextJobCard" + index);
+        }
+
+        /**
+         * Locates a Job Card's Job Name field
+         * @param index
+         * @return
+         */
+        public By findEmployerJobCardJobNameByIndex(String index){
+            return By.id("jobCardJobNameTextJobCard" + index);
         }
     }
 

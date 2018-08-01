@@ -18,6 +18,7 @@ public class EmployerProfileJobs extends BaseTest {
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfileEditPage employerProfileEditPage;
     private EmployerProfileJobsPage employerProfileJobsPage;
+    private EmployerRequestReferralPage employerRequestReferralPage;
 
     private String email;
     private String password;
@@ -65,6 +66,8 @@ public class EmployerProfileJobs extends BaseTest {
         employerProfileViewPage = new EmployerProfileViewPage(driver);
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         employerProfileJobsPage = new EmployerProfileJobsPage(driver);
+        employerRequestReferralPage = new EmployerRequestReferralPage(driver);
+
         loginPage = new HourlyLoginPage(driver);
 
         email = (String) TestDataImporter.get("EmployerProfileJobs", "EmployerProfileJobs").get("email");
@@ -180,6 +183,8 @@ public class EmployerProfileJobs extends BaseTest {
 
         /* Save job */
         employerProfileJobsPage.selectSaveBtn();
+
+        employerRequestReferralPage.closeRequestRefferalPage();
 
         /* Verify toast */
         employerProfileJobsPage.verifyEmployerJobSuccessToast();
