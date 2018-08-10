@@ -1378,7 +1378,7 @@ public class Locators {
         public By iFrame = By.id("msg_body");
         public By activationActionLink = By.cssSelector("table:nth-of-type(2)>tbody>tr>td>a");
         public By viewJobActionLink = By.cssSelector("table:nth-of-type(3)>tbody>tr>td>a");
-        public By viewApplicantActionLink = By.cssSelector("table:nth-of-type(1)>tbody * tbody * tbody * table * table:nth-of-type(2) * a");
+        public By viewApplicantActionLink = By.className("button");
 
     }
 
@@ -2576,6 +2576,16 @@ public class Locators {
          */
         public By findEmployerApplicantCardActionsByIndex(String index) {
             return By.id("Applicant" + index + "ConnectBtn");
+        }
+
+        /**
+         * Locates an talent card's action button for a given index
+         *
+         * @param index The index (Starting at 0) of the talent's action button you wish to locate
+         * @return Returns a locator for the talent's action button by index
+         */
+        public By findTalentCardActionBtnByIndex(String index) {
+            return By.id("Talent" + index + "ConnectBtn");
         }
 
         /**

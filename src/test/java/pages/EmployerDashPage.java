@@ -10,6 +10,8 @@ import org.openqa.selenium.interactions.Actions;
 import utils.Locators;
 import utils.TestUtils;
 
+import java.util.concurrent.TimeUnit;
+
 public class EmployerDashPage extends BasePage {
 
     Locators.EmployerDashPageLocators dashPageLocators;
@@ -518,6 +520,7 @@ public class EmployerDashPage extends BasePage {
      * Waits for the loading indicator on the Dash page
      */
     public void waitForLoadingIndicator() {
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         try {
             if (driver.findElement(dashPageLocators.employerDashLoader).isDisplayed()) {
                 wait.until(invisibilityOfElementLocated(dashPageLocators.employerDashLoader));
@@ -527,5 +530,6 @@ public class EmployerDashPage extends BasePage {
         } catch (StaleElementReferenceException se) {
             System.out.println("\n" +"Loading indicator not displayed due to StaleElementReferenceException..." + "\n");
         }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 }

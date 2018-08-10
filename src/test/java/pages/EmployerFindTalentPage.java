@@ -245,7 +245,7 @@ public class EmployerFindTalentPage extends BasePage {
      * @param index The index of the talent's actions button (starting at 0)
      */
     public void selectTalentActionsBtn(String index) {
-        driver.findElement(talentPageLocators.findEmployerApplicantCardActionsByIndex(index)).click();
+        driver.findElement(talentPageLocators.findTalentCardActionBtnByIndex(index)).click();
     }
 
     /**
@@ -315,6 +315,7 @@ public class EmployerFindTalentPage extends BasePage {
      */
     public void selectTalentInviteSendInvitationBtn() {
         driver.findElement(talentPageLocators.employerTalentInviteModalSendBtn).click();
+        waitForInviteLoadingIndicator();
     }
 
     /**

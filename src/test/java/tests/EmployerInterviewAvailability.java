@@ -5,11 +5,8 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.*;
-import utils.*;
-import restInterfaces.*;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
 import pages.EmployerDashPage;
 import pages.EmployerFindTalentPage;
 import pages.HourlyLoginPage;
@@ -17,7 +14,6 @@ import pages.MessagesPage;
 import restInterfaces.SeasonedRestAPI;
 import utils.TestDataImporter;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class EmployerInterviewAvailability extends BaseTest {
@@ -32,7 +28,6 @@ public class EmployerInterviewAvailability extends BaseTest {
     private String interviewScheduledHint;
     private String availabilityDialogTitle;
     private String availabilityDialogTxt;
-    private String interviewSchedulercurrentMonthTxt;
     private String availabilitySuccessDialogTitle;
     private String availabilitySuccessDialogTxt;
     private String cancelAvailabilityChangesTitleDialog;
@@ -52,9 +47,7 @@ public class EmployerInterviewAvailability extends BaseTest {
     private String jobDescription;
     private String jobStatus;
     private List<String> jobGuids;
-    private List<String> talentGuids;
     private String cardIndex;
-    private String interviewInviteMessageTxt1;
     private String interviewInviteMessageTxt2;
     private String interviewRescheduleMessageTxt;
     private String applicantName;
@@ -70,14 +63,12 @@ public class EmployerInterviewAvailability extends BaseTest {
     private String employerCity;
     private String employerState;
     private String employerAddress;
-    private String messageThreadWdgMessageInterviewReminderinterviewDialogTitle;
+    private String messageThreadWdgMessageInterviewReminderInterviewDialogTitle;
     private String messageThreadInterviewRescheduleAvailabilityDialogTitle;
     private String messageThreadInterviewRescheduleAvailabilityDialogText;
-    private String messageThreadRescheduleSuccessDialogTitle;
-    private String messageThreadRescheduleSuccessDialogText;
 
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
-    public void setUp() throws SQLException {
+    public void setUp() {
         System.out.println("Initializing employer interview availability test...");
         employerDashPage = new EmployerDashPage(driver);
         loginPage = new HourlyLoginPage(driver);
@@ -90,7 +81,6 @@ public class EmployerInterviewAvailability extends BaseTest {
         interviewScheduledHint = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("interviewScheduledHint");
         availabilityDialogTitle = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("availabilityDialogTitle");
         availabilityDialogTxt = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("availabilityDialogTxt");
-        interviewSchedulercurrentMonthTxt = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("interviewSchedulercurrentMonthTxt");
         availabilitySuccessDialogTitle = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("availabilitySuccessDialogTitle");
         availabilitySuccessDialogTxt = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("availabilitySuccessDialogTxt");
         cancelAvailabilityChangesTitleDialog = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("cancelAvailabilityChangesTitleDialog");
@@ -110,7 +100,6 @@ public class EmployerInterviewAvailability extends BaseTest {
         jobDescription = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("jobDescription");
         jobStatus = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("jobStatus");
         cardIndex = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("cardIndex");
-        interviewInviteMessageTxt1 = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("interviewInviteMessageTxt1");
         interviewInviteMessageTxt2 = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("interviewInviteMessageTxt2");
         interviewRescheduleMessageTxt = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("interviewRescheduleMessageTxt");
         applicantName = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("applicantName");
@@ -126,11 +115,9 @@ public class EmployerInterviewAvailability extends BaseTest {
         employerCity = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("employerCity");
         employerState = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("employerState");
         employerAddress = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("employerAddress");
-        messageThreadWdgMessageInterviewReminderinterviewDialogTitle = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("messageThreadWdgMessageInterviewReminderinterviewDialogTitle");
+        messageThreadWdgMessageInterviewReminderInterviewDialogTitle = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("messageThreadWdgMessageInterviewReminderinterviewDialogTitle");
         messageThreadInterviewRescheduleAvailabilityDialogTitle = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("messageThreadInterviewRescheduleAvailabilityDialogTitle");
         messageThreadInterviewRescheduleAvailabilityDialogText = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("messageThreadInterviewRescheduleAvailabilityDialogText");
-        messageThreadRescheduleSuccessDialogTitle = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("messageThreadRescheduleSuccessDialogTitle");
-        messageThreadRescheduleSuccessDialogText = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("messageThreadRescheduleSuccessDialogText");
     }
 
     @Test
@@ -268,7 +255,6 @@ public class EmployerInterviewAvailability extends BaseTest {
         findTalentPage.selectDayOfWeek();
         findTalentPage.deleteAvailableTimeSlot();
         findTalentPage.selectSaveScheduleBtn();
-
     }
 
     @Test(priority = 1)
@@ -291,7 +277,7 @@ public class EmployerInterviewAvailability extends BaseTest {
         findTalentPage.scrollToApplicantsCard("0");
 
         /* Invite the applicant to interview */
-        findTalentPage.selectTalentActionsBtn(cardIndex);
+        findTalentPage.selectApplicantActionsBtn(cardIndex);
         findTalentPage.selectApplicantScheduleInterviewBtn(cardIndex);
 
         findTalentPage.selectDayOfWeek();
@@ -474,7 +460,7 @@ public class EmployerInterviewAvailability extends BaseTest {
         Assert.assertTrue(findTalentPage.isMessageThreadInterviewReminderEmployerInterviewDialogDisplayed(), "The remind interview dialog should be displayed");
 
         /* Verify the remind interview dialog title  */
-        Assert.assertEquals(findTalentPage.getMessageThreadInterviewReminderEmployerInterviewDialogTitle(), messageThreadWdgMessageInterviewReminderinterviewDialogTitle);
+        Assert.assertEquals(findTalentPage.getMessageThreadInterviewReminderEmployerInterviewDialogTitle(), messageThreadWdgMessageInterviewReminderInterviewDialogTitle);
 
         /* Verify the applicant logo is displayed on the interview reminder dialog */
         Assert.assertTrue(findTalentPage.verifyMessageThreadWdgMessageInterviewReminderApplicantLogo(), "The applicant logo should be displayed on the interview reminder dialog");
@@ -523,7 +509,7 @@ public class EmployerInterviewAvailability extends BaseTest {
         Assert.assertTrue(findTalentPage.isInterviewSchedulerinterviewDialogOnCalendarDisplayed(), "The remind interview dialog should be displayed from the store calendar");
 
         /* Verify the remind interview dialog title from the store calendar */
-        Assert.assertEquals(findTalentPage.getInterviewSchedulerinterviewDialogOnCalendarTitle(), messageThreadWdgMessageInterviewReminderinterviewDialogTitle);
+        Assert.assertEquals(findTalentPage.getInterviewSchedulerinterviewDialogOnCalendarTitle(), messageThreadWdgMessageInterviewReminderInterviewDialogTitle);
 
         /* Verify the applicant logo is displayed on the interview reminder dialog from the store calendar*/
         Assert.assertTrue(findTalentPage.verifyInterviewSchedulerinterviewDialogOnCalendarApplicantLogo(), "The applicant logo should be displayed on the interview reminder dialog");

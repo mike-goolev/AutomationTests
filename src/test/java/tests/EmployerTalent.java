@@ -29,16 +29,11 @@ public class EmployerTalent extends BaseTest {
     private String talentLastName;
     private String talentLocation;
     private String talentJob;
-    private String talentJobLocation;
     private String talentSharedConnections;
     private String talentInvitePosition;
     private String talentEmail;
-    private String applicantEmail;
     private String applicantName;
-    private String applicantFirstName;
-    private String applicantLastName;
     private String applicantPosition;
-    private String applicantTime;
     private String applicantSharedConnections;
     private String talentAllEmptyTitleTxt;
     private String talentAllEmptyTxt;
@@ -92,7 +87,6 @@ public class EmployerTalent extends BaseTest {
         cardIndex = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("cardIndex");
         applicantName = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("applicantName");
         applicantPosition = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("applicantPosition");
-        applicantTime = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("applicantTime");
         applicantSharedConnections = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("applicantSharedConnections");
         talentAllEmptyTitleTxt = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentAllEmptyTitleTxt");
         talentAllEmptyTxt = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentAllEmptyTxt");
@@ -119,7 +113,6 @@ public class EmployerTalent extends BaseTest {
         jobPosition = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobPosition");
         jobType = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobType");
         jobWage = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobWage");
-        talentJobLocation = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("talentJobLocation");
         jobMinWage = jobWage;
         jobMaxWage = jobWage;
         jobWageType = (String) TestDataImporter.get("EmployerTalent", "EmployerTalent").get("jobWageType");
@@ -191,7 +184,7 @@ public class EmployerTalent extends BaseTest {
         /* Verify talent card on 'Invited' tab */
         Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName, "Applicant's name should be displayed on the card");
         Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation, "Applicant's location should be displayed on the card");
-        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob + talentJobLocation, "Card should have the job position and address");
+        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob, "Card should have the job position");
         Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections, "Card should have the number of mutual connections");
 
         /* Log out */
@@ -232,14 +225,9 @@ public class EmployerTalent extends BaseTest {
         /* Verify Applicant talent title */
         Assert.assertEquals(talentPage.getEmployerApplicantsTitleTxt(), talentApplicantsTitle);
 
-        /* Get applicant info */
-        applicantFirstName = testUtils.getStringFirstWord(applicantName);
-        applicantLastName = testUtils.getStringLastWord(applicantName);
-
         /* Verify applicant card */
         Assert.assertEquals(talentPage.getApplicantName(cardIndex), applicantName);
         Assert.assertEquals(talentPage.getApplicantPosition(cardIndex), applicantPosition);
-//        Assert.assertEquals(talentPage.getApplicantTime(cardIndex), applicantTime);
         Assert.assertEquals(talentPage.getApplicantSharedConnections(cardIndex), applicantSharedConnections);
 
         /* View applicant's profile */
@@ -263,7 +251,6 @@ public class EmployerTalent extends BaseTest {
         // Wait for applicant profile to load
         Thread.sleep(3000);
         Assert.assertEquals(hourlyProfileViewPage.getFirstAndLastName(), applicantName);
-        navPage.attemptLogout();
     }
 
     @Test
@@ -298,7 +285,6 @@ public class EmployerTalent extends BaseTest {
 
         /* Navigate to "Good fit" tab */
         talentPage.selectTalentGoodTab();
-        talentPage.waitForLoadingIndicator();
 
         /* Verify Good fit talent title */
         Assert.assertEquals(talentPage.getEmployerTalentGoodTitleTxt(), talentGoodTitle);
@@ -306,7 +292,7 @@ public class EmployerTalent extends BaseTest {
         /* Verify talent card on 'Good fit' tab */
         Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName, "Applicant's name should be displayed on the card");
         Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation, "Applicant's location should be displayed on the card");
-        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob + talentJobLocation, "Card should have the job position and address");
+        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob, "Card should have the job position");
         Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections, "Card should have the number of mutual connections");
     }
 
@@ -342,7 +328,6 @@ public class EmployerTalent extends BaseTest {
 
         /* Navigate to "Not a fit" tab */
         talentPage.selectTalentBadTab();
-        talentPage.waitForLoadingIndicator();
 
         /* Verify Not a fit talent title */
         Assert.assertEquals(talentPage.getEmployerTalentBadTitleTxt(), talentBadTitle);
@@ -350,7 +335,7 @@ public class EmployerTalent extends BaseTest {
         /* Verify talent card on 'Not a fit' tab */
         Assert.assertEquals(talentPage.getTalentName(cardIndex), talentName, "Applicant's name should be displayed on the card");
         Assert.assertEquals(talentPage.getTalentLocation(cardIndex), talentLocation, "Applicant's location should be displayed on the card");
-        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob + talentJobLocation, "Card should have the job position and address");
+        Assert.assertEquals(talentPage.getTalentPosition(cardIndex), talentJob, "Card should have the job position");
         Assert.assertEquals(talentPage.getTalentSharedConnections(cardIndex), talentSharedConnections, "Card should have the number of mutual connections");
 
         /* Reset applicant to 'Good fit' status */
@@ -406,7 +391,7 @@ public class EmployerTalent extends BaseTest {
     }
 
     @AfterMethod
-    public void tearDown(ITestResult result) throws SQLException {
+    public void tearDown(ITestResult result) {
         if (!result.isSuccess()) {
             screenshot.takeScreenShot(result.getMethod().getMethodName(), driver);
         }

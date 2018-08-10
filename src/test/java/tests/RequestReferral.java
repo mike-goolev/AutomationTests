@@ -1,7 +1,6 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,8 +8,6 @@ import org.testng.annotations.Test;
 import pages.*;
 import restInterfaces.SeasonedRestAPI;
 import utils.TestDataImporter;
-
-import java.sql.SQLException;
 
 public class RequestReferral extends BaseTest{
 
@@ -50,13 +47,12 @@ public class RequestReferral extends BaseTest{
     protected String skillCreativity;
 
     @BeforeMethod(dependsOnMethods = {"setUpMain"})
-    public void setUp() throws SQLException {
+    public void setUp() {
         employerDashPage = new EmployerDashPage(driver);
         loginPage = new HourlyLoginPage(driver);
         employerRequestReferralPage = new EmployerRequestReferralPage(driver);
         email = (String) TestDataImporter.get("RequestReferral", "testRequestReferral").get("email");
         password = (String) TestDataImporter.get("RequestReferral", "testRequestReferral").get("password");
-
     }
 
     @Test
@@ -75,12 +71,12 @@ public class RequestReferral extends BaseTest{
 
         /* Get Job Name */
         jobName = employerDashPage.getJobCardJobName("0");
-        title = (String) TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalTitlepart1") + jobName + (String) TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalTitlepart2");
+        title = TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalTitlepart1") + jobName + TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalTitlepart2");
 
-        /* Click Get Refferals button from Job Card with index 0 */
+        /* Click Get Referrals button from Job Card with index 0 */
         employerDashPage.selectGetReferralsBtn("0");
 
-        /* Get Request Refferal title and assert to contain the job Name in it's Title same as of the Job Card selected */
+        /* Get Request Referral title and assert to contain the job Name in it's Title same as of the Job Card selected */
         jobNameReferralModal = employerRequestReferralPage.getRequestReferralModaltitle();
         Assert.assertEquals(jobNameReferralModal, title);
 
@@ -95,11 +91,11 @@ public class RequestReferral extends BaseTest{
         Assert.assertEquals(label, expLabel);
 
         /* Get Message placeholder and compare with expected one */
-        String expPlaceholder = (String) TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalMessagePlaceholderpart1") + jobName + (String) TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalMessagePlaceholderpart2");
+        String expPlaceholder = TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalMessagePlaceholderpart1") + jobName + TestDataImporter.get("RequestReferral", "testRequestReferral").get("referralModalMessagePlaceholderpart2");
         String placeholder = employerRequestReferralPage.getRequestReferralModalMessagePlaceholder();
         Assert.assertEquals(placeholder, expPlaceholder);
 
-        /* Enter at least one referrer to check Get Regerrals button being enabled */
+        /* Enter at least one referrer to check Get Referrals button being enabled */
         Assert.assertEquals(employerRequestReferralPage.checkRequestReferralModalGetReferralsBtnEnabled(), false);
         employerRequestReferralPage.enterRequestReferralModalReferrerName("SeasReferral");
         employerRequestReferralPage.selectRequestReferralModalReferrerFromDropdownList();
@@ -131,7 +127,7 @@ public class RequestReferral extends BaseTest{
         navPage.navigateToDashPage();
         employerDashPage.waitForLoadingIndicator();
 
-        /* Click Get Refferals button from Job Card with index 0 */
+        /* Click Get Referrals button from Job Card with index 0 */
         employerDashPage.selectGetReferralsBtn("0");
 
         /* Select Referrer */
@@ -147,7 +143,7 @@ public class RequestReferral extends BaseTest{
     }
 
     @Test(dependsOnMethods = {"testEmployerRequestReferralAdminSide"})
-    public void testReferralsReferrerSide(){
+    public void testReferralsReferrerSide() throws Exception {
 
         messagesPage = new MessagesPage(driver);
 
@@ -254,7 +250,6 @@ public class RequestReferral extends BaseTest{
         Thread.sleep(5000);
         hourlyJobSearchPage.clickViewMyProfileBtnFromJobPage();
     }
-
 
     public void testReferredApplicantOnAdminSide(){
 
