@@ -19,15 +19,17 @@ public class HourlyHomePage extends BaseTest {
 
     protected String username;
     protected String password;
-    protected String navMenuName;
+    protected String fbEmail;
+    protected String fbPassword;
 
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing Hourly Home Page test...");
 
-        username = (String) TestDataImporter.get("HomePage", "testHomePage").get("username");
-        password = (String) TestDataImporter.get("HomePage", "testHomePage").get("password");
-        navMenuName = (String) TestDataImporter.get("HomePage", "testHomePage").get("navMenuName");
+        username = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("username");
+        password = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginEmail").get("password");
+        fbEmail = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginFB").get("username");
+        fbPassword = (String) TestDataImporter.get("HourlyLogin", "testHourlyLoginFB").get("password");
         System.out.println("Starting test run!");
     }
 
@@ -54,6 +56,16 @@ public class HourlyHomePage extends BaseTest {
         Assert.assertTrue(navPage.isUserNameDisplayed(), "User name should be displayed in the nav bar");
     }
 
+    @Test
+    public void testSignUpWithFb(){
+        /* Launch home page */
+        testUtils.loadHomePage();
+        /* Sign Up with FB */
+        homePage.signUpWithFbBtn(fbEmail, fbPassword);
+        /* Verify that the user's name is in the nav bar*/
+        Assert.assertTrue(navPage.isUserNameDisplayed(), "User name should be displayed in the nav bar");
+    }
+
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (!result.isSuccess()) {
@@ -63,7 +75,4 @@ public class HourlyHomePage extends BaseTest {
         navPage.attemptLogout();
         driver.quit();
     }
-
-
-
 }
