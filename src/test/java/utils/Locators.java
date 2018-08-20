@@ -22,9 +22,9 @@ public class Locators {
         public By contentFeedBtn = By.id("headerFeedLink");
         public By messagesBtn = By.id("headerMessagesLink");
         public By userNameBtn = By.id("headerMenuToggleBtn");
-        public By userNameTxt = By.id("usernameText");
-        public By userPhotoImg = By.id("profilePictureImg");
-        public By userAvatarImg = By.id("profilePictureImg");
+        public By userNameTxt = By.id("headerUsernameTxt");
+        public By userPhotoImg = By.id("headerProfilePictureImg");
+        public By userAvatarImg = By.id("headerProfilePictureImgIcon");
 
         /* Auth'd Nav Header Locators - Manager */
         public By dashBtn = By.id("headerHiringDashboardLink");
