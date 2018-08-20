@@ -134,7 +134,7 @@ public class HourlyMyHome extends BaseTest {
 
     @AfterClass
     public void deleteArticle() {
-        System.out.println("Logging out and shutting down selenium for the hourly content feed test");
+        System.out.println("Deleting articles created during this test!");
         navPage.attemptLogout();
         SeasonedRestAPI seasonedRestAPI = new SeasonedRestAPI(token);
         seasonedRestAPI.deleteArticle(articleGuid);

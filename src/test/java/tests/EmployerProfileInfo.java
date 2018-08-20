@@ -31,8 +31,6 @@ public class EmployerProfileInfo extends BaseTest {
     private String newEmployerCardState;
     private String employerZip;
     private String newEmployerZip;
-    private String employerDistance;
-    private String newEmployerDistance;
     private String employerCountry;
     private String employerPhone;
     private String newEmployerPhone;
@@ -72,8 +70,6 @@ public class EmployerProfileInfo extends BaseTest {
         employerZip = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerZip");
         newEmployerZip = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("newEmployerZip");
         employerCountry = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerCountry");
-        employerDistance = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerDistance");
-        newEmployerDistance = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerDistance");
         employerPhone = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerPhone");
         newEmployerPhone = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("newEmployerPhone");
         employerWebsite = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("employerWebsite");
@@ -108,9 +104,7 @@ public class EmployerProfileInfo extends BaseTest {
         /* Verify employer's name, address, city, state, zip, phone and website */
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), employerAddress + ", " + employerCity + ", " + employerCardState);
-        //Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), employerCity);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerCardState + " " + employerZip);
-        //Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), employerDistance);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), employerCardWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), employerPhone);
         Assert.assertEquals(employerProfileViewPage.getAboutTitleTxt(), "About " + employerName);
@@ -153,8 +147,6 @@ public class EmployerProfileInfo extends BaseTest {
         Assert.assertEquals(employerProfileInfoPage.getEmployerZip(), newEmployerZip);
         Assert.assertEquals(employerProfileInfoPage.getEmployerPhone(), newEmployerPhone);
         Assert.assertEquals(employerProfileInfoPage.getEmployerWebsite(), newEmployerWebsite);
-        //Bug: Save button is not disabled after saving
-        //Assert.assertFalse(employerProfileInfoPage.isSaveButtonEnabled(), "Save button should be disabled after saving");
 
         /* Navigate to view profile page */
         employerProfileEditPage.selectMenuViewProfileLink();
@@ -162,9 +154,7 @@ public class EmployerProfileInfo extends BaseTest {
         /* Verify the new name, address, city, state, phone and website on the view profile page */
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), newEmployerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), newEmployerAddress + ", " + newEmployerCity + ", " + newEmployerCardState);
-        //Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), newEmployerCity);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), newEmployerAddress + ", " + newEmployerCity + ", " + newEmployerCardState + " " + newEmployerZip);
-        //Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), newEmployerDistance);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), newEmployerCardWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), newEmployerPhone);
         Assert.assertEquals(employerProfileViewPage.getAboutTitleTxt(), "About " + newEmployerName);
@@ -194,8 +184,6 @@ public class EmployerProfileInfo extends BaseTest {
         Assert.assertEquals(employerProfileInfoPage.getEmployerZip(), employerZip);
         Assert.assertEquals(employerProfileInfoPage.getEmployerPhone(), employerPhone);
         Assert.assertEquals(employerProfileInfoPage.getEmployerWebsite(), employerWebsite);
-        //Bug: Save button is not disabled after saving
-        //Assert.assertFalse(employerProfileInfoPage.isSaveButtonEnabled());
 
         /* Navigate to view profile page */
         employerProfileEditPage.selectMenuViewProfileLink();
@@ -203,9 +191,7 @@ public class EmployerProfileInfo extends BaseTest {
         /* Verify the new name, address, city, state, zip, phone and website on the view profile page */
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderName(), employerName);
         Assert.assertEquals(employerProfileViewPage.getEmployerHeaderAddress(), employerAddress + ", " + employerCity + ", " + employerCardState);
-        //Assert.assertEquals(employerProfileViewPage.getEmployerCardCity(), employerCity);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardAddress(), employerAddress + ", " + employerCity + ", " + employerCardState + " " + employerZip);
-        //Assert.assertEquals(employerProfileViewPage.getEmployerCardDistance(), employerDistance);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardWebsite(), employerCardWebsite);
         Assert.assertEquals(employerProfileViewPage.getEmployerCardPhone(), employerPhone);
     }
