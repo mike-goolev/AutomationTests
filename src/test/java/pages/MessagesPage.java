@@ -267,7 +267,7 @@ public class MessagesPage extends BasePage {
      * @return Whether or not the red dot is displayed when new message
      */
     public String getRedBadgeNewMsgCount() {
-        return driver.findElement(messagesPageLocators.msgRedBadge).getAttribute("data-msg-count");
+        return driver.findElement(messagesPageLocators.msgRedBadge).getAttribute("data-badge-msg");
     }
     /**
      * Verifies that red dot is not displayed when new message seen

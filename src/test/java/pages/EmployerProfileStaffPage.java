@@ -89,8 +89,8 @@ public class EmployerProfileStaffPage extends BasePage {
         selectStaffMember(index, searchIndex);
         selectStaffMemberAddButton();
         waitForSaveBtnLoader();
-        selectStaffMemberDoneButton();
-        waitForPageLoader();
+        //selectStaffMemberDoneButton();
+        //waitForPageLoader();
     }
 
     /**

@@ -199,8 +199,8 @@ public class EmployerProfileJobs extends BaseTest {
         /* Verify job card */
         employerProfileViewPage.scrollToJobCard(jobIndex);
         Assert.assertTrue(employerProfileViewPage.isJobCardEmployerLogoPresent(jobIndex), "The employer logo should be displayed on the job card");
-        Assert.assertEquals(employerProfileViewPage.getJobCardEmployerNameAndAddress(jobIndex), employerNameAndAddress);
-       // Assert.assertEquals(employerProfileViewPage.getJobCardEmployerAddress(jobIndex), employerAddress + ", " + employerCity + ", " + employerState);
+        Assert.assertEquals(employerProfileViewPage.getJobCardEmployerName(jobIndex), employerName);
+        Assert.assertEquals(employerProfileViewPage.getJobCardEmployerAddress(jobIndex), employerCity + ", " + employerState);
         Assert.assertEquals(employerProfileViewPage.getJobPosition(jobIndex), jobCustomName);
        // Assert.assertEquals(employerProfileViewPage.getJobAvailability(jobIndex), jobAvailabilityFulltime);
 //        Assert.assertEquals(employerProfileViewPage.getJobWage(jobIndex), jobWage);

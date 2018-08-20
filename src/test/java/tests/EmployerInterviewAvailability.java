@@ -11,6 +11,7 @@ import pages.EmployerDashPage;
 import pages.EmployerFindTalentPage;
 import pages.HourlyLoginPage;
 import pages.MessagesPage;
+import pages.EmployerReferralBannerPage;
 import restInterfaces.SeasonedRestAPI;
 import utils.TestDataImporter;
 
@@ -21,6 +22,7 @@ public class EmployerInterviewAvailability extends BaseTest {
     private HourlyLoginPage loginPage;
     private EmployerDashPage employerDashPage;
     private EmployerFindTalentPage findTalentPage;
+    private EmployerReferralBannerPage employerReferralBannerPage;
     private MessagesPage messagesPage;
     private String email;
     private String password;
@@ -74,7 +76,7 @@ public class EmployerInterviewAvailability extends BaseTest {
         loginPage = new HourlyLoginPage(driver);
         messagesPage = new MessagesPage(driver);
         findTalentPage = new EmployerFindTalentPage(driver);
-
+        employerReferralBannerPage = new EmployerReferralBannerPage(driver);
         email = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("email");
         password = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("password");
         day6OfWeekTxt = (String) TestDataImporter.get("InterviewAvailability", "InterviewAvailability").get("day6OfWeekTxt");
@@ -213,7 +215,7 @@ public class EmployerInterviewAvailability extends BaseTest {
         /* Verify the updated availability success dialog is closed */
         Assert.assertFalse(findTalentPage.isUpdatedAvailabilitySuccessDialogDisplayed(), "The updated availability success dialog should be closed after selecting got it button");
 
-        findTalentPage.selectCloseReferralBannerBtn();
+        employerReferralBannerPage.selectCloseReferralBannerBtn();
 
         /*Verify if the filled time slot is displayed on calendar view */
         Assert.assertTrue(findTalentPage.isCalendarCellFilledTimeSlotDisplayed(), "The filled time slot should be displayed on calendar view");

@@ -2004,15 +2004,6 @@ public class EmployerFindTalentPage extends BasePage {
     }
 
     /**
-     * Selects the close referral banner button
-     */
-    public void selectCloseReferralBannerBtn() {
-        wait.until(presenceOfElementLocated(talentPageLocators.referralsBannerCloseBtn));
-        driver.findElement(talentPageLocators.referralsBannerCloseBtn).click();
-        wait.until(invisibilityOfElementLocated(talentPageLocators.referralsBannerCloseBtn));
-    }
-
-    /**
      * Scroll to applicants cards
      *
      * @param index the index of the applicants card to scroll to

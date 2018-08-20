@@ -170,7 +170,7 @@ public class EmployerProfileInfoPage extends BasePage {
     public void selectState(String index) {
         driver.findElement(employerProfileEditInfoPageLocators.employerProfileEditInfoStateDropdownBtn).click();
         WebElement stateSelection = driver.findElement(employerProfileEditInfoPageLocators.findEmployerStateByIndex(index));
-        testUtils.jsExecutorElement("arguments[0].scrollIntoView(true);", stateSelection);
+        //testUtils.jsExecutorElement("arguments[0].scrollIntoView(true);", stateSelection);
         driver.findElement(employerProfileEditInfoPageLocators.findEmployerStateByIndex(index)).click();
     }
 

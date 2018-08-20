@@ -147,6 +147,7 @@ public class EmployerDash extends BaseTest {
         Assert.assertEquals(employerDashPage.getEmployerDashTitleTxt(), dashTitle);
 
         /* View applicant profile */
+        employerDashPage.selectApplicantActionsBtn(cardIndex);
         employerDashPage.selectApplicantViewProfileBtn(cardIndex);
         //Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
         Thread.sleep(2000);
@@ -215,6 +216,7 @@ public class EmployerDash extends BaseTest {
         Assert.assertEquals(employerDashPage.getApplicantSharedConnections(cardIndex), applicantSharedConnections);
 
         /* View applicant profile */
+        employerDashPage.selectApplicantActionsBtn(cardIndex);
         employerDashPage.selectApplicantViewProfileBtn(cardIndex);
         //Profile page does not have a loading indicator and doesn't render consistently, so the below assertion will fail without the sleep
         Thread.sleep(2000);

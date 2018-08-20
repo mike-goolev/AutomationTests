@@ -15,6 +15,7 @@ public class EmployerProfileInfo extends BaseTest {
     private EmployerProfileViewPage employerProfileViewPage;
     private EmployerProfileEditPage employerProfileEditPage;
     private EmployerProfileInfoPage employerProfileInfoPage;
+    private EmployerReferralBannerPage employerReferralBannerPage;
 
     private String email;
     private String password;
@@ -53,6 +54,7 @@ public class EmployerProfileInfo extends BaseTest {
         employerProfileViewPage = new EmployerProfileViewPage(driver);
         employerProfileEditPage = new EmployerProfileEditPage(driver);
         employerProfileInfoPage = new EmployerProfileInfoPage(driver);
+        employerReferralBannerPage = new EmployerReferralBannerPage(driver);
         loginPage = new HourlyLoginPage(driver);
 
         email = (String) TestDataImporter.get("EmployerProfileInfo", "EmployerProfileInfo").get("email");
@@ -114,6 +116,7 @@ public class EmployerProfileInfo extends BaseTest {
         Assert.assertEquals(employerProfileViewPage.getAboutTitleTxt(), "About " + employerName);
 
         /* Navigate to edit employer info */
+        employerReferralBannerPage.selectCloseReferralBannerBtn();
         employerProfileViewPage.selectEmployerInfoEditBtn();
 
         /* Verify the employer's initial name, address, city, state, zip, phone and website */

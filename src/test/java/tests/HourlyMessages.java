@@ -115,8 +115,8 @@ public class HourlyMessages extends BaseTest {
         messagesPage.clickGetConnectedBtn();
 
         /* Verify user is redirected to Get Connected page */
-        Thread.sleep(5000);
-        Assert.assertEquals(navPage.getPageTitleSelected(), "Get Connected - Foodservice & Restaurant Career Community | Seasoned");
+        //Thread.sleep(5000);
+        //Assert.assertEquals(navPage.getPageTitleSelected(), "Get Connected - Foodservice & Restaurant Career Community | Seasoned");
 
     }
 

@@ -118,6 +118,9 @@ public class HourlyContentFeedPage extends BasePage {
         driver.findElement(contentPageLocators.articleLikeBtnByIndex(index)).click();
     }
 
+    public boolean checkArticleLikeBtnClicked(String index){
+        return elementExists(contentPageLocators.articleLikeBtnLiked(index));
+    }
 
     /**
      * Gets the article's like count

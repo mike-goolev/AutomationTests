@@ -305,8 +305,12 @@ public class EmployerProfileViewPage extends BasePage {
      * @param index The index of the job card's employer name (starting at 0)
      * @return The job card's employer name
      */
-    public String getJobCardEmployerNameAndAddress(String index){
-        return driver.findElement(profilePageLocators.findEmployerJobCardNameAndAddressByIndex(index)).getText();
+    public String getJobCardEmployerName(String index){
+        return driver.findElement(profilePageLocators.findEmployerJobCardNameByIndex(index)).getText();
+    }
+
+    public String getJobCardEmployerAddress(String index){
+        return driver.findElement(profilePageLocators.findEmployerJobCardAddressByIndex(index)).getText();
     }
 
     /*---------- Utility Methods ----------*/

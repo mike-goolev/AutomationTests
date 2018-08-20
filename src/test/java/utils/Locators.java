@@ -7,10 +7,10 @@ public class Locators {
     public static class NavPageLocators {
         /* Common Nav Header Locators */
         public By largeBrushfireLogo = By.id("headerBigLogoImg");
-        public By myHomeBtn = By.id("headerMyHomeLink");
+        public By myHomeBtn = By.id("headerDashboardLink");
         public By findJobsBtn = By.id("headerFindJobsLink");
         public By careerBtn = By.id("headerCareerPathLink");
-        public By networkBtn = By.id("headerCommunityLink");
+        public By networkBtn = By.id("headerGetConnectedLink");
         public By searchBtn = By.id("headerSearchButton");
         public By jobSearchTxtField = By.id("headerSearchInput");
 
@@ -27,13 +27,13 @@ public class Locators {
         public By userAvatarImg = By.id("profilePictureImg");
 
         /* Auth'd Nav Header Locators - Manager */
-        public By dashBtn = By.id("headerDashboardLink");
+        public By dashBtn = By.id("headerHiringDashboardLink");
         public By talentBtn = By.id("headerFindTalentLink");
 
         public By menuProfileBtn = By.id("headerMenuProfileLink");
         public By menuStoreProfileBtn = By.id("headerMenuStoreProfileLink");
         public By menuSettingsBtn = By.id("headerMenuSettingsLink");
-        public By menuManagerBtn = By.id("headerMenuSwitchViewsLink");
+        public By menuManagerBtn = By.id("headerMenuSwitchToLink");
         public By menuMemberBtn = By.id("headerMenuSwitchViewsLink");
         public By menuLogoutBtn = By.id("headerMenuLogOutLink");
 
@@ -228,6 +228,9 @@ public class Locators {
             return By.id("myHomeCardLikeBtn" + index);
         }
 
+        public By articleLikeBtnLiked(String index){
+            return By.cssSelector("#myHomeCardLikeBtn" + index + ".liked");
+        }
         /**
          * Locates an article like count for a given index
          *
@@ -1291,8 +1294,8 @@ public class Locators {
         public By messageThreadSenderImg0 = By.id("messageThreadWdgMessageAvatarImg0");
         public By messageThreadSenderTxt0 = By.className("text-break-word");
         public By messageThreadSenderTimeTxt0 = By.id("messageThreadWdgMessage0SentTimeText");
-        public By messageThreadRecipientImg0 = By.xpath("//div[@id[starts-with(.,\"messageThreadWdgMessageAvatar\")]]");
-        public By messageThreadTxt0 = By.id("messageThreadWdgMessage0");
+        public By messageThreadRecipientImg0 = By.id("messageThreadWdgMessageTextMessageAvatarImg0");
+        public By messageThreadTxt0 = By.id("messageThreadWdgMessageText0");
         public By messageThreadRecipientTimeTxt0 = By.id("recipientMessageSentTimeText0");
         public By messageThreadYearDividerTxt0 = By.id("senderMessageDividerText0");
         public By messageThreadWdgInput = By.id("messageThreadWdgInput");
@@ -1314,7 +1317,7 @@ public class Locators {
         public By msgComposeConnectionsList = By.id("messageComposeConnectionsSelect");
         public By msgComposeConnection0 = By.id("messageComposeConnectionsSelectConnection0");
         public By msgThreadWdg = By.id("messageThreadWdg");
-        public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-msgs-badge");
+        public By msgRedBadge = By.cssSelector("#headerMessagesLink.with-badge");
         public By msgNoRedBadge = By.cssSelector("#headerMessagesLink");
 
         public By msgItemInThread(String index){
@@ -1550,7 +1553,7 @@ public class Locators {
         public By employerProfileLoadingIndicator = By.cssSelector("div.spinner.active");
         public By employerHeaderNameTxt = By.id("storeProfileTitle");
         public By employerHeaderAddressTxt  = By.id("storeProfileSubtitle");
-        public By employerHeaderEditProfileBtn = By.id("storeProfileEditIcon");
+        public By employerHeaderEditProfileBtn = By.id("manageMyStoreBtn");
         public By employerHeaderLogoImg  = By.id("storeProfileLogo");
         public By employerHeaderLikeBtn = By.id("storeProfileLikeBtn");
         public By employerHeaderFollowBtn = By.id("storeProfileFollowBtn");
@@ -1573,9 +1576,9 @@ public class Locators {
         public By employerAboutTxt = By.id("storeProfileAboutText");
         public By employerAboutExpandTextBtn = By.id("storeProfileAboutExpandableContentIconBtn");
         public By employerAboutEditBtn = By.id("storeProfileAboutEditBtn");
-        public By employerManagementTitleTxt = By.id("storeProfileManagementTitle");
-        public By employerManagementEditBtn = By.id("storeProfileManagementEditBtn");
-        public By employerStoreCreatedTxt = By.id("addStoreDetailsReminder");
+        public By employerManagementTitleTxt = By.id("storeProfileTeamSection");
+        public By employerManagementEditBtn = By.id("storeProfileEditBtn");
+        public By employerStoreCreatedTxt = By.id("addStoredDetailsReminder");
 
         /**
          * Locates an employer manager photo for a given index
@@ -1584,7 +1587,7 @@ public class Locators {
          * @return Returns a locator for the employer manager photo by index
          */
         public By findEmployerManagerPhotoByIndex(String index) {
-            return By.id("storeMember" + index + "Avatar");
+            return By.id("storeProfileStoreManager" + index + "Avatar");
         }
 
         /**
@@ -1594,7 +1597,7 @@ public class Locators {
          * @return Returns a locator for the employer manager name by index
          */
         public By findEmployerManagerNameByIndex(String index) {
-            return By.id("storeMember" + index + "NameText");
+            return By.id("storeProfileStoreManager" + index + "NameText");
         }
 
         /**
@@ -1604,7 +1607,7 @@ public class Locators {
          * @return Returns a locator for the employer manager label by index
          */
         public By findEmployerManagerLabelByIndex(String index) {
-            return By.id("storeMember" + index + "Label");
+            return By.id("storeProfileStoreManager" + index + "Label");
         }
 
         /**
@@ -1626,7 +1629,7 @@ public class Locators {
          * @return Returns a locator for the employer job position by index
          */
         public By findEmployerJobCardPositionByIndex(String index) {
-            return By.id("jobCardJobNameTextJobCard" + index);
+            return By.id("JobCardStoreProfileJobNameTextJobCard" + index);
         }
 
         /**
@@ -1695,8 +1698,19 @@ public class Locators {
          * @param index The index (Starting at 0) of the job's employer name you wish to locate
          * @return Returns a locator for the job's employer name by index
          */
-        public By findEmployerJobCardNameAndAddressByIndex(String index) {
-            return By.id("jobCardEmployerNameAndLocationTextJobCard" + index);
+        public By findEmployerJobCardNameByIndex(String index) {
+            return By.id("JobCardStoreProfileEmployerNameTextJobCard" + index);
+        }
+
+        /**
+         * Locates a job's employer address for a given index
+         *
+         * @param index
+         * @return
+         */
+        public By findEmployerJobCardAddressByIndex(String index){
+            return By.id("JobCardStoreProfileAddressTextJobCard" + index);
+
         }
 
     }
@@ -1892,7 +1906,7 @@ public class Locators {
             return By.id("managerListItem" + index + "EditBtn");
         }
 
-        public By employerProfileEditStaffAddNewStaffBtn = By.id("addManagerIcon");
+        public By employerProfileEditStaffAddNewStaffBtn = By.id("addAdminBtn");
         public By employerProfileEditStaffAddNewStaffTxt = By.id("");
         public By employerProfileEditStaffTooltipTitleTxt = By.id("manageStoreTitleTooltip");
         public By employerProfileEditStaffTooltipTxt = By.id("manageStoreTitleTooltip");
@@ -1949,7 +1963,7 @@ public class Locators {
         public By employerProfileEditPhotosBtn = By.id("editprofilePhotosLink");
         public By employerProfileEditAboutBtn = By.id("editprofileAboutMyStoreLink");
         public By employerProfileEditJobsBtn = By.id("editprofileHiringLink");
-        public By employerProfileEditStaffBtn = By.id("editprofileManagementLink");
+        public By employerProfileEditStaffBtn = By.id("editprofileTeamLink");
         public By employerProfileEditViewProfileBtn = By.id("editprofileViewProfileLink");
         public By employerProfileEditPageLoader = By.id("storeManagersLoaderIcon");
     }
@@ -2032,7 +2046,7 @@ public class Locators {
          * @return Returns a locator for the applicant's view profile button by index
          */
         public By findEmployerDashApplicantCardViewProfileBtnByIndex(String index) {
-            return By.id("Applicant" + index + "ViewProfileBtn");
+            return By.id("Applicant" + index + "ViewApplicantBtn");
         }
 
         /**
@@ -2042,7 +2056,7 @@ public class Locators {
          * @return Returns a locator for the applicant's action button by index
          */
         public By findEmployerDashApplicantCardActionsBtnByIndex(String index) {
-            return By.id("Applicant" + index + "ConnectBtn");
+            return By.id("Applicant" + index + "MenuTriggerBtn");
         }
 
         /**
@@ -2169,7 +2183,7 @@ public class Locators {
          * @return Returns a locator for the talent's action button by index
          */
         public By findEmployerDashTalentCardActionsByIndex(String index) {
-            return By.id("Talent" + index + "ConnectBtn");
+            return By.id("Talent" + index + "MenuTriggerBtn");
         }
 
         /**
@@ -2575,7 +2589,7 @@ public class Locators {
          * @return Returns a locator for the applicant's action button by index
          */
         public By findEmployerApplicantCardActionsByIndex(String index) {
-            return By.id("Applicant" + index + "ConnectBtn");
+            return By.id("Applicant" + index + "MenuTriggerBtn");
         }
 
         /**
@@ -2585,7 +2599,7 @@ public class Locators {
          * @return Returns a locator for the talent's action button by index
          */
         public By findTalentCardActionBtnByIndex(String index) {
-            return By.id("Talent" + index + "ConnectBtn");
+            return By.id("Talent" + index + "MenuTriggerBtn");
         }
 
         /**
@@ -2625,7 +2639,7 @@ public class Locators {
          * @return Returns a locator for the applicant's schedule interview button by index
          */
         public By findEmployerApplicantCardActionsScheduleInterviewByIndex(String index) {
-            return By.id("Applicant" + index + "InterviewApplicantBtn");
+            return By.id("Applicant" + index + "ScheduleInterviewBtn");
         }
 
         /**
@@ -2785,6 +2799,6 @@ public class Locators {
         public By messageThreadRescheduleSuccessDialogText = By.id("messageThreadWdgMessageInterviewReminderRescheduleSuccessDialogText");
         public By messageThreadRescheduleSuccessDialogDismissBtn = By.id("dismissBtn");
         public By messageThreadRescheduleSuccessDialogCloseBtn = By.id("inviteToInterviewInviteSuccessDialogDialogCloseBtn");
-        public By referralsBannerCloseBtn = By.id("referralsBannerCloseBtn");
+        public By referralsBannerCloseBtn = By.id("referralsbannerSMCloseIcon");
     }
 }
