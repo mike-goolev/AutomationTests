@@ -73,7 +73,7 @@ public class TestUtils {
     /**
      * Navigate to the be successful page
      */
-    public void loadBeSuccessfulPage() {
+    public static void loadBeSuccessfulPage() {
         driver.get(TestConfig.getBaseUrl() + TestConfig.getSuccessRelativeUrl());
     }
 

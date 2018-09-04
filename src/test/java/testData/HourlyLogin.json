@@ -6,5 +6,9 @@
   "testHourlyLoginFB": {
     "username":"oprsdlcfna_1478635495@tfbnw.net",
     "password":"automation"
+  },
+  "testHourlyLoginUnlockedBadges": {
+    "username":"unlocked_badges@mailinator.com",
+    "password":"password"
   }
 }

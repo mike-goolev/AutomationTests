@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import utils.Locators;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class HourlyProfileViewPage extends BasePage {
@@ -75,6 +74,23 @@ public class HourlyProfileViewPage extends BasePage {
         driver.findElement(profilePageLocators.personalInfoActionsMenuBtn).click();
         wait.until(elementToBeClickable(profilePageLocators.personalInfoDisconnectBtn));
         driver.findElement(profilePageLocators.personalInfoDisconnectBtn).click();
+    }
+
+    /*---------Badges Section---------*/
+    public boolean isLockedProfileBadgePresent() {
+        return elementExists(profilePageLocators.lockedProfileBadgeImg);
+    }
+
+    public boolean isLockedConnectionBadgePresent() {
+        return elementExists(profilePageLocators.lockedConnectionBadgeImg);
+    }
+
+    public boolean isUnlockedProfileBadgePresent() {
+        return elementExists(profilePageLocators.unlockedProfileBadgeImg);
+    }
+
+    public boolean isUnlockedConnectionBadgePresent() {
+        return elementExists(profilePageLocators.unlockedConnectionBadgeImg);
     }
 
     /*--------- Work History ----------*/

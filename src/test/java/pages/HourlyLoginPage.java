@@ -45,4 +45,16 @@ public class HourlyLoginPage extends BasePage {
         driver.findElement(loginPageLocators.facebookLoginBtn).click();
         testUtils.switchToParentWindow(parentWindow);
     }
+
+    /**
+     * Logs the user in with the standard email/password format. This user has unlocked badges on profile
+     * @param email User's email their account is assosiated with
+     * @param password User's password for their account
+     */
+    public void loginUnlockedBadges (String email, String password) {
+        wait.until(elementToBeClickable(loginPageLocators.emailTxtField));
+        driver.findElement(loginPageLocators.emailTxtField).sendKeys(email);
+        driver.findElement(loginPageLocators.passwordTxtField).sendKeys(password);
+        driver.findElement(loginPageLocators.loginBtn).click();
+    }
 }

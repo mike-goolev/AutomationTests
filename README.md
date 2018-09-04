@@ -33,6 +33,3 @@ Running via Idea IDE
 Modify the TestSuiteData file path in TestDataImporter.java
 
 1. Change the directory for the JSONObject testSuiteData variable to point to your directory.
-=======
-# AutomationTests
->>>>>>> e3ce27a8f33f1aa66411977fc4e7c071deba9d9e

@@ -520,6 +520,12 @@ public class Locators {
         public By personalInfoActionsMenuBtn = By.cssSelector("div.actions-menu-toggle");
         public By personalInfoDisconnectBtn = By.id("disconnectLink");
 
+        /* Badges Section */
+        public By lockedProfileBadgeImg = By.id("profileBadgeLocked");
+        public By lockedConnectionBadgeImg = By.id("connectionBadgeLocked");
+        public By unlockedProfileBadgeImg = By.id("profileBadgeUnlocked");
+        public By unlockedConnectionBadgeImg = By.id("connectionBadgeUnlocked");
+
         /* Work History Section */
         public By workHistoryTitleTxt = By.id("workHistoryCardListItemprofileExperienceTitle");
         public By workHistoryEmptyTxt = By.id("workHistoryCardListItemProfileEmptyText");
